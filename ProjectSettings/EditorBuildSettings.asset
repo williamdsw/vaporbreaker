@@ -1,0 +1,200 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Menus/Logo_Screen.unity
+    guid: 8d4d6b6147002034a9e0e4b09de44abb
+  - enabled: 1
+    path: Assets/Scenes/Menus/Title_Screen.unity
+    guid: 0ef1ca93201c71a499271276d9d1f0a8
+  - enabled: 1
+    path: Assets/Scenes/Menus/Main_Menu.unity
+    guid: 5dda09cc5254bbe49b6f70ac6cc44253
+  - enabled: 1
+    path: Assets/Scenes/Menus/Select_Levels.unity
+    guid: d0d7b860b1b39fd45962e1550329355c
+  - enabled: 1
+    path: Assets/Scenes/Menus/PowerUps_Guide.unity
+    guid: 1b317b526f8f0384a8a0963d2889363e
+  - enabled: 1
+    path: Assets/Scenes/Menus/Soundtracks.unity
+    guid: 42c5d47403903df49be65d9d9d2fb491
+  - enabled: 1
+    path: Assets/Scenes/Menus/Loading.unity
+    guid: 84ca8f0af9dee19469b7202132ab2efe
+  - enabled: 1
+    path: Assets/Scenes/Menus/Credits.unity
+    guid: 7dea70c2b1676ec47ba0ffd921971925
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_01__1_Hit_Blocks.unity
+    guid: 16fc758ec5647cf4cb885d12c9feef4f
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_02__2_Hits_Blocks.unity
+    guid: b85a6ffd60f44c747ab37bcfe57014d3
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_03__3_Hits_Blocks.unity
+    guid: 5645051ba70d46e48a15fcf10508b898
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_04__4_Hits_Blocks.unity
+    guid: b7e0e5a4be2cdee4b8ffc1018accc2af
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_05__5_Hits_Blocks.unity
+    guid: 4d550e9e9b4b7bc419b1d2f5d65c36c6
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_06__Random_Hits_Blocks.unity
+    guid: f45ffd50990b6e0409445071bea0b3fc
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_07__PowerUp_Blocks.unity
+    guid: 2300f480f23a6fb4b97b29cce3abccf2
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_08__Unbreakables_Blocks.unity
+    guid: a6dab6d8a96eafc41a2ca06a14d897db
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_09__Burning.unity
+    guid: 9d78aba3d226f924d9a702d8b5124488
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_10__Bluemerize.unity
+    guid: 9f86c52d0b51ba54faacf6b399b26ee8
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_11__RGB.unity
+    guid: 9cfdc448a82121d49a56a65663ea90c5
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_12__Big_1_Hit_R.unity
+    guid: 618e2889aff167b47bbcd292b173a277
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_13__Big_1_Hit_G.unity
+    guid: 50ac43ab917c261418f7f4608b0d2931
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_14__Big_1_Hit_B.unity
+    guid: aa43475044927034b86ecc95c3c06f73
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_15__Green_XX.unity
+    guid: 1534b7503c7f3b145a4ca39e81485005
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_16__Purple_I.unity
+    guid: d17681fd187400d4ca11c640e27c5476
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_17__Brown_n_Butter.unity
+    guid: 3ebb21d849e572041ad524e9bc0889db
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_18__Big_2_Hits_R.unity
+    guid: 6da4c6fb1c82dbf4db9b7ecaef7a4aba
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_19__Big_2_Hits_G.unity
+    guid: 5bef02cc1a5bba142af6fe4cf6ae2e62
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_20__Big_2_Hits_B.unity
+    guid: 98febd180838ca04d8b002fd253fd711
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_21__Gray_V.unity
+    guid: 968a70713a9ee0d428fe10a22e91a8d9
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_22__Hit.unity
+    guid: 7d1039a5e4aaf1945ba920d17876adeb
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_23__Tetris_1.unity
+    guid: 83ac3609ee9d1c7449f6bc9e274c5fc0
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_24__Big_3_Hits_R.unity
+    guid: f2756c0cefb9ee64a9557168a980989f
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_25__Big_3_Hits_G.unity
+    guid: b51116c858c7c2f4780ed3cbaa7c5ea1
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_26__Big_3_Hits_B.unity
+    guid: 65c830b65b1153546990ab1fd0defc0f
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_27__Bricks_1.unity
+    guid: 17f84d17626160c478ada80e953ea1e0
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_28__Bricks_2.unity
+    guid: b8092ce4e50fb364aac982232a60209f
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_29__Bricks_3.unity
+    guid: 6c6f86e497311bf4cb1d169c59f9dfca
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_30__Big_4_Hits_R.unity
+    guid: 35276cf2c4555824cb4c3e39b96dac72
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_31__Big_4_Hits_G.unity
+    guid: abb0d8713a186fb41a52e5fc733d2aad
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_32__Big_4_Hits_B.unity
+    guid: 62ffc8b7f23476c459f8434e9e4c024e
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_33__Cant_Die_1.unity
+    guid: 9902d046200d2d844b8277c5ce1a685c
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_34__Cant_Die_2.unity
+    guid: a9a0c5c1914d47146b43f868788f84ba
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_35__Cant_Die_3.unity
+    guid: b0edb02749faff444855ee2f77b5d097
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_36__Big_5_Hits_R.unity
+    guid: 3f86f1a5a5d054547bcfe3fb82bd90d9
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_37__Big_5_Hits_G.unity
+    guid: 6b923fcf106f9754197a9bb0e75fb5b4
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_38__Big_5_Hits_B.unity
+    guid: c1e7922a5b99ee243a7f4fd3a65ebbb2
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_39__Squares.unity
+    guid: a75f522ecf349784f9edbcd044119498
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_40__Triangles.unity
+    guid: c0d86aa78daf37c49940ed2a13ce9592
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_41__The_Big_Pentagon.unity
+    guid: 1ae1ea5dbbf6e8a4ebae984af75aeba5
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_42__Big_PowerUp_Block_R.unity
+    guid: 311d0f8667050084599707ec8d1bd051
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_43__Big_PowerUp_Block_G.unity
+    guid: 2513b1bac4b3ae744b1e086c5713d243
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_44__Big_PowerUp_Block_B.unity
+    guid: 461750589d2bf514d920f28d9c80f0e6
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_45__Blue_Squares.unity
+    guid: 2021fb68b42c0194aac9aac0eba363c7
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_46__Big_Blue_Gradient_Broken_Square.unity
+    guid: 6592a92ec65170343a5c1dfb850c3263
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_47__Blue_Chained_Blocks.unity
+    guid: 9c5f7eb7b8a47ab49877ba4d7227d458
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_48__Big_Random_Hit_Block_R.unity
+    guid: f1c59506ca3c35e4285bae6ead47bbfd
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_49__Big_Random_Hit_Block_G.unity
+    guid: 719d201bbb335a2479050c3f11419752
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_50__Big_Random_Hit_Block_B.unity
+    guid: 8e2a254985e707748900bb014fb371ad
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_51__Trapeze.unity
+    guid: fba14e33e72a1714dbf511fdff317c68
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_52__Hexagon.unity
+    guid: 5ddc9e191e1385b4698cae20c70cf725
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_53__Cross.unity
+    guid: 184e2bd1f1f19a647a8da4b64cd54bbf
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_54__Big_Unbreakable_Block_R.unity
+    guid: bd47c908087533745b17bebc4dc54b4d
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_55__Big_Unbreakable_Block_G.unity
+    guid: 4bd7bf33ea186ac4ea5b5c9c41fda466
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_56__Big_Unbreakable_Block_B.unity
+    guid: 35ed310ec6fa8d9448fd1d9b5284ac2f
+  m_configObjects: {}

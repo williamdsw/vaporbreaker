@@ -1,0 +1,16 @@
+Presiona Cualquier Tecla|Retrogemn 1994-2019, Todos los derechos reservados.
+Menu Principal|Niveles|Opciones|Idioma|Potenciadores|Banda Sonora|Creditos|Dejar
+Continuar|Eliminar Progreso|¿Estas seguro?|No|Si
+Opciones|Resolución|Pantalla completa|Musica|Efectos|Diseno de Teclado Predeterminado|Diseno Predeterminado del Gamepad|Asignacion de Teclado e Gameplay|Vuelve|Padrao
+Diseno de Teclado Predeterminado|Impulso de Paleta|Movimenta Paleta|Liberar Pelota / Disparar|Cambiar Cancion|Pausa / Start|Movimenta Paleta|Impulso de Paleta|Movimenta Puntero|Liberar / Disparar
+Diseno Predeterminado del Gamepad|Impulso de Paleta|Impulso de Paleta|Movimenta Paleta|Movimenta Paleta|Liberar Pelota / Disparar|Movimenta Puntero|Cambiar Cancion|Pausa / Start
+Asignacion de Teclado e Gameplay|Teclado|Gamepad|Izquierda|Derecha|Impulso|Disparar|Impulso|Disparar|Vuelve|Padrao
+Aceptar|Cancelar|Mover|Mover|Cambiar Cancion
+Potencionadores|Valor:
+Reproductor de musica|Reproductor de musica|Ant.|Tocar|Pausa|Repetir|Prox.|Dejar
+Elija un nivel|Estas seguro?|No|Si|Salvando...
+Mejor Puntuacion:|Mejor Tiempo:|
+Nivel Completado!|Puntuacion:|Puntaje de Tiempo:|Bloques Destruidos:|Mejor Combo:|Numero de Muertes:|Bolas Actuales:|Total:|Nueva Puntuacion!|Volviendo a Seleccionar Niveles en
+Pausa|Vuelve|Seleccionar Niveles|Menu Principal
+Idioma|Vuelve
+Presione Cualquier Tecla para Saltar

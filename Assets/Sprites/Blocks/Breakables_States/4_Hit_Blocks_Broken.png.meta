@@ -1,0 +1,2391 @@
+fileFormatVersion: 2
+guid: af1ce5a8788e8c84e9ef2424eb0e2f54
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3270916881108999825
+    second: Blocks_Broken_4_0
+  - first:
+      213: 6185062537925152120
+    second: Blocks_Broken_4_1
+  - first:
+      213: -5440723040452179682
+    second: Blocks_Broken_4_2
+  - first:
+      213: 1215716135802172497
+    second: Blocks_Broken_4_3
+  - first:
+      213: 9015603546640707629
+    second: Blocks_Broken_4_4
+  - first:
+      213: 7143883208061781520
+    second: Blocks_Broken_4_5
+  - first:
+      213: -6797866004757253582
+    second: Blocks_Broken_4_6
+  - first:
+      213: 1166355599091037982
+    second: Blocks_Broken_4_7
+  - first:
+      213: -3176120741219104672
+    second: Blocks_Broken_4_8
+  - first:
+      213: -760861437071409145
+    second: Blocks_Broken_4_9
+  - first:
+      213: -83502259803187493
+    second: Blocks_Broken_4_10
+  - first:
+      213: 5636887669469411785
+    second: Blocks_Broken_4_11
+  - first:
+      213: -8443017190333281863
+    second: Blocks_Broken_4_12
+  - first:
+      213: 8747414639350295446
+    second: Blocks_Broken_4_13
+  - first:
+      213: 4461729207508707388
+    second: Blocks_Broken_4_14
+  - first:
+      213: 2391791142004586461
+    second: Blocks_Broken_4_15
+  - first:
+      213: 2832280636348301634
+    second: Blocks_Broken_4_16
+  - first:
+      213: 3967124046875517462
+    second: Blocks_Broken_4_17
+  - first:
+      213: 2979600611730624402
+    second: Blocks_Broken_4_18
+  - first:
+      213: -4327524336412152575
+    second: Blocks_Broken_4_19
+  - first:
+      213: -5056030289111378562
+    second: Blocks_Broken_4_20
+  - first:
+      213: 4277814813522067167
+    second: Blocks_Broken_4_21
+  - first:
+      213: -6475354772826812614
+    second: Blocks_Broken_4_22
+  - first:
+      213: 4974502532081650749
+    second: Blocks_Broken_4_23
+  - first:
+      213: -771315855136783710
+    second: Blocks_Broken_4_24
+  - first:
+      213: 4682790895418603060
+    second: Blocks_Broken_4_25
+  - first:
+      213: 7439665377964097091
+    second: Blocks_Broken_4_26
+  - first:
+      213: -9020076365965328703
+    second: Blocks_Broken_4_27
+  - first:
+      213: 1501958699361748424
+    second: Blocks_Broken_4_28
+  - first:
+      213: 5908446589712200352
+    second: Blocks_Broken_4_29
+  - first:
+      213: 8082040674898611272
+    second: Blocks_Broken_4_30
+  - first:
+      213: -689345490114635083
+    second: Blocks_Broken_4_31
+  - first:
+      213: 863911517999166566
+    second: Blocks_Broken_4_32
+  - first:
+      213: -2755427131298097652
+    second: Blocks_Broken_4_33
+  - first:
+      213: 5448871707745987493
+    second: Blocks_Broken_4_34
+  - first:
+      213: 174189051087548774
+    second: Blocks_Broken_4_35
+  - first:
+      213: -3182092354511268446
+    second: Blocks_Broken_4_36
+  - first:
+      213: 6817084801995321260
+    second: Blocks_Broken_4_37
+  - first:
+      213: -1625742056768409090
+    second: Blocks_Broken_4_38
+  - first:
+      213: -6305872920406889003
+    second: Blocks_Broken_4_39
+  - first:
+      213: 9132626680037951355
+    second: Blocks_Broken_4_40
+  - first:
+      213: -6159194005738877651
+    second: Blocks_Broken_4_41
+  - first:
+      213: 2691343987086352086
+    second: Blocks_Broken_4_42
+  - first:
+      213: -6390154276062992469
+    second: Blocks_Broken_4_43
+  - first:
+      213: -7315750727014729318
+    second: Blocks_Broken_4_44
+  - first:
+      213: -7208814898500928490
+    second: Blocks_Broken_4_45
+  - first:
+      213: 9164659466719660616
+    second: Blocks_Broken_4_46
+  - first:
+      213: -3055290220417857038
+    second: Blocks_Broken_4_47
+  - first:
+      213: -3329460093339147021
+    second: Blocks_Broken_4_48
+  - first:
+      213: 3506003519404319218
+    second: Blocks_Broken_4_49
+  - first:
+      213: -6553303909999215649
+    second: Blocks_Broken_4_50
+  - first:
+      213: -4406434749209947530
+    second: Blocks_Broken_4_51
+  - first:
+      213: -7695989909538812353
+    second: Blocks_Broken_4_52
+  - first:
+      213: 589650220441146224
+    second: Blocks_Broken_4_53
+  - first:
+      213: 2111600693087759192
+    second: Blocks_Broken_4_54
+  - first:
+      213: -2955228996543801935
+    second: Blocks_Broken_4_55
+  - first:
+      213: 7111235997050258516
+    second: Blocks_Broken_4_56
+  - first:
+      213: 1953334225194579323
+    second: Blocks_Broken_4_57
+  - first:
+      213: -6069194320402794565
+    second: Blocks_Broken_4_58
+  - first:
+      213: -1791384169443634664
+    second: Blocks_Broken_4_59
+  - first:
+      213: 5156228972978146618
+    second: Blocks_Broken_4_60
+  - first:
+      213: 505623450172526815
+    second: Blocks_Broken_4_61
+  - first:
+      213: 3959672357570737495
+    second: Blocks_Broken_4_62
+  - first:
+      213: -6498376297136827998
+    second: Blocks_Broken_4_63
+  - first:
+      213: -6967098475839545537
+    second: Blocks_Broken_4_64
+  - first:
+      213: -6507383224109036146
+    second: Blocks_Broken_4_65
+  - first:
+      213: 1674767461616537965
+    second: Blocks_Broken_4_66
+  - first:
+      213: 367269494704127781
+    second: Blocks_Broken_4_67
+  - first:
+      213: 5986080474402906064
+    second: Blocks_Broken_4_68
+  - first:
+      213: -6469523707989001970
+    second: Blocks_Broken_4_69
+  - first:
+      213: 9193820343022627043
+    second: Blocks_Broken_4_70
+  - first:
+      213: -2264105121322504706
+    second: Blocks_Broken_4_71
+  - first:
+      213: -448597333653999848
+    second: Blocks_Broken_4_72
+  - first:
+      213: 2345656731367669384
+    second: Blocks_Broken_4_73
+  - first:
+      213: -6325923842655283343
+    second: Blocks_Broken_4_74
+  - first:
+      213: 5902061749480926018
+    second: Blocks_Broken_4_75
+  - first:
+      213: -2650336640444886973
+    second: Blocks_Broken_4_76
+  - first:
+      213: 1353514469933234218
+    second: Blocks_Broken_4_77
+  - first:
+      213: -4583158404599428373
+    second: Blocks_Broken_4_78
+  - first:
+      213: -7844984774697337025
+    second: Blocks_Broken_4_79
+  - first:
+      213: 7108841458290573120
+    second: Blocks_Broken_4_80
+  - first:
+      213: 2183864873750545533
+    second: Blocks_Broken_4_81
+  - first:
+      213: -2484358569472191693
+    second: Blocks_Broken_4_82
+  - first:
+      213: 5384637040279482221
+    second: Blocks_Broken_4_83
+  - first:
+      213: -4888134079593718972
+    second: 4_Hit_Blocks_Broken_0
+  - first:
+      213: 787360426097887242
+    second: 4_Hit_Blocks_Broken_1
+  - first:
+      213: 8510163485630685220
+    second: 4_Hit_Blocks_Broken_2
+  - first:
+      213: -5743556130671088408
+    second: 4_Hit_Blocks_Broken_3
+  - first:
+      213: -8538967249653219921
+    second: 4_Hit_Blocks_Broken_4
+  - first:
+      213: -5831124161641365878
+    second: 4_Hit_Blocks_Broken_5
+  - first:
+      213: -3792430863003020251
+    second: 4_Hit_Blocks_Broken_6
+  - first:
+      213: -6654982336731184850
+    second: 4_Hit_Blocks_Broken_7
+  - first:
+      213: -834304282982969906
+    second: 4_Hit_Blocks_Broken_8
+  - first:
+      213: 7166969215264853135
+    second: 4_Hit_Blocks_Broken_9
+  - first:
+      213: 8724944599821756610
+    second: 4_Hit_Blocks_Broken_10
+  - first:
+      213: -4057145063570222043
+    second: 4_Hit_Blocks_Broken_11
+  - first:
+      213: 4759161320935813202
+    second: 4_Hit_Blocks_Broken_12
+  - first:
+      213: -6761851837276144140
+    second: 4_Hit_Blocks_Broken_13
+  - first:
+      213: -7756745431696417160
+    second: 4_Hit_Blocks_Broken_14
+  - first:
+      213: 7269596986134739701
+    second: 4_Hit_Blocks_Broken_15
+  - first:
+      213: 8836249803201202776
+    second: 4_Hit_Blocks_Broken_16
+  - first:
+      213: -1803592194818623522
+    second: 4_Hit_Blocks_Broken_17
+  - first:
+      213: 3702533928055149079
+    second: 4_Hit_Blocks_Broken_18
+  - first:
+      213: 2985430520466957615
+    second: 4_Hit_Blocks_Broken_19
+  - first:
+      213: -7946328247178822205
+    second: 4_Hit_Blocks_Broken_20
+  - first:
+      213: 6761817170238034677
+    second: 4_Hit_Blocks_Broken_21
+  - first:
+      213: -1243786176936535288
+    second: 4_Hit_Blocks_Broken_22
+  - first:
+      213: 2548286841452520213
+    second: 4_Hit_Blocks_Broken_23
+  - first:
+      213: 2158945082330520835
+    second: 4_Hit_Blocks_Broken_24
+  - first:
+      213: -8380148853040882507
+    second: 4_Hit_Blocks_Broken_25
+  - first:
+      213: -8677544414794240171
+    second: 4_Hit_Blocks_Broken_26
+  - first:
+      213: 6105560074817121103
+    second: 4_Hit_Blocks_Broken_27
+  - first:
+      213: -337472498150034283
+    second: 4_Hit_Blocks_Broken_28
+  - first:
+      213: -8630068950929934166
+    second: 4_Hit_Blocks_Broken_29
+  - first:
+      213: 229075659909512761
+    second: 4_Hit_Blocks_Broken_30
+  - first:
+      213: 4217506923134231753
+    second: 4_Hit_Blocks_Broken_31
+  - first:
+      213: -2767567627097848490
+    second: 4_Hit_Blocks_Broken_32
+  - first:
+      213: -8178651360608173067
+    second: 4_Hit_Blocks_Broken_33
+  - first:
+      213: 2670152402837696243
+    second: 4_Hit_Blocks_Broken_34
+  - first:
+      213: -861650421984158438
+    second: 4_Hit_Blocks_Broken_35
+  - first:
+      213: 6980631593958478267
+    second: 4_Hit_Blocks_Broken_36
+  - first:
+      213: -330266877899265435
+    second: 4_Hit_Blocks_Broken_37
+  - first:
+      213: 2016101591472405481
+    second: 4_Hit_Blocks_Broken_38
+  - first:
+      213: 6452256614105033932
+    second: 4_Hit_Blocks_Broken_39
+  - first:
+      213: 7720839980832124364
+    second: 4_Hit_Blocks_Broken_40
+  - first:
+      213: -5818359557996797286
+    second: 4_Hit_Blocks_Broken_41
+  - first:
+      213: 5243872017442932279
+    second: 4_Hit_Blocks_Broken_42
+  - first:
+      213: 3054725892482831026
+    second: 4_Hit_Blocks_Broken_43
+  - first:
+      213: 3507074624186960534
+    second: 4_Hit_Blocks_Broken_44
+  - first:
+      213: 6065521786385238643
+    second: 4_Hit_Blocks_Broken_45
+  - first:
+      213: -5551759626076517237
+    second: 4_Hit_Blocks_Broken_46
+  - first:
+      213: -3363920611148625819
+    second: 4_Hit_Blocks_Broken_47
+  - first:
+      213: 115907159462855770
+    second: 4_Hit_Blocks_Broken_48
+  - first:
+      213: 5011073895136024101
+    second: 4_Hit_Blocks_Broken_49
+  - first:
+      213: 8005396864897469720
+    second: 4_Hit_Blocks_Broken_50
+  - first:
+      213: 8446991184466581431
+    second: 4_Hit_Blocks_Broken_51
+  - first:
+      213: 261935790548084083
+    second: 4_Hit_Blocks_Broken_52
+  - first:
+      213: 3960571063713889364
+    second: 4_Hit_Blocks_Broken_53
+  - first:
+      213: 6928551763134233852
+    second: 4_Hit_Blocks_Broken_54
+  - first:
+      213: -1896896152718764654
+    second: 4_Hit_Blocks_Broken_55
+  - first:
+      213: -2291150137118935880
+    second: 4_Hit_Blocks_Broken_56
+  - first:
+      213: -3066315607398942212
+    second: 4_Hit_Blocks_Broken_57
+  - first:
+      213: 4988749403880951285
+    second: 4_Hit_Blocks_Broken_58
+  - first:
+      213: 1871836180043481906
+    second: 4_Hit_Blocks_Broken_59
+  - first:
+      213: -8889634714563411635
+    second: 4_Hit_Blocks_Broken_60
+  - first:
+      213: -161993193956170070
+    second: 4_Hit_Blocks_Broken_61
+  - first:
+      213: 7533986881248217415
+    second: 4_Hit_Blocks_Broken_62
+  - first:
+      213: -324412202127235269
+    second: 4_Hit_Blocks_Broken_63
+  - first:
+      213: -7950741223102079879
+    second: 4_Hit_Blocks_Broken_64
+  - first:
+      213: -1428330008762068268
+    second: 4_Hit_Blocks_Broken_65
+  - first:
+      213: -6246268884539545187
+    second: 4_Hit_Blocks_Broken_66
+  - first:
+      213: -5602523121272383434
+    second: 4_Hit_Blocks_Broken_67
+  - first:
+      213: -8727260192657813829
+    second: 4_Hit_Blocks_Broken_68
+  - first:
+      213: -5656440352017963183
+    second: 4_Hit_Blocks_Broken_69
+  - first:
+      213: 2667723659764520892
+    second: 4_Hit_Blocks_Broken_70
+  - first:
+      213: -3462993935699543130
+    second: 4_Hit_Blocks_Broken_71
+  - first:
+      213: 8197997017297970561
+    second: 4_Hit_Blocks_Broken_72
+  - first:
+      213: 5554691351348846903
+    second: 4_Hit_Blocks_Broken_73
+  - first:
+      213: 8064354012720653037
+    second: 4_Hit_Blocks_Broken_74
+  - first:
+      213: 1828590351432533347
+    second: 4_Hit_Blocks_Broken_75
+  - first:
+      213: -335669959821146736
+    second: 4_Hit_Blocks_Broken_76
+  - first:
+      213: -6010650922540354426
+    second: 4_Hit_Blocks_Broken_77
+  - first:
+      213: 6238623539805312909
+    second: 4_Hit_Blocks_Broken_78
+  - first:
+      213: 9093468119259565169
+    second: 4_Hit_Blocks_Broken_79
+  - first:
+      213: -1540241954902493012
+    second: 4_Hit_Blocks_Broken_80
+  - first:
+      213: -9094295250310034591
+    second: 4_Hit_Blocks_Broken_81
+  - first:
+      213: 3874464205475652225
+    second: 4_Hit_Blocks_Broken_82
+  - first:
+      213: -2225912348925008826
+    second: 4_Hit_Blocks_Broken_83
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 1
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 120
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14118639df1934d409fbf64d236e89ab
+      internalID: -4888134079593718972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 120
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67e4705f4f1e51949aba417d7d805f15
+      internalID: 787360426097887242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 120
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abe5c5a96675f0643938a72310973542
+      internalID: 8510163485630685220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 120
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69d9a6c7097ef6344a47fe5a41398c53
+      internalID: -5743556130671088408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 120
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ecab649b968b094794d2b45e075bc8b
+      internalID: -8538967249653219921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_5
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 120
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ff6dbdf11d02fb439c8a097ef04ed86
+      internalID: -5831124161641365878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_6
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 120
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfbde8517eb2a014f82cd5b26104aed6
+      internalID: -3792430863003020251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_7
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 120
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e46d2f5f0be159241aaf28041ad1ed48
+      internalID: -6654982336731184850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 112
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17a97401e86b16b4089fc780c1b2b0d2
+      internalID: -834304282982969906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_9
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 112
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 080f93f661c598b4db9bd84c151d658d
+      internalID: 7166969215264853135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_10
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 112
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41cc94d5033ab7644885c9adb8e585ab
+      internalID: 8724944599821756610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_11
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 112
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: feebd8f331d82094187095577b20a96e
+      internalID: -4057145063570222043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_12
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 112
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75d06dc5ba2844d4b90e5de03426b1d2
+      internalID: 4759161320935813202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_13
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 112
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2d279403816f3f4a904c5d3ebeee903
+      internalID: -6761851837276144140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_14
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 112
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bdae33b8c5335a4db31dea227069485
+      internalID: -7756745431696417160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_15
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 112
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e2f600812e573743831b842620c378d
+      internalID: 7269596986134739701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 104
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba203a6f10247fc4fbfae7e25987935d
+      internalID: 8836249803201202776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_17
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 104
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac03e18263b4a3743994deba9e167e65
+      internalID: -1803592194818623522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_18
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 104
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bba3352494afba64d9828ac578beaef8
+      internalID: 3702533928055149079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_19
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 104
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23b2b258ac7e2454a89960644a35a22a
+      internalID: 2985430520466957615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_20
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 104
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9703f80291797ae47ab00c383d79d91d
+      internalID: -7946328247178822205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_21
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 104
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3c74677d03c48542b1374eb26aeb23d
+      internalID: 6761817170238034677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_22
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 104
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abf4e50d040d174408d16a8064809799
+      internalID: -1243786176936535288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_23
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 104
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f573464b60b66449b1940c14d2216d2
+      internalID: 2548286841452520213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42334cea8f47b1347bdd27154d2067c0
+      internalID: 2158945082330520835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_25
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 96
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09f735b129853694388e5d125b15362d
+      internalID: -8380148853040882507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_26
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39787cac32076c949b29709dd306ec94
+      internalID: -8677544414794240171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_27
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 96
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3b8e710be93750409941e71a83fcb45
+      internalID: 6105560074817121103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_28
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8864c5aed42d2254f998652f14d80e0d
+      internalID: -337472498150034283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_29
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 96
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5908a1b4759f55a46a373725dc82cbf4
+      internalID: -8630068950929934166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_30
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 96
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6340c4c4362f7d54686bfe627027eb4f
+      internalID: 229075659909512761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_31
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 96
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a62e7684c68c3834095318b3b6cb77b4
+      internalID: 4217506923134231753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 88
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f9b389d0a161c146b69e14865715287
+      internalID: -2767567627097848490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_33
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 88
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab8cb5d3c41db2147b87865843a8e510
+      internalID: -8178651360608173067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_34
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 88
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3ce8fb11fafa0a4d9d91e213adb5752
+      internalID: 2670152402837696243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_35
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 88
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b73ca023d8e71844b997423abeba3319
+      internalID: -861650421984158438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_36
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 88
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4268cc27fc050cf41b3507a28ecd33da
+      internalID: 6980631593958478267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_37
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 88
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 384a73da0d8c024458e2ee14615a9c91
+      internalID: -330266877899265435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_38
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 88
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bce8fc9127f804347aff9fbde63704b4
+      internalID: 2016101591472405481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_39
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 88
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27158b9160702da4fa3f698dcc3b4e1f
+      internalID: 6452256614105033932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 80
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28ba1251cabf83d4992ac1c5f5ae8c8b
+      internalID: 7720839980832124364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_41
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 80
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bfdf2c5baaeb8d4d94dc85bd829384f
+      internalID: -5818359557996797286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_42
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 80
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54633888142d12b4197e05b0d92f8ae2
+      internalID: 5243872017442932279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_43
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 80
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02746951dcc425f498f8c5cdac846f2d
+      internalID: 3054725892482831026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_44
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 80
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95da21274c27f004699665db00206eda
+      internalID: 3507074624186960534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_45
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 80
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4833d0e3987d05544b2f24987d53e4a9
+      internalID: 6065521786385238643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_46
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 80
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5499ac6031d59a4f91ee45429ff26fb
+      internalID: -5551759626076517237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_47
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 80
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cb0de29587bfa746a859192479464cd
+      internalID: -3363920611148625819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 72
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b48c6e4195cc0a45aa23cec468e5145
+      internalID: 115907159462855770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_49
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 72
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e725d05632a9ed458bc0a4837949c48
+      internalID: 5011073895136024101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_50
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 72
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: deb05784068849a45b2fb15f55b3869b
+      internalID: 8005396864897469720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_51
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 72
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7549873801b5f741ae82bcd65fd45dd
+      internalID: 8446991184466581431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_52
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 72
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: beecedaeb640d0f43a9a55beb827037e
+      internalID: 261935790548084083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_53
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 72
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4057bd5318f89b64ebd4b4a318f59199
+      internalID: 3960571063713889364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_54
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 72
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fddaf182066b00144a66bcc156d5bb32
+      internalID: 6928551763134233852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_55
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 72
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c66a5b6dff16544c83e303acbd0453b
+      internalID: -1896896152718764654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_56
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f01c72c5e36fc97458c6b1d1986cffa5
+      internalID: -2291150137118935880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_57
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 64
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 200988e865a0b7f458f307daac2e1659
+      internalID: -3066315607398942212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_58
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1143335b71a64934d9625456bcba1086
+      internalID: 4988749403880951285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_59
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 64
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e88e7a84d7a70584cba3e8e846462204
+      internalID: 1871836180043481906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_60
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebd3335e50c2d244fa12ec97cdf4267c
+      internalID: -8889634714563411635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_61
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 64
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 539c7a810dcd88146871ba31c06aed73
+      internalID: -161993193956170070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_62
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c6b7117bfcc01d4cbeaa096cf0f8e79
+      internalID: 7533986881248217415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_63
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 64
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 466e8ef4506b9c74c82c27edb3bff40a
+      internalID: -324412202127235269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_64
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 56
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7dc8a008473ca074fbf17fada9752a00
+      internalID: -7950741223102079879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_65
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 56
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51d663cc032139c4f93122984cd9b0b7
+      internalID: -1428330008762068268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_66
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 56
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38bffdbc0c90f08458dbbfc952bb23d5
+      internalID: -6246268884539545187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_67
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 56
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38ecfe4f96262e048b94a6e201901e25
+      internalID: -5602523121272383434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_68
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 56
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 483202cab50efcb4abac27b1b73c1aa3
+      internalID: -8727260192657813829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_69
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 56
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0995cf91ed62c75448c707764ef9177b
+      internalID: -5656440352017963183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_70
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 56
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b294d32f22f50354985881822a572156
+      internalID: 2667723659764520892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_71
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 56
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b04beeb8c52cea84abe8deb657b80e99
+      internalID: -3462993935699543130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_72
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54904df89a5f6184781e5621b491ab5c
+      internalID: 8197997017297970561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_73
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 48
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 696507519ddc5b341a4fb87c2dd33678
+      internalID: 5554691351348846903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_74
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 48
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3003ba7ea90e6fb478ae2244c84ee43e
+      internalID: 8064354012720653037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_75
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 48
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ea30cd9b234c5d4ca1bb9ed85f11dad
+      internalID: 1828590351432533347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_76
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 48
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37da2d3009796324686d5d695e0c6156
+      internalID: -335669959821146736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_77
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 48
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97e612528b8a5c24ba604cd90aabc965
+      internalID: -6010650922540354426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_78
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 48
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56e0594127148874398c391cb8dedb65
+      internalID: 6238623539805312909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_79
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 48
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a4459c6177490e409c43af76ecbf296
+      internalID: 9093468119259565169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_80
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 40
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcd3f6fb502feec47a7a7a408093b903
+      internalID: -1540241954902493012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_81
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 40
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 407eaaa0c1994cb41b9c5188de7dd89f
+      internalID: -9094295250310034591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_82
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 40
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea4d9f50104be7740b679a4870c0604b
+      internalID: 3874464205475652225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Hit_Blocks_Broken_83
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 40
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8252af2ca55d2a4dbedf73bb793dea2
+      internalID: -2225912348925008826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 448c4c02fcc239b4c83166f6e97dbdd6
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

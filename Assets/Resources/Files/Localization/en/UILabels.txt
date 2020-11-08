@@ -1,0 +1,16 @@
+Press any key|Retrogemn 1994-2019, All Rights Reserved.
+Main Menu|Levels|Options|Language|Power Ups|Soundtrack|Credits|Quit
+Continue|Delete Progress|Are you sure?|No|Yes
+Options|Resolution|Fullscreen|Music|Effects|Default Keyboard Layout|Default Gamepad Layout|Keyboard & Gamepad Bindings|Back|Default
+Default Keyboard Layout|Paddle Impulse|Paddle Movement|Release Ball / Shooting|Change Song|Pause / Start|Paddle Movement|Paddle Impulse|Pointer Movement|Release Ball / Shooting
+Default Gamepad Layout|Paddle Impulse|Paddle Impulse|Paddle Movement|Paddle Movement|Release Ball / Shooting|Pointer Movement|Change Song|Pause / Start
+Bindings|Keyboard|Gamepad|Move Left|Move Right|Impulse|Shoot|Impulse|Shoot|Back|Default
+Accept|Cancel|Move|Move|Change Song
+Power Ups|Value:
+Music Player|Music Player|Prev|Play|Pause|Repeat|Next|Quit
+Choose An Level|Are you sure ?|No|Yes|Saving...
+Best Score:|Best Time:|
+Level Completed!|Score:|Time Score:|Blocks Destroyed:|Best Combo:|Number Of Deaths:|Current Balls:|Total:|New Score!|Returning to Select Levels in
+Pause|Back|Select Levels|Main Menu
+Languages|Back
+Press Any Key to Jump

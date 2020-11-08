@@ -1,0 +1,56 @@
+Bloques de 1 Golpe
+Bloques de 2 Golpes
+Bloques de 3 Golpes
+Bloques de 4 Golpes
+Bloques de 5 Golpes
+Bloques de Golpes Aleatorios
+Bloques de Potenciadores
+Bloques Irrompibles
+Ardiente
+Todo Azul
+RGB
+Gran Bloque Rojo de 1 Golpe
+Gran Bloque Verde de 1 Golpe
+Gran Bloque Azul de 1 Golpe
+Verde XX
+Purpura I
+Marron y Mantequilla
+Gran Bloque Rojo de 2 Golpes
+Gran Bloque Verde de 2 Golpes
+Gran Bloque Azul de 2 Golpes
+Gris V
+Exito
+Tetris 1
+Gran Bloque Rojo de 3 Golpes
+Gran Bloque Verde de 3 Golpes
+Gran Bloque Azul de 3 Golpes
+Ladrillos 1
+Ladrillos 2
+Ladrillos 3
+Gran Bloque Rojo de 4 Golpes
+Gran Bloque Verde de 4 Golpes
+Gran Bloque Azul de 4 Golpes
+No se puede morir ? 1
+No se puede morir ? 2
+No se puede morir ? 3
+Gran Bloque Rojo de 5 Golpes
+Gran Bloque Verde de 5 Golpes
+Gran Bloque Azul de 5 Golpes
+Cuadricula
+Triangulos
+El Gran Pentagon!
+Gran Bloque Rojo Potenciador
+Gran Bloque Verde Potenciador
+Gran Bloque Azul Potenciador
+Cuadrados Azules?
+Grande Cuadrado Azul Degradado Roto
+Bloques Encadenados Azules
+Gran Bloque Rojo de Golpe Aleatorio
+Gran Bloque Verde de Golpe Aleatorio
+Gran Bloque Azul de Golpe Aleatorio
+Trapecio
+Hexagono
+Cruz
+Gran Bloque Rojo Irrompible
+Gran Bloque Verde Irrompible
+Gran Bloque Azul Irrompible

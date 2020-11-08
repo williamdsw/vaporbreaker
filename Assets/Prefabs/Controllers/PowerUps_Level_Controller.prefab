@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &540357175786730074
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 540357175786730073}
+  - component: {fileID: 540357175786730072}
+  m_Layer: 0
+  m_Name: PowerUps_Level_Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!4 &540357175786730073
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540357175786730074}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &540357175786730072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540357175786730074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7445d63f90c8b98428b646987acd5e51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpsSpritesList:
+  - {fileID: -1783121506625662668, guid: 3264c1e5a8315464582a67ac9b8a1850, type: 3}
+  - {fileID: 6261899506108267232, guid: 3264c1e5a8315464582a67ac9b8a1850, type: 3}
+  - {fileID: -1954348251150698259, guid: 3264c1e5a8315464582a67ac9b8a1850, type: 3}
+  - {fileID: 200398327531009200, guid: 3264c1e5a8315464582a67ac9b8a1850, type: 3}
+  - {fileID: -4760204353828230908, guid: 3264c1e5a8315464582a67ac9b8a1850, type: 3}
+  - {fileID: 5645545094182031178, guid: 3264c1e5a8315464582a67ac9b8a1850, type: 3}
+  - {fileID: -6830161032362373619, guid: 3264c1e5a8315464582a67ac9b8a1850, type: 3}
+  - {fileID: -4822006630720271486, guid: 3264c1e5a8315464582a67ac9b8a1850, type: 3}
+  - {fileID: -5758792016804471211, guid: 3264c1e5a8315464582a67ac9b8a1850, type: 3}
+  - {fileID: 7430495685032599062, guid: 3264c1e5a8315464582a67ac9b8a1850, type: 3}
+  - {fileID: -4496869542410834579, guid: 3264c1e5a8315464582a67ac9b8a1850, type: 3}
+  - {fileID: -4347294913349003966, guid: 3264c1e5a8315464582a67ac9b8a1850, type: 3}
+  - {fileID: 5302034821386069903, guid: 3264c1e5a8315464582a67ac9b8a1850, type: 3}
+  - {fileID: 4881033863375431695, guid: 3264c1e5a8315464582a67ac9b8a1850, type: 3}
+  - {fileID: 6551218203312537173, guid: 3264c1e5a8315464582a67ac9b8a1850, type: 3}
+  powerUpImage: {fileID: 0}
+  powerUpDescriptionText: {fileID: 0}
+  poweUpValueText: {fileID: 0}
+  uiLabels:
+  - {fileID: 0}
+  - {fileID: 0}

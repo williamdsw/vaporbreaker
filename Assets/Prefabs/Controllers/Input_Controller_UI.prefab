@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2552155148414202154
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2552155148414202152}
+  - component: {fileID: 2552155148414202153}
+  m_Layer: 0
+  m_Name: Input_Controller_UI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!4 &2552155148414202152
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2552155148414202154}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2552155148414202153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2552155148414202154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5ebbb6e456360f4687cfde0c76066e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keyboardSprites:
+  - {fileID: 21300000, guid: 27bb9c44fa6e4bd4783f27856cfc3874, type: 3}
+  - {fileID: 21300000, guid: a27585cc91d87ba4396eb28cfd573143, type: 3}
+  - {fileID: 21300000, guid: 605eb4410d3657c42a9c9ef441847e3b, type: 3}
+  - {fileID: 21300000, guid: 11d6a426cdc763c4585424eed1753555, type: 3}
+  - {fileID: 21300000, guid: d4e2b68b3394f5049bf1d898cbdb9500, type: 3}
+  - {fileID: 21300000, guid: 1f9cf59ad2883464dbca594044b00e30, type: 3}
+  - {fileID: 21300000, guid: e74ce2517131f36409333e7cbfbfb469, type: 3}
+  gamepadSprites:
+  - {fileID: 21300000, guid: f2b411c6f97bf0742ba5c8aa044631e5, type: 3}
+  - {fileID: 21300000, guid: 5643e322762d461439c772f28011d0b3, type: 3}
+  - {fileID: 21300000, guid: 81af1ce19c0da8741b450a6b97ef1f9a, type: 3}
+  - {fileID: 21300000, guid: 2b98c15a3be2a4e4893f083fa4bb0e73, type: 3}
+  - {fileID: 21300000, guid: c4e43604127c08f41b94157984170884, type: 3}
+  - {fileID: 21300000, guid: 6477737e6c69a4e4eaf44443ba4de362, type: 3}
+  - {fileID: 21300000, guid: ba36758c89174964685db058d456fc62, type: 3}
+  acceptInput: {fileID: 0}
+  cancelInput: {fileID: 0}
+  horizontalInput: {fileID: 0}
+  leftInput: {fileID: 0}
+  rightInput: {fileID: 0}
+  verticalInput: {fileID: 0}
+  upInput: {fileID: 0}
+  downInput: {fileID: 0}
+  changeSongInput: {fileID: 0}
+  uiLabels:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

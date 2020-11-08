@@ -1,0 +1,828 @@
+fileFormatVersion: 2
+guid: 2f9480fc67bc3bf49b542d7fd322f3be
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5151634792950250065
+    second: Breakout-011-A_0
+  - first:
+      213: 4368635858101457407
+    second: Breakout-011-A_1
+  - first:
+      213: 8023162736690397440
+    second: Breakout-011-A_2
+  - first:
+      213: -7613783221426302437
+    second: Breakout-011-A_3
+  - first:
+      213: -3044204059397573768
+    second: Breakout-011-A_4
+  - first:
+      213: -3515608758838197380
+    second: Breakout-011-A_5
+  - first:
+      213: 6928830400575970874
+    second: Breakout-011-A_6
+  - first:
+      213: 8854211651936734568
+    second: Breakout-011-A_7
+  - first:
+      213: 6266609329817184055
+    second: Breakout-011-A_8
+  - first:
+      213: -1295979288597451902
+    second: Breakout-011-A_9
+  - first:
+      213: -3283881337655276977
+    second: Breakout-011-A_10
+  - first:
+      213: 5485290235286310433
+    second: Breakout-011-A_11
+  - first:
+      213: -4093293850840579148
+    second: Breakout-011-A_12
+  - first:
+      213: -4801172684554326919
+    second: Breakout-011-A_13
+  - first:
+      213: 3353384281649614857
+    second: Breakout-011-A_14
+  - first:
+      213: 727863411330880022
+    second: Breakout-011-A_15
+  - first:
+      213: -1126942978339115454
+    second: Breakout-011-A_16
+  - first:
+      213: 8409597673495078378
+    second: Breakout-011-A_17
+  - first:
+      213: -224801570880885647
+    second: Breakout-011-A_18
+  - first:
+      213: -4805254050317843650
+    second: Breakout-011-A_19
+  - first:
+      213: 2410640156110133837
+    second: Breakout-011-A_20
+  - first:
+      213: -90742070385314932
+    second: Breakout-011-A_21
+  - first:
+      213: 2942639406326774107
+    second: Breakout-011-A_22
+  - first:
+      213: -8259907958431400163
+    second: Breakout-011-A_23
+  - first:
+      213: 6673762359181405877
+    second: Breakout-011-A_24
+  - first:
+      213: 6283193303439678623
+    second: Blocks_Type_10_0
+  - first:
+      213: 730676687090664186
+    second: Blocks_Type_10_1
+  - first:
+      213: -8559084372123474138
+    second: Blocks_Type_10_2
+  - first:
+      213: 5782986481722765538
+    second: Blocks_Type_10_3
+  - first:
+      213: 775786159130303072
+    second: Blocks_Type_10_4
+  - first:
+      213: 8599110616822283329
+    second: Blocks_Type_10_5
+  - first:
+      213: 3327836705204918907
+    second: Blocks_Type_10_6
+  - first:
+      213: -2579169546634701349
+    second: Blocks_Type_10_7
+  - first:
+      213: -2345817886692517966
+    second: Blocks_Type_10_8
+  - first:
+      213: 6168881109965001574
+    second: Blocks_Type_10_9
+  - first:
+      213: 274748767634104158
+    second: Blocks_Type_10_10
+  - first:
+      213: -7092101718227871018
+    second: Blocks_Type_10_11
+  - first:
+      213: 4962923468476829948
+    second: Blocks_Type_10_12
+  - first:
+      213: 7564837056472148077
+    second: Blocks_Type_10_13
+  - first:
+      213: -5789351854821417931
+    second: Blocks_Type_10_14
+  - first:
+      213: 4253572000291545037
+    second: Blocks_Type_10_15
+  - first:
+      213: 1423696078378629266
+    second: Blocks_Type_10_16
+  - first:
+      213: 1644847709323194818
+    second: Blocks_Type_10_17
+  - first:
+      213: -1105706487509190465
+    second: Blocks_Type_10_18
+  - first:
+      213: -2792174640803873127
+    second: Blocks_Type_10_19
+  - first:
+      213: 5187341557702917220
+    second: Blocks_Type_10_20
+  - first:
+      213: -8544537385257506441
+    second: Random_Hit_Blocks_1_0
+  - first:
+      213: 8123268273812334544
+    second: Random_Hit_Blocks_1_1
+  - first:
+      213: -6847790380524167970
+    second: Random_Hit_Blocks_1_2
+  - first:
+      213: 1327293730764291056
+    second: Random_Hit_Blocks_1_3
+  - first:
+      213: 816482836232642676
+    second: Random_Hit_Blocks_1_4
+  - first:
+      213: -8674562902593192484
+    second: Random_Hit_Blocks_1_5
+  - first:
+      213: 823568372311703039
+    second: Random_Hit_Blocks_1_6
+  - first:
+      213: -6784101642427343760
+    second: Random_Hit_Blocks_1_7
+  - first:
+      213: 6334449839271180214
+    second: Random_Hit_Blocks_1_8
+  - first:
+      213: 323989263640328136
+    second: Random_Hit_Blocks_1_9
+  - first:
+      213: 4340672536023456306
+    second: Random_Hit_Blocks_1_10
+  - first:
+      213: -6322198602631379764
+    second: Random_Hit_Blocks_1_11
+  - first:
+      213: 7237065429622025752
+    second: Random_Hit_Blocks_1_12
+  - first:
+      213: 8585407773291021935
+    second: Random_Hit_Blocks_1_13
+  - first:
+      213: -5248506887358066529
+    second: Random_Hit_Blocks_1_14
+  - first:
+      213: -7951236784685966208
+    second: Random_Hit_Blocks_1_15
+  - first:
+      213: -7565386142289365358
+    second: Random_Hit_Blocks_1_16
+  - first:
+      213: -5249171463664055000
+    second: Random_Hit_Blocks_1_17
+  - first:
+      213: 1639970418400520337
+    second: Random_Hit_Blocks_1_18
+  - first:
+      213: -3308343399199603006
+    second: Random_Hit_Blocks_1_19
+  - first:
+      213: -6805432932075428471
+    second: Random_Hit_Blocks_1_20
+  - first:
+      213: -2885852827776384233
+    second: Power_Up_Blocks_0
+  - first:
+      213: 3887167717947231714
+    second: Power_Up_Blocks_1
+  - first:
+      213: -957306240110050
+    second: Power_Up_Blocks_2
+  - first:
+      213: 7812406826147209896
+    second: Power_Up_Blocks_3
+  - first:
+      213: 3286030745562709311
+    second: Power_Up_Blocks_4
+  - first:
+      213: 4218666780648753174
+    second: Power_Up_Blocks_5
+  - first:
+      213: 1534440312942351548
+    second: Power_Up_Blocks_6
+  - first:
+      213: -6633620707642683765
+    second: Power_Up_Blocks_7
+  - first:
+      213: 7492382203342308439
+    second: Power_Up_Blocks_8
+  - first:
+      213: 797958643045027930
+    second: Power_Up_Blocks_9
+  - first:
+      213: -452891401286424477
+    second: Power_Up_Blocks_10
+  - first:
+      213: -1001438815824540372
+    second: Power_Up_Blocks_11
+  - first:
+      213: -2205526842477680685
+    second: Power_Up_Blocks_12
+  - first:
+      213: 3279500339194322183
+    second: Power_Up_Blocks_13
+  - first:
+      213: 6920783726644842933
+    second: Power_Up_Blocks_14
+  - first:
+      213: -4218126317944486409
+    second: Power_Up_Blocks_15
+  - first:
+      213: 2542286926088080630
+    second: Power_Up_Blocks_16
+  - first:
+      213: -5328499852070397219
+    second: Power_Up_Blocks_17
+  - first:
+      213: 7666150255255879209
+    second: Power_Up_Blocks_18
+  - first:
+      213: 2430459870282032272
+    second: Power_Up_Blocks_19
+  - first:
+      213: -7781645944177521637
+    second: Power_Up_Blocks_20
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Power_Up_Blocks_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 24
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b79d8986c1e67b649a18de57b6747f71
+      internalID: -2885852827776384233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Power_Up_Blocks_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 24
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98fcb68465616514296b1a791472350d
+      internalID: 3887167717947231714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Power_Up_Blocks_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 24
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b6c66ca1c03750489a07d567820ac90
+      internalID: -957306240110050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Power_Up_Blocks_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 24
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6784355b6be11dc45b8361a7aa847655
+      internalID: 7812406826147209896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Power_Up_Blocks_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 24
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffadd067df976f147800d6bd51b20c49
+      internalID: 3286030745562709311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Power_Up_Blocks_5
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 24
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d211fc6b3f17a8c40bd09584beab2703
+      internalID: 4218666780648753174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Power_Up_Blocks_6
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 24
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d49548714096067439fc07980089b105
+      internalID: 1534440312942351548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Power_Up_Blocks_7
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 24
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b70f86a59c9ac204aafc93db3f57987f
+      internalID: -6633620707642683765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Power_Up_Blocks_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 16
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01f4b4f309a86b64d982b1bd8f13a4f8
+      internalID: 7492382203342308439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Power_Up_Blocks_9
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 16
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d8bb457f46784340af1d0413b64c478
+      internalID: 797958643045027930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Power_Up_Blocks_10
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 16
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cda79c0d6688a3946a4258d00d9714d6
+      internalID: -452891401286424477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Power_Up_Blocks_11
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 16
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dfcb3a5deeb441469337b1cb4051366
+      internalID: -1001438815824540372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Power_Up_Blocks_12
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 16
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc69ed9ed3dd643458fe5c33e1c6001e
+      internalID: -2205526842477680685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Power_Up_Blocks_13
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 16
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 130f45a4f5e19f64abc94dd319434a22
+      internalID: 3279500339194322183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Power_Up_Blocks_14
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 16
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9dd1c790fe2d7b04dad8c25ac5982787
+      internalID: 6920783726644842933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Power_Up_Blocks_15
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 16
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 240a716814a41d3479e607c3de7b96d7
+      internalID: -4218126317944486409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Power_Up_Blocks_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 8
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7357f755642b6a4aa26ad62575d66bd
+      internalID: 2542286926088080630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Power_Up_Blocks_17
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 8
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4aaf48705b1b00d4383b4a5e5ff9e224
+      internalID: -5328499852070397219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Power_Up_Blocks_18
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 8
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 328338ff604f5ac4799da2fb099fdb5a
+      internalID: 7666150255255879209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Power_Up_Blocks_19
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 8
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b47df029cd394b4e915b42913e855d2
+      internalID: 2430459870282032272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Power_Up_Blocks_20
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 8
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7db42ee0f78b6a94cb51af5c705efe8d
+      internalID: -7781645944177521637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 92823325633428f4980d71cb24268264
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,16 @@
+Premere Qualsiasi Tasto|Retrogemn 1994-2019, Tutti i diritti riservati.
+Menu Principale|Livelli|Opzioni|Lingua|Potenziamento|Colonna Sonora|I Crediti|Smettere
+Continua|Elimina progresso|Sei sicuro?|No|Si
+Opzioni|Risoluzione|Schermo Intero|Musica|Effetti|Layout Della Tastiera Predefinito|Layout Predefinito del Gamepad|Assegnazione di Tastiera e Gamepad|Ritornare|Predefinito
+Layout Della Tastiera Predefinito|Spingere Paletta|Sposta paletta|Rilascia Palla / Sparare|Cambia Canzone|Pausa / Inizio|Sposta paletta|Spingere Paletta|Spostare Puntatore|Rilascia Palla / Sparare
+Layout Predefinito del Gamepad|Spingere Paletta|Spingere paletta|Sposta paletta|Sposta paletta|Rilascia Palla / Sparare|Spostare Puntatore|Cambia Canzone|Pausa / Inizio
+Assegnazione di Tastiera e Gamepad|Tastiera|Gamepad|Sinistra|Destra|Impulso|Sparare|Impulso|Sparare|Ritornare|Predefinito
+Accettare|Annullare|Spostare|Spostare|Cambia Canzone
+Potenziamento|Valore:
+Lettore Musicale|Lettore Musicale|Prec.|Gioc.|Pausa|Rip.|Pros.|Abb.
+Seleziona un Livello|Sei sicuro?|No|Si|Salvataggio...
+Miglior Punteggio:|Miglior tempo:|
+Livello Completato!|Punteggio:|Punteggio di Tempo:|Blocchi Distrutti:|Miglior Combo:|Numero di Morti:|Palle Attuali:|Totale:|Nuovo Punteggio!|Torna a Seleziona livelli in
+Pausa|Ritornare|Seleziona Livelli|Menu Principale
+Lingua|Ritornare
+Premi un Tasto Qualsiasi per Saltare

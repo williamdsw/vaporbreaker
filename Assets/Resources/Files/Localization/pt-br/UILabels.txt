@@ -1,0 +1,16 @@
+Aperte qualquer tecla|Retrogemn 1994-2019, Todos os direitos reservados.
+Menu Principal|Niveis|Opcoes|Idioma|Poderes|Trilha Sonora|Creditos|Sair
+Continuar|Excluir Progresso|Tem certeza?|Nao|Sim
+Opcoes|Resolucao|Tela cheia|Musica|Efeitos|Layout Padrao do Teclado|Layout Padrao do Controle|Configuracao das teclas|Voltar|Padrao
+Layout Padrao do Teclado|Impulsa Remo|Movimenta Remo|Solta Bola / Atira|Mudar Musica|Pausar|Movimenta Remo|Impulsa Remo|Movimenta Cursor|Solta Bola / Atira
+Layout Padrao do Controle|Impulsa Remo|Impulsa Remo|Movimenta Remo|Movimenta Remo|Solta Bola / Atira|Movimenta Cursor|Mudar Musica|Pausar
+Teclas|Teclado|Controle|Esquerda|Direita|Impulso|Atirar|Impulso|Atirar|Voltar|Padrao
+Aceitar|Cancelar|Mover|Mover|Trocar Musica
+Poderes|Valor:
+Reprodutor Musical|Reprodutor Musical|Ant.|Tocar|Pausar|Repetir|Prox.|Sair
+Escolha um Nivel|Tem Certeza ?|Nao|Sim|Salvando...
+Melhor Pontuacao:|Melhor Tempo:|
+Nivel Completo!|Pontuacao:|Pontuacao pelo Tempo:|Blocos Destruidos:|Melhor Combo:|Numero de Mortes:|Numero de Bolas:|Total:|Nova Pontuacao!|Retornando para Selecao de Niveis em
+Pausado|Voltar|Selecao de Niveis|Menu Principal
+Idiomas|Voltar
+Aperte Qualquer Tecla para Pular

@@ -1,0 +1,387 @@
+<size=100> Vaporbreaker </size>
+
+<size=50> ベーパーブレーカー </size>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<size=60> Developed by <b> Retrogemn </b> </size>
+
+
+
+
+<size=50> PROGRAMMING </size>
+<size=40> <b> "Laynard" </b> </size>
+
+
+
+
+<size=50> GAME DESIGNER </size>
+<size=40> <b> "Laynard" </b> </size>
+
+
+
+
+<size=50> LEVEL DESIGNER </size>
+<size=40> <b> "Laynard" </b> </size>
+
+
+
+
+<size=50> ASSETS USED </size>
+
+
+
+<size=50> FONTS </size>
+
+
+<size=40> "VCR OCD Mono" by <b> Riciery Leal </b> </size>
+<size=30> https://www.dafont.com/pt/vcr-osd-mono.font </size>
+
+
+
+<size=40> "Aji Hand" by  <b> Ajith Rajan </b> </size>
+<size=30> https://www.dafont.com/pt/aji-hand.font </size>
+<size=30> www.ajithr.tk </size>
+
+
+
+<size=40> "Migu" </size>
+<size=30> https://www.freejapanesefont.com/migu-font-ミグフォント/ </size>
+<size=30> http://mix-mplus-ipa.osdn.jp/migu/ </size>
+
+
+
+
+
+
+
+
+
+
+
+<size=50> SPRITES / IMAGES </size>
+
+
+
+<size=40> "Grid Backgrounds" by <b> "Laynard" </b> </size>
+
+
+
+<size=40> "Blocks Breaking Block Pack HD" by <b> John B. Marine </b> </size>
+<size=30> https://opengameart.org/content/block-breaking-block-pack-hd </size>
+<size=30> http://johnmarinedesigns.weebly.com </size>
+<size=30> http://www.facebook.com/TheJohnMarine </size>
+<size=30> http://johnbmarine.blogspot.com </size>
+
+
+
+<size=40> "Arkanoid Assets" by <b> pudman </b> </size>
+<size=30> https://opengameart.org/content/arkanoid-assets </size>
+
+
+
+<size=40> "Side Blaster GFX (M484 Games)" by <b> Master484 </b> </size>
+<size=30> https://opengameart.org/content/side-blaster-gfx-m484-games </size>
+<size=30> http://m484games.ucoz.com/ </size>
+
+
+
+<size=40> "Explosion Set 1 (M484 Games)" by <b> Master484 </b> </size>
+<size=30> https://opengameart.org/content/explosion-set-1-m484-games </size>
+<size=30> http://m484games.ucoz.com/ </size>
+
+
+
+<size=40> "Basic Arkanoid Pack" by <b> Zealex </b> </size>
+<size=30> https://opengameart.org/content/basic-arkanoid-pack </size>
+
+
+
+<size=40> "Free Keyboard and Controllers Prompts Pack" by <b> Xelu </b> </size>
+<size=30> https://opengameart.org/content/free-keyboard-and-controllers-prompts-pack </size>
+
+
+
+<size=40> "Cassette" by <b> Dmitry Sukhankin (Pong Man) </b> </size>
+<size=30> https://opengameart.org/content/cassette </size>
+
+
+
+<size=40> "Medals" by <b> Buch </b> </size>
+<size=30> https://opengameart.org/content/medals-3 </size>
+
+
+
+<size=40> "Basic 16px GUI Pack" by <b> tavoarts </b> </size>
+<size=30> https://tavoarts.itch.io/basic-pixel-gui-pack </size>
+
+
+
+<size=40> "[LPC but not really] Bean Bag and Really Old TV" by <b> Spring </b> </size>
+<size=30> https://opengameart.org/content/lpc-but-not-really-bean-bag-and-really-old-tv </size>
+
+
+
+<size=40> "Pixel Art TV Sprite (CC0)" by <b> Denislav </b> </size>
+<size=30> https://opengameart.org/content/pixel-art-tv-sprite-cc0 </size>
+
+
+
+<size=40> "Animated display static" by <b> Cameron 'cron' Fraser </b> </size>
+<size=30> https://opengameart.org/content/animated-display-static </size>
+
+
+
+<size=40> "8th Gen Console Vector Gamepad Collection" by <b> TheHoodieGuy02 </b> </size>
+<size=30> https://opengameart.org/content/pixel-art-tv-sprite-cc0 </size>
+
+
+
+<size=40> "KeyBoard" by <b> LushkinR </b> </size>
+<size=30> https://opengameart.org/content/keyboard </size>
+
+
+
+<size=40> "Country Flags" by <b> Mark James (LFA) </b> </size>
+<size=30> https://opengameart.org/content/country-flags </size>
+
+
+
+
+
+
+
+
+
+
+<size=50> AUDIO (MUSIC & MUSIC EFFECTS & SOUND EFFECTS) </size>
+
+
+<size=50> SOUND EFFECTS </size>
+
+
+
+<size=40> "Hitting in a Face" by <b> florianreichelt </b> </size>
+<size=30> https://freesound.org/people/florianreichelt/sounds/460509/ </size>
+
+
+
+<size=40> "Breaker" by <b> Deathscyp </b> </size>
+<size=30> https://freesound.org/people/Deathscyp/sounds/404049/ </size>
+
+
+
+<size=40> "Metal Ping" by <b> timgormly </b> </size>
+<size=30> https://freesound.org/people/timgormly/sounds/170957/ </size>
+
+
+
+<size=40> "Blip" by <b> n_audioman </b> </size>
+<size=30> https://freesound.org/people/n_audioman/sounds/275897/ </size>
+
+
+
+<size=40> "8 Bit Slam" by <b> josepharaoh99 </b> </size>
+<size=30> https://freesound.org/people/josepharaoh99/sounds/361636/ </size>
+
+
+
+<size=40> "50 CC0 retro / synth SFX" by <b> rubberduck </b> </size>
+<size=30> https://opengameart.org/content/50-cc0-retro-synth-sfx </size>
+
+
+
+<size=40> "16 button clicks" by <b> Independent.nu </b> </size>
+<size=30> https://opengameart.org/content/16-button-clicks </size>
+
+
+
+<size=40> "Level up, power up, Coin get (13 Sounds)" by <b> wobbleboxx.com </b> </size>
+<size=30> https://opengameart.org/content/level-up-power-up-coin-get-13-sounds </size>
+
+
+
+<size=40> "Pew Laser fire Sound" by <b> sketcherskt </b> </size>
+<size=30> https://opengameart.org/content/pew-laser-fire-sound </size>
+
+
+
+<size=50> MUSIC EFFECTS </size>
+
+
+
+<size=40> "TV Static Looping" by <b> dotY21 </b> </size>
+<size=30> https://freesound.org/people/dotY21/sounds/335203/ </size>
+
+
+
+<size=40> "Mission Success" by <b> StormBat </b> </size>
+<size=30> https://freesound.org/people/StormBat/sounds/406371/ </size>
+
+
+
+<size=40> "80's riff" by <b> ModulationStation </b> </size>
+<size=30> https://freesound.org/people/ModulationStation/sounds/392465/ </size>
+
+
+
+<size=50> BACKGROUND MUSIC </size>
+
+
+
+<size=40> "Floating Synth Melody at 130 BPM C major loop music" by <b> Lemoncreme </b> </size>
+<size=30> https://freesound.org/people/Lemoncreme/sounds/231578/ </size>
+
+
+
+<size=40> "120 bpm lofi synthwave loop" by <b> waveplay_old </b> </size>
+<size=30> https://freesound.org/people/waveplay_old/sounds/424610/ </size>
+
+
+
+<size=40> "Time Break" by <b> ShadyDave </b> </size>
+<size=30> https://freesound.org/people/ShadyDave/sounds/277325/ </size>
+
+
+
+<size=40> "Reflection" by <b> B_Sean </b> </size>
+<size=30> https://freesound.org/people/B_Sean/sounds/421887/ </size>
+
+
+
+<size=40> "Crystalline Phases of Ice" by <b> Pine Voc </b> </size>
+<size=30> https://steviasphere.bandcamp.com/album/snow-cover </size>
+
+
+
+<size=40> "Don't Fall Asleep In The Snow" by <b> Pine Voc </b> </size>
+<size=30> https://steviasphere.bandcamp.com/album/snow-cover </size>
+
+
+
+<size=40> "Glögg" by <b> Pine Voc </b> </size>
+<size=30> https://steviasphere.bandcamp.com/album/snow-cover </size>
+
+
+
+<size=40> "Glimmer, Part 1" by <b> Glaciære </b> </size>
+<size=30> https://steviasphere.bandcamp.com/album/bath </size>
+
+
+
+<size=40> "Glimmer, Part 2" by <b> Glaciære </b> </size>
+<size=30> https://steviasphere.bandcamp.com/album/bath </size>
+
+
+
+<size=40> "Waiting for the train. It's cold." by <b> Glaciære </b> </size>
+<size=30> https://steviasphere.bandcamp.com/album/bath </size>
+
+
+
+<size=40> "Reaction" by <b> Ocean Shores </b> </size>
+<size=30> https://oceanshores.bandcamp.com/album/memories-of-a-past-life </size>
+
+
+
+<size=40> "Windowpane" by <b> Ocean Shores </b> </size>
+<size=30> https://oceanshores.bandcamp.com/album/memories-of-a-past-life </size>
+
+
+
+<size=40> "Gone Away, Out of Mind" by <b> Ocean Shores </b> </size>
+<size=30> https://oceanshores.bandcamp.com/album/memories-of-a-past-life </size>
+
+
+
+<size=40> "Cashflow" by <b> Network 91 </b> </size>
+<size=30> https://fantasy-deluxe.bandcamp.com/album/ultimate-opportunity </size>
+
+
+
+<size=40> "More than you know" by <b> Network 91 </b> </size>
+<size=30> https://fantasy-deluxe.bandcamp.com/album/ultimate-opportunity </size>
+
+
+
+<size=40> "New Suit" by <b> Network 91 </b> </size>
+<size=30> https://fantasy-deluxe.bandcamp.com/album/ultimate-opportunity </size>
+
+
+
+<size=40> "Synthwave Miami Vice Style" by <b> Xhale303 </b> </size>
+<size=30> https://freesound.org/people/XHALE303/sounds/470453/ </size>
+
+
+
+<size=40> "Synthwave 15k" by <b> The Cynic Project </b> </size>
+<size=30> https://opengameart.org/content/calm-ambient-2-synthwave-15k </size>
+<size=30> http://cynicmusic.com/ </size>
+<size=30> http://pixelsphere.org/ </size>
+
+
+
+<size=40> "Loading..." by <b> </body> </b> </size>
+<size=30> https://bodyendtag.bandcamp.com/album/initializing </size>
+
+
+
+<size=40> "Updating Settings..." by <b> </body> </b> </size>
+<size=30> https://bodyendtag.bandcamp.com/album/initializing </size>
+
+
+
+<size=40> "Applying Update..." by <b> </body> </b> </size>
+<size=30> https://bodyendtag.bandcamp.com/album/initializing </size>
+
+
+
+
+
+
+
+
+
+
+
+<size=50> OTHERS </size>
+
+
+
+<size=40> "InputManager" by <b> daemon3000 </b> </size>
+<size=30> https://github.com/daemon3000/InputManager </size>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<size=100> THANK YOU FOR PLAYING </size>

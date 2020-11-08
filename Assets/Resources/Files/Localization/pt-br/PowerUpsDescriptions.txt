@@ -1,0 +1,15 @@
+Todos os blocos tomam 1 golpe
+Todas bolas ficam maiores
+Todas bolas ficam mais rapidas
+Restaura velocidade e tamanho das bolas
+Todas bolas ficam mais lentas
+Todas bolas ficam menores
+Duplica numero de bolas
+Termina o nivel
+Restaura numero de mortes
+Expande tamanho do remo
+Restaura tamanho do remo
+Diminui tamanho do remo
+Escolhe um poder aleatorio
+Cria um atirador no remo
+Todos os blocos nao-quebraveis ficam quebraveis
