@@ -76,7 +76,10 @@ public class GameSession : MonoBehaviour
     //--------------------------------------------------------------------------------//
     // GETTERS / SETTERS
 
-    public GameState GetActualGameState () { return actualGameState; }
+    public GameState GetActualGameState () 
+    { 
+        return actualGameState; 
+    }
     public int GetComboMultiplier () { return comboMultiplier; }
     public bool GetIsAutoplayEnabled () { return isAutoplayEnabled; }
     public bool GetHasPowerUpCollidedWithPaddle () { return hasPowerUpCollidedWithPaddle; }

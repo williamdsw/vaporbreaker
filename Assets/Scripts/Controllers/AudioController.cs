@@ -197,14 +197,28 @@ public class AudioController : MonoBehaviour
 
     public void PauseMusic (bool pause)
     {
-        if (!audioSourceBGM.clip) { return; }
-        if (pause) { audioSourceBGM.Pause (); }
-        else { audioSourceBGM.UnPause (); }
+        if (!audioSourceBGM)
+        {
+            return;
+        }
+
+        if (pause)
+        {
+            audioSourceBGM.Pause();
+        }
+        else
+        {
+            audioSourceBGM.UnPause();
+        }
     }
 
     public void RepeatMusic (bool repeat)
     {
-        if (!audioSourceBGM) { return; }
+        if (!audioSourceBGM)
+        {
+            return;
+        }
+
         audioSourceBGM.loop = repeat;
     }
 
@@ -236,7 +250,11 @@ public class AudioController : MonoBehaviour
         isSongPlaying = true;
 
         // Information to pause controller
-        if (!pauseController) { pauseController = FindObjectOfType<Pause>(); }
+        if (!pauseController) 
+        { 
+            pauseController = FindObjectOfType<Pause>(); 
+        }
+
         if (pauseController)
         {
             pauseController.SetActualSongName (FormatMusicName (nextMusic.name));
@@ -252,7 +270,11 @@ public class AudioController : MonoBehaviour
         if (!loopMusic && changeOnMusicEnd)
         {
             // Cancel
-            if (!pauseController) { yield return null; }
+            if (!pauseController) 
+            { 
+                yield return null; 
+            }
+
             yield return new WaitForSecondsRealtime (audioSourceBGM.clip.length);
             pauseController.SetPreviousSongName (FormatMusicName (nextMusic.name));
             int index = Random.Range (0, allNotLoopedSongs.Length);

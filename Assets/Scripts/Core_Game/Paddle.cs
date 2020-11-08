@@ -63,7 +63,6 @@ public class Paddle : MonoBehaviour
 
     //--------------------------------------------------------------------------------//
 
-    // Define posicao inicial
     private void DefineStartPosition ()
     {
         Vector3 startPosition = new Vector3 (Screen.width / 2f, Screen.height / 10f, 0);
@@ -71,7 +70,6 @@ public class Paddle : MonoBehaviour
         transform.position = new Vector3 (startPosition.x, startPosition.y, transform.position.z);
     }
 
-    // Define limites
     public void DefineBounds ()
     {
         if (!mainCamera || !spriteRenderer) { return; }
