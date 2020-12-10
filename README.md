@@ -4,7 +4,7 @@
 
 ## About
 
-My first game developed in Unity. I implemented a lot of things that I learned watching and doing some tutorials of Udemy and Youtube back in mid 2019. It's a basic Arkanoid / Breakout game with some a e s t h e t i c s visual.
+My first game developed in Unity. I implemented a lot of things that I learned watching and doing some tutorials of Udemy and Youtube back in mid 2019. It's a basic Arkanoid / Breakout game with some `a e s t h e t i c s` visual.
 
 ## Built with
 
