@@ -9,8 +9,8 @@ public class LogoScene : MonoBehaviour
     // Config
     [SerializeField] private GameObject jumpText;
 
-    [Header ("Labels to Translate")]
-    [SerializeField] private List<TextMeshProUGUI> uiLabels = new List<TextMeshProUGUI> ();
+    [Header("Labels to Translate")]
+    [SerializeField] private List<TextMeshProUGUI> uiLabels = new List<TextMeshProUGUI>();
 
     // State
     private float duration = 0f;
@@ -24,9 +24,7 @@ public class LogoScene : MonoBehaviour
     private GameStatusController gameStatusController;
     private LocalizationController localizationController;
 
-    //--------------------------------------------------------------------------------//
-
-    private void Start () 
+    private void Start()
     {
         // Find Objects
         audioController = FindObjectOfType<AudioController>();
@@ -35,70 +33,71 @@ public class LogoScene : MonoBehaviour
         localizationController = FindObjectOfType<LocalizationController>();
 
         // Play logo sound
-        audioController.PlayME (audioController.EightiesRiff, audioController.GetMaxMEVolume (), false);
-        duration = audioController.GetClipLength (audioController.EightiesRiff);
+        audioController.PlayME(audioController.EightiesRiff, audioController.GetMaxMEVolume(), false);
+        duration = audioController.GetClipLength(audioController.EightiesRiff);
 
-        TranslateLabels ();
-        StartCoroutine (PlayAndShowLogo ());
+        TranslateLabels();
+        StartCoroutine(PlayAndShowLogo());
     }
 
-    private void Update ()
+    private void Update()
     {
-        CaptureStartInput ();
+        CaptureStartInput();
     }
-
-    //--------------------------------------------------------------------------------//
 
     // Translate labels based on choosed language
-    public void TranslateLabels ()
+    public void TranslateLabels()
     {
-        if (!localizationController) { return; }
-        List<string> labels = localizationController.GetPressAnyKeyLabels ();
-        if (labels.Count == 0 || uiLabels.Count == 0) { return; }
-        for (int index = 0; index < labels.Count; index++) { uiLabels[index].SetText (labels[index]); }
+        if (!localizationController) return;
+        List<string> labels = localizationController.GetPressAnyKeyLabels();
+        if (labels.Count == 0 || uiLabels.Count == 0) return;
+        for (int index = 0; index < labels.Count; index++)
+        {
+            uiLabels[index].SetText(labels[index]);
+        }
     }
 
     // Captures Pause Button
-    private void CaptureStartInput ()
+    private void CaptureStartInput()
     {
         if (canPressButton)
         {
             if (InputManager.anyKeyDown)
             {
                 canPressButton = false;
-                StopCoroutine ("CallNextScene");
-                StartCoroutine (CallNextScene (SceneManagerController.GetTitleSceneName ()));
+                StopCoroutine("CallNextScene");
+                StartCoroutine(CallNextScene(SceneManagerController.GetTitleSceneName()));
             }
         }
     }
 
     //--------------------------------------------------------------------------------//
 
-    private IEnumerator PlayAndShowLogo ()
+    private IEnumerator PlayAndShowLogo()
     {
         // Logo's voice
-        yield return new WaitForSecondsRealtime (0.5f);
+        yield return new WaitForSecondsRealtime(0.5f);
         canPressButton = true;
-        jumpText.SetActive (true);
-        int index = Random.Range (0, audioController.AllLogoVoices.Length);
-        yield return new WaitForSecondsRealtime (timeToCallLogoVoice);
-        audioController.PlaySFX (audioController.AllLogoVoices[index], audioController.GetMaxSFXVolume ());
-        yield return new WaitForSecondsRealtime (duration / 2f);
+        jumpText.SetActive(true);
+        int index = Random.Range(0, audioController.AllLogoVoices.Length);
+        yield return new WaitForSecondsRealtime(timeToCallLogoVoice);
+        audioController.PlaySFX(audioController.AllLogoVoices[index], audioController.GetMaxSFXVolume());
+        yield return new WaitForSecondsRealtime(duration / 2f);
 
-        StopCoroutine ("CallNextScene");
-        StartCoroutine (CallNextScene (SceneManagerController.GetTitleSceneName ()));
+        StopCoroutine("CallNextScene");
+        StartCoroutine(CallNextScene(SceneManagerController.GetTitleSceneName()));
     }
 
     // Wait fade out length to fade out to next scene
-    private IEnumerator CallNextScene (string nextSceneName)
+    private IEnumerator CallNextScene(string nextSceneName)
     {
         // Fade Out
-        float fadeOutLength = fadeEffect.GetFadeOutLength ();
-        fadeEffect.FadeToLevel ();
-        yield return new WaitForSecondsRealtime (fadeOutLength);
-        audioController.StopME ();
-        gameStatusController.SetNextSceneName (nextSceneName);
-        gameStatusController.SetCameFromLevel (false);
-        SceneManagerController.CallScene (SceneManagerController.GetLoadingSceneName ());
+        float fadeOutLength = fadeEffect.GetFadeOutLength();
+        fadeEffect.FadeToLevel();
+        yield return new WaitForSecondsRealtime(fadeOutLength);
+        audioController.StopME();
+        gameStatusController.SetNextSceneName(nextSceneName);
+        gameStatusController.SetCameFromLevel(false);
+        SceneManagerController.CallScene(SceneManagerController.GetLoadingSceneName());
     }
 }

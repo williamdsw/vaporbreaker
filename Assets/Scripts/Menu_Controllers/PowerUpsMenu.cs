@@ -7,30 +7,28 @@ using UnityEngine.UI;
 
 public class PowerUpsMenu : MonoBehaviour
 {
-    [Header ("UI Elements")]
+    [Header("UI Elements")]
     [SerializeField] private Sprite[] powerUpsSpritesList;
     [SerializeField] private Image powerUpImage;
     [SerializeField] private TextMeshProUGUI powerUpDescriptionText;
     [SerializeField] private TextMeshProUGUI poweUpValueText;
 
-    [Header ("Labels to Translate")]
-    [SerializeField] private List<TextMeshProUGUI> uiLabels = new List<TextMeshProUGUI> ();
+    [Header("Labels to Translate")]
+    [SerializeField] private List<TextMeshProUGUI> uiLabels = new List<TextMeshProUGUI>();
 
     // Config
     private int currentLevelIndex = 0;
-    private List<string> powerUpsDescriptionsList = new List<string> ();
-    private List<int> powerUpsMinValueList = new List<int> ();
-    private List<int> powerUpsMaxValueList = new List<int> ();
+    private List<string> powerUpsDescriptionsList = new List<string>();
+    private List<int> powerUpsMinValueList = new List<int>();
+    private List<int> powerUpsMaxValueList = new List<int>();
 
     // Cached
     private AudioController audioController;
     private FadeEffect fadeEffect;
     private GameStatusController gameStatusController;
     private LocalizationController localizationController;
-    
-    //--------------------------------------------------------------------------------//
 
-    private void Start () 
+    private void Start()
     {
         // Other
         audioController = FindObjectOfType<AudioController>();
@@ -39,141 +37,112 @@ public class PowerUpsMenu : MonoBehaviour
         localizationController = FindObjectOfType<LocalizationController>();
 
         // Play music
-        audioController.ChangeMusic (audioController.AllLoopedSongs[2], false, "", true, false);
+        audioController.ChangeMusic(audioController.AllLoopedSongs[2], false, "", true, false);
 
         // Resets for animation works
         Time.timeScale = 1f;
         Cursor.visible = true;
 
-        FillLists ();
-        TranslateLabels ();
-        UpdateUI ();
+        FillLists();
+        TranslateLabels();
+        UpdateUI();
     }
 
-    private void Update ()
+    private void Update()
     {
-        ChangePowerUp ();
-        CaptureCancelButton ();
+        ChangePowerUp();
+        CaptureCancelButton();
     }
 
-    //--------------------------------------------------------------------------------//
-
-    private void FillLists ()
+    private void FillLists()
     {
-        powerUpsMinValueList.Add (0);
-        powerUpsMaxValueList.Add (1000);
+        int[] minValues =
+        {
+            0, 0, 5000, 100, 100, 0, 500, -1000, 0, 100, 100, 10000, 0, 100, 100
+        };
 
-        powerUpsMinValueList.Add (0);
-        powerUpsMaxValueList.Add (1000);
+        int[] maxValues =
+        {
+            1000, 1000, 10000, 1000, 1000, 1000, 2500, -10000, -1000, 500, 1000, 30000, 0, 500, 500
+        };
 
-        powerUpsMinValueList.Add (5000);
-        powerUpsMaxValueList.Add (10000);
+        foreach (int value in minValues)
+        {
+            powerUpsMinValueList.Add(value);
+        }
 
-        powerUpsMinValueList.Add (100);
-        powerUpsMaxValueList.Add (1000);
-
-        powerUpsMinValueList.Add (100);
-        powerUpsMaxValueList.Add (1000);
-
-        powerUpsMinValueList.Add (0);
-        powerUpsMaxValueList.Add (1000);
-
-        powerUpsMinValueList.Add (500);
-        powerUpsMaxValueList.Add (2500);
-
-        powerUpsMinValueList.Add (- 1000);
-        powerUpsMaxValueList.Add (- 10000);
-
-        powerUpsMinValueList.Add (0);
-        powerUpsMaxValueList.Add (- 1000);
-
-        powerUpsMinValueList.Add (100);
-        powerUpsMaxValueList.Add (500);
-
-        powerUpsMinValueList.Add (100);
-        powerUpsMaxValueList.Add (1000);
-
-        powerUpsMinValueList.Add (10000);
-        powerUpsMaxValueList.Add (30000);
-
-        powerUpsMinValueList.Add (0);
-        powerUpsMaxValueList.Add (0);
-
-        powerUpsMinValueList.Add (100);
-        powerUpsMaxValueList.Add (500);
-
-        powerUpsMinValueList.Add (100);
-        powerUpsMaxValueList.Add (500);
+        foreach (int value in maxValues)
+        {
+            powerUpsMaxValueList.Add(value);
+        }
     }
 
     // Translate labels based on choosed language
-    private void TranslateLabels ()
+    private void TranslateLabels()
     {
         // CANCELS
-        if (!localizationController) { return; }
-        
-        List<string> labels = localizationController.GetPowerUpsSceneLabels ();
-        powerUpsDescriptionsList = localizationController.GetPowerUpsDescriptions ();
-        if (labels.Count == 0 || uiLabels.Count == 0 || labels.Count != uiLabels.Count ) { return; }
-        for (int index = 0; index < labels.Count; index++) { uiLabels[index].SetText (labels[index]); }
+        if (!localizationController) return;
+
+        List<string> labels = localizationController.GetPowerUpsSceneLabels();
+        powerUpsDescriptionsList = localizationController.GetPowerUpsDescriptions();
+        if (labels.Count == 0 || uiLabels.Count == 0 || labels.Count != uiLabels.Count) return;
+        for (int index = 0; index < labels.Count; index++)
+        {
+            uiLabels[index].SetText(labels[index]);
+        }
     }
 
     // Change level on left / right
-    private void ChangePowerUp ()
+    private void ChangePowerUp()
     {
         // Cancels
-        if (powerUpsSpritesList.Length == 0) { return; }
+        if (powerUpsSpritesList.Length == 0) return;
 
-        if (InputManager.GetButtonDown ("UI_Right"))
+        if (InputManager.GetButtonDown("UI_Right"))
         {
-            audioController.PlaySFX (audioController.PowerUpSound, audioController.GetMaxSFXVolume ());
+            audioController.PlaySFX(audioController.PowerUpSound, audioController.GetMaxSFXVolume());
             currentLevelIndex++;
             currentLevelIndex = (currentLevelIndex >= powerUpsSpritesList.Length ? 0 : currentLevelIndex);
-            UpdateUI ();
+            UpdateUI();
         }
-        else if (InputManager.GetButtonDown ("UI_Left"))
+        else if (InputManager.GetButtonDown("UI_Left"))
         {
-            audioController.PlaySFX (audioController.PowerUpSound, audioController.GetMaxSFXVolume ());
+            audioController.PlaySFX(audioController.PowerUpSound, audioController.GetMaxSFXVolume());
             currentLevelIndex--;
             currentLevelIndex = (currentLevelIndex < 0 ? powerUpsSpritesList.Length - 1 : currentLevelIndex);
-            UpdateUI ();
+            UpdateUI();
         }
     }
 
     // Updates the UI values
-    private void UpdateUI ()
+    private void UpdateUI()
     {
-        // Cancels
-        if (!powerUpImage || !powerUpDescriptionText || !poweUpValueText) { return; }
+        if (!powerUpImage || !powerUpDescriptionText || !poweUpValueText) return;
 
-        // Set texts
         powerUpDescriptionText.text = powerUpsDescriptionsList[currentLevelIndex];
-        poweUpValueText.text = string.Concat (powerUpsMinValueList[currentLevelIndex], "/", powerUpsMaxValueList[currentLevelIndex]);
+        poweUpValueText.text = string.Concat(powerUpsMinValueList[currentLevelIndex], "/", powerUpsMaxValueList[currentLevelIndex]);
         powerUpImage.sprite = powerUpsSpritesList[currentLevelIndex];
     }
 
     // Capture Cancel Button on situations
-    private void CaptureCancelButton ()
+    private void CaptureCancelButton()
     {
-        if (InputManager.GetButtonDown ("UI_Cancel"))
+        if (InputManager.GetButtonDown("UI_Cancel"))
         {
-            audioController.StopMusic ();
-            audioController.PlaySFX (audioController.UiCancel, audioController.GetMaxSFXVolume ());
-            StartCoroutine (CallNextScene (SceneManagerController.GetMainMenuSceneName ()));
+            audioController.StopMusic();
+            audioController.PlaySFX(audioController.UiCancel, audioController.GetMaxSFXVolume());
+            StartCoroutine(CallNextScene(SceneManagerController.GetMainMenuSceneName()));
         }
     }
 
-    //--------------------------------------------------------------------------------//
-    // COROUTINES
-
     // Wait fade out length to fade out to next scene
-    private IEnumerator CallNextScene (string nextSceneName)
+    private IEnumerator CallNextScene(string nextSceneName)
     {
         // Fade Out effect
-        float fadeOutLength = fadeEffect.GetFadeOutLength ();
-        fadeEffect.FadeToLevel ();
-        yield return new WaitForSecondsRealtime (fadeOutLength);
-        gameStatusController.SetNextSceneName (nextSceneName);
-        SceneManagerController.CallScene (SceneManagerController.GetLoadingSceneName ());
+        float fadeOutLength = fadeEffect.GetFadeOutLength();
+        fadeEffect.FadeToLevel();
+        yield return new WaitForSecondsRealtime(fadeOutLength);
+        gameStatusController.SetNextSceneName(nextSceneName);
+        SceneManagerController.CallScene(SceneManagerController.GetLoadingSceneName());
     }
 }

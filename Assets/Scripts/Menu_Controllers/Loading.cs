@@ -18,7 +18,7 @@ public class Loading : MonoBehaviour
     private CursorController cursorController;
     private FullScreenBackground fullScreenBackground;
 
-    private void Start () 
+    private void Start()
     {
         // Find Objects
         gameStatusController = FindObjectOfType<GameStatusController>();
@@ -28,22 +28,29 @@ public class Loading : MonoBehaviour
         fadeEffect = FindObjectOfType<FadeEffect>();
 
         // Destroy some singletons
-        if (cursorController) { cursorController.DestroyInstance (); }
-        if (fullScreenBackground) { fullScreenBackground.DestroyInstance (); }
+        if (cursorController)
+        {
+            cursorController.DestroyInstance();
+        }
 
-        StartCoroutine (CallNextScene ());
+        if (fullScreenBackground)
+        {
+            fullScreenBackground.DestroyInstance();
+        }
+
+        StartCoroutine(CallNextScene());
     }
 
-    private IEnumerator CallNextScene ()
+    private IEnumerator CallNextScene()
     {
         // Fade Out effect
-        yield return new WaitForSecondsRealtime (timeToWait);
-        float fadeOutLength = fadeEffect.GetFadeOutLength ();
-        fadeEffect.FadeToLevel ();
-        yield return new WaitForSecondsRealtime (fadeOutLength);
+        yield return new WaitForSecondsRealtime(timeToWait);
+        float fadeOutLength = fadeEffect.GetFadeOutLength();
+        fadeEffect.FadeToLevel();
+        yield return new WaitForSecondsRealtime(fadeOutLength);
 
         // Calls next scene
-        string nextSceneName = gameStatusController.GetNextSceneName ();
-        operation = SceneManagerController.CallSceneAsync (nextSceneName);
+        string nextSceneName = gameStatusController.GetNextSceneName();
+        operation = SceneManagerController.CallSceneAsync(nextSceneName);
     }
 }

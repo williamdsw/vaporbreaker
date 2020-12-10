@@ -9,8 +9,8 @@ public class TitleScreen : MonoBehaviour
     // Config
     [SerializeField] private GameObject pressAnyKeyText;
 
-    [Header ("Labels to Translate")]
-    [SerializeField] private List<TextMeshProUGUI> uiLabels = new List<TextMeshProUGUI> ();
+    [Header("Labels to Translate")]
+    [SerializeField] private List<TextMeshProUGUI> uiLabels = new List<TextMeshProUGUI>();
 
     // State
     private bool canPressKey = false;
@@ -25,9 +25,7 @@ public class TitleScreen : MonoBehaviour
     private GameStatusController gameStatusController;
     private LocalizationController localizationController;
 
-    //--------------------------------------------------------------------------------//
-
-    private void Start ()
+    private void Start()
     {
         // Find Components 
         flashTextEffect = pressAnyKeyText.GetComponent<FlashTextEffect>();
@@ -38,68 +36,65 @@ public class TitleScreen : MonoBehaviour
         gameStatusController = FindObjectOfType<GameStatusController>();
         localizationController = FindObjectOfType<LocalizationController>();
 
-        TranslateLabels ();
-        StartCoroutine (WaitToShowPressAnyKey ());
+        TranslateLabels();
+        StartCoroutine(WaitToShowPressAnyKey());
     }
 
-    private void Update ()
+    private void Update()
     {
-        CaptureAnyKey ();
+        CaptureAnyKey();
     }
-
-    //--------------------------------------------------------------------------------//
 
     // Translate labels based on choosed language
-    private void TranslateLabels ()
+    private void TranslateLabels()
     {
-        // CANCELS
-        if (!localizationController) { return; }
-        
-        List<string> labels = localizationController.GetTitleLabels ();
-        if (labels.Count == 0 || uiLabels.Count == 0) { return; }
-        for (int index = 0; index < labels.Count; index++) { uiLabels[index].SetText (labels[index]); }
+        if (!localizationController) return;
+
+        List<string> labels = localizationController.GetTitleLabels();
+        if (labels.Count == 0 || uiLabels.Count == 0) return;
+        for (int index = 0; index < labels.Count; index++)
+        {
+            uiLabels[index].SetText(labels[index]);
+        }
     }
 
     // Captures any key
-    private void CaptureAnyKey ()
+    private void CaptureAnyKey()
     {
         if (canPressKey)
         {
             if (InputManager.anyKeyDown)
             {
                 canPressKey = false;
-                StartCoroutine (CallNextScene (SceneManagerController.GetMainMenuSceneName ()));
+                StartCoroutine(CallNextScene(SceneManagerController.GetMainMenuSceneName()));
             }
         }
     }
 
-    //--------------------------------------------------------------------------------//
-    // COROUTINES
-
-    private IEnumerator WaitToShowPressAnyKey ()
+    private IEnumerator WaitToShowPressAnyKey()
     {
-        int index = Random.Range (0, audioController.AllTitleVoices.Length);
-        float duration = audioController.GetClipLength (audioController.AllTitleVoices[index]);
-        audioController.PlayME (audioController.AllTitleVoices[index], audioController.GetMaxMEVolume (), false);
-        yield return new WaitForSecondsRealtime (duration);
+        int index = Random.Range(0, audioController.AllTitleVoices.Length);
+        float duration = audioController.GetClipLength(audioController.AllTitleVoices[index]);
+        audioController.PlayME(audioController.AllTitleVoices[index], audioController.GetMaxMEVolume(), false);
+        yield return new WaitForSecondsRealtime(duration);
         canPressKey = true;
-        pressAnyKeyText.SetActive (true);
+        pressAnyKeyText.SetActive(true);
     }
 
     // Wait fade out length to fade out to next scene
-    private IEnumerator CallNextScene (string nextSceneName)
+    private IEnumerator CallNextScene(string nextSceneName)
     {
         // Stop 
-        audioController.PlaySFX (audioController.UiSubmit, audioController.GetMaxSFXVolume ());
-        flashTextEffect.SetTimeToFlick (0.1f);
-        yield return new WaitForSecondsRealtime (timeToWait);    
+        audioController.PlaySFX(audioController.UiSubmit, audioController.GetMaxSFXVolume());
+        flashTextEffect.SetTimeToFlick(0.1f);
+        yield return new WaitForSecondsRealtime(timeToWait);
 
         // Fade Out
-        float fadeOutLength = fadeEffect.GetFadeOutLength ();
-        fadeEffect.FadeToLevel ();
-        yield return new WaitForSecondsRealtime (fadeOutLength);
-        gameStatusController.SetNextSceneName (nextSceneName);
-        gameStatusController.SetCameFromLevel (false);
-        SceneManagerController.CallScene (SceneManagerController.GetLoadingSceneName ());
+        float fadeOutLength = fadeEffect.GetFadeOutLength();
+        fadeEffect.FadeToLevel();
+        yield return new WaitForSecondsRealtime(fadeOutLength);
+        gameStatusController.SetNextSceneName(nextSceneName);
+        gameStatusController.SetCameFromLevel(false);
+        SceneManagerController.CallScene(SceneManagerController.GetLoadingSceneName());
     }
 }

@@ -25,19 +25,19 @@
 
 
 <size=50> PROGRAMMING </size>
-<size=40> <b> "Laynard" </b> </size>
+<size=40> <b> William Santos </b> </size>
 
 
 
 
 <size=50> GAME DESIGNER </size>
-<size=40> <b> "Laynard" </b> </size>
+<size=40> <b> William Santos </b> </size>
 
 
 
 
 <size=50> LEVEL DESIGNER </size>
-<size=40> <b> "Laynard" </b> </size>
+<size=40> <b> William Santos </b> </size>
 
 
 
@@ -78,7 +78,7 @@
 
 
 
-<size=40> "Grid Backgrounds" by <b> "Laynard" </b> </size>
+<size=40> "Grid Backgrounds" by <b> William Santos </b> </size>
 
 
 

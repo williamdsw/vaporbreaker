@@ -21,13 +21,12 @@
 //	ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #endregion
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections;
 using Luminosity.IO;
 using TMPro;
 
-public class RebindInput : MonoBehaviour, IPointerDownHandler 
+public class RebindInput : MonoBehaviour, IPointerDownHandler
 {
     public enum RebindType
     {
@@ -80,12 +79,12 @@ public class RebindInput : MonoBehaviour, IPointerDownHandler
     private void InitializeInputAction()
     {
         m_inputAction = InputManager.GetAction(m_controlSchemeName, m_inputActionName);
-        if(m_inputAction != null)
+        if (m_inputAction != null)
         {
             m_inputBinding = m_inputAction.Bindings[m_bindingIndex];
-            if(m_rebindType == RebindType.Keyboard || m_rebindType == RebindType.GamepadButton)
+            if (m_rebindType == RebindType.Keyboard || m_rebindType == RebindType.GamepadButton)
             {
-                if(m_changePositiveKey)
+                if (m_changePositiveKey)
                 {
                     m_keyDescription.text = m_inputBinding.Positive == KeyCode.None ? "" : m_inputBinding.Positive.ToString();
                 }
@@ -106,8 +105,6 @@ public class RebindInput : MonoBehaviour, IPointerDownHandler
         }
     }
 
-    
-
     public void OnPointerDown(PointerEventData data)
     {
         StartCoroutine(StartInputScanDelayed());
@@ -117,7 +114,7 @@ public class RebindInput : MonoBehaviour, IPointerDownHandler
     {
         yield return null;
 
-        if(!InputManager.IsScanning && m_inputAction != null)
+        if (!InputManager.IsScanning && m_inputAction != null)
         {
             m_keyDescription.text = "...";
 
@@ -126,15 +123,15 @@ public class RebindInput : MonoBehaviour, IPointerDownHandler
             settings.CancelScanKey = m_cancelKey;
             settings.Timeout = m_timeout;
             settings.UserData = null;
-            if(m_rebindType == RebindType.GamepadAxis)
+            if (m_rebindType == RebindType.GamepadAxis)
             {
                 settings.ScanFlags = ScanFlags.JoystickAxis;
                 InputManager.StartInputScan(settings, HandleJoystickAxisScan);
             }
-            else if(m_rebindType == RebindType.GamepadButton)
+            else if (m_rebindType == RebindType.GamepadButton)
             {
                 settings.ScanFlags = ScanFlags.JoystickButton;
-                if(m_allowAnalogButton)
+                if (m_allowAnalogButton)
                 {
                     settings.ScanFlags |= ScanFlags.JoystickAxis;
                 }
@@ -152,15 +149,15 @@ public class RebindInput : MonoBehaviour, IPointerDownHandler
     private bool HandleKeyScan(ScanResult result)
     {
         //	When you return false you tell the InputManager that it should keep scaning for other keys
-        if(!IsKeyValid(result.Key))
+        if (!IsKeyValid(result.Key))
             return false;
 
         //	The key is KeyCode.None when the timeout has been reached or the scan has been canceled
-        if(result.Key != KeyCode.None)
+        if (result.Key != KeyCode.None)
         {
             //	If the key is KeyCode.Backspace clear the current binding
             result.Key = (result.Key == KeyCode.Backspace) ? KeyCode.None : result.Key;
-            if(m_changePositiveKey)
+            if (m_changePositiveKey)
             {
                 m_inputBinding.Positive = result.Key;
             }
@@ -183,25 +180,25 @@ public class RebindInput : MonoBehaviour, IPointerDownHandler
     {
         bool isValid = true;
 
-        if(m_rebindType == RebindType.Keyboard)
+        if (m_rebindType == RebindType.Keyboard)
         {
-            if((int)key >= (int)KeyCode.JoystickButton0)
+            if ((int)key >= (int)KeyCode.JoystickButton0)
                 isValid = false;
-            else if(key == KeyCode.LeftApple || key == KeyCode.RightApple)
+            else if (key == KeyCode.LeftApple || key == KeyCode.RightApple)
                 isValid = false;
-            else if(key == KeyCode.LeftWindows || key == KeyCode.RightWindows)
+            else if (key == KeyCode.LeftWindows || key == KeyCode.RightWindows)
                 isValid = false;
-            else if(key == KeyCode.Mouse0 || key == KeyCode.Mouse1)
+            else if (key == KeyCode.Mouse0 || key == KeyCode.Mouse1)
                 isValid = false;
-            else if(key == KeyCode.Mouse2 || key == KeyCode.Mouse3)
+            else if (key == KeyCode.Mouse2 || key == KeyCode.Mouse3)
                 isValid = false;
-            else if(key == KeyCode.Mouse4 || key == KeyCode.Mouse5)
+            else if (key == KeyCode.Mouse4 || key == KeyCode.Mouse5)
                 isValid = false;
-            else if(key == KeyCode.Mouse6)
+            else if (key == KeyCode.Mouse6)
                 isValid = false;
-            else if(key == KeyCode.Return)
+            else if (key == KeyCode.Return)
                 isValid = false;
-            else if(key == KeyCode.Space)
+            else if (key == KeyCode.Space)
                 isValid = false;
         }
         else
@@ -214,19 +211,19 @@ public class RebindInput : MonoBehaviour, IPointerDownHandler
 
     private bool HandleJoystickButtonScan(ScanResult result)
     {
-        if(result.ScanFlags == ScanFlags.JoystickButton)
+        if (result.ScanFlags == ScanFlags.JoystickButton)
         {
             //	When you return false you tell the InputManager that it should keep scaning for other keys
-            if(!IsJoytickButtonValid(result.Key))
+            if (!IsJoytickButtonValid(result.Key))
                 return false;
 
             //	The key is KeyCode.None when the timeout has been reached or the scan has been canceled
-            if(result.Key != KeyCode.None)
+            if (result.Key != KeyCode.None)
             {
                 //	If the key is KeyCode.Backspace clear the current binding
                 result.Key = (result.Key == KeyCode.Backspace) ? KeyCode.None : result.Key;
                 m_inputBinding.Type = InputType.Button;
-                if(m_changePositiveKey)
+                if (m_changePositiveKey)
                 {
                     m_inputBinding.Positive = result.Key;
                 }
@@ -238,7 +235,7 @@ public class RebindInput : MonoBehaviour, IPointerDownHandler
             }
             else
             {
-                if(m_inputBinding.Type == InputType.Button)
+                if (m_inputBinding.Type == InputType.Button)
                 {
                     KeyCode currentKey = GetCurrentKeyCode();
                     m_keyDescription.text = (currentKey == KeyCode.None) ? "None" : currentKey.ToString();
@@ -252,7 +249,7 @@ public class RebindInput : MonoBehaviour, IPointerDownHandler
         else
         {
             //	The axis is negative when the timeout has been reached or the scan has been canceled
-            if(result.JoystickAxis >= 0)
+            if (result.JoystickAxis >= 0)
             {
                 m_inputBinding.Type = InputType.AnalogButton;
                 m_inputBinding.Invert = result.JoystickAxisValue < 0.0f;
@@ -261,7 +258,7 @@ public class RebindInput : MonoBehaviour, IPointerDownHandler
             }
             else
             {
-                if(m_inputBinding.Type == InputType.AnalogButton)
+                if (m_inputBinding.Type == InputType.AnalogButton)
                 {
                     m_keyDescription.text = (m_inputBinding.Invert ? "-" : "+") + m_axisNames[m_inputBinding.Axis];
                 }
@@ -280,12 +277,12 @@ public class RebindInput : MonoBehaviour, IPointerDownHandler
     {
         bool isValid = true;
 
-        if(m_rebindType == RebindType.GamepadButton)
+        if (m_rebindType == RebindType.GamepadButton)
         {
             //	Allow KeyCode.None to pass because it means that the scan has been canceled or the timeout has been reached
             //	Allow KeyCode.Backspace to pass so it can clear the current binding
-            if ((int)key < (int)KeyCode.JoystickButton0 && (int)key != (int) KeyCode.JoystickButton6 && 
-               (int)key != (int) KeyCode.JoystickButton7 && key != KeyCode.None && key != KeyCode.Backspace)
+            if ((int)key < (int)KeyCode.JoystickButton0 && (int)key != (int)KeyCode.JoystickButton6 &&
+               (int)key != (int)KeyCode.JoystickButton7 && key != KeyCode.None && key != KeyCode.Backspace)
                 isValid = false;
         }
         else
@@ -299,7 +296,7 @@ public class RebindInput : MonoBehaviour, IPointerDownHandler
     private bool HandleJoystickAxisScan(ScanResult result)
     {
         //	The axis is negative when the timeout has been reached or the scan has been canceled
-        if(result.JoystickAxis >= 0)
+        if (result.JoystickAxis >= 0)
             m_inputBinding.Axis = result.JoystickAxis;
 
         m_keyDescription.text = m_axisNames[m_inputBinding.Axis];
@@ -308,10 +305,10 @@ public class RebindInput : MonoBehaviour, IPointerDownHandler
 
     private KeyCode GetCurrentKeyCode()
     {
-        if(m_rebindType == RebindType.GamepadAxis)
+        if (m_rebindType == RebindType.GamepadAxis)
             return KeyCode.None;
 
-        if(m_changePositiveKey)
+        if (m_changePositiveKey)
         {
             return m_inputBinding.Positive;
         }
@@ -323,22 +320,22 @@ public class RebindInput : MonoBehaviour, IPointerDownHandler
 
     public static void GenerateJoystickAxisNames()
     {
-        if(m_axisNames == null || m_axisNames.Length != InputBinding.MAX_JOYSTICK_AXES)
+        if (m_axisNames == null || m_axisNames.Length != InputBinding.MAX_JOYSTICK_AXES)
         {
             m_axisNames = new string[InputBinding.MAX_JOYSTICK_AXES];
-            for(int i = 0; i < InputBinding.MAX_JOYSTICK_AXES; i++)
+            for (int i = 0; i < InputBinding.MAX_JOYSTICK_AXES; i++)
             {
-                if(i == 0)
+                if (i == 0)
                     m_axisNames[i] = "X";
-                else if(i == 1)
+                else if (i == 1)
                     m_axisNames[i] = "Y";
-                else if(i == 2)
+                else if (i == 2)
                     m_axisNames[i] = "3rd axis (Joysticks and Scrollwheel)";
-                else if(i == 21)
+                else if (i == 21)
                     m_axisNames[i] = "21st axis (Joysticks)";
-                else if(i == 22)
+                else if (i == 22)
                     m_axisNames[i] = "22nd axis (Joysticks)";
-                else if(i == 23)
+                else if (i == 23)
                     m_axisNames[i] = "23rd axis (Joysticks)";
                 else
                     m_axisNames[i] = string.Format("{0}th axis (Joysticks)", i + 1);

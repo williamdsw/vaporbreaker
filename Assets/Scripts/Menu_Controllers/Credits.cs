@@ -24,10 +24,10 @@ public class Credits : MonoBehaviour
     private GameStatusController gameStatusController;
     private FadeEffect fadeEffect;
 
-    //--------------------------------------------------------------------------------//
-
-    private void Start ()
+    private void Start()
     {
+        if (!creditsText) return;
+
         // Components
         creditsRectTransform = creditsText.GetComponent<RectTransform>();
 
@@ -36,85 +36,80 @@ public class Credits : MonoBehaviour
         gameStatusController = FindObjectOfType<GameStatusController>();
         fadeEffect = FindObjectOfType<FadeEffect>();
 
-        audioController.ChangeMusic (audioController.AllLoopedSongs[3], false, "", true, false);
-        creditsText.text = FileManager.LoadAsset (FileManager.OtherFolderPath, FileManager.CreditsPath);
+        audioController.ChangeMusic(audioController.AllLoopedSongs[3], false, "", true, false);
+        creditsText.text = FileManager.LoadAsset(FileManager.OtherFolderPath, FileManager.CreditsPath);
 
-        StartCoroutine (WaitToMoveText ());
+        StartCoroutine(WaitToMoveText());
     }
 
-    private void Update ()
+    private void Update()
     {
         if (canMoveText)
         {
-            MoveText ();
-            CaptureStartInput ();
+            MoveText();
+            CaptureStartInput();
         }
 
         if (canCalculateTime)
         {
-            ellapsedTime += Time.deltaTime;    
+            ellapsedTime += Time.deltaTime;
 
             if (ellapsedTime >= maxEllapsedTime)
             {
                 canCalculateTime = false;
                 canMoveText = false;
-                StartCoroutine (CallNextScene (SceneManagerController.GetMainMenuSceneName (), true));
+                StartCoroutine(CallNextScene(SceneManagerController.GetMainMenuSceneName(), true));
             }
         }
     }
 
-    //--------------------------------------------------------------------------------//
-
     // Moves the text up
-    private void MoveText ()
+    private void MoveText()
     {
         Vector3 newPosition = new Vector3(0, movementY * Time.deltaTime, 0);
         creditsRectTransform.transform.position += newPosition;
     }
 
     // Captures Pause Button
-    private void CaptureStartInput ()
+    private void CaptureStartInput()
     {
         if (canPressButton)
         {
             if (InputManager.anyKeyDown)
             {
                 canPressButton = false;
-                StartCoroutine (CallNextScene (SceneManagerController.GetMainMenuSceneName (), false));
+                StartCoroutine(CallNextScene(SceneManagerController.GetMainMenuSceneName(), false));
             }
         }
     }
 
-    //--------------------------------------------------------------------------------//
-    // COROUTINES
-
-    private IEnumerator WaitToMoveText ()
+    private IEnumerator WaitToMoveText()
     {
-        yield return new WaitForSecondsRealtime (timeToWait);
+        yield return new WaitForSecondsRealtime(timeToWait);
         canMoveText = true;
         canPressButton = true;
-        jumpText.SetActive (true);
+        jumpText.SetActive(true);
     }
 
     // Wait fade out length to fade out to next scene
-    private IEnumerator CallNextScene (string nextSceneName, bool isTheEnd)
+    private IEnumerator CallNextScene(string nextSceneName, bool isTheEnd)
     {
         // Stop 
-        jumpText.SetActive (false);
-        audioController.StopMusic ();
+        jumpText.SetActive(false);
+        audioController.StopMusic();
 
         // Case end of text
         if (isTheEnd)
         {
-            yield return new WaitForSecondsRealtime (timeToWait * 2f);    
+            yield return new WaitForSecondsRealtime(timeToWait * 2f);
         }
 
         // Fade Out
-        float fadeOutLength = fadeEffect.GetFadeOutLength ();
-        fadeEffect.FadeToLevel ();
-        yield return new WaitForSecondsRealtime (fadeOutLength);
-        gameStatusController.SetNextSceneName (nextSceneName);
-        gameStatusController.SetCameFromLevel (false);
-        SceneManagerController.CallScene (SceneManagerController.GetLoadingSceneName ());
+        float fadeOutLength = fadeEffect.GetFadeOutLength();
+        fadeEffect.FadeToLevel();
+        yield return new WaitForSecondsRealtime(fadeOutLength);
+        gameStatusController.SetNextSceneName(nextSceneName);
+        gameStatusController.SetCameFromLevel(false);
+        SceneManagerController.CallScene(SceneManagerController.GetLoadingSceneName());
     }
 }

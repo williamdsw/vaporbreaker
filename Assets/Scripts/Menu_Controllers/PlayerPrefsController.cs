@@ -19,50 +19,73 @@ public class PlayerPrefsController
 
     // GETTERS / SETTERS
 
-    public static float GetBGMVolume () { return PlayerPrefs.GetFloat (BGM_VOLUME_KEY); }
-    public static float GetSFXVolume () { return PlayerPrefs.GetFloat (SFX_VOLUME_KEY); }
-    public static int GetFullScreen () { return PlayerPrefs.GetInt (FULLSCREEN_KEY); }
-    public static bool HasPlayerPrefs () { return !string.IsNullOrEmpty (PlayerPrefs.GetString (RESOLUTION_KEY)); }
-    public static string GetLanguage () { return PlayerPrefs.GetString (LANGUAGE_KEY); }
-    public static string GetResolution () { return PlayerPrefs.GetString (RESOLUTION_KEY); }
+    public static float GetBGMVolume()
+    {
+        return PlayerPrefs.GetFloat(BGM_VOLUME_KEY);
+    }
 
-    public static void SetBGMVolume (float volume)
+    public static float GetSFXVolume()
+    {
+        return PlayerPrefs.GetFloat(SFX_VOLUME_KEY);
+    }
+
+    public static int GetFullScreen()
+    {
+        return PlayerPrefs.GetInt(FULLSCREEN_KEY);
+    }
+
+    public static bool HasPlayerPrefs()
+    {
+        return !string.IsNullOrEmpty(PlayerPrefs.GetString(RESOLUTION_KEY));
+    }
+
+    public static string GetLanguage()
+    {
+        return PlayerPrefs.GetString(LANGUAGE_KEY);
+    }
+
+    public static string GetResolution()
+    {
+        return PlayerPrefs.GetString(RESOLUTION_KEY);
+    }
+
+    public static void SetBGMVolume(float volume)
     {
         if (volume >= BGM_MIN_VOLUME && volume <= BGM_MAX_VOLUME)
         {
-            PlayerPrefs.SetFloat (BGM_VOLUME_KEY, volume);
+            PlayerPrefs.SetFloat(BGM_VOLUME_KEY, volume);
         }
     }
 
-    public static void SetSFXVolume (float volume)
+    public static void SetSFXVolume(float volume)
     {
         if (volume >= SFX_MIN_VOLUME && volume <= SFX_MAX_VOLUME)
         {
-            PlayerPrefs.SetFloat (SFX_VOLUME_KEY, volume);
+            PlayerPrefs.SetFloat(SFX_VOLUME_KEY, volume);
         }
     }
 
-    public static void SetFullScreen (int fullScreen)
+    public static void SetFullScreen(int fullScreen)
     {
         if (fullScreen == 0 || fullScreen == 1)
         {
-            PlayerPrefs.SetInt (FULLSCREEN_KEY, fullScreen);
+            PlayerPrefs.SetInt(FULLSCREEN_KEY, fullScreen);
         }
     }
 
-    public static void SetLanguage (string language)
+    public static void SetLanguage(string language)
     {
-        if (!string.IsNullOrEmpty (language) && !string.IsNullOrWhiteSpace (language))
+        if (!string.IsNullOrEmpty(language) && !string.IsNullOrWhiteSpace(language))
         {
-            PlayerPrefs.SetString (LANGUAGE_KEY, language);    
+            PlayerPrefs.SetString(LANGUAGE_KEY, language);
         }
     }
 
-    public static void SetResolution (string resolution)
+    public static void SetResolution(string resolution)
     {
-        if (!string.IsNullOrEmpty (resolution) && !string.IsNullOrWhiteSpace (resolution) && resolution.Contains ("x"))
+        if (!string.IsNullOrEmpty(resolution) && !string.IsNullOrWhiteSpace(resolution) && resolution.Contains("x"))
         {
-            PlayerPrefs.SetString (RESOLUTION_KEY, resolution);    
+            PlayerPrefs.SetString(RESOLUTION_KEY, resolution);
         }
     }
 }

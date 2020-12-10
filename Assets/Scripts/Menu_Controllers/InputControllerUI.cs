@@ -6,11 +6,11 @@ using UnityEngine.UI;
 
 public class InputControllerUI : MonoBehaviour
 {
-    [Header ("UI Indicator Sprites")]
+    [Header("UI Indicator Sprites")]
     [SerializeField] private Sprite[] keyboardSprites;
     [SerializeField] private Sprite[] gamepadSprites;
 
-    [Header ("UI Indicator Game Objects")]
+    [Header("UI Indicator Game Objects")]
     [SerializeField] private GameObject acceptInput;
     [SerializeField] private GameObject cancelInput;
     [SerializeField] private GameObject horizontalInput;
@@ -21,8 +21,8 @@ public class InputControllerUI : MonoBehaviour
     [SerializeField] private GameObject downInput;
     [SerializeField] private GameObject changeSongInput;
 
-    [Header ("Labels to Translate")]
-    [SerializeField] private List<TextMeshProUGUI> uiLabels = new List<TextMeshProUGUI> ();
+    [Header("Labels to Translate")]
+    [SerializeField] private List<TextMeshProUGUI> uiLabels = new List<TextMeshProUGUI>();
 
     // Cached Images
     private Image acceptInputImage;
@@ -36,23 +36,19 @@ public class InputControllerUI : MonoBehaviour
     // Cached Others Objects
     private LocalizationController localizationController;
 
-    //--------------------------------------------------------------------------------//
-
-    private void Start ()
+    private void Start()
     {
         localizationController = FindObjectOfType<LocalizationController>();
-        TranslateLabels ();
-        DefineComponents ();
+        TranslateLabels();
+        DefineComponents();
     }
 
-    private void LateUpdate () 
+    private void LateUpdate()
     {
-        SetupControlScheme ();
+        SetupControlScheme();
     }
 
-    //--------------------------------------------------------------------------------//
-
-    private void DefineComponents ()
+    private void DefineComponents()
     {
         // Submit / Cancel
         if (acceptInput && cancelInput)
@@ -67,8 +63,15 @@ public class InputControllerUI : MonoBehaviour
             leftInputImage = leftInput.GetComponentInChildren<Image>();
             rightInputImage = rightInput.GetComponentInChildren<Image>();
 
-            if (!leftInputImage) { leftInput.GetComponent<Image>(); }
-            if (!rightInputImage) { rightInput.GetComponent<Image>(); }
+            if (!leftInputImage)
+            {
+                leftInput.GetComponent<Image>();
+            }
+
+            if (!rightInputImage)
+            {
+                rightInput.GetComponent<Image>();
+            }
         }
 
         // Up / Down
@@ -77,124 +80,212 @@ public class InputControllerUI : MonoBehaviour
             upInputImage = upInput.GetComponentInChildren<Image>();
             downInputImage = downInput.GetComponentInChildren<Image>();
 
-            if (!upInputImage) { upInput.GetComponent<Image>(); }
-            if (!downInputImage) { downInput.GetComponent<Image>(); }
+            if (!upInputImage)
+            {
+                upInput.GetComponent<Image>();
+            }
+
+            if (!downInputImage)
+            {
+                downInput.GetComponent<Image>();
+            }
         }
 
         // Back
         if (changeSongInput)
         {
             changeSongInputImage = changeSongInput.GetComponentInChildren<Image>();
-            if (!changeSongInputImage) { changeSongInput.GetComponent<Image>(); }
+            if (!changeSongInputImage)
+            {
+                changeSongInput.GetComponent<Image>();
+            }
         }
     }
 
     // Translate labels based on choosed language
-    public void TranslateLabels ()
+    public void TranslateLabels()
     {
-        // CANCELS
-        if (!localizationController) { return; }
-        
-        List<string> labels = localizationController.GetUiIconsLabels ();
-        if (labels.Count == 0 || uiLabels.Count == 0 || labels.Count != uiLabels.Count ) { return; }
+        if (!localizationController) return;
+
+        List<string> labels = localizationController.GetUiIconsLabels();
+        if (labels.Count == 0 || uiLabels.Count == 0 || labels.Count != uiLabels.Count) return;
         for (int index = 0; index < labels.Count; index++)
         {
-            if (uiLabels[index] == null) { break; }
-            uiLabels[index].SetText (labels[index]);
+            if (!uiLabels[index]) break;
+            uiLabels[index].SetText(labels[index]);
         }
     }
 
-
     // Setups Control Scheme depending on Gamepad connected
-    private void SetupControlScheme ()
+    private void SetupControlScheme()
     {
-        UpdateUI (GamepadState.IsConnected (GamepadIndex.GamepadOne));
-        ToggleInputImagesVisibility ();
+        UpdateUI(GamepadState.IsConnected(GamepadIndex.GamepadOne));
+        ToggleInputImagesVisibility();
     }
 
-    private void UpdateUI (bool isGamepadConnected)
+    private void UpdateUI(bool isGamepadConnected)
     {
-        // Cancel
-        if (keyboardSprites.Length == 0 || gamepadSprites.Length == 0) { return; }
+        if (keyboardSprites.Length == 0 || gamepadSprites.Length == 0) return;
 
         // Submit / Cancel
         acceptInputImage.sprite = (isGamepadConnected ? gamepadSprites[0] : keyboardSprites[0]);
         cancelInputImage.sprite = (isGamepadConnected ? gamepadSprites[1] : keyboardSprites[1]);
 
         // Horizontal
-        if (leftInputImage) { leftInputImage.sprite = (isGamepadConnected ? gamepadSprites[2] : keyboardSprites[2]); }
-        if (rightInputImage) { rightInputImage.sprite = (isGamepadConnected ? gamepadSprites[3] : keyboardSprites[3]); }
+        if (leftInputImage)
+        {
+            leftInputImage.sprite = (isGamepadConnected ? gamepadSprites[2] : keyboardSprites[2]);
+        }
+
+        if (rightInputImage)
+        {
+            rightInputImage.sprite = (isGamepadConnected ? gamepadSprites[3] : keyboardSprites[3]);
+        }
 
         // Vertical
-        if (upInputImage) { upInputImage.sprite = (isGamepadConnected ? gamepadSprites[4] : keyboardSprites[4]); }
-        if (downInputImage) { downInputImage.sprite = (isGamepadConnected ? gamepadSprites[5] : keyboardSprites[5]); }
+        if (upInputImage)
+        {
+            upInputImage.sprite = (isGamepadConnected ? gamepadSprites[4] : keyboardSprites[4]);
+        }
+
+        if (downInputImage)
+        {
+            downInputImage.sprite = (isGamepadConnected ? gamepadSprites[5] : keyboardSprites[5]);
+        }
 
         // Change Song 
-        if (changeSongInput) { changeSongInputImage.sprite = (isGamepadConnected ? gamepadSprites[6] : keyboardSprites[6]); }
+        if (changeSongInput)
+        {
+            changeSongInputImage.sprite = (isGamepadConnected ? gamepadSprites[6] : keyboardSprites[6]);
+        }
     }
 
     // Toggles input images visibiliy depending on which panel is active
-    private void ToggleInputImagesVisibility ()
+    private void ToggleInputImagesVisibility()
     {
         // Panels
-        GameObject mainMenu = GameObject.Find (NamesTags.MainPanelName);
-        GameObject progressMenu = GameObject.Find (NamesTags.ProgressPanelName);
-        GameObject optionsMenu = GameObject.Find (NamesTags.OptionsPanelName);
-        GameObject defaultKeyboardMenu = GameObject.Find (NamesTags.DefaultKeyboardLayoutPanelName);
-        GameObject defaultGamepadMenu = GameObject.Find (NamesTags.DefaultGamepadLayoutPanelName);
-        GameObject bindingMenu = GameObject.Find (NamesTags.BindingsPanelName);
-        GameObject selectLevelPanel = GameObject.Find (NamesTags.SelectLevelPanelName);
-        GameObject pausePanel = GameObject.Find (NamesTags.PausePanelName);
-        
+        GameObject mainMenu = GameObject.Find(NamesTags.MainPanelName);
+        GameObject progressMenu = GameObject.Find(NamesTags.ProgressPanelName);
+        GameObject optionsMenu = GameObject.Find(NamesTags.OptionsPanelName);
+        GameObject defaultKeyboardMenu = GameObject.Find(NamesTags.DefaultKeyboardLayoutPanelName);
+        GameObject defaultGamepadMenu = GameObject.Find(NamesTags.DefaultGamepadLayoutPanelName);
+        GameObject bindingMenu = GameObject.Find(NamesTags.BindingsPanelName);
+        GameObject selectLevelPanel = GameObject.Find(NamesTags.SelectLevelPanelName);
+        GameObject pausePanel = GameObject.Find(NamesTags.PausePanelName);
+
         // MAIN MENU
         if (mainMenu && mainMenu.activeSelf)
         {
-            if (horizontalInput && horizontalInput.activeSelf) { horizontalInput.SetActive (false); }
-            if (changeSongInput && changeSongInput.activeSelf) { changeSongInput.SetActive (false); }
+            if (horizontalInput && horizontalInput.activeSelf)
+            {
+                horizontalInput.SetActive(false);
+            }
+
+            if (changeSongInput && changeSongInput.activeSelf)
+            {
+                changeSongInput.SetActive(false);
+            }
+
             return;
         }
-        
+
         // PROGRESS MENU
         if (progressMenu && progressMenu.activeSelf)
         {
-            if (horizontalInput && !horizontalInput.activeSelf) { horizontalInput.SetActive (true); }
-            if (changeSongInput && changeSongInput.activeSelf) { changeSongInput.SetActive (false); }
+            if (horizontalInput && !horizontalInput.activeSelf)
+            {
+                horizontalInput.SetActive(true);
+            }
+
+            if (changeSongInput && changeSongInput.activeSelf)
+            {
+                changeSongInput.SetActive(false);
+            }
+
             return;
         }
-        
+
         // OPTIONS MENU OR BINDING MENU
         if ((optionsMenu && optionsMenu.activeSelf) || (bindingMenu && bindingMenu.activeSelf))
         {
-            if (horizontalInput && !horizontalInput.activeSelf) { horizontalInput.SetActive (true); }
-            if (verticalInput && !verticalInput.activeSelf) { verticalInput.SetActive (true); }
-            if (acceptInput && !acceptInput.activeSelf) { acceptInput.SetActive (true); }
-            if (changeSongInput && changeSongInput.activeSelf) { changeSongInput.SetActive (false); }
+            if (horizontalInput && !horizontalInput.activeSelf)
+            {
+                horizontalInput.SetActive(true);
+            }
+
+            if (verticalInput && !verticalInput.activeSelf)
+            {
+                verticalInput.SetActive(true);
+            }
+
+            if (acceptInput && !acceptInput.activeSelf)
+            {
+                acceptInput.SetActive(true);
+            }
+
+            if (changeSongInput && changeSongInput.activeSelf)
+            {
+                changeSongInput.SetActive(false);
+            }
+
             return;
         }
 
         // DEFAULT KEYBOARD MENU OR DEFAULT GAMEPAD MENU
         if ((defaultKeyboardMenu && defaultKeyboardMenu.activeSelf) || (defaultGamepadMenu && defaultGamepadMenu.activeSelf))
         {
-            if (horizontalInput && horizontalInput.activeSelf) { horizontalInput.SetActive (false); }
-            if (verticalInput && verticalInput.activeSelf) { verticalInput.SetActive (false); }
-            if (acceptInput && acceptInput.activeSelf) { acceptInput.SetActive (false); }
-            if (changeSongInput && changeSongInput.activeSelf) { changeSongInput.SetActive (false); }
+            if (horizontalInput && horizontalInput.activeSelf)
+            {
+                horizontalInput.SetActive(false);
+            }
+
+            if (verticalInput && verticalInput.activeSelf)
+            {
+                verticalInput.SetActive(false);
+            }
+
+            if (acceptInput && acceptInput.activeSelf)
+            {
+                acceptInput.SetActive(false);
+            }
+
+            if (changeSongInput && changeSongInput.activeSelf)
+            {
+                changeSongInput.SetActive(false);
+            }
+
             return;
         }
 
         // SELECT LEVEL PANEL
         if (selectLevelPanel && selectLevelPanel.activeSelf)
         {
-            if (verticalInput && verticalInput.activeSelf) { verticalInput.SetActive (false); }
-            if (changeSongInput && changeSongInput.activeSelf) { changeSongInput.SetActive (false); }
+            if (verticalInput && verticalInput.activeSelf)
+            {
+                verticalInput.SetActive(false);
+            }
+
+            if (changeSongInput && changeSongInput.activeSelf)
+            {
+                changeSongInput.SetActive(false);
+            }
+
             return;
         }
 
         // PAUSE PANEL
         if (pausePanel && pausePanel.activeSelf)
         {
-            if (horizontalInput && horizontalInput.activeSelf) { horizontalInput.SetActive (false); }
-            if (changeSongInput && !changeSongInput.activeSelf) { changeSongInput.SetActive (true); }
+            if (horizontalInput && horizontalInput.activeSelf)
+            {
+                horizontalInput.SetActive(false);
+            }
+
+            if (changeSongInput && !changeSongInput.activeSelf)
+            {
+                changeSongInput.SetActive(true);
+            }
+
             return;
         }
     }

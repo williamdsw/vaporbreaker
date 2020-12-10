@@ -7,20 +7,20 @@ using UnityEngine.UI;
 
 public class LanguageMenuController : MonoBehaviour
 {
-    [Header ("Menus")]
+    [Header("Menus")]
     [SerializeField] private GameObject languageMenu;
     [SerializeField] private GameObject mainMenu;
 
-    [Header ("Buttons")]
+    [Header("Buttons")]
     [SerializeField] private Button[] allButtons;
     [SerializeField] private Button[] allDefaultButtons;
     [SerializeField] private Button backButton;
 
-    [Header ("Labels to Translate")]
-    [SerializeField] private List<TextMeshProUGUI> uiLabels = new List<TextMeshProUGUI> ();
+    [Header("Labels to Translate")]
+    [SerializeField] private List<TextMeshProUGUI> uiLabels = new List<TextMeshProUGUI>();
 
     // State
-    private List<string> languages = new List<string>() {"English", "Portuguese", "Spanish", "Italian"};
+    private List<string> languages = new List<string>() { "English", "Portuguese", "Spanish", "Italian" };
     private int currentButtonIndex;
     private string currentLanguage;
     private string currentFolderPath;
@@ -34,9 +34,7 @@ public class LanguageMenuController : MonoBehaviour
     private MainMenu mainMenuController;
     private OptionsMenu optionsMenuController;
 
-    //--------------------------------------------------------------------------------//
-
-    private void Start () 
+    private void Start()
     {
         // Find Objects
         audioController = FindObjectOfType<AudioController>();
@@ -47,78 +45,75 @@ public class LanguageMenuController : MonoBehaviour
         mainMenuController = FindObjectOfType<MainMenu>();
         optionsMenuController = FindObjectOfType<OptionsMenu>();
 
-        BindingClickEvents ();
-        TranslateLabels ();
+        BindingClickEvents();
+        TranslateLabels();
 
         // Default Language
-        string language = PlayerPrefsController.GetLanguage ();
-        currentButtonIndex = languages.IndexOf (language);
+        string language = PlayerPrefsController.GetLanguage();
+        currentButtonIndex = languages.IndexOf(language);
     }
 
-    private void Update () 
+    private void Update()
     {
-        if (!languageMenu.activeSelf) { return; }
-        CaptureInputs ();
+        if (!languageMenu.activeSelf) return;
+        CaptureInputs();
     }
 
     //--------------------------------------------------------------------------------//
     // START USED
 
-    private void BindingClickEvents ()
+    private void BindingClickEvents()
     {
-        if (!languageMenu || !mainMenu || allButtons.Length == 0 || allDefaultButtons.Length == 0) { return; }
+        if (!languageMenu || !mainMenu || allButtons.Length == 0 || allDefaultButtons.Length == 0) return;
 
         // BACK
-        backButton.onClick.AddListener (delegate
+        backButton.onClick.AddListener(() =>
         {
-            PlayerPrefsController.SetLanguage (currentLanguage);
-            audioController.PlaySFX (audioController.UiCancel, audioController.GetMaxSFXVolume ());
-            languageMenu.SetActive (false);
-            mainMenu.SetActive (true);
-            allDefaultButtons[1].Select ();
+            PlayerPrefsController.SetLanguage(currentLanguage);
+            audioController.PlaySFX(audioController.UiCancel, audioController.GetMaxSFXVolume());
+            languageMenu.SetActive(false);
+            mainMenu.SetActive(true);
+            allDefaultButtons[1].Select();
         });
     }
 
     // Translate labels based on choosed language
-    private void TranslateLabels ()
+    private void TranslateLabels()
     {
-        if (!localizationController) { return; }
-        List<string> labels = localizationController.GetLanguageMenuLabels ();
-        if (labels.Count == 0 || uiLabels.Count == 0) { return; }
-        for (int index = 0; index < labels.Count; index++) { uiLabels[index].SetText (labels[index]); }
+        if (!localizationController) return;
+        List<string> labels = localizationController.GetLanguageMenuLabels();
+        if (labels.Count == 0 || uiLabels.Count == 0) return;
+        for (int index = 0; index < labels.Count; index++)
+        {
+            uiLabels[index].SetText(labels[index]);
+        }
     }
 
-    //--------------------------------------------------------------------------------//
-    // POINTER ENTER
-
-    public void MakeSelectOnPointerEnter (Button button)
+    public void MakeSelectOnPointerEnter(Button button)
     {
-        if (!button || !button.interactable) { return; }
-        button.Select ();
+        if (!button || !button.interactable) return;
+        button.Select();
     }
 
-    public void SetCurrentButtonIndex (int index)
+    public void SetCurrentButtonIndex(int index)
     {
         currentButtonIndex = index;
     }
 
-    //--------------------------------------------------------------------------------//
-    // UPDATE EVENTS
-
     // Capture User Inputs
-    private void CaptureInputs ()
+    private void CaptureInputs()
     {
         // Cancels 
-        if (allButtons.Length == 0) { return; }
+        if (allButtons.Length == 0) return;
 
         // Right / Left
-        if (InputManager.GetButtonDown ("UI_Right"))
+        if (InputManager.GetButtonDown("UI_Right"))
         {
             currentButtonIndex++;
             currentButtonIndex = (currentButtonIndex >= allButtons.Length ? 0 : currentButtonIndex);
             allButtons[currentButtonIndex].Select();
         }
-        else if (InputManager.GetButtonDown ("UI_Left"))
+        else if (InputManager.GetButtonDown("UI_Left"))
         {
             currentButtonIndex--;
             currentButtonIndex = (currentButtonIndex < 0 ? allButtons.Length - 1 : currentButtonIndex);
@@ -126,21 +121,21 @@ public class LanguageMenuController : MonoBehaviour
         }
 
         // Submit
-        if (currentButtonIndex == -1) { return; }
+        if (currentButtonIndex == -1) return;
         if (EventSystem.current.currentSelectedGameObject)
         {
-            if (InputManager.GetButtonDown ("UI_Submit"))
+            if (InputManager.GetButtonDown("UI_Submit"))
             {
-                ActionButton (currentButtonIndex);
+                ActionButton(currentButtonIndex);
             }
         }
     }
 
     // Sets the action for button click
-    private void ActionButton (int index)
+    private void ActionButton(int index)
     {
         // Play SFX
-        audioController.PlaySFX (audioController.ClickSound, audioController.GetMaxSFXVolume ());
+        audioController.PlaySFX(audioController.ClickSound, audioController.GetMaxSFXVolume());
 
         switch (currentButtonIndex)
         {
@@ -179,12 +174,12 @@ public class LanguageMenuController : MonoBehaviour
             default: { break; }
         }
 
-        localizationController.LoadLocalization (currentFolderPath);
-        TranslateLabels ();
-        mainMenuController.TranslateLabels ();
-        optionsMenuController.TranslateLabels ();
-        bindingMenuController.TranslateLabels ();
-        inputControllerUI.TranslateLabels ();
-        defaultLayoutMenu.TranslateLabels ();
+        localizationController.LoadLocalization(currentFolderPath);
+        TranslateLabels();
+        mainMenuController.TranslateLabels();
+        optionsMenuController.TranslateLabels();
+        bindingMenuController.TranslateLabels();
+        inputControllerUI.TranslateLabels();
+        defaultLayoutMenu.TranslateLabels();
     }
 }

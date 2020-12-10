@@ -3,13 +3,13 @@ Vaporbreaker ベーパーブレーカー
 Developed by Retrogemn
 
 PROGRAMMING 
-"Laynard"  
+William Santos  
 
 GAME DESIGNER 
-"Laynard"  
+William Santos  
 
 LEVEL DESIGNER 
-"Laynard"  
+William Santos  
 
 ASSETS USED 
 
@@ -30,7 +30,7 @@ http://mix-mplus-ipa.osdn.jp/migu/
 
 SPRITES / IMAGES 
 
-"Grid Backgrounds" by "Laynard"  
+"Grid Backgrounds" by William Santos  
 
 "Blocks Breaking Block Pack HD" by John B. Marine  
 https://opengameart.org/content/block-breaking-block-pack-hd 

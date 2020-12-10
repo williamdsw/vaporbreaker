@@ -7,20 +7,20 @@ using UnityEngine.UI;
 
 public class Pause : MonoBehaviour
 {
-    [Header ("Menus")]
+    [Header("Menus")]
     [SerializeField] private GameObject[] allMenus;
 
-    [Header ("All Menu Buttons")]
+    [Header("All Menu Buttons")]
     [SerializeField] private Button[] allMenuButtons;
 
-    [Header ("Default Menu Buttons")]
+    [Header("Default Menu Buttons")]
     [SerializeField] private Button[] allDefaultButtons;
 
-    [Header ("Other UI")]
+    [Header("Other UI")]
     [SerializeField] private TextMeshProUGUI actualMusicNameText;
 
-    [Header ("Labels to Translate")]
-    [SerializeField] private List<TextMeshProUGUI> uiLabels = new List<TextMeshProUGUI> ();
+    [Header("Labels to Translate")]
+    [SerializeField] private List<TextMeshProUGUI> uiLabels = new List<TextMeshProUGUI>();
 
     // State
     private bool canPause = true;
@@ -37,18 +37,27 @@ public class Pause : MonoBehaviour
     private GameStatusController gameStatusController;
     private LocalizationController localizationController;
 
-    //--------------------------------------------------------------------------------//
-    // GETTERS / SETTERS
+    public bool GetCanPause()
+    {
+        return canPause;
+    }
 
-    public bool GetCanPause () { return canPause; }
+    public void SetCanPause(bool canPause)
+    {
+        this.canPause = canPause;
+    }
 
-    public void SetCanPause (bool canPause) { this.canPause = canPause; }
-    public void SetPreviousSongName (string previousSongName) { this.previousSongName = previousSongName; }
-    public void SetActualSongName (string actualSongName) { this.actualSongName = actualSongName; }
+    public void SetPreviousSongName(string previousSongName)
+    {
+        this.previousSongName = previousSongName;
+    }
 
-    //--------------------------------------------------------------------------------//
+    public void SetActualSongName(string actualSongName)
+    {
+        this.actualSongName = actualSongName;
+    }
 
-    private void Start () 
+    private void Start()
     {
         // Finding objects
         audioController = FindObjectOfType<AudioController>();
@@ -61,99 +70,101 @@ public class Pause : MonoBehaviour
 
         actualMusicNameText.text = string.Empty;
 
-        foreach (GameObject menu in allMenus) { menu.SetActive (false); }
+        foreach (GameObject menu in allMenus)
+        {
+            menu.SetActive(false);
+        }
 
-        TranslateLabels ();
-        BindButtonClickEvents ();
+        TranslateLabels();
+        BindButtonClickEvents();
     }
 
-    private void Update () 
+    private void Update()
     {
         if (canPause)
         {
-            if (InputManager.GetButtonDown ("Pause")) { PauseGame (); }
+            if (InputManager.GetButtonDown("Pause"))
+            {
+                PauseGame();
+            }
 
-            if (actualSongName != previousSongName) { actualMusicNameText.text = actualSongName; }
+            if (actualSongName != previousSongName)
+            {
+                actualMusicNameText.text = actualSongName;
+            }
         }
     }
 
-    //--------------------------------------------------------------------------------//
-
     // Translate labels based on choosed language
-    private void TranslateLabels ()
+    private void TranslateLabels()
     {
-        if (!localizationController) { return; }
-        List<string> labels = localizationController.GetPauseLabels ();
-        if (labels.Count == 0 || uiLabels.Count == 0 || labels.Count != uiLabels.Count ) { return; }
-        for (int index = 0; index < labels.Count; index++) { uiLabels[index].SetText (labels[index]); }
+        if (!localizationController) return;
+        List<string> labels = localizationController.GetPauseLabels();
+        if (labels.Count == 0 || uiLabels.Count == 0 || labels.Count != uiLabels.Count) return;
+        for (int index = 0; index < labels.Count; index++)
+        {
+            uiLabels[index].SetText(labels[index]);
+        }
     }
 
-    private void BindButtonClickEvents ()
+    private void BindButtonClickEvents()
     {
-        // Cancels
-        if (allMenuButtons.Length == 0) { return; }
+        if (allMenuButtons.Length == 0) return;
 
         // Back Button
-        allMenuButtons[0].onClick.AddListener (delegate 
-        {
-            PauseGame (); 
-        });
+        allMenuButtons[0].onClick.AddListener(() => PauseGame());
 
         // Select Levels Button
-        allMenuButtons[1].onClick.AddListener (delegate
-        {
-            StartCoroutine (ResetGameCoroutine (SceneManagerController.GetSelectLevelsSceneName ()));
-        });
+        allMenuButtons[1].onClick.AddListener(() => StartCoroutine(ResetGameCoroutine(SceneManagerController.GetSelectLevelsSceneName())));
 
         // Main Menu Button
-        allMenuButtons[2].onClick.AddListener (delegate
-        {
-            StartCoroutine (ResetGameCoroutine (SceneManagerController.GetMainMenuSceneName ()));
-        });
+        allMenuButtons[2].onClick.AddListener(() => StartCoroutine(ResetGameCoroutine(SceneManagerController.GetMainMenuSceneName())));
     }
 
-    public void PauseGame ()
+    public void PauseGame()
     {
         // State
         pauseState = !pauseState;
-        foreach (GameObject menu in allMenus) { menu.SetActive (pauseState); }
+        foreach (GameObject menu in allMenus)
+        {
+            menu.SetActive(pauseState);
+        }
 
         // Config
         if (pauseState)
         {
-            audioController.PlaySFX (audioController.UiCancel, audioController.GetMaxSFXVolume ());
-            gameSession.SetActualGameState (GameState.PAUSE);
-            allDefaultButtons[0].Select ();
+            audioController.PlaySFX(audioController.UiCancel, audioController.GetMaxSFXVolume());
+            gameSession.SetActualGameState(GameState.PAUSE);
+            allDefaultButtons[0].Select();
         }
-        else 
+        else
         {
-            gameSession.SetActualGameState (GameState.GAMEPLAY);
+            gameSession.SetActualGameState(GameState.GAMEPLAY);
         }
     }
 
-    //--------------------------------------------------------------------------------//
-    // POINTER EVENT
-
-    public void MakeSelectOnPointerEnter (Button button)
+    public void MakeSelectOnPointerEnter(Button button)
     {
-        if (!button || !button.interactable) { return; }
-        button.Select ();
+        if (!button || !button.interactable) return;
+        button.Select();
     }
-
-    //--------------------------------------------------------------------------------//
 
     // Waits to fade out to reset game
-    private IEnumerator ResetGameCoroutine (string sceneName)
+    private IEnumerator ResetGameCoroutine(string sceneName)
     {
-        gameSession.SetActualGameState (GameState.TRANSITION);
+        gameSession.SetActualGameState(GameState.TRANSITION);
 
         // Fades Out
-        if (!fadeEffect) { fadeEffect = FindObjectOfType<FadeEffect>(); }
-        fadeEffect.ResetAnimationFunctions ();
-        float fadeOutLength = fadeEffect.GetFadeOutLength ();
-        fadeEffect.FadeToLevel ();
-        yield return new WaitForSecondsRealtime (fadeOutLength);
-        gameStatusController.SetIsLevelCompleted (false);
-        gameSession.ResetGame (sceneName);
+        if (!fadeEffect)
+        {
+            fadeEffect = FindObjectOfType<FadeEffect>();
+        }
+
+        fadeEffect.ResetAnimationFunctions();
+        float fadeOutLength = fadeEffect.GetFadeOutLength();
+        fadeEffect.FadeToLevel();
+        yield return new WaitForSecondsRealtime(fadeOutLength);
+        gameStatusController.SetIsLevelCompleted(false);
+        gameSession.ResetGame(sceneName);
     }
 }

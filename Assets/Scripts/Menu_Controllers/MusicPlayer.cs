@@ -10,22 +10,22 @@ using UnityEngine.UI;
 public class MusicPlayer : MonoBehaviour
 {
     // Config 
-    [Header ("Music Informations")]
+    [Header("Music Informations")]
     [SerializeField] private TextMeshProUGUI artistNameText;
     [SerializeField] private TextMeshProUGUI songNameText;
     [SerializeField] private TextMeshProUGUI songDurationText;
     [SerializeField] private TextMeshProUGUI hourText;
 
-    [Header ("Music Buttons")]
+    [Header("Music Buttons")]
     [SerializeField] private Button[] musicControllerButtons;
 
-    [Header ("Cursors")]
+    [Header("Cursors")]
     [SerializeField] private Texture2D defaultGameCursor;
     [SerializeField] private Texture2D oldPointerCursor;
     [SerializeField] private Texture2D oldHandCursor;
 
-    [Header ("Labels to Translate")]
-    [SerializeField] private List<TextMeshProUGUI> uiLabels = new List<TextMeshProUGUI> ();
+    [Header("Labels to Translate")]
+    [SerializeField] private List<TextMeshProUGUI> uiLabels = new List<TextMeshProUGUI>();
 
     // State
     private GameState actualGameState = GameState.GAMEPLAY;
@@ -52,10 +52,8 @@ public class MusicPlayer : MonoBehaviour
     private FadeEffect fadeEffect;
     private GameStatusController gameStatusController;
     private LocalizationController localizationController;
-    
-    //--------------------------------------------------------------------------------//
 
-    private void Start () 
+    private void Start()
     {
         // Components
         pauseResumeText = musicControllerButtons[2].GetComponentInChildren<TextMeshProUGUI>();
@@ -68,26 +66,26 @@ public class MusicPlayer : MonoBehaviour
         localizationController = FindObjectOfType<LocalizationController>();
 
         // Play music
-        audioController.ChangeMusic (audioController.AllLoopedSongs[0], false, "", true, false);
+        audioController.ChangeMusic(audioController.AllLoopedSongs[0], false, "", true, false);
 
         // Resets for animation works
         Time.timeScale = 1f;
-        musicControllerButtons[0].Select ();
+        musicControllerButtons[0].Select();
 
-        TranslateLabels ();
-        UpdateUI ();
-        ChangeCursor (false);
+        TranslateLabels();
+        UpdateUI();
+        ChangeCursor(false);
     }
 
-    private void Update ()
+    private void Update()
     {
         if (actualGameState == GameState.GAMEPLAY)
         {
-            CaptureInputs ();
+            CaptureInputs();
 
-            if (audioController.GetIsSongPlaying () && !isSongPaused && canEllapseTime)
+            if (audioController.GetIsSongPlaying() && !isSongPaused && canEllapseTime)
             {
-                ShowEllapedSongTime ();
+                ShowEllapedSongTime();
             }
 
             // Time to unlock buttons
@@ -102,38 +100,37 @@ public class MusicPlayer : MonoBehaviour
                 }
             }
 
-            UpdateHourText ();
+            UpdateHourText();
         }
     }
 
-    //--------------------------------------------------------------------------------//
-
     // Translate labels based on choosed language
-    private void TranslateLabels ()
+    private void TranslateLabels()
     {
         // CANCELS
-        if (!localizationController) { return; }
-        List<string> labels = localizationController.GetSoundtracksLabels ();
-        if (labels.Count == 0 || uiLabels.Count == 0) { return; }
-        for (int index = 0; index < labels.Count; index++) { uiLabels[index].SetText (labels[index]); }
+        if (!localizationController) return;
+        List<string> labels = localizationController.GetSoundtracksLabels();
+        if (labels.Count == 0 || uiLabels.Count == 0) return;
+        for (int index = 0; index < labels.Count; index++)
+        {
+            uiLabels[index].SetText(labels[index]);
+        }
     }
 
-    //--------------------------------------------------------------------------------//
-
     // Capture User Inputs
-    private void CaptureInputs ()
+    private void CaptureInputs()
     {
         // Cancels 
-        if (musicControllerButtons.Length == 0) { return; }
+        if (musicControllerButtons.Length == 0) return;
 
         // Right / Left
-        if (InputManager.GetButtonDown ("UI_Right"))
+        if (InputManager.GetButtonDown("UI_Right"))
         {
             currentButtonIndex++;
             currentButtonIndex = (currentButtonIndex >= musicControllerButtons.Length ? 0 : currentButtonIndex);
             musicControllerButtons[currentButtonIndex].Select();
         }
-        else if (InputManager.GetButtonDown ("UI_Left"))
+        else if (InputManager.GetButtonDown("UI_Left"))
         {
             currentButtonIndex--;
             currentButtonIndex = (currentButtonIndex < 0 ? musicControllerButtons.Length - 1 : currentButtonIndex);
@@ -143,18 +140,18 @@ public class MusicPlayer : MonoBehaviour
         // Submit
         if (EventSystem.current.currentSelectedGameObject)
         {
-            if (InputManager.GetButtonDown ("UI_Submit"))
+            if (InputManager.GetButtonDown("UI_Submit"))
             {
-                ActionButton (currentButtonIndex);
+                ActionButton(currentButtonIndex);
             }
         }
     }
 
     // Sets the action for button click
-    private void ActionButton (int index)
+    private void ActionButton(int index)
     {
         // Play SFX
-        audioController.PlaySFX (audioController.ClickSound, audioController.GetMaxSFXVolume ());
+        audioController.PlaySFX(audioController.ClickSound, audioController.GetMaxSFXVolume());
 
         switch (currentButtonIndex)
         {
@@ -168,7 +165,7 @@ public class MusicPlayer : MonoBehaviour
                     canCalculate = true;
                     currentSongIndex--;
                     currentSongIndex = (currentSongIndex < 0 ? audioController.AllNotLoopedSongs.Length - 1 : currentSongIndex);
-                    PlaySong (currentSongIndex);
+                    PlaySong(currentSongIndex);
                 }
 
                 break;
@@ -182,7 +179,7 @@ public class MusicPlayer : MonoBehaviour
                     // bools 
                     canChangeMusicInGame = false;
                     canCalculate = true;
-                    PlaySong (currentSongIndex);
+                    PlaySong(currentSongIndex);
                 }
 
                 break;
@@ -191,12 +188,12 @@ public class MusicPlayer : MonoBehaviour
             // PAUSE / RESUME
             case 2:
             {
-                if (audioController.GetIsSongPlaying ())
+                if (audioController.GetIsSongPlaying())
                 {
                     isSongPaused = !isSongPaused;
-                    audioController.PauseMusic (isSongPaused);
-                    if (!pauseResumeText) { return; } 
-                    pauseResumeText.text = (isSongPaused ? "Resume" : "Pause");     
+                    audioController.PauseMusic(isSongPaused);
+                    if (!pauseResumeText) return;
+                    pauseResumeText.text = (isSongPaused ? "Resume" : "Pause");
                 }
 
                 break;
@@ -206,8 +203,8 @@ public class MusicPlayer : MonoBehaviour
             case 3:
             {
                 isSongRepeated = !isSongRepeated;
-                audioController.RepeatMusic (isSongRepeated);
-                if (!repeatButtonImage) { return; }
+                audioController.RepeatMusic(isSongRepeated);
+                if (!repeatButtonImage) return;
                 repeatButtonImage.color = (isSongRepeated ? Color.yellow : Color.white);
                 break;
             }
@@ -222,7 +219,7 @@ public class MusicPlayer : MonoBehaviour
                     canCalculate = true;
                     currentSongIndex++;
                     currentSongIndex = (currentSongIndex >= audioController.AllNotLoopedSongs.Length ? 0 : currentSongIndex);
-                    PlaySong (currentSongIndex);
+                    PlaySong(currentSongIndex);
                 }
 
                 break;
@@ -231,54 +228,52 @@ public class MusicPlayer : MonoBehaviour
             // QUIT
             case 5:
             {
-                StartCoroutine (CallNextScene (SceneManagerController.GetMainMenuSceneName ()));
+                StartCoroutine(CallNextScene(SceneManagerController.GetMainMenuSceneName()));
                 break;
             }
 
-            default: { break; }
+            default: break;
         }
     }
 
-    private void PlaySong (int index)
+    private void PlaySong(int index)
     {
         songEllapsedTime = 0;
         canEllapseTime = true;
         isSongPaused = false;
-        audioController.StopMusic ();
-        audioController.ChangeMusic (audioController.AllNotLoopedSongs[currentSongIndex], false, "", false, false);
-        UpdateUI ();
+        audioController.StopMusic();
+        audioController.ChangeMusic(audioController.AllNotLoopedSongs[currentSongIndex], false, "", false, false);
+        UpdateUI();
     }
 
     // Increments ellapsed time
-    private void ShowEllapedSongTime ()
+    private void ShowEllapedSongTime()
     {
         songEllapsedTime += Time.deltaTime;
-        UpdateSongDurationText ();
+        UpdateSongDurationText();
     }
 
-    //--------------------------------------------------------------------------------//
-    // UI RELATED
-
     // Updates the UI values
-    private void UpdateUI ()
+    private void UpdateUI()
     {
-        if (!artistNameText || !songNameText || !songDurationText) { return; }
+        if (!artistNameText || !songNameText || !songDurationText) return;
+
         AudioClip currentSong = audioController.AllNotLoopedSongs[currentSongIndex];
-        string fileName = audioController.FormatMusicName (currentSong.name);
-        string[] splitted = fileName.Split ('-');
-        if (splitted.Length == 0) { return; }
+        string fileName = audioController.FormatMusicName(currentSong.name);
+        string[] splitted = fileName.Split('-');
+        if (splitted.Length == 0) return;
         artistNameText.text = splitted[0];
         songNameText.text = splitted[1];
         songDuration = currentSong.length;
-        UpdateSongDurationText ();
+        UpdateSongDurationText();
     }
 
     // Shows the formatted song duration
-    private void UpdateSongDurationText ()
+    private void UpdateSongDurationText()
     {
-        string songEllapsedTimeText = Formatter.FormatEllapsedTime ((int) songEllapsedTime);
-        string currentSongDurationText = Formatter.FormatEllapsedTime ((int) songDuration);
-        songDurationText.text = string.Concat (songEllapsedTimeText, " / ", currentSongDurationText);
+        string songEllapsedTimeText = Formatter.FormatEllapsedTime((int) songEllapsedTime);
+        string currentSongDurationText = Formatter.FormatEllapsedTime((int) songDuration);
+        songDurationText.text = string.Concat(songEllapsedTimeText, " / ", currentSongDurationText);
 
         if (songEllapsedTime >= songDuration)
         {
@@ -286,57 +281,50 @@ public class MusicPlayer : MonoBehaviour
             {
                 songEllapsedTime = 0;
             }
-            else 
+            else
             {
-                audioController.SetIsSongPlaying (false);
-                audioController.StopMusic ();
+                audioController.SetIsSongPlaying(false);
+                audioController.StopMusic();
             }
-        }   
+        }
     }
 
-    private void UpdateHourText ()
+    private void UpdateHourText()
     {
-        if (!hourText) { return; }
-        hourText.text = string.Concat (DateTime.Now.Hour.ToString ("00"), ":", DateTime.Now.Minute.ToString ("00"));
+        if (!hourText) return;
+        int hour = DateTime.Now.Hour;
+        int minute = DateTime.Now.Minute;
+        hourText.text = string.Concat(hour.ToString("00"), ":", minute.ToString("00"));
     }
 
-    //--------------------------------------------------------------------------------//
-    // EVENT TRIGGER POINTER UP EVENTS
-
-    public void MakeSelectOnPointerEnter (Button button)
+    public void MakeSelectOnPointerEnter(Button button)
     {
-        if (!button || !button.interactable) { return; }
-        button.Select ();
+        if (!button || !button.interactable) return;
+        button.Select();
     }
 
-    public void SetCurrentButtonIndex (int index)
+    public void SetCurrentButtonIndex(int index)
     {
         currentButtonIndex = index;
     }
 
-    //--------------------------------------------------------------------------------//
-    // COROUTINES
-
     // Wait fade out length to fade out to next scene
-    private IEnumerator CallNextScene (string nextSceneName)
+    private IEnumerator CallNextScene(string nextSceneName)
     {
         actualGameState = GameState.TRANSITION;
-        audioController.StopMusic ();
+        audioController.StopMusic();
 
         // Fade Out effect
-        float fadeOutLength = fadeEffect.GetFadeOutLength ();
-        fadeEffect.FadeToLevel ();
-        yield return new WaitForSecondsRealtime (fadeOutLength);
-        gameStatusController.SetNextSceneName (nextSceneName);
-        SceneManagerController.CallScene (SceneManagerController.GetLoadingSceneName ());
+        float fadeOutLength = fadeEffect.GetFadeOutLength();
+        fadeEffect.FadeToLevel();
+        yield return new WaitForSecondsRealtime(fadeOutLength);
+        gameStatusController.SetNextSceneName(nextSceneName);
+        SceneManagerController.CallScene(SceneManagerController.GetLoadingSceneName());
     }
 
-    //--------------------------------------------------------------------------------//
-    // POINTER ENTER / OUT
-
-    public void ChangeCursor (bool hand)
+    public void ChangeCursor(bool hand)
     {
         Texture2D cursor = (hand ? oldHandCursor : oldPointerCursor);
-        Cursor.SetCursor (cursor, Vector2.zero, CursorMode.Auto);
+        Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
     }
 }

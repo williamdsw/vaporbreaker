@@ -12,25 +12,25 @@ public class SelectLevelMenu : MonoBehaviour
     [SerializeField] private Button levelScreenButton;
     [SerializeField] private Sprite[] levelsSprites;
 
-    [Header ("Level's Information Texts")]
+    [Header("Level's Information Texts")]
     [SerializeField] private TextMeshProUGUI levelNameText;
     [SerializeField] private TextMeshProUGUI bestScoreText;
     [SerializeField] private TextMeshProUGUI bestTimeText;
     [SerializeField] private GameObject savingText;
 
-    [Header ("TV Information Texts")]
+    [Header("TV Information Texts")]
     [SerializeField] private TextMeshProUGUI recText;
     [SerializeField] private TextMeshProUGUI channelText;
     [SerializeField] private TextMeshProUGUI tvTimeText;
     [SerializeField] private TextMeshProUGUI tvBestTimeText;
 
-    [Header ("Confirmation Elements")]
+    [Header("Confirmation Elements")]
     [SerializeField] private GameObject questionText;
     [SerializeField] private Button noButton;
     [SerializeField] private Button yesButton;
 
-    [Header ("Labels to Translate")]
-    [SerializeField] private List<TextMeshProUGUI> uiLabels = new List<TextMeshProUGUI> ();
+    [Header("Labels to Translate")]
+    [SerializeField] private List<TextMeshProUGUI> uiLabels = new List<TextMeshProUGUI>();
     private List<string> levelInformationLabels = new List<string>();
     private List<string> levelNames = new List<string>();
 
@@ -57,11 +57,9 @@ public class SelectLevelMenu : MonoBehaviour
     private GameStatusController gameStatusController;
     private KnobEffect knobEffect;
     private LocalizationController localizationController;
-    private PlayerProgress progress = new PlayerProgress ();
+    private PlayerProgress progress = new PlayerProgress();
 
-    //--------------------------------------------------------------------------------//
-
-    private void Start () 
+    private void Start()
     {
         // Components
         levelScreenImage = levelScreenButton.GetComponent<Image>();
@@ -75,265 +73,253 @@ public class SelectLevelMenu : MonoBehaviour
         localizationController = FindObjectOfType<LocalizationController>();
 
         // Play music
-        audioController.ChangeMusic (audioController.AllLoopedSongs[1], false, "", true, false);
-        gameStatusController.SetHasStartedSong (true);
+        audioController.ChangeMusic(audioController.AllLoopedSongs[1], false, "", true, false);
+        gameStatusController.SetHasStartedSong(true);
 
-        LoadProgress ();
-        VerifyIfCameFromLevel ();
+        LoadProgress();
+        VerifyIfCameFromLevel();
 
         // Default
-        levelScreenButton.Select ();
-        
+        levelScreenButton.Select();
+
         // Resets for animation works
         Time.timeScale = 1f;
         Cursor.visible = true;
 
-        TranslateLabels ();
-        BindingEvents ();
-        UpdateUI ();
+        TranslateLabels();
+        BindingEvents();
+        UpdateUI();
     }
 
-    private void Update ()
+    private void Update()
     {
         // Cancels
-        if (actualGameState != GameState.GAMEPLAY) { return; }
+        if (actualGameState != GameState.GAMEPLAY) return;
 
-        ChangeLevel ();
-        CaptureCancelButton ();
+        ChangeLevel();
+        CaptureCancelButton();
     }
 
-    //--------------------------------------------------------------------------------//
-
-    private void LoadProgress ()
+    private void LoadProgress()
     {
-        progress = ProgressManager.LoadProgress ();
+        progress = ProgressManager.LoadProgress();
 
         // Getting values
-        currentLevelIndex = progress.GetCurrentLevelIndex ();
-        levelsNamesList = progress.GetLevelNamesList ();
-        isLevelUnlockedList = progress.GetIsLevelUnlockedList ();
-        isLevelCompletedList = progress.GetIsLevelCompletedList ();
-        highScoresList = progress.GetHighScoresList ();
-        highTimeScoresList = progress.GetHighTimeScoresList ();
-        lastTimePlayedList = progress.GetLastTimePlayedList ();
+        currentLevelIndex = progress.GetCurrentLevelIndex();
+        levelsNamesList = progress.GetLevelNamesList();
+        isLevelUnlockedList = progress.GetIsLevelUnlockedList();
+        isLevelCompletedList = progress.GetIsLevelCompletedList();
+        highScoresList = progress.GetHighScoresList();
+        highTimeScoresList = progress.GetHighTimeScoresList();
+        lastTimePlayedList = progress.GetLastTimePlayedList();
     }
 
     // Binds button's click event
-    private void BindingEvents ()
+    private void BindingEvents()
     {
         // Cancel
-        if (!levelScreenButton || !questionText || !noButton || !yesButton) { return; }
+        if (!levelScreenButton || !questionText || !noButton || !yesButton) return;
 
         // Click on image
-        levelScreenButton.onClick.AddListener (delegate 
+        levelScreenButton.onClick.AddListener(() =>
         {
-            // Cancels
-            if (actualGameState != GameState.GAMEPLAY) { return; }
+            if (actualGameState != GameState.GAMEPLAY) return;
 
             if (isLevelUnlockedList[currentLevelIndex])
             {
-                audioController.PlaySFX (audioController.UiSubmit, audioController.GetMaxSFXVolume ());
+                audioController.PlaySFX(audioController.UiSubmit, audioController.GetMaxSFXVolume());
                 levelScreenButton.interactable = false;
-                questionText.SetActive (true);
-                noButton.Select ();
+                questionText.SetActive(true);
+                noButton.Select();
             }
         });
 
         // Question Buttons
-        noButton.onClick.AddListener (delegate
+        noButton.onClick.AddListener(() =>
         {
-            // Cancels
-            if (actualGameState != GameState.GAMEPLAY) { return; }
+            if (actualGameState != GameState.GAMEPLAY) return;
 
-            audioController.PlaySFX (audioController.UiCancel, audioController.GetMaxSFXVolume ());
-            questionText.SetActive (false);
+            audioController.PlaySFX(audioController.UiCancel, audioController.GetMaxSFXVolume());
+            questionText.SetActive(false);
             levelScreenButton.interactable = true;
-            levelScreenButton.Select ();
+            levelScreenButton.Select();
         });
 
         // Question Buttons
-        yesButton.onClick.AddListener (delegate
+        yesButton.onClick.AddListener(() =>
         {
-            // Cancels
-            if (actualGameState != GameState.GAMEPLAY) { return; }
+            if (actualGameState != GameState.GAMEPLAY) return;
 
             // Hides
-            questionText.SetActive (false);
+            questionText.SetActive(false);
 
             // Params
-            audioController.PlaySFX (audioController.UiSubmit, audioController.GetMaxSFXVolume ());
-            audioController.StopMusic ();
+            audioController.PlaySFX(audioController.UiSubmit, audioController.GetMaxSFXVolume());
+            audioController.StopMusic();
 
             // Game status params
-            gameStatusController.SetHasStartedSong (false);
-            gameStatusController.SetCameFromLevel (true);
-            gameStatusController.SetLevelIndex (currentLevelIndex);
-            gameStatusController.SetIsLevelCompleted (false);
-            gameStatusController.SetOldScore (highScoresList[currentLevelIndex]);
-            gameStatusController.SetOldTimeScore (highTimeScoresList[currentLevelIndex]);
-            
+            gameStatusController.SetHasStartedSong(false);
+            gameStatusController.SetCameFromLevel(true);
+            gameStatusController.SetLevelIndex(currentLevelIndex);
+            gameStatusController.SetIsLevelCompleted(false);
+            gameStatusController.SetOldScore(highScoresList[currentLevelIndex]);
+            gameStatusController.SetOldTimeScore(highTimeScoresList[currentLevelIndex]);
+
             string sceneName = levelsNamesList[currentLevelIndex];
-            sceneName = sceneName.Replace (" ", "_");
-            StartCoroutine (CallNextScene (sceneName));
+            sceneName = sceneName.Replace(" ", "_");
+            StartCoroutine(CallNextScene(sceneName));
         });
     }
 
     // Translate labels based on choosed language
-    private void TranslateLabels ()
+    private void TranslateLabels()
     {
-        // CANCELS
-        if (!localizationController) { return; }
-        
-        List<string> labels = localizationController.GetSelectLevelsLabels ();
-        levelInformationLabels = localizationController.GetLevelInformationLabels ();
-        levelNames = localizationController.GetLevelsNames ();
-        if (labels.Count == 0 || uiLabels.Count == 0) { return; }
-        for (int index = 0; index < labels.Count; index++) { uiLabels[index].SetText (labels[index]); }
+        if (!localizationController) return;
+
+        List<string> labels = localizationController.GetSelectLevelsLabels();
+        levelInformationLabels = localizationController.GetLevelInformationLabels();
+        levelNames = localizationController.GetLevelsNames();
+        if (labels.Count == 0 || uiLabels.Count == 0) return;
+        for (int index = 0; index < labels.Count; index++)
+        {
+            uiLabels[index].SetText(labels[index]);
+        }
     }
 
-    //--------------------------------------------------------------------------------//
-
     // Change level on left / right
-    private void ChangeLevel ()
+    private void ChangeLevel()
     {
-        // Cancels By Button
-        if (!levelScreenButton.interactable) { return; }
+        if (!levelScreenButton.interactable) return;
 
         // Cancels
-        if (levelsNamesList.Count == 0 || isLevelUnlockedList.Count == 0 || 
+        if (levelsNamesList.Count == 0 || isLevelUnlockedList.Count == 0 ||
             highScoresList.Count == 0 || highTimeScoresList.Count == 0 ||
-            levelsSprites.Length == 0) { return; }
+            levelsSprites.Length == 0) return;
 
-        if (InputManager.GetButtonDown ("UI_Right"))
+        if (InputManager.GetButtonDown("UI_Right"))
         {
-            knobEffect.TurnDirection ("Turn_Right");
-            audioController.PlaySFX (audioController.TvSwitch, audioController.GetMaxSFXVolume ());
+            knobEffect.TurnDirection("Turn_Right");
+            audioController.PlaySFX(audioController.TvSwitch, audioController.GetMaxSFXVolume());
             currentLevelIndex++;
             currentLevelIndex = (currentLevelIndex >= levelsNamesList.Count ? 0 : currentLevelIndex);
-            UpdateUI ();
+            UpdateUI();
         }
-        else if (InputManager.GetButtonDown ("UI_Left"))
+        else if (InputManager.GetButtonDown("UI_Left"))
         {
-            knobEffect.TurnDirection ("Turn_Left");
-            audioController.PlaySFX (audioController.TvSwitch, audioController.GetMaxSFXVolume ());
+            knobEffect.TurnDirection("Turn_Left");
+            audioController.PlaySFX(audioController.TvSwitch, audioController.GetMaxSFXVolume());
             currentLevelIndex--;
             currentLevelIndex = (currentLevelIndex < 0 ? levelsNamesList.Count - 1 : currentLevelIndex);
-            UpdateUI ();
+            UpdateUI();
         }
     }
 
     // Updates the UI values
-    private void UpdateUI ()
+    private void UpdateUI()
     {
         // Cancels
-        if (!levelNameText || !bestScoreText || !bestTimeText || !tvTimeText || !tvBestTimeText) { return; }
+        if (!levelNameText || !bestScoreText || !bestTimeText || !tvTimeText || !tvBestTimeText) return;
 
         // Set texts
         string levelName = (isLevelUnlockedList[currentLevelIndex] ? levelNames[currentLevelIndex] : "??????????");
         levelNameText.text = levelName;
-        channelText.text = (currentLevelIndex + 1).ToString ("00");
+        channelText.text = (currentLevelIndex + 1).ToString("00");
 
         // Values and effects
         if (isLevelUnlockedList[currentLevelIndex])
         {
             if (isLevelCompletedList[currentLevelIndex])
             {
-                bestScoreText.text = string.Concat (levelInformationLabels[0], " ",  highScoresList[currentLevelIndex]);
-                bestTimeText.text = string.Concat (levelInformationLabels[1], " ",  Formatter.FormatEllapsedTime (highTimeScoresList[currentLevelIndex]));
-                string hour = lastTimePlayedList[currentLevelIndex].Value.ToString ("hh:mm tt");
-                string monthDayYear = lastTimePlayedList[currentLevelIndex].Value.ToString ("MMM dd yyyy");
-                tvTimeText.text = string.Concat (hour, " ", monthDayYear);
-                tvBestTimeText.text = Formatter.FormatEllapsedTime (highTimeScoresList[currentLevelIndex]);
+                bestScoreText.text = string.Concat(levelInformationLabels[0], " ", highScoresList[currentLevelIndex]);
+                bestTimeText.text = string.Concat(levelInformationLabels[1], " ", Formatter.FormatEllapsedTime(highTimeScoresList[currentLevelIndex]));
+                string hour = lastTimePlayedList[currentLevelIndex].Value.ToString("hh:mm tt");
+                string monthDayYear = lastTimePlayedList[currentLevelIndex].Value.ToString("MMM dd yyyy");
+                tvTimeText.text = string.Concat(hour, " ", monthDayYear);
+                tvBestTimeText.text = Formatter.FormatEllapsedTime(highTimeScoresList[currentLevelIndex]);
             }
-            else 
+            else
             {
-                bestScoreText.text = string.Empty;
-                bestTimeText.text = string.Empty;
-                tvBestTimeText.text = string.Empty;
-                tvTimeText.text = string.Empty;
+                bestScoreText.text = bestTimeText.text = tvBestTimeText.text = tvTimeText.text = string.Empty;
             }
 
             levelScreenImage.sprite = levelsSprites[currentLevelIndex];
             animationEffect.enabled = false;
             recText.text = "REC";
-            audioController.StopME ();
+            audioController.StopME();
         }
-        else 
+        else
         {
-            bestScoreText.text = string.Empty;
-            bestTimeText.text = string.Empty;
+            bestScoreText.text = bestTimeText.text = recText.text = tvBestTimeText.text = 
+            tvTimeText.text = string.Empty;
             levelScreenImage.sprite = null;
             animationEffect.enabled = true;
-            recText.text = string.Empty;
-            tvBestTimeText.text = string.Empty;
-            tvTimeText.text = string.Empty;
-            audioController.PlayME (audioController.TvStatic, audioController.GetMaxSFXVolume () / 2, true);
+            audioController.PlayME(audioController.TvStatic, audioController.GetMaxSFXVolume() / 2, true);
         }
     }
 
     // Capture Cancel Button on situations
-    private void CaptureCancelButton ()
+    private void CaptureCancelButton()
     {
         // Leave to Main Menu
         if (levelScreenButton.interactable)
         {
-            if (InputManager.GetButtonDown ("UI_Cancel"))
+            if (InputManager.GetButtonDown("UI_Cancel"))
             {
-                audioController.StopMusic ();
-                audioController.StopME ();
-                audioController.PlaySFX (audioController.UiCancel, audioController.GetMaxSFXVolume ());
-                gameStatusController.SetIsLevelCompleted (false);
-                StartCoroutine (CallNextScene (SceneManagerController.GetMainMenuSceneName ()));
+                audioController.StopMusic();
+                audioController.StopME();
+                audioController.PlaySFX(audioController.UiCancel, audioController.GetMaxSFXVolume());
+                gameStatusController.SetIsLevelCompleted(false);
+                StartCoroutine(CallNextScene(SceneManagerController.GetMainMenuSceneName()));
             }
         }
 
         // Leave question (Equals to "No Button")
         if (questionText.activeSelf)
         {
-            if (InputManager.GetButtonDown ("UI_Cancel"))
+            if (InputManager.GetButtonDown("UI_Cancel"))
             {
-                audioController.PlaySFX (audioController.UiCancel, audioController.GetMaxSFXVolume ());
-                questionText.SetActive (false);
+                audioController.PlaySFX(audioController.UiCancel, audioController.GetMaxSFXVolume());
+                questionText.SetActive(false);
                 levelScreenButton.interactable = true;
-                levelScreenButton.Select ();
+                levelScreenButton.Select();
             }
         }
     }
 
-    private void VerifyIfCameFromLevel ()
+    private void VerifyIfCameFromLevel()
     {
         // Cancels
-        if (!gameStatusController.GetCameFromLevel ()) { return; }
+        if (!gameStatusController.GetCameFromLevel()) return;
 
-        currentLevelIndex = gameStatusController.GetLevelIndex ();
+        currentLevelIndex = gameStatusController.GetLevelIndex();
 
         // Status
-        if (gameStatusController.GetIsLevelCompleted ())
+        if (gameStatusController.GetIsLevelCompleted())
         {
             // Score
-            if (gameStatusController.GetNewScore () > gameStatusController.GetOldScore ())
+            if (gameStatusController.GetNewScore() > gameStatusController.GetOldScore())
             {
-                highScoresList[currentLevelIndex] = gameStatusController.GetNewScore ();    
+                highScoresList[currentLevelIndex] = gameStatusController.GetNewScore();
             }
-            else 
+            else
             {
-                highScoresList[currentLevelIndex] = gameStatusController.GetOldScore ();  
+                highScoresList[currentLevelIndex] = gameStatusController.GetOldScore();
             }
 
             // Old Score
-            if (gameStatusController.GetOldTimeScore () == defaultTime)
+            if (gameStatusController.GetOldTimeScore() == defaultTime)
             {
-                highTimeScoresList[currentLevelIndex] = gameStatusController.GetNewTimeScore ();    
+                highTimeScoresList[currentLevelIndex] = gameStatusController.GetNewTimeScore();
             }
-            else 
+            else
             {
-                if (gameStatusController.GetNewTimeScore () < gameStatusController.GetOldTimeScore ())
+                if (gameStatusController.GetNewTimeScore() < gameStatusController.GetOldTimeScore())
                 {
-                    highTimeScoresList[currentLevelIndex] = gameStatusController.GetNewTimeScore ();    
+                    highTimeScoresList[currentLevelIndex] = gameStatusController.GetNewTimeScore();
                 }
-                else 
+                else
                 {
-                    highTimeScoresList[currentLevelIndex] = gameStatusController.GetOldTimeScore ();  
+                    highTimeScoresList[currentLevelIndex] = gameStatusController.GetOldTimeScore();
                 }
             }
 
@@ -345,66 +331,60 @@ public class SelectLevelMenu : MonoBehaviour
 
             // Last Time Played
             lastTimePlayedList[currentLevelIndex] = DateTime.Now;
-        
+
             // Enable next stage
             if ((currentLevelIndex + 1) < levelsNamesList.Count)
             {
                 if (!isLevelCompletedList[currentLevelIndex + 1])
                 {
-                    isLevelUnlockedList[currentLevelIndex + 1] = true;    
+                    isLevelUnlockedList[currentLevelIndex + 1] = true;
                 }
             }
 
-            StartCoroutine (SaveProgress ());
+            StartCoroutine(SaveProgress());
         }
     }
 
-    //--------------------------------------------------------------------------------//
-    // POINTER EVENT
-
-    public void MakeSelectOnPointerEnter (Button button)
+    public void MakeSelectOnPointerEnter(Button button)
     {
-        if (!button || !button.interactable) { return; }
-        button.Select ();
+        if (!button || !button.interactable) return;
+        button.Select();
     }
 
-    //--------------------------------------------------------------------------------//
-    // COROUTINES
-
     // Wait fade out length to fade out to next scene
-    private IEnumerator CallNextScene (string nextSceneName)
+    private IEnumerator CallNextScene(string nextSceneName)
     {
         actualGameState = GameState.TRANSITION;
 
         // Fade Out effect
-        float fadeOutLength = fadeEffect.GetFadeOutLength ();
-        fadeEffect.FadeToLevel ();
-        yield return new WaitForSecondsRealtime (fadeOutLength);
-        gameStatusController.SetNextSceneName (nextSceneName);
-        SceneManagerController.CallScene (SceneManagerController.GetLoadingSceneName ());
+        float fadeOutLength = fadeEffect.GetFadeOutLength();
+        fadeEffect.FadeToLevel();
+        yield return new WaitForSecondsRealtime(fadeOutLength);
+        gameStatusController.SetNextSceneName(nextSceneName);
+        SceneManagerController.CallScene(SceneManagerController.GetLoadingSceneName());
     }
 
     // Save progress
-    private IEnumerator SaveProgress ()
+    private IEnumerator SaveProgress()
     {
         actualGameState = GameState.SAVE_LOAD;
-        savingText.SetActive (true);
+        savingText.SetActive(true);
 
         // Passing values
-        progress.SetCurrentLevelIndex (currentLevelIndex);
-        progress.SetIsLevelUnlockedList (isLevelUnlockedList);
-        progress.SetIsLevelCompletedList (isLevelCompletedList);
-        progress.SetHighScoresList (highScoresList);
-        progress.SetHighTimeScoresList (highTimeScoresList);
-        progress.SetLastTimePlayedList (lastTimePlayedList);
+        progress.SetCurrentLevelIndex(currentLevelIndex);
+        progress.SetIsLevelUnlockedList(isLevelUnlockedList);
+        progress.SetIsLevelCompletedList(isLevelCompletedList);
+        progress.SetHighScoresList(highScoresList);
+        progress.SetHighTimeScoresList(highTimeScoresList);
+        progress.SetLastTimePlayedList(lastTimePlayedList);
 
         // Saves
-        ProgressManager.SaveProgress (progress);
+        ProgressManager.SaveProgress(progress);
 
         // Waits and return
-        yield return new WaitForSecondsRealtime (timeToWaitAfterSave);
-        savingText.SetActive (false);
-        levelScreenButton.Select ();
+        yield return new WaitForSecondsRealtime(timeToWaitAfterSave);
+        savingText.SetActive(false);
+        levelScreenButton.Select();
         actualGameState = GameState.GAMEPLAY;
     }
 }
