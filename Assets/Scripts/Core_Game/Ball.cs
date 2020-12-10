@@ -120,7 +120,7 @@ public class Ball : MonoBehaviour
     {
         if (!initialLinePrefab)
         {
-            initialLinePrefab = GameObject.FindGameObjectWithTag(NamesTags.GetLineBetweenBallPointerTag());
+            initialLinePrefab = GameObject.FindGameObjectWithTag(NamesTags.LineBetweenBallPointerTag);
         }
 
         initialLineRenderer = initialLinePrefab.GetComponent<LineRenderer>();
@@ -133,7 +133,7 @@ public class Ball : MonoBehaviour
         // Default values
         mainCamera = Camera.main;
         defaultSpeed = moveSpeed;
-        echoEffectSpawnerPrefab.tag = NamesTags.GetBallEchoTag();
+        echoEffectSpawnerPrefab.tag = NamesTags.BallEchoTag;
 
         if (!isBallFree)
         {
@@ -195,8 +195,7 @@ public class Ball : MonoBehaviour
                 bool isBallBig = (this.transform.localScale.y >= 8f);
 
                 // Combo manipulator
-                if (other.gameObject.CompareTag(NamesTags.GetPaddleTag()) ||
-                    other.gameObject.CompareTag(NamesTags.GetWallTag()))
+                if (other.gameObject.CompareTag(NamesTags.PaddleTag) || other.gameObject.CompareTag(NamesTags.WallTag))
                 {
                     gameSession.ResetCombo();
                 }
@@ -357,7 +356,7 @@ public class Ball : MonoBehaviour
         {
             // Instantiate and Destroy
             GameObject particles = Instantiate(paddleParticlesPrefab, contactPoint, paddleParticlesPrefab.transform.rotation) as GameObject;
-            particles.transform.SetParent(gameSession.FindOrCreateObjectParent(NamesTags.GetDebrisParentName()).transform);
+            particles.transform.SetParent(gameSession.FindOrCreateObjectParent(NamesTags.DebrisParentName).transform);
             ParticleSystem debrisParticleSystem = paddleParticlesPrefab.GetComponent<ParticleSystem>();
             float durationLength = debrisParticleSystem.main.duration + debrisParticleSystem.main.startLifetime.constant;
             Destroy(particles, durationLength);

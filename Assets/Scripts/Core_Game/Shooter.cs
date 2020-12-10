@@ -46,7 +46,7 @@ public class Shooter : MonoBehaviour
             int index = UnityEngine.Random.Range(0, projectiles.Length);
             Projectile projectile = Instantiate(projectiles[index]);
             projectile.gameObject.SetActive(false);
-            projectile.transform.SetParent(gameSession.FindOrCreateObjectParent(NamesTags.GetProjectilesParentName()).transform);
+            projectile.transform.SetParent(gameSession.FindOrCreateObjectParent(NamesTags.ProjectilesParentName).transform);
             projectilesList.Add(projectile.gameObject);
         }
     }

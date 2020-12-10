@@ -37,7 +37,7 @@ public class Credits : MonoBehaviour
         fadeEffect = FindObjectOfType<FadeEffect>();
 
         audioController.ChangeMusic (audioController.AllLoopedSongs[3], false, "", true, false);
-        creditsText.text = FileManager.LoadAsset (FileManager.GetOtherFolderPath (), FileManager.GetCreditsPath ());
+        creditsText.text = FileManager.LoadAsset (FileManager.OtherFolderPath, FileManager.CreditsPath);
 
         StartCoroutine (WaitToMoveText ());
     }

@@ -91,11 +91,11 @@ public class Block : MonoBehaviour
                 // Verifies the ball
                 collidedWithBall = (other.gameObject.GetComponent<Ball>() != null);
 
-                if (CompareTag(NamesTags.GetBreakableBlockTag()))
+                if (CompareTag(NamesTags.BreakableBlockTag))
                 {
                     HandleHit();
                 }
-                else if (CompareTag(NamesTags.GetUnbreakableBlockTag()))
+                else if (CompareTag(NamesTags.UnbreakableBlockTag))
                 {
                     audioController.PlaySFX(audioController.MetalPingSound, audioController.GetMaxSFXVolume() / 2);
                 }
@@ -115,7 +115,7 @@ public class Block : MonoBehaviour
 
     private void CountBreakableBlocks()
     {
-        if (CompareTag(NamesTags.GetBreakableBlockTag()))
+        if (CompareTag(NamesTags.BreakableBlockTag))
         {
             gameSession.CountBlocks();
         }
@@ -245,7 +245,7 @@ public class Block : MonoBehaviour
             audioController.PlaySFX(audioController.ExplosionSound, audioController.GetMaxSFXVolume() / 2);
             int randomIndex = Random.Range(0, explosionPrefabs.Length);
             GameObject explosion = Instantiate(explosionPrefabs[randomIndex], this.transform.position, Quaternion.identity) as GameObject;
-            explosion.transform.SetParent(gameSession.FindOrCreateObjectParent(NamesTags.GetExplosionsParentName()).transform);
+            explosion.transform.SetParent(gameSession.FindOrCreateObjectParent(NamesTags.ExplosionsParentName).transform);
             Animator animator = explosion.GetComponent<Animator>();
             float animationLength = animator.GetCurrentAnimatorStateInfo(0).length;
             Destroy(explosion, animationLength);
@@ -260,7 +260,7 @@ public class Block : MonoBehaviour
             TextMeshPro textMeshPro = blockScoreText.GetComponentInChildren<TextMeshPro>();
             textMeshPro.text = score.ToString();
             GameObject scoreText = Instantiate(blockScoreText.gameObject, transform.position, Quaternion.identity) as GameObject;
-            scoreText.transform.SetParent(gameSession.FindOrCreateObjectParent(NamesTags.GetBlockScoreTextParentName()).transform);
+            scoreText.transform.SetParent(gameSession.FindOrCreateObjectParent(NamesTags.BlockScoreTextParentName).transform);
             Animator animator = scoreText.GetComponent<Animator>();
             float durationLength = animator.GetCurrentAnimatorStateInfo(0).length;
             Destroy(scoreText, durationLength);
@@ -274,7 +274,7 @@ public class Block : MonoBehaviour
         {
             // Instantiate and Destroy
             GameObject debris = Instantiate(particlesPrefab, this.transform.position, particlesPrefab.transform.rotation) as GameObject;
-            debris.transform.SetParent(gameSession.FindOrCreateObjectParent(NamesTags.GetDebrisParentName()).transform);
+            debris.transform.SetParent(gameSession.FindOrCreateObjectParent(NamesTags.DebrisParentName).transform);
 
             // Color
             ParticleSystem debrisParticleSystem = debris.GetComponent<ParticleSystem>();
@@ -295,7 +295,7 @@ public class Block : MonoBehaviour
         {
             Block powerUpBlock = Instantiate(powerUpBlockPrefab, this.transform.position, this.transform.rotation) as Block;
             powerUpBlock.SetCanSpawnPowerUpBlock(false);
-            powerUpBlock.transform.SetParent(gameSession.FindOrCreateObjectParent(NamesTags.GetBlocksParentName()).transform);
+            powerUpBlock.transform.SetParent(gameSession.FindOrCreateObjectParent(NamesTags.BlocksParentName).transform);
         }
     }
 
@@ -304,7 +304,7 @@ public class Block : MonoBehaviour
     {
         int randomIndex = CalculateIndexChance();
         GameObject powerUp = Instantiate(powerUpPrefabs[randomIndex].gameObject, this.transform.position, Quaternion.identity) as GameObject;
-        powerUp.transform.SetParent(gameSession.FindOrCreateObjectParent(NamesTags.GetPowerUpsParentName()).transform);
+        powerUp.transform.SetParent(gameSession.FindOrCreateObjectParent(NamesTags.PowerUpsParentName).transform);
         audioController.PlaySFX(audioController.ShowUpSound, audioController.GetMaxSFXVolume());
     }
 
@@ -315,28 +315,31 @@ public class Block : MonoBehaviour
         int chance = Random.Range(0, 100);
         if (chance >= 99)
         {
-            index = listPowerUpIndexes[NamesTags.GetPowerUpLevelCompleteName()];
+            index = listPowerUpIndexes[NamesTags.PowerUpLevelCompleteName];
         }
         else if (chance >= 80 && chance < 95)
         {
-            string[] powerUps = { NamesTags.GetPowerUpShooterName(), NamesTags.GetPowerUpZeroDeathsName() };
+            string[] powerUps = { NamesTags.PowerUpShooterName, NamesTags.PowerUpZeroDeathsName };
             index = listPowerUpIndexes[powerUps[Random.Range(0, powerUps.Length)]];
         }
         else if (chance >= 60 && chance < 80)
         {
-            index = listPowerUpIndexes[NamesTags.GetPowerUpAllBlocks1HitName()];
+            index = listPowerUpIndexes[NamesTags.PowerUpAllBlocksOneHitName];
         }
         else if (chance >= 50 && chance < 60)
         {
-            index = listPowerUpIndexes[NamesTags.GetPowerUpUnbreakablesToBreakablesName()];
+            index = listPowerUpIndexes[NamesTags.PowerUpUnbreakablesToBreakablesName];
         }
         else if (chance >= 0 && chance < 50)
         {
-            string[] powerUps = { NamesTags.GetPowerUpBallBiggerName (), NamesTags.GetPowerUpBallFasterName (),
-                                  NamesTags.GetPowerUpBallSlowerName (), NamesTags.GetPowerUpBallSmallerName (),
-                                  NamesTags.GetPowerUpDuplicateBallName (), NamesTags.GetPowerUpPaddleExpandName (),
-                                  NamesTags.GetPowerUpPaddleShrinkName (), NamesTags.GetPowerUpResetBallName (),
-                                  NamesTags.GetPowerUpResetPaddleName (), NamesTags.GetPowerUpRandomName ()  };
+            string[] powerUps = 
+            {
+                NamesTags.PowerUpBallBiggerName, NamesTags.PowerUpBallFasterName,
+                NamesTags.PowerUpBallSlowerName, NamesTags.PowerUpBallSmallerName,
+                NamesTags.PowerUpDuplicateBallName, NamesTags.PowerUpPaddleExpandName,
+                NamesTags.PowerUpPaddleShrinkName, NamesTags.PowerUpResetBallName,
+                NamesTags.PowerUpResetPaddleName, NamesTags.PowerUpRandomName
+            };
             index = listPowerUpIndexes[powerUps[Random.Range(0, powerUps.Length)]];
         }
 

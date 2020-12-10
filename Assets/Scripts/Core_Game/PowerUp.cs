@@ -24,20 +24,20 @@ public class PowerUp : MonoBehaviour
     private int currentPowerUpIndex = 0;
     private string[] powerUpNames =
     {
-        NamesTags.GetPowerUpAllBlocks1HitName (),
-        NamesTags.GetPowerUpBallBiggerName (),
-        NamesTags.GetPowerUpBallSmallerName (),
-        NamesTags.GetPowerUpBallFasterName (),
-        NamesTags.GetPowerUpBallSlowerName (),
-        NamesTags.GetPowerUpDuplicateBallName (),
-        NamesTags.GetPowerUpPaddleExpandName (),
-        NamesTags.GetPowerUpPaddleShrinkName (),
-        NamesTags.GetPowerUpLevelCompleteName (),
-        NamesTags.GetPowerUpResetBallName (),
-        NamesTags.GetPowerUpResetPaddleName (),
-        NamesTags.GetPowerUpShooterName (),
-        NamesTags.GetPowerUpUnbreakablesToBreakablesName (),
-        NamesTags.GetPowerUpZeroDeathsName ()
+        NamesTags.PowerUpAllBlocksOneHitName,
+        NamesTags.PowerUpBallBiggerName,
+        NamesTags.PowerUpBallSmallerName,
+        NamesTags.PowerUpBallFasterName,
+        NamesTags.PowerUpBallSlowerName,
+        NamesTags.PowerUpDuplicateBallName,
+        NamesTags.PowerUpPaddleExpandName,
+        NamesTags.PowerUpPaddleShrinkName,
+        NamesTags.PowerUpLevelCompleteName,
+        NamesTags.PowerUpResetBallName,
+        NamesTags.PowerUpResetPaddleName,
+        NamesTags.PowerUpShooterName,
+        NamesTags.PowerUpUnbreakablesToBreakablesName,
+        NamesTags.PowerUpZeroDeathsName
     };
 
     // Cached Components
@@ -438,12 +438,12 @@ public class PowerUp : MonoBehaviour
     // Finds and makes all unbreakables blocks to breakable
     private void MakeUnbreakableToBreakable()
     {
-        if (GameObject.FindGameObjectsWithTag(NamesTags.GetUnbreakableBlockTag()).Length != 0)
+        if (GameObject.FindGameObjectsWithTag(NamesTags.UnbreakableBlockTag).Length != 0)
         {
-            GameObject[] unbreakables = GameObject.FindGameObjectsWithTag(NamesTags.GetUnbreakableBlockTag());
+            GameObject[] unbreakables = GameObject.FindGameObjectsWithTag(NamesTags.UnbreakableBlockTag);
             foreach (GameObject unbreakable in unbreakables)
             {
-                unbreakable.tag = NamesTags.GetBreakableBlockTag();
+                unbreakable.tag = NamesTags.BreakableBlockTag;
                 gameSession.CountBlocks();
                 unbreakable.GetComponent<Animator>().enabled = false;
 

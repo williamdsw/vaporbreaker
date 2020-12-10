@@ -471,7 +471,7 @@ public class OptionsMenu : MonoBehaviour
     private void GetResolutions ()
     {
         resolutions.Clear ();
-        string resolutionsString = FileManager.LoadAsset (FileManager.GetConfigurationFolderPath (), FileManager.GetResolutionsPath ());
+        string resolutionsString = FileManager.LoadAsset (FileManager.ConfigurationFolderPath, FileManager.ResolutionsPath);
         foreach (string res in resolutionsString.Split ('|'))
         {
             if (!string.IsNullOrEmpty (res))  { resolutions.Add (res); }

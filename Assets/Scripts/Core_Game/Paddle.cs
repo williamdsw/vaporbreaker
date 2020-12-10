@@ -44,7 +44,7 @@ public class Paddle : MonoBehaviour
         // Default values
         defaultSpeed = moveSpeed;
         doubleSpeed = moveSpeed * 2;
-        echoEffectSpawner.tag = NamesTags.GetPaddleEchoTag();
+        echoEffectSpawner.tag = NamesTags.PaddleEchoTag;
 
         DefineStartPosition();
         DefineBounds();

@@ -187,10 +187,10 @@ public class LocalizationController : MonoBehaviour
 
         switch (language)
         {
-            case "English": default: { folderPath = FileManager.GetLocalizationEnglishFolderPath(); break; }
-            case "Italian": { folderPath = FileManager.GetLocalizationItalianFolderPath(); break; }
-            case "Portuguese": { folderPath = FileManager.GetLocalizationPortugueseFolderPath(); break; }
-            case "Spanish": { folderPath = FileManager.GetLocalizationSpanishFolderPath(); break; }
+            case "English": default: { folderPath = FileManager.LocalizationEnglishFolderPath; break; }
+            case "Italian": { folderPath = FileManager.LocalizationItalianFolderPath; break; }
+            case "Portuguese": { folderPath = FileManager.LocalizationPortugueseFolderPath; break; }
+            case "Spanish": { folderPath = FileManager.LocalizationSpanishFolderPath; break; }
         }
 
         LoadLocalization(folderPath);
@@ -201,7 +201,7 @@ public class LocalizationController : MonoBehaviour
         ClearLists();
 
         // Panels
-        string uiLabels = FileManager.LoadAsset(folderPath, FileManager.GetUILabelsPath());
+        string uiLabels = FileManager.LoadAsset(folderPath, FileManager.UILabelsPath);
         string[] panels = uiLabels.Split('\n');
 
         List<string>[] labelsList = {
@@ -218,21 +218,21 @@ public class LocalizationController : MonoBehaviour
         }
 
         // Levels Names
-        string levelsNamesString = FileManager.LoadAsset(folderPath, FileManager.GetLevelsNamesPath());
+        string levelsNamesString = FileManager.LoadAsset(folderPath, FileManager.LevelsNamesPath);
         foreach (string name in levelsNamesString.Split('\n'))
         {
             levelsNames.Add(name);
         }
 
         // Power ups names
-        string powerUpsNamesString = FileManager.LoadAsset(folderPath, FileManager.GetPowerUpsNamesPath());
+        string powerUpsNamesString = FileManager.LoadAsset(folderPath, FileManager.PowerUpsNamesPath);
         foreach (string name in powerUpsNamesString.Split('\n'))
         {
             powerUpsNames.Add(name);
         }
 
         // Power ups descriptions
-        string powerUpsDescriptionsString = FileManager.LoadAsset(folderPath, FileManager.GetPowerUpsDescriptionsPath());
+        string powerUpsDescriptionsString = FileManager.LoadAsset(folderPath, FileManager.PowerUpsDescriptionsPath);
         foreach (string description in powerUpsDescriptionsString.Split('\n'))
         {
             powerUpsDescriptions.Add(description);

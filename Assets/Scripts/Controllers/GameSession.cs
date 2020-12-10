@@ -364,7 +364,7 @@ public class GameSession : MonoBehaviour
     private void ChooseBlocks()
     {
         // Finds
-        GameObject[] blocks = GameObject.FindGameObjectsWithTag(NamesTags.GetBreakableBlockTag());
+        GameObject[] blocks = GameObject.FindGameObjectsWithTag(NamesTags.BreakableBlockTag);
         if (blocks.Length == 0) return;
 
         // Calculates

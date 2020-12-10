@@ -137,14 +137,14 @@ public class InputControllerUI : MonoBehaviour
     private void ToggleInputImagesVisibility ()
     {
         // Panels
-        GameObject mainMenu = GameObject.Find (NamesTags.GetMainPanelName ());
-        GameObject progressMenu = GameObject.Find (NamesTags.GetProgressPanelName ());
-        GameObject optionsMenu = GameObject.Find (NamesTags.GetOptionsPanelName ());
-        GameObject defaultKeyboardMenu = GameObject.Find (NamesTags.GetDefaultKeyboardLayoutPanelName ());
-        GameObject defaultGamepadMenu = GameObject.Find (NamesTags.GetDefaultGamepadLayoutPanelName ());
-        GameObject bindingMenu = GameObject.Find (NamesTags.GetBindingsPanelName ());
-        GameObject selectLevelPanel = GameObject.Find (NamesTags.GetSelectLevelPanelName ());
-        GameObject pausePanel = GameObject.Find (NamesTags.GetPausePanelName ());
+        GameObject mainMenu = GameObject.Find (NamesTags.MainPanelName);
+        GameObject progressMenu = GameObject.Find (NamesTags.ProgressPanelName);
+        GameObject optionsMenu = GameObject.Find (NamesTags.OptionsPanelName);
+        GameObject defaultKeyboardMenu = GameObject.Find (NamesTags.DefaultKeyboardLayoutPanelName);
+        GameObject defaultGamepadMenu = GameObject.Find (NamesTags.DefaultGamepadLayoutPanelName);
+        GameObject bindingMenu = GameObject.Find (NamesTags.BindingsPanelName);
+        GameObject selectLevelPanel = GameObject.Find (NamesTags.SelectLevelPanelName);
+        GameObject pausePanel = GameObject.Find (NamesTags.PausePanelName);
         
         // MAIN MENU
         if (mainMenu && mainMenu.activeSelf)

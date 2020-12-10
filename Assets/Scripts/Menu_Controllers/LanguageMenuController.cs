@@ -148,7 +148,7 @@ public class LanguageMenuController : MonoBehaviour
             case 0:
             {
                 currentLanguage = "English";
-                currentFolderPath = FileManager.GetLocalizationEnglishFolderPath ();
+                currentFolderPath = FileManager.LocalizationEnglishFolderPath;
                 break;
             }
 
@@ -156,7 +156,7 @@ public class LanguageMenuController : MonoBehaviour
             case 1:
             {
                 currentLanguage = "Portuguese";
-                currentFolderPath = FileManager.GetLocalizationPortugueseFolderPath ();
+                currentFolderPath = FileManager.LocalizationPortugueseFolderPath;
                 break;
             }
 
@@ -164,7 +164,7 @@ public class LanguageMenuController : MonoBehaviour
             case 2:
             {
                 currentLanguage = "Spanish";
-                currentFolderPath = FileManager.GetLocalizationSpanishFolderPath ();
+                currentFolderPath = FileManager.LocalizationSpanishFolderPath;
                 break;
             }
 
@@ -172,7 +172,7 @@ public class LanguageMenuController : MonoBehaviour
             case 3:
             {
                 currentLanguage = "Italian";
-                currentFolderPath = FileManager.GetLocalizationItalianFolderPath ();
+                currentFolderPath = FileManager.LocalizationItalianFolderPath;
                 break;
             }
 

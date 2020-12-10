@@ -31,11 +31,11 @@ public class EchoEffect : MonoBehaviour
 
     private void DefineReferences()
     {
-        if (tag == NamesTags.GetBallEchoTag())
+        if (tag == NamesTags.BallEchoTag)
         {
             ball = this.transform.parent.GetComponent<Ball>();
         }
-        else if (tag == NamesTags.GetPaddleEchoTag())
+        else if (tag == NamesTags.PaddleEchoTag)
         {
             paddle = this.transform.parent.GetComponent<Paddle>();
         }
@@ -47,15 +47,15 @@ public class EchoEffect : MonoBehaviour
         if (timeBetweenSpawns <= 0)
         {
             GameObject echo = Instantiate(echoPrefab, transform.position, Quaternion.identity) as GameObject;
-            echo.transform.parent = gameSession.FindOrCreateObjectParent(NamesTags.GetEchosParentName()).transform;
-            if (tag == NamesTags.GetBallEchoTag() && ball)
+            echo.transform.parent = gameSession.FindOrCreateObjectParent(NamesTags.EchosParentName).transform;
+            if (tag == NamesTags.BallEchoTag && ball)
             {
                 echo.transform.localScale = ball.transform.localScale;
                 echo.transform.rotation = ball.transform.rotation;
                 SpriteRenderer spriteRenderer = echo.GetComponent<SpriteRenderer>();
                 spriteRenderer.color = ball.GetBallColor();
             }
-            else if (tag == NamesTags.GetPaddleEchoTag() && paddle)
+            else if (tag == NamesTags.PaddleEchoTag && paddle)
             {
                 SpriteRenderer spriteRenderer = echo.GetComponent<SpriteRenderer>();
                 spriteRenderer.sprite = paddle.GetSprite();

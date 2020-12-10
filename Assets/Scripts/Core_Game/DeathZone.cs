@@ -30,11 +30,11 @@ public class DeathZone : MonoBehaviour
     {
         if (gameSession.GetActualGameState () == GameState.GAMEPLAY)
         {
-            if (other.gameObject.CompareTag (NamesTags.GetBallTag ()))
+            if (other.gameObject.CompareTag (NamesTags.BallTag))
             {
                 DealWithBallCollision (other.gameObject);
             }
-            else if (other.gameObject.CompareTag (NamesTags.GetPowerUpTag ()))
+            else if (other.gameObject.CompareTag (NamesTags.PowerUpTag))
             {
                 Destroy (other.gameObject);
             }
