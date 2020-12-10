@@ -12,14 +12,13 @@ public class DeathZone : MonoBehaviour
     private FadeEffect fadeEffect;
     private GameSession gameSession;
 
-    //--------------------------------------------------------------------------------//
+    private void Awake() 
+    {
+        edgeCollider = this.GetComponent<EdgeCollider2D>();
+    }
 
     private void Start ()
     {
-        // Components
-        edgeCollider = this.GetComponent<EdgeCollider2D>();
-
-        // Other
         audioController = FindObjectOfType<AudioController>();
         fadeEffect = FindObjectOfType<FadeEffect>();
         gameSession = FindObjectOfType<GameSession>();
@@ -41,8 +40,6 @@ public class DeathZone : MonoBehaviour
             }
         }
     }
-
-    //--------------------------------------------------------------------------------//
 
     // Defines the collider points based on size of screen
     private void DefineColliderPoints ()
@@ -72,8 +69,6 @@ public class DeathZone : MonoBehaviour
 
         Destroy (otherBall);
     }
-
-    //--------------------------------------------------------------------------------//
 
     // Plays SFX and wait to call fade out
     private IEnumerator WaitToReset () 

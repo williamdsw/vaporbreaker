@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    [Header ("Configuration Parameters")]
+    [Header("Configuration Parameters")]
     [SerializeField] private EchoEffect echoEffectSpawnerPrefab;
     [SerializeField] private GameObject initialLinePrefab;
     [SerializeField] private GameObject paddleParticlesPrefab;
@@ -40,34 +40,89 @@ public class Ball : MonoBehaviour
     private CursorController cursorController;
     private GameSession gameSession;
 
-    //--------------------------------------------------------------------------------//
-    // GETTERS / SETTERS
-
-    public Color GetBallColor () { return spriteRenderer.color; }
-    public float GetBallRotationDegree () { return ballRotationDegree; }
-    public float GetDefaultSpeed () { return defaultSpeed; }
-    public float GetMaxBallLocalScale () { return maxBallLocalScale; }
-    public float GetMaxBallRotationDegree () { return maxBallRotationDegree; }
-    public float GetMaxMoveSpeed () { return maxMoveSpeed; }
-    public float GetMinBallLocalScale () { return minBallLocalScale; }
-    public float GetMinBallRotationDegree () { return minBallRotationDegree; }
-    public float GetMinMoveSpeed () { return minMoveSpeed; }
-    public float GetMoveSpeed () { return moveSpeed; }
-    public bool GetIsBallFree () { return this.isBallFree; }
-
-    public void SetBallRotationDegree (float ballRotationDegree) { this.ballRotationDegree = ballRotationDegree; }
-    public void SetMoveSpeed (float moveSpeed) { this.moveSpeed = moveSpeed; }
-    public void SetIsBallFree (bool isBallFree) { this.isBallFree = isBallFree; }
-    
-    //--------------------------------------------------------------------------------//
-
-    private void Start () 
+    public Color GetBallColor()
     {
-        // Components
+        return spriteRenderer.color;
+    }
+
+    public float GetBallRotationDegree()
+    {
+        return ballRotationDegree;
+    }
+
+    public float GetDefaultSpeed()
+    {
+        return defaultSpeed;
+    }
+
+    public float GetMaxBallLocalScale()
+    {
+        return maxBallLocalScale;
+    }
+
+    public float GetMaxBallRotationDegree()
+    {
+        return maxBallRotationDegree;
+    }
+
+    public float GetMaxMoveSpeed()
+    {
+        return maxMoveSpeed;
+    }
+
+    public float GetMinBallLocalScale()
+    {
+        return minBallLocalScale;
+    }
+
+    public float GetMinBallRotationDegree()
+    {
+        return minBallRotationDegree;
+    }
+
+    public float GetMinMoveSpeed()
+    {
+        return minMoveSpeed;
+    }
+
+    public float GetMoveSpeed()
+    {
+        return moveSpeed;
+    }
+
+    public bool GetIsBallFree()
+    {
+        return this.isBallFree;
+    }
+
+    public void SetBallRotationDegree(float ballRotationDegree)
+    {
+        this.ballRotationDegree = ballRotationDegree;
+    }
+
+    public void SetMoveSpeed(float moveSpeed)
+    {
+        this.moveSpeed = moveSpeed;
+    }
+
+    public void SetIsBallFree(bool isBallFree)
+    {
+        this.isBallFree = isBallFree;
+    }
+
+    private void Awake() 
+    {
         rigidBody2D = this.GetComponent<Rigidbody2D>();
         spriteRenderer = this.GetComponent<SpriteRenderer>();
+    }
 
-        if (!initialLinePrefab) { initialLinePrefab = GameObject.FindGameObjectWithTag (NamesTags.GetLineBetweenBallPointerTag ()); }
+    private void Start()
+    {
+        if (!initialLinePrefab)
+        {
+            initialLinePrefab = GameObject.FindGameObjectWithTag(NamesTags.GetLineBetweenBallPointerTag());
+        }
+
         initialLineRenderer = initialLinePrefab.GetComponent<LineRenderer>();
 
         // Other Objects
@@ -78,66 +133,72 @@ public class Ball : MonoBehaviour
         // Default values
         mainCamera = Camera.main;
         defaultSpeed = moveSpeed;
-        echoEffectSpawnerPrefab.tag = NamesTags.GetBallEchoTag ();
+        echoEffectSpawnerPrefab.tag = NamesTags.GetBallEchoTag();
 
         if (!isBallFree)
         {
-            // Distance between ball and paddle
-            if (!paddle) { paddle = FindObjectOfType<Paddle>(); }
+            if (!paddle)
+            {
+                paddle = FindObjectOfType<Paddle>();
+            }
+
             paddleToBallPosition = this.transform.position - paddle.transform.position;
-            this.transform.position = new Vector3 (paddle.transform.position.x, paddle.transform.position.y + 0.25f, paddle.transform.position.z);
-            
-            DrawLineToMouse ();
+            this.transform.position = new Vector3(paddle.transform.position.x, paddle.transform.position.y + 0.25f, paddle.transform.position.z);
+
+            DrawLineToMouse();
         }
 
-        if (FindObjectsOfType<Ball>().Length > 1) { ChooseRandomColor (); }
+        if (FindObjectsOfType<Ball>().Length > 1)
+        {
+            ChooseRandomColor();
+        }
     }
 
-    private void Update () 
+    private void Update()
     {
-        if (gameSession.GetActualGameState () == GameState.GAMEPLAY)
+        if (gameSession.GetActualGameState() == GameState.GAMEPLAY)
         {
-            if (!gameSession.GetHasStarted ())
+            if (!gameSession.GetHasStarted())
             {
                 if (FindObjectsOfType<Ball>().Length == 1)
                 {
-                    LockBallToPaddle ();
-                    CalculateDistanceToMouse ();
-                    DrawLineToMouse ();
-                    LaunchOnPointerClick ();
+                    LockBallToPaddle();
+                    CalculateDistanceToMouse();
+                    DrawLineToMouse();
+                    LaunchOnPointerClick();
                 }
             }
             else
             {
                 if (isBallFree)
                 {
-                    RotateBall ();
-                    if (rigidBody2D.velocity == Vector2.zero) { ClampVelocity (); }
+                    RotateBall();
+                    if (rigidBody2D.velocity == Vector2.zero) { ClampVelocity(); }
                 }
-                else 
+                else
                 {
-                    LockBallToPaddle ();
-                    CalculateDistanceToMouse ();
-                    DrawLineToMouse ();
-                    LaunchOnPointerClick ();
+                    LockBallToPaddle();
+                    CalculateDistanceToMouse();
+                    DrawLineToMouse();
+                    LaunchOnPointerClick();
                 }
             }
         }
     }
 
-    private void OnCollisionEnter2D (Collision2D other) 
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if (gameSession.GetActualGameState () == GameState.GAMEPLAY)
+        if (gameSession.GetActualGameState() == GameState.GAMEPLAY)
         {
-            if (gameSession.GetHasStarted ())
+            if (gameSession.GetHasStarted())
             {
                 bool isBallBig = (this.transform.localScale.y >= 8f);
 
                 // Combo manipulator
-                if (other.gameObject.CompareTag (NamesTags.GetPaddleTag ()) || 
-                    other.gameObject.CompareTag (NamesTags.GetWallTag ()))
+                if (other.gameObject.CompareTag(NamesTags.GetPaddleTag()) ||
+                    other.gameObject.CompareTag(NamesTags.GetWallTag()))
                 {
-                    gameSession.ResetCombo ();
+                    gameSession.ResetCombo();
                 }
 
                 switch (other.gameObject.tag)
@@ -145,25 +206,25 @@ public class Ball : MonoBehaviour
                     // Colision with paddle
                     case "Paddle":
                     {
-                        if (other.GetContact (0).normal != Vector2.down)
+                        if (other.GetContact(0).normal != Vector2.down)
                         {
                             // Increments direction
-                            float hitFactor = CalculateHitFactor (this.transform.position, other.transform.position, other.collider.bounds.size.x);
-                            Vector2 hitDirection = new Vector2 (hitFactor * 2f, 0f);
+                            float hitFactor = CalculateHitFactor(this.transform.position, other.transform.position, other.collider.bounds.size.x);
+                            Vector2 hitDirection = new Vector2(hitFactor * 2f, 0f);
                             hitDirection *= Vector2.one;
-                            hitDirection.Normalize ();
+                            hitDirection.Normalize();
                             Vector2 velocity = rigidBody2D.velocity;
                             velocity += hitDirection;
                             rigidBody2D.velocity = velocity.normalized * moveSpeed * Time.deltaTime;
                             AudioClip clip = (isBallBig ? audioController.HittingFace : audioController.BlipSound);
-                            audioController.PlaySFX (clip, audioController.GetMaxSFXVolume ());
+                            audioController.PlaySFX(clip, audioController.GetMaxSFXVolume());
                         }
 
-                        if (other.GetContact (0).normal == Vector2.up)
+                        if (other.GetContact(0).normal == Vector2.up)
                         {
                             if (moveSpeed > defaultSpeed)
                             {
-                                SpawnPaddleDebris (other.GetContact (0).point);
+                                SpawnPaddleDebris(other.GetContact(0).point);
                             }
                         }
 
@@ -173,46 +234,45 @@ public class Ball : MonoBehaviour
                     // Colision with walls
                     case "Wall":
                     {
-                        ClampVelocity ();
+                        ClampVelocity();
                         AudioClip clip = (isBallBig ? audioController.HittingFace : audioController.BlipSound);
-                        audioController.PlaySFX (clip, audioController.GetMaxSFXVolume ());
+                        audioController.PlaySFX(clip, audioController.GetMaxSFXVolume());
                         break;
                     }
 
-                    case "Breakable": case "Unbreakable":
+                    case "Breakable":
+                    case "Unbreakable":
                     {
-                        Vector2 normal = other.GetContact (0).normal;
+                        Vector2 normal = other.GetContact(0).normal;
                         Vector2 direction = this.transform.forward;
-                        direction = Vector2.Reflect (direction, normal);
+                        direction = Vector2.Reflect(direction, normal);
                         Vector2 velocity = rigidBody2D.velocity;
                         velocity += direction;
                         rigidBody2D.velocity = velocity.normalized * moveSpeed * Time.deltaTime;
                         break;
                     }
 
-                    default: { break; }
+                    default: break;
                 }
             }
         }
     }
 
-    //--------------------------------------------------------------------------------//
-
     // Calculates hit factor on paddle
-    private float CalculateHitFactor (Vector2 ballPosition, Vector2 paddlePosition, float paddleWidth)
+    private float CalculateHitFactor(Vector2 ballPosition, Vector2 paddlePosition, float paddleWidth)
     {
         return (ballPosition.x - paddlePosition.x) / paddleWidth;
     }
 
     // Locks the ball
-    private void LockBallToPaddle ()
+    private void LockBallToPaddle()
     {
-        Vector3 paddlePosition = new Vector3 (paddle.transform.position.x, paddle.transform.position.y, 0f);
-        this.transform.position = new Vector3 (paddlePosition.x + paddleToBallPosition.x, paddlePosition.y + 0.35f, transform.position.z);
+        Vector3 paddlePosition = new Vector3(paddle.transform.position.x, paddle.transform.position.y, 0f);
+        this.transform.position = new Vector3(paddlePosition.x + paddleToBallPosition.x, paddlePosition.y + 0.35f, transform.position.z);
     }
 
     // Calculate distance to pointer (mouse)
-    private void CalculateDistanceToMouse ()
+    private void CalculateDistanceToMouse()
     {
         //Vector3 mousePosition = mainCamera.ScreenToWorldPoint (Input.mousePosition);
         Vector3 mousePosition = cursorController.transform.position;
@@ -221,18 +281,18 @@ public class Ball : MonoBehaviour
     }
 
     // 
-    private void LaunchOnPointerClick ()
+    private void LaunchOnPointerClick()
     {
         if (remainingPosition.y >= 1f)
         {
-            if (InputManager.GetButtonDown ("Shoot"))
+            if (InputManager.GetButtonDown("Shoot"))
             {
-                gameSession.SetHasStarted (true);
-                float startTimeToSpawnAnotherBall = Random.Range (5f, 20f);
-                gameSession.SetStartTimeToSpawnAnotherBall (startTimeToSpawnAnotherBall);
-                gameSession.SetCanSpawnAnotherBall (true);
+                gameSession.SetHasStarted(true);
+                float startTimeToSpawnAnotherBall = Random.Range(5f, 20f);
+                gameSession.SetStartTimeToSpawnAnotherBall(startTimeToSpawnAnotherBall);
+                gameSession.SetCanSpawnAnotherBall(true);
                 gameSession.CurrentNumberOfLaunchedBalls++;
-                remainingPosition.Normalize ();
+                remainingPosition.Normalize();
                 rigidBody2D.velocity = (remainingPosition * moveSpeed * Time.deltaTime);
                 initialLineRenderer.enabled = false;
                 isBallFree = true;
@@ -244,7 +304,7 @@ public class Ball : MonoBehaviour
     // LINE RENDERERS
 
     // Draws a line beetween the ball and mouse
-    private void DrawLineToMouse ()
+    private void DrawLineToMouse()
     {
         if (!initialLineRenderer.enabled)
         {
@@ -254,25 +314,25 @@ public class Ball : MonoBehaviour
         // Positions
         Vector3 pointerPosition = cursorController.transform.position;
         Vector3 ballPosition = this.transform.position;
-        ballPosition = new Vector3 (ballPosition.x, ballPosition.y + 0.2f, ballPosition.z);
-        initialLineRenderer.SetPositions (new Vector3 [] { ballPosition, pointerPosition});
+        ballPosition = new Vector3(ballPosition.x, ballPosition.y + 0.2f, ballPosition.z);
+        initialLineRenderer.SetPositions(new Vector3[] { ballPosition, pointerPosition });
     }
 
     //--------------------------------------------------------------------------------//
 
     // COLLISION VELOCITY ISSUES
 
-    private void ClampVelocity ()
+    private void ClampVelocity()
     {
         Vector2 currentVelocity = rigidBody2D.velocity;
-        float x = Mathf.Clamp (Mathf.Abs (currentVelocity.x), 2f, 20f);
-        float y = Mathf.Clamp (Mathf.Abs (currentVelocity.y), 2f, 20f);
+        float x = Mathf.Clamp(Mathf.Abs(currentVelocity.x), 2f, 20f);
+        float y = Mathf.Clamp(Mathf.Abs(currentVelocity.y), 2f, 20f);
         currentVelocity.x = (currentVelocity.x > 0 ? x : x * -1);
         currentVelocity.y = (currentVelocity.y > 0 ? y : y * -1);
         rigidBody2D.velocity = currentVelocity;
     }
 
-    private void RotateBall ()
+    private void RotateBall()
     {
         Vector3 eulerAngles = transform.rotation.eulerAngles;
         eulerAngles.z += ballRotationDegree;
@@ -283,24 +343,24 @@ public class Ball : MonoBehaviour
     // VFX
 
     // Chooses an random color
-    public void ChooseRandomColor ()
+    public void ChooseRandomColor()
     {
-        if (!spriteRenderer) { return; }
-        Color randomColor = Random.ColorHSV (0f, 1f, 0f, 1f, 0.4f, 1f);
+        if (!spriteRenderer) return;
+        Color randomColor = Random.ColorHSV(0f, 1f, 0f, 1f, 0.4f, 1f);
         spriteRenderer.color = randomColor;
     }
 
     // Spawns debris on paddle collision
-    private void SpawnPaddleDebris (Vector2 contactPoint)
+    private void SpawnPaddleDebris(Vector2 contactPoint)
     {
         if (paddleParticlesPrefab)
         {
             // Instantiate and Destroy
-            GameObject particles = Instantiate (paddleParticlesPrefab, contactPoint, paddleParticlesPrefab.transform.rotation) as GameObject;
-            particles.transform.SetParent (gameSession.FindOrCreateObjectParent (NamesTags.GetDebrisParentName ()).transform);
+            GameObject particles = Instantiate(paddleParticlesPrefab, contactPoint, paddleParticlesPrefab.transform.rotation) as GameObject;
+            particles.transform.SetParent(gameSession.FindOrCreateObjectParent(NamesTags.GetDebrisParentName()).transform);
             ParticleSystem debrisParticleSystem = paddleParticlesPrefab.GetComponent<ParticleSystem>();
             float durationLength = debrisParticleSystem.main.duration + debrisParticleSystem.main.startLifetime.constant;
-            Destroy (particles, durationLength);
+            Destroy(particles, durationLength);
         }
     }
 }

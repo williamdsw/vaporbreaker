@@ -5,40 +5,36 @@ public class PersistentData : MonoBehaviour
     //State 
     private int startingSceneIndex;
 
-    //--------------------------------------------------------------------------------//
-
-    private void Awake () 
+    private void Awake()
     {
-        SetupSingleton ();
+        SetupSingleton();
     }
 
-    private void Start () 
+    private void Start()
     {
-        startingSceneIndex = SceneManagerController.GetActiveSceneIndex ();
+        startingSceneIndex = SceneManagerController.GetActiveSceneIndex();
     }
 
-    private void Update () 
+    private void Update()
     {
-        int currentSceneIndex = SceneManagerController.GetActiveSceneIndex ();
+        int currentSceneIndex = SceneManagerController.GetActiveSceneIndex();
         if (currentSceneIndex != startingSceneIndex)
         {
-            Destroy (this.gameObject);
+            Destroy(this.gameObject);
         }
     }
 
-    //--------------------------------------------------------------------------------//
-
     // Define singleton
-    private void SetupSingleton ()
+    private void SetupSingleton()
     {
-        int numberOfInstances = FindObjectsOfType (GetType ()).Length;
+        int numberOfInstances = FindObjectsOfType(GetType()).Length;
         if (numberOfInstances > 1)
         {
-            DestroyImmediate (this.gameObject);
+            DestroyImmediate(this.gameObject);
         }
-        else 
+        else
         {
-            DontDestroyOnLoad (this.gameObject);
+            DontDestroyOnLoad(this.gameObject);
         }
     }
 }

@@ -10,47 +10,45 @@ public class Projectile : MonoBehaviour
     // Cached
     private Rigidbody2D rigidBody2D;
 
-    //--------------------------------------------------------------------------------//
-
-    private void Start ()
+    private void Awake()
     {
-        // Find
         rigidBody2D = this.GetComponent<Rigidbody2D>();
     }
 
-    private void OnEnable () 
+    private void OnEnable()
     {
-        Invoke ("HideObject", 2f);
+        Invoke("HideObject", 2f);
     }
 
-    private void OnDisable () 
+    private void OnDisable()
     {
-        CancelInvoke ();
+        CancelInvoke();
     }
 
-    // Collision with blocks
-    private void OnCollisionEnter2D (Collision2D other) 
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag (NamesTags.GetBreakableBlockTag ()) || 
-            other.gameObject.CompareTag (NamesTags.GetUnbreakableBlockTag ()))
+        if (other.gameObject.CompareTag(NamesTags.GetBreakableBlockTag()) ||
+            other.gameObject.CompareTag(NamesTags.GetUnbreakableBlockTag()))
         {
-            this.gameObject.SetActive (false);
+            this.gameObject.SetActive(false);
         }
     }
 
-    //--------------------------------------------------------------------------------//
-
-    private void HideObject ()
+    private void HideObject()
     {
-        this.gameObject.SetActive (false);
+        this.gameObject.SetActive(false);
     }
 
     // Add random force in Y to projectile
-    public void MoveProjectile ()
+    public void MoveProjectile()
     {
-        float randomForce = Random.Range (minForceY, maxForceY);
-        Vector2 newForce = new Vector2 (0, randomForce);
-        if (!rigidBody2D) { rigidBody2D = this.GetComponent<Rigidbody2D>(); }
-        rigidBody2D.AddForce (newForce);
+        float randomForce = Random.Range(minForceY, maxForceY);
+        Vector2 newForce = new Vector2(0, randomForce);
+        if (!rigidBody2D)
+        {
+            rigidBody2D = this.GetComponent<Rigidbody2D>();
+        }
+
+        rigidBody2D.AddForce(newForce);
     }
 }

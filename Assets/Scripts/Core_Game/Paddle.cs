@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Paddle : MonoBehaviour
 {
-    [Header ("Configuration")]
+    [Header("Configuration")]
     [SerializeField] private Ball ball;
     [SerializeField] private EchoEffect echoEffectSpawner;
     [SerializeField] private Sprite[] paddleSprites;
@@ -24,111 +24,112 @@ public class Paddle : MonoBehaviour
     private Camera mainCamera;
     private GameSession gameSession;
 
-    //--------------------------------------------------------------------------------//
-    // GETTER / SETTER
-
-    public Sprite GetSprite () { return spriteRenderer.sprite; }
-
-    //--------------------------------------------------------------------------------//
-
-    private void Start () 
+    public Sprite GetSprite()
     {
-        // Find components
+        return spriteRenderer.sprite;
+    }
+
+    private void Awake()
+    {
         boxCollider2D = this.GetComponent<BoxCollider2D>();
         rigidBody2D = this.GetComponent<Rigidbody2D>();
         spriteRenderer = this.GetComponent<SpriteRenderer>();
+    }
 
-        // Find others
+    private void Start()
+    {
         mainCamera = Camera.main;
         gameSession = FindObjectOfType<GameSession>();
 
         // Default values
         defaultSpeed = moveSpeed;
         doubleSpeed = moveSpeed * 2;
-        echoEffectSpawner.tag = NamesTags.GetPaddleEchoTag ();
+        echoEffectSpawner.tag = NamesTags.GetPaddleEchoTag();
 
-        DefineStartPosition ();
-        DefineBounds ();
+        DefineStartPosition();
+        DefineBounds();
     }
 
-    private void Update () 
+    private void Update()
     {
-        if (gameSession.GetActualGameState () == GameState.GAMEPLAY)
+        if (gameSession.GetActualGameState() == GameState.GAMEPLAY)
         {
-            DefineBounds ();
-            Move ();
-            CheckAndFindBall ();
+            DefineBounds();
+            Move();
+            CheckAndFindBall();
         }
     }
 
-    //--------------------------------------------------------------------------------//
-
-    private void DefineStartPosition ()
+    private void DefineStartPosition()
     {
-        Vector3 startPosition = new Vector3 (Screen.width / 2f, Screen.height / 10f, 0);
-        startPosition = mainCamera.ScreenToWorldPoint (startPosition);
-        transform.position = new Vector3 (startPosition.x, startPosition.y, transform.position.z);
+        Vector3 startPosition = new Vector3(Screen.width / 2f, Screen.height / 10f, 0);
+        startPosition = mainCamera.ScreenToWorldPoint(startPosition);
+        transform.position = new Vector3(startPosition.x, startPosition.y, transform.position.z);
     }
 
-    public void DefineBounds ()
+    public void DefineBounds()
     {
-        if (!mainCamera || !spriteRenderer) { return; }
+        if (!mainCamera || !spriteRenderer) return;
 
-        float minScreenX = mainCamera.ScreenToWorldPoint (new Vector3 (0, 0, 0)).x;
-        float maxScreenX = mainCamera.ScreenToWorldPoint (new Vector3 (Screen.width, 0, 0)).x;
+        float minScreenX = mainCamera.ScreenToWorldPoint(new Vector3(0, 0, 0)).x;
+        float maxScreenX = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)).x;
         float spriteExtentsX = spriteRenderer.bounds.extents.x;
         minXCoordinate = minScreenX + spriteExtentsX;
         maxXCoordinate = maxScreenX - spriteExtentsX;
     }
 
-    private void LockPositionToScreen ()
+    private void LockPositionToScreen()
     {
-        // Lock position
         float xPosition = transform.position.x;
-        xPosition = Mathf.Clamp (xPosition, minXCoordinate, maxXCoordinate);
-        transform.position = new Vector3 (xPosition, transform.position.y, transform.position.z);
+        xPosition = Mathf.Clamp(xPosition, minXCoordinate, maxXCoordinate);
+        transform.position = new Vector3(xPosition, transform.position.y, transform.position.z);
     }
 
-    // Movimenta
-    private void Move ()
+    private void Move()
     {
-        if (gameSession.GetIsAutoplayEnabled ())
+        if (gameSession.GetIsAutoplayEnabled())
         {
-            Vector3 newPosition = new Vector3 (transform.position.x, transform.position.y,transform.position.z);
+            Vector3 newPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
             newPosition.x = ball.transform.position.x;
             transform.position = newPosition;
         }
-        else 
+        else
         {
-            float horizontal = InputManager.GetAxis ("Horizontal");
+            float horizontal = InputManager.GetAxis("Horizontal");
 
             // Double the speed and shows effect
-            if (InputManager.GetButton ("Impulse") && horizontal != 0)
+            if (InputManager.GetButton("Impulse") && horizontal != 0)
             {
                 moveSpeed = doubleSpeed;
-                if (echoEffectSpawner) { echoEffectSpawner.enabled = true; }
+                if (echoEffectSpawner)
+                {
+                    echoEffectSpawner.enabled = true;
+                }
             }
-            else if (InputManager.GetButtonUp ("Impulse"))
+            else if (InputManager.GetButtonUp("Impulse"))
             {
                 moveSpeed = defaultSpeed;
-                if (echoEffectSpawner) { echoEffectSpawner.enabled = false; }
+                if (echoEffectSpawner)
+                {
+                    echoEffectSpawner.enabled = false;
+                }
             }
 
-            transform.Translate (horizontal * moveSpeed * Time.deltaTime, 0f, 0f);
+            transform.Translate(horizontal * moveSpeed * Time.deltaTime, 0f, 0f);
         }
 
-        LockPositionToScreen ();
+        LockPositionToScreen();
     }
 
     // Expands or shrink paddle size if index is valid
-    public void DefinePaddleSize (bool toExpand)
+    public void DefinePaddleSize(bool toExpand)
     {
         // Check index
         currentPaddleIndex = (toExpand ? currentPaddleIndex + 1 : currentPaddleIndex - 1);
-        if (currentPaddleIndex < 0) 
-        { 
+        if (currentPaddleIndex < 0)
+        {
             currentPaddleIndex++;
-            return; 
+            return;
         }
         else if (currentPaddleIndex >= paddleSprites.Length)
         {
@@ -138,40 +139,40 @@ public class Paddle : MonoBehaviour
 
         // Define properties
         spriteRenderer.sprite = paddleSprites[currentPaddleIndex];
-        Destroy (boxCollider2D);
+        Destroy(boxCollider2D);
         boxCollider2D = this.gameObject.AddComponent<BoxCollider2D>();
-        DefineBounds ();
+        DefineBounds();
 
         // Case have shooter power up
         Shooter shooter = FindObjectOfType<Shooter>();
         if (shooter)
         {
-            shooter.DefineCannonsPosition ();
+            shooter.DefineCannonsPosition();
         }
     }
 
     // Resets the paddle
-    public void ResetPaddle ()
+    public void ResetPaddle()
     {
         currentPaddleIndex = 1;
 
         // Define properties
         spriteRenderer.sprite = paddleSprites[currentPaddleIndex];
-        Destroy (boxCollider2D);
+        Destroy(boxCollider2D);
         boxCollider2D = this.gameObject.AddComponent<BoxCollider2D>();
-        DefineBounds ();
+        DefineBounds();
 
         // Case have shooter power up
         Shooter shooter = FindObjectOfType<Shooter>();
         if (shooter)
         {
-            shooter.DefineCannonsPosition ();
+            shooter.DefineCannonsPosition();
         }
     }
 
-    private void CheckAndFindBall ()
+    private void CheckAndFindBall()
     {
-        if (ball) { return; }
+        if (ball) return;
         ball = FindObjectOfType<Ball>();
     }
 }
