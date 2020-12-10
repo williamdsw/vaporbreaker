@@ -9,11 +9,11 @@ public enum GameState
 
 public class GameSession : MonoBehaviour
 {
-    [Header ("Configuration Parameters")]
-    [Range (0f, 10f)] [SerializeField] private float gameSpeed = 1f;
+    [Header("Configuration Parameters")]
+    [Range(0f, 10f)] [SerializeField] private float gameSpeed = 1f;
     [SerializeField] private bool isAutoplayEnabled;
 
-    [Header ("UI Texts")]
+    [Header("UI Texts")]
     [SerializeField] private TextMeshProUGUI numberOfDeathsText;
     [SerializeField] private TextMeshProUGUI powerUpNameText;
     [SerializeField] private TextMeshProUGUI ellapsedTimeText;
@@ -50,7 +50,6 @@ public class GameSession : MonoBehaviour
     private float startTimeToHidePowerUp = 3f;
     private float timeToHidePowerUp = 0;
 
-    //
     [SerializeField] private GameObject ballPrefab;
     private bool canSpawnAnotherBall = false;
     private float startTimeToSpawnAnotherBall = 0f;
@@ -62,7 +61,7 @@ public class GameSession : MonoBehaviour
     private float startTimeToUnlockButton = 10f;
     private float timeToUnlockButton = 10f;
     private int songIndex = 0;
-    
+
     // Cached 
     private AudioController audioController;
     private Ball[] balls;
@@ -73,76 +72,104 @@ public class GameSession : MonoBehaviour
     private Paddle paddle;
     private Pause pauseController;
 
-    //--------------------------------------------------------------------------------//
-    // GETTERS / SETTERS
-
-    public GameState GetActualGameState () 
-    { 
-        return actualGameState; 
+    public GameState GetActualGameState()
+    {
+        return actualGameState;
     }
-    public int GetComboMultiplier () { return comboMultiplier; }
-    public bool GetIsAutoplayEnabled () { return isAutoplayEnabled; }
-    public bool GetHasPowerUpCollidedWithPaddle () { return hasPowerUpCollidedWithPaddle; }
-    public bool GetHasStarted () { return hasStarted; }
-    public string GetPowerUpName () { return powerUpName; }
+    public int GetComboMultiplier()
+    {
+        return comboMultiplier;
+    }
 
-    public void SetCanSpawnAnotherBall (bool canSpawnAnotherBall) { this.canSpawnAnotherBall = canSpawnAnotherBall; }
-    public void SetHasPowerUpCollidedWithPaddle (bool hasPowerUpCollidedWithPaddle) { this.hasPowerUpCollidedWithPaddle = hasPowerUpCollidedWithPaddle; }
-    public void SetHasStarted (bool hasStarted) { this.hasStarted = hasStarted; }
-    public void SetPowerUpName (string powerUpName) { this.powerUpName = powerUpName; }
-    public void SetStartTimeToSpawnAnotherBall (float startTimeToSpawnAnotherBall) { this.startTimeToSpawnAnotherBall = startTimeToSpawnAnotherBall; }
+    public bool GetIsAutoplayEnabled()
+    {
+        return isAutoplayEnabled;
+    }
 
-    public void SetActualGameState (GameState gameState)
+    public bool GetHasPowerUpCollidedWithPaddle()
+    {
+        return hasPowerUpCollidedWithPaddle;
+    }
+
+    public bool GetHasStarted()
+    {
+        return hasStarted;
+    }
+
+    public string GetPowerUpName()
+    {
+        return powerUpName;
+    }
+
+    public void SetCanSpawnAnotherBall(bool canSpawnAnotherBall)
+    {
+        this.canSpawnAnotherBall = canSpawnAnotherBall;
+    }
+
+    public void SetHasPowerUpCollidedWithPaddle(bool hasPowerUpCollidedWithPaddle)
+    {
+        this.hasPowerUpCollidedWithPaddle = hasPowerUpCollidedWithPaddle;
+    }
+
+    public void SetHasStarted(bool hasStarted)
+    {
+        this.hasStarted = hasStarted;
+    }
+
+    public void SetPowerUpName(string powerUpName)
+    {
+        this.powerUpName = powerUpName;
+    }
+
+    public void SetStartTimeToSpawnAnotherBall(float startTimeToSpawnAnotherBall)
+    {
+        this.startTimeToSpawnAnotherBall = startTimeToSpawnAnotherBall;
+    }
+
+    public void SetActualGameState(GameState gameState)
     {
         this.actualGameState = gameState;
 
         switch (actualGameState)
         {
             case GameState.LEVEL_COMPLETE:
-            {
-                pauseController.SetCanPause (false);
-                canvasGroup.interactable = false;
-                break;
-            }
+            case GameState.TRANSITION:
+                {
+                    pauseController.SetCanPause(false);
+                    canvasGroup.interactable = false;
+                    break;
+                }
 
             case GameState.GAMEPLAY:
-            {
-                Time.timeScale = 1f;
-                pauseController.SetCanPause (true);
-                canvasGroup.interactable = true;
-                break;
-            }
+                {
+                    Time.timeScale = 1f;
+                    pauseController.SetCanPause(true);
+                    canvasGroup.interactable = true;
+                    break;
+                }
 
             case GameState.PAUSE:
-            {
-                Time.timeScale = 0f;
-                pauseController.SetCanPause (true);
-                canvasGroup.interactable = true;
-                break;
-            }
-
-            case GameState.TRANSITION:
-            {
-                pauseController.SetCanPause (false);
-                canvasGroup.interactable = false;
-                break;
-            }
+                {
+                    Time.timeScale = 0f;
+                    pauseController.SetCanPause(true);
+                    canvasGroup.interactable = true;
+                    break;
+                }
         }
     }
-    
-    //--------------------------------------------------------------------------------//
-    // PROPERTIES
 
-    public int CurrentNumberOfLaunchedBalls { get { return this.currentNumberOfLaunchedBalls; } set {currentNumberOfLaunchedBalls = value; }}
-
-    //--------------------------------------------------------------------------------//
-
-    private void Awake () 
+    public int CurrentNumberOfLaunchedBalls
     {
-        SetupSingleton ();
+        get => this.currentNumberOfLaunchedBalls;
+        set => currentNumberOfLaunchedBalls = value;
     }
 
-    private void Start () 
+    private void Awake()
+    {
+        SetupSingleton();
+    }
+
+    private void Start()
     {
         // Find other objects
         audioController = FindObjectOfType<AudioController>();
@@ -154,25 +181,31 @@ public class GameSession : MonoBehaviour
         pauseController = FindObjectOfType<Pause>();
 
         // Balls colors
-        foreach (Ball ball in balls) { ball.ChooseRandomColor (); }
+        foreach (Ball ball in balls)
+        {
+            ball.ChooseRandomColor();
+        }
 
         // Audio Controller
-        songIndex = Random.Range (0, audioController.AllNotLoopedSongs.Length);
-        audioController.ChangeMusic (audioController.AllNotLoopedSongs[songIndex], false, "", false, true);
+        songIndex = Random.Range(0, audioController.AllNotLoopedSongs.Length);
+        audioController.ChangeMusic(audioController.AllNotLoopedSongs[songIndex], false, "", false, true);
 
         // Default
         canChangeMusicInGame = false;
         canCalculate = true;
 
-        ResetCombo ();
-        UpdateUI ();
+        ResetCombo();
+        UpdateUI();
 
-        if (chooseRandomBlocks) { ChooseBlocks (); }
+        if (chooseRandomBlocks)
+        {
+            ChooseBlocks();
+        }
     }
 
-    private void Update ()
+    private void Update()
     {
-        FindCamera ();
+        FindCamera();
 
         if (actualGameState == GameState.GAMEPLAY)
         {
@@ -180,7 +213,7 @@ public class GameSession : MonoBehaviour
 
             if (hasStarted)
             {
-                ShowEllapsedTime ();
+                ShowEllapsedTime();
 
                 // Hides text after 3 seconds
                 if (hasPowerUpCollidedWithPaddle)
@@ -200,10 +233,14 @@ public class GameSession : MonoBehaviour
                         timeToSpawnAnotherBall += Time.deltaTime;
                         if (timeToSpawnAnotherBall >= startTimeToSpawnAnotherBall)
                         {
-                            if (ballPrefab) 
+                            if (ballPrefab)
                             {
-                                if (!paddle) { paddle = FindObjectOfType<Paddle> (); }
-                                Instantiate (ballPrefab, paddle.transform.position, Quaternion.identity); 
+                                if (!paddle)
+                                {
+                                    paddle = FindObjectOfType<Paddle>();
+                                }
+
+                                Instantiate(ballPrefab, paddle.transform.position, Quaternion.identity);
                             }
 
                             timeToSpawnAnotherBall = 0;
@@ -216,43 +253,43 @@ public class GameSession : MonoBehaviour
 
         if (actualGameState == GameState.GAMEPLAY || actualGameState == GameState.PAUSE)
         {
-            ChangeSong ();    
+            ChangeSong();
         }
     }
 
     //--------------------------------------------------------------------------------//
 
     // Setups a singleton
-    private void SetupSingleton ()
+    private void SetupSingleton()
     {
-        int numberOfInstances = FindObjectsOfType (GetType ()).Length;
+        int numberOfInstances = FindObjectsOfType(GetType()).Length;
         if (numberOfInstances > 1)
         {
-            gameObject.SetActive (false);
-            DestroyImmediate (this.gameObject);
+            gameObject.SetActive(false);
+            DestroyImmediate(this.gameObject);
         }
-        else 
+        else
         {
-            DontDestroyOnLoad (this.gameObject);
+            DontDestroyOnLoad(this.gameObject);
         }
     }
 
     //--------------------------------------------------------------------------------//
 
     // Updates Texts in UI
-    public void UpdateUI ()
+    public void UpdateUI()
     {
-        numberOfDeathsText.text = string.Concat ("x", numberOfDeaths.ToString ());
-        scoreText.text = currentScore.ToString ();
-        ellapsedTimeText.text = Formatter.FormatEllapsedTime ((int) ellapsedTime);
-        
+        numberOfDeathsText.text = string.Concat("x", numberOfDeaths.ToString());
+        scoreText.text = currentScore.ToString();
+        ellapsedTimeText.text = Formatter.FormatEllapsedTime((int)ellapsedTime);
+
         // Combo text
         if (comboMultiplier > 1)
         {
             bestCombo = (comboMultiplier >= bestCombo ? comboMultiplier : bestCombo);
-            comboMultiplierText.text = string.Concat ("Combo: ", "x", comboMultiplier);
+            comboMultiplierText.text = string.Concat("Combo: ", "x", comboMultiplier);
         }
-        else 
+        else
         {
             comboMultiplierText.text = string.Empty;
         }
@@ -262,83 +299,83 @@ public class GameSession : MonoBehaviour
     }
 
     // Add points to score
-    public void AddToStore (int value)
+    public void AddToStore(int value)
     {
         currentScore += value;
-        UpdateUI ();
+        UpdateUI();
     }
 
     // Decrement the death count
-    public void ZeroNumberOfDeaths ()
+    public void ZeroNumberOfDeaths()
     {
         numberOfDeaths = 0;
-        UpdateUI ();
+        UpdateUI();
     }
 
     // Count blocks
-    public void CountBlocks ()
+    public void CountBlocks()
     {
         totalNumberOfBlocks++;
         currentNumberOfBlocks = (totalNumberOfBlocks - numberOfBlocksDestroyed);
-        UpdateUI ();
+        UpdateUI();
     }
 
     // Updates number of blocks
-    public void BlockDestroyed ()
+    public void BlockDestroyed()
     {
         numberOfBlocksDestroyed++;
         currentNumberOfBlocks = (totalNumberOfBlocks - numberOfBlocksDestroyed);
-        UpdateUI ();
+        UpdateUI();
 
         if (currentNumberOfBlocks <= 0 && numberOfBlocksDestroyed == totalNumberOfBlocks)
         {
-            CallLevelComplete ();
+            CallLevelComplete();
         }
     }
 
-    public void CallLevelComplete ()
+    public void CallLevelComplete()
     {
-        SetActualGameState (GameState.LEVEL_COMPLETE);
-        levelCompleteController.CallLevelComplete (ellapsedTime, numberOfBlocksDestroyed, 
+        SetActualGameState(GameState.LEVEL_COMPLETE);
+        levelCompleteController.CallLevelComplete(ellapsedTime, numberOfBlocksDestroyed,
                                                    totalNumberOfBlocks, bestCombo, currentScore,
                                                    numberOfDeaths);
     }
 
     // Increment combo
-    public void AddToComboMultiplier ()
+    public void AddToComboMultiplier()
     {
         comboMultiplier++;
-        UpdateUI ();
-    }
-    
-    // Resets combo
-    public void ResetCombo ()
-    {
-        comboMultiplier = 0;
-        UpdateUI ();
+        UpdateUI();
     }
 
-    public void ResetHideTime ()
+    // Resets combo
+    public void ResetCombo()
+    {
+        comboMultiplier = 0;
+        UpdateUI();
+    }
+
+    public void ResetHideTime()
     {
         this.timeToHidePowerUp = 0f;
     }
 
     // Choose random blocks to instantiate Power Up Blocks
-    private void ChooseBlocks ()
+    private void ChooseBlocks()
     {
         // Finds
-        GameObject[] blocks = GameObject.FindGameObjectsWithTag (NamesTags.GetBreakableBlockTag ());
-        if (blocks.Length == 0 ) { return; }
+        GameObject[] blocks = GameObject.FindGameObjectsWithTag(NamesTags.GetBreakableBlockTag());
+        if (blocks.Length == 0) return;
 
         // Calculates
-        minNumberOfRandomBlocks = Mathf.FloorToInt ((blocks.Length * (10f / 100f)));
-        maxNumberOfRandomBlocks = Mathf.FloorToInt ((blocks.Length * (20f / 100f)));
-        numberOfRandomBlocks = Random.Range (minNumberOfRandomBlocks, maxNumberOfRandomBlocks + 1);
+        minNumberOfRandomBlocks = Mathf.FloorToInt((blocks.Length * (10f / 100f)));
+        maxNumberOfRandomBlocks = Mathf.FloorToInt((blocks.Length * (20f / 100f)));
+        numberOfRandomBlocks = Random.Range(minNumberOfRandomBlocks, maxNumberOfRandomBlocks + 1);
 
         for (int i = 1; i <= numberOfRandomBlocks; i++)
         {
-            int index = Random.Range (0, blocks.Length);
-            blocks[index].GetComponent<Block>().SetCanSpawnPowerUpBlock (true);
+            int index = Random.Range(0, blocks.Length);
+            blocks[index].GetComponent<Block>().SetCanSpawnPowerUpBlock(true);
         }
     }
 
@@ -346,38 +383,38 @@ public class GameSession : MonoBehaviour
     // FINDER / CREATER
 
     // Finds a GameObject by name or create one
-    public GameObject FindOrCreateObjectParent (string parentName)
+    public GameObject FindOrCreateObjectParent(string parentName)
     {
-        GameObject parent = GameObject.Find (parentName);
+        GameObject parent = GameObject.Find(parentName);
         if (!parent)
         {
-            parent = new GameObject (parentName);
+            parent = new GameObject(parentName);
         }
 
         return parent;
     }
 
-    private void FindCamera ()
+    private void FindCamera()
     {
-        if (canvas.worldCamera) { return; }
+        if (canvas.worldCamera) return;
         canvas.worldCamera = Camera.main;
     }
 
     //--------------------------------------------------------------------------------//
     // AUDIO RELATED
 
-    private void ChangeSong ()
+    private void ChangeSong()
     {
         if (canChangeMusicInGame)
         {
-            if (InputManager.GetButtonDown ("Change_Song"))
+            if (InputManager.GetButtonDown("Change_Song"))
             {
                 canChangeMusicInGame = false;
                 canCalculate = true;
                 songIndex++;
                 songIndex = (songIndex >= audioController.AllNotLoopedSongs.Length ? 0 : songIndex);
-                audioController.StopAllCoroutines ();
-                audioController.ChangeMusic (audioController.AllNotLoopedSongs[songIndex], false, "", false, true);
+                audioController.StopAllCoroutines();
+                audioController.ChangeMusic(audioController.AllNotLoopedSongs[songIndex], false, "", false, true);
                 return;
             }
         }
@@ -398,53 +435,56 @@ public class GameSession : MonoBehaviour
     // TIME RELATED
 
     // Increments ellapsed time
-    private void ShowEllapsedTime ()
+    private void ShowEllapsedTime()
     {
         ellapsedTime += Time.deltaTime;
-        UpdateUI ();
+        UpdateUI();
     }
 
     //--------------------------------------------------------------------------------//
     // RESET RELATED
 
-    private void ResetObjects ()
+    private void ResetObjects()
     {
         // Balls
-        Ball[] balls = FindObjectsOfType<Ball> ();
+        Ball[] balls = FindObjectsOfType<Ball>();
         foreach (Ball ball in balls)
         {
             ball.transform.localScale = Vector2.one;
-            float defaultSpeed = ball.GetDefaultSpeed ();
-            ball.SetMoveSpeed (defaultSpeed);
+            float defaultSpeed = ball.GetDefaultSpeed();
+            ball.SetMoveSpeed(defaultSpeed);
         }
 
         // Shooters
-        Shooter[] shooters = FindObjectsOfType<Shooter>( );
+        Shooter[] shooters = FindObjectsOfType<Shooter>();
         if (shooters.Length != 0)
         {
             foreach (Shooter shooter in shooters)
             {
-                Destroy (shooter.gameObject);
+                Destroy(shooter.gameObject);
             }
         }
 
         // PowerUps
-        PowerUp[] powerUps = FindObjectsOfType<PowerUp> ();
+        PowerUp[] powerUps = FindObjectsOfType<PowerUp>();
         if (powerUps.Length != 0)
         {
             foreach (PowerUp powerUp in powerUps)
             {
-                Destroy (powerUp.gameObject);
+                Destroy(powerUp.gameObject);
             }
         }
 
         // Paddle
-        Paddle paddle = FindObjectOfType<Paddle> ();
-        if (paddle) { paddle.ResetPaddle(); }
+        Paddle paddle = FindObjectOfType<Paddle>();
+        if (paddle)
+        {
+            paddle.ResetPaddle();
+        }
     }
 
     // Resets level if ball touches 'death zone'
-    public void ResetLevel ()
+    public void ResetLevel()
     {
         numberOfDeaths++;
         timeToSpawnAnotherBall = 0;
@@ -457,17 +497,17 @@ public class GameSession : MonoBehaviour
         hasPowerUpCollidedWithPaddle = false;
 
         // Reset objects
-        ResetObjects ();
-        SceneManagerController.ReloadScene ();
+        ResetObjects();
+        SceneManagerController.ReloadScene();
     }
 
     // Destroys this
-    public void ResetGame (string sceneName)
+    public void ResetGame(string sceneName)
     {
-        audioController.StopMusic ();
-        gameStatusController.SetNextSceneName (sceneName);
-        gameStatusController.SetHasStartedSong (false);
-        SceneManagerController.CallScene (SceneManagerController.GetLoadingSceneName ());
-        Destroy (this.gameObject);
+        audioController.StopMusic();
+        gameStatusController.SetNextSceneName(sceneName);
+        gameStatusController.SetHasStartedSong(false);
+        SceneManagerController.CallScene(SceneManagerController.GetLoadingSceneName());
+        Destroy(this.gameObject);
     }
 }

@@ -3,16 +3,16 @@ using UnityEngine;
 
 public class AudioController : MonoBehaviour
 {
-    [Header ("Audio Sources")]
+    [Header("Audio Sources")]
     [SerializeField] private AudioSource audioSourceBGM;
     [SerializeField] private AudioSource audioSourceME;
     [SerializeField] private AudioSource audioSourceSFX;
 
-    [Header ("BGM")]
+    [Header("BGM")]
     [SerializeField] private AudioClip[] allLoopedSongs;
     [SerializeField] private AudioClip[] allNotLoopedSongs;
 
-    [Header ("ME")]
+    [Header("ME")]
     [SerializeField] private AudioClip[] allLogoVoices;
     [SerializeField] private AudioClip[] allTitleVoices;
     [SerializeField] private AudioClip eightiesRiff;
@@ -20,7 +20,7 @@ public class AudioController : MonoBehaviour
     [SerializeField] private AudioClip successEffect;
     [SerializeField] private AudioClip tvStatic;
 
-    [Header ("SFX")]
+    [Header("SFX")]
     [SerializeField] private AudioClip blipSound;
     [SerializeField] private AudioClip boomSound;
     [SerializeField] private AudioClip clickSound;
@@ -53,15 +53,15 @@ public class AudioController : MonoBehaviour
     //--------------------------------------------------------------------------------//
     // GETTERS / SETTERS
 
-    public bool GetIsSongPlaying () { return isSongPlaying; }
-    public float GetMaxBGMVolume () { return maxBGMVolume; }
-    public float GetMaxMEVolume () { return maxMEVolume; }
-    public float GetMaxSFXVolume () { return maxSFXVolume; }
+    public bool GetIsSongPlaying() { return isSongPlaying; }
+    public float GetMaxBGMVolume() { return maxBGMVolume; }
+    public float GetMaxMEVolume() { return maxMEVolume; }
+    public float GetMaxSFXVolume() { return maxSFXVolume; }
 
-    public void SetIsSongPlaying (bool isSongPlaying) { this.isSongPlaying = isSongPlaying; }
-    public void SetMaxBGMVolume (float volume) { this.maxBGMVolume = volume; }
-    public void SetMaxMEVolume (float volume) { this.maxMEVolume = volume; }
-    public void SetMaxSFXVolume (float volume) { this.maxSFXVolume = volume; }
+    public void SetIsSongPlaying(bool isSongPlaying) { this.isSongPlaying = isSongPlaying; }
+    public void SetMaxBGMVolume(float volume) { this.maxBGMVolume = volume; }
+    public void SetMaxMEVolume(float volume) { this.maxMEVolume = volume; }
+    public void SetMaxSFXVolume(float volume) { this.maxSFXVolume = volume; }
 
     //--------------------------------------------------------------------------------//
 
@@ -97,12 +97,12 @@ public class AudioController : MonoBehaviour
 
     //--------------------------------------------------------------------------------//
 
-    private void Awake () 
+    private void Awake()
     {
-        SetupSingleton ();
+        SetupSingleton();
     }
 
-    private void Start () 
+    private void Start()
     {
         pauseController = FindObjectOfType<Pause>();
     }
@@ -110,16 +110,16 @@ public class AudioController : MonoBehaviour
     //--------------------------------------------------------------------------------//
 
     // Implements singleton
-    private void SetupSingleton ()
+    private void SetupSingleton()
     {
-        int numberOfInstances = FindObjectsOfType (GetType ()).Length;
+        int numberOfInstances = FindObjectsOfType(GetType()).Length;
         if (numberOfInstances > 1)
         {
-            DestroyImmediate (this.gameObject);
+            DestroyImmediate(this.gameObject);
         }
-        else 
+        else
         {
-            DontDestroyOnLoad (this.gameObject);
+            DontDestroyOnLoad(this.gameObject);
         }
     }
 
@@ -127,17 +127,19 @@ public class AudioController : MonoBehaviour
     // SFX FUNCTIONS
 
     // Play one shot of clip
-    public void PlaySFX (AudioClip clip, float volume)
+    public void PlaySFX(AudioClip clip, float volume)
     {
+        if (!clip) return;
         float temporaryVolume = (volume > maxSFXVolume ? maxSFXVolume : volume);
         audioSourceSFX.volume = temporaryVolume;
-        audioSourceSFX.PlayOneShot (clip);
+        audioSourceSFX.PlayOneShot(clip);
     }
 
     // Play clip at point
-    public void PlaySoundAtPoint (AudioClip clip)
+    public void PlaySoundAtPoint(AudioClip clip)
     {
-        AudioSource.PlayClipAtPoint (clip, Camera.main.transform.position);
+        if (!clip) return;
+        AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position);
     }
 
     //--------------------------------------------------------------------------------//
@@ -145,62 +147,66 @@ public class AudioController : MonoBehaviour
     // ME FUNCTIONS
 
     // Plays Music Effect
-    public void PlayME (AudioClip clip, float volume, bool loop)
+    public void PlayME(AudioClip clip, float volume, bool loop)
     {
+        if (!clip) return;
         float temporaryVolume = (volume > maxMEVolume ? maxMEVolume : volume);
         audioSourceME.volume = temporaryVolume;
         audioSourceME.clip = clip;
         audioSourceME.loop = loop;
-        audioSourceME.Play ();
+        audioSourceME.Play();
     }
 
-    public void StopME ()
+    public void StopME()
     {
-        audioSourceME.Stop ();
+        audioSourceME.Stop();
     }
 
     //--------------------------------------------------------------------------------//
     // CLIP / SONG PROPERTIES
 
     // Formats string
-    public string FormatMusicName (string musicName)
+    public string FormatMusicName(string musicName)
     {
-        musicName = musicName.Replace ("__", " - ");
-        musicName = musicName.Replace ("_", " ");
+        if (string.IsNullOrEmpty(musicName) || string.IsNullOrWhiteSpace(musicName))
+        {
+            return "Music Name";
+        }
+
+        musicName = musicName.Replace("__", " - ").Replace("_", " ");
         return musicName;
     }
 
-    public string GetActualMusicName ()
+    public string GetActualMusicName()
     {
         return (audioSourceBGM.clip ? audioSourceBGM.clip.name : string.Empty);
     }
 
     // Get clip length
-    public float GetClipLength (AudioClip clip)
+    public float GetClipLength(AudioClip clip)
     {
-        return clip.length;
+        return (clip ? clip.length : 0f);
     }
-    
+
     //--------------------------------------------------------------------------------//
     // BGM
 
-    public void ChangeMusic (AudioClip nextMusic, bool changeScene, string nextSceneName, bool loopMusic, bool changeOnMusicEnd)
+    public void ChangeMusic(AudioClip nextMusic, bool changeScene, string nextSceneName, bool loopMusic, bool changeOnMusicEnd)
     {
+        if (!nextMusic) return;
+
         this.nextMusic = nextMusic;
         this.changeScene = changeScene;
         this.nextSceneName = nextSceneName;
         this.loopMusic = loopMusic;
         this.changeOnMusicEnd = changeOnMusicEnd;
 
-        StartCoroutine (ChangeMusicCoroutine ());
+        StartCoroutine(ChangeMusicCoroutine());
     }
 
-    public void PauseMusic (bool pause)
+    public void PauseMusic(bool pause)
     {
-        if (!audioSourceBGM)
-        {
-            return;
-        }
+        if (!audioSourceBGM) return;
 
         if (pause)
         {
@@ -212,32 +218,28 @@ public class AudioController : MonoBehaviour
         }
     }
 
-    public void RepeatMusic (bool repeat)
+    public void RepeatMusic(bool repeat)
     {
-        if (!audioSourceBGM)
-        {
-            return;
-        }
-
+        if (!audioSourceBGM) return;
         audioSourceBGM.loop = repeat;
     }
 
-    public void StopMusic ()
+    public void StopMusic()
     {
-        StopAllCoroutines ();
-        StartCoroutine (StopMusicCoroutine ());
+        StopAllCoroutines();
+        StartCoroutine(StopMusicCoroutine());
         isSongPlaying = false;
     }
 
     //--------------------------------------------------------------------------------//
     // COROUTINES
 
-    private IEnumerator ChangeMusicCoroutine ()
+    private IEnumerator ChangeMusicCoroutine()
     {
         // Drops down volume
         for (float volume = maxBGMVolume; volume >= 0; volume -= 0.1f)
         {
-            yield return new WaitForSecondsRealtime (0.1f);
+            yield return new WaitForSecondsRealtime(0.1f);
             audioSourceBGM.volume = volume;
         }
 
@@ -246,56 +248,53 @@ public class AudioController : MonoBehaviour
         audioSourceBGM.volume = 0;
         audioSourceBGM.clip = nextMusic;
         audioSourceBGM.loop = loopMusic;
-        audioSourceBGM.Play ();
+        audioSourceBGM.Play();
         isSongPlaying = true;
 
         // Information to pause controller
-        if (!pauseController) 
-        { 
-            pauseController = FindObjectOfType<Pause>(); 
+        if (!pauseController)
+        {
+            pauseController = FindObjectOfType<Pause>();
         }
 
         if (pauseController)
         {
-            pauseController.SetActualSongName (FormatMusicName (nextMusic.name));
+            pauseController.SetActualSongName(FormatMusicName(nextMusic.name));
         }
 
         // Drops up volume
         for (float volume = 0; volume <= maxBGMVolume; volume += 0.1f)
         {
-            yield return new WaitForSecondsRealtime (0.1f);
+            yield return new WaitForSecondsRealtime(0.1f);
             audioSourceBGM.volume = volume;
         }
 
         if (!loopMusic && changeOnMusicEnd)
         {
             // Cancel
-            if (!pauseController) 
-            { 
-                yield return null; 
-            }
+            if (!pauseController) yield return null;
 
-            yield return new WaitForSecondsRealtime (audioSourceBGM.clip.length);
-            pauseController.SetPreviousSongName (FormatMusicName (nextMusic.name));
-            int index = Random.Range (0, allNotLoopedSongs.Length);
-            ChangeMusic (allNotLoopedSongs[index], false, "", false, true);
+            yield return new WaitForSecondsRealtime(audioSourceBGM.clip.length);
+            pauseController.SetPreviousSongName(FormatMusicName(nextMusic.name));
+            int index = Random.Range(0, allNotLoopedSongs.Length);
+            ChangeMusic(allNotLoopedSongs[index], false, "", false, true);
 
             // Information to pause controller
-            pauseController.SetActualSongName (FormatMusicName (allNotLoopedSongs[index].name));
+            pauseController.SetActualSongName(FormatMusicName(allNotLoopedSongs[index].name));
         }
     }
 
-    private IEnumerator StopMusicCoroutine ()
+    private IEnumerator StopMusicCoroutine()
     {
         // Drops down volume
         for (float volume = maxBGMVolume; volume >= 0; volume -= 0.1f)
         {
-            yield return new WaitForSecondsRealtime (0.1f);
+            yield return new WaitForSecondsRealtime(0.1f);
             audioSourceBGM.volume = volume;
         }
 
         // Change and play
         audioSourceBGM.volume = 0;
-        audioSourceBGM.Stop ();
+        audioSourceBGM.Stop();
     }
 }
