@@ -13,59 +13,55 @@ public class EchoEffect : MonoBehaviour
     private GameSession gameSession;
     private Paddle paddle;
 
-    //--------------------------------------------------------------------------------//
-    // GETTERS / SETTERS
+    public void SetTimeToSelfDestruct(float time)
+    {
+        this.timeToSelfDestruct = time;
+    }
 
-    public void SetTimeToSelfDestruct (float time) { this.timeToSelfDestruct = time; }
-
-    //--------------------------------------------------------------------------------//
-
-    private void Start () 
+    private void Start()
     {
         gameSession = FindObjectOfType<GameSession>();
-        DefineReferences ();
+        DefineReferences();
     }
 
-    private void Update ()
+    private void Update()
     {
-        SpawnEchoEffect ();
+        SpawnEchoEffect();
     }
 
-    //--------------------------------------------------------------------------------//
-
-    private void DefineReferences ()
+    private void DefineReferences()
     {
-        if (tag == NamesTags.GetBallEchoTag ())
+        if (tag == NamesTags.GetBallEchoTag())
         {
             ball = this.transform.parent.GetComponent<Ball>();
         }
-        else if (tag == NamesTags.GetPaddleEchoTag ())
+        else if (tag == NamesTags.GetPaddleEchoTag())
         {
             paddle = this.transform.parent.GetComponent<Paddle>();
         }
     }
 
     // Verify times and instantiate the prefab of echo
-    private void SpawnEchoEffect ()
+    private void SpawnEchoEffect()
     {
         if (timeBetweenSpawns <= 0)
         {
-            GameObject echo = Instantiate (echoPrefab, transform.position, Quaternion.identity) as GameObject;
-            echo.transform.parent = gameSession.FindOrCreateObjectParent (NamesTags.GetEchosParentName ()).transform;
-            if (tag == NamesTags.GetBallEchoTag () && ball) 
-            { 
+            GameObject echo = Instantiate(echoPrefab, transform.position, Quaternion.identity) as GameObject;
+            echo.transform.parent = gameSession.FindOrCreateObjectParent(NamesTags.GetEchosParentName()).transform;
+            if (tag == NamesTags.GetBallEchoTag() && ball)
+            {
                 echo.transform.localScale = ball.transform.localScale;
                 echo.transform.rotation = ball.transform.rotation;
                 SpriteRenderer spriteRenderer = echo.GetComponent<SpriteRenderer>();
-                spriteRenderer.color = ball.GetBallColor ();
+                spriteRenderer.color = ball.GetBallColor();
             }
-            else if (tag == NamesTags.GetPaddleEchoTag () && paddle)
+            else if (tag == NamesTags.GetPaddleEchoTag() && paddle)
             {
                 SpriteRenderer spriteRenderer = echo.GetComponent<SpriteRenderer>();
-                spriteRenderer.sprite = paddle.GetSprite ();
+                spriteRenderer.sprite = paddle.GetSprite();
             }
 
-            Destroy (echo, timeToSelfDestruct);
+            Destroy(echo, timeToSelfDestruct);
             timeBetweenSpawns = startTimeBetweenSpanws;
         }
         else

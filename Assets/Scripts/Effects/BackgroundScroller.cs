@@ -20,8 +20,6 @@ public class BackgroundScroller : MonoBehaviour
     private Renderer myRenderer;
     private Vector2 offset;
 
-    //--------------------------------------------------------------------------------//
-
     private void Awake () 
     {
         myRenderer = this.GetComponent<Renderer>();
@@ -32,7 +30,7 @@ public class BackgroundScroller : MonoBehaviour
         // Chooses random material
         if (randomMaterial)
         {
-            if (listOfMaterials.Length == 0) { return; }
+            if (listOfMaterials.Length == 0) return;
             int index = Random.Range (0, listOfMaterials.Length);
             myRenderer.material = listOfMaterials[index];
         }

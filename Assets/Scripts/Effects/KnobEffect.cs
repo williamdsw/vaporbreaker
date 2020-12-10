@@ -2,25 +2,22 @@
 
 public class KnobEffect : MonoBehaviour
 {
-    // Cached component
     private Animator animator;
 
-    //--------------------------------------------------------------------------------//
-
-    private void Start () 
+    private void Awake()
     {
         animator = this.GetComponent<Animator>();
     }
 
-    //--------------------------------------------------------------------------------//
-
-    public void HitButton ()
+    public void HitButton()
     {
-        animator.SetTrigger ("Hit");
+        if (!animator) return;
+        animator.SetTrigger("Hit");
     }
 
-    public void TurnDirection (string triggerName)
+    public void TurnDirection(string triggerName)
     {
-        animator.SetTrigger (triggerName);
+        if (!animator) return;
+        animator.SetTrigger(triggerName);
     }
 }

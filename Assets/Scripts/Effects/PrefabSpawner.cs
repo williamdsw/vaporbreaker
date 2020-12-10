@@ -15,8 +15,6 @@ public class PrefabSpawner : MonoBehaviour
     // Cached
     private GameSession gameSession;
 
-    //--------------------------------------------------------------------------------//
-
     private void Start () 
     {
         gameSession = FindObjectOfType<GameSession>();
@@ -28,14 +26,9 @@ public class PrefabSpawner : MonoBehaviour
         SpawnPrefab ();
     }
 
-    //--------------------------------------------------------------------------------//
-
     private void SpawnPrefab ()
     {
-        // Cancels
-        if (!gameSession) { return; }
-        if (prefabs.Length == 0) { return; }
-
+        if (!gameSession || prefabs.Length == 0) return;
         if (gameSession.GetActualGameState () == GameState.GAMEPLAY)
         {
             if (gameSession.GetHasStarted ())
@@ -49,7 +42,6 @@ public class PrefabSpawner : MonoBehaviour
                     GameObject powerUp = Instantiate (prefabs[index], this.transform.position, Quaternion.identity) as GameObject;
                     powerUp.transform.SetParent (GameObject.Find (NamesTags.GetPowerUpsParentName ()).transform);
 
-                    // Case have limited number of spawns
                     if (hasLimitedNumberOfSpawns)
                     {
                         currentNumberOfSpawns++;

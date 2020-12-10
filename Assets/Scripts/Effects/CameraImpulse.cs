@@ -13,46 +13,48 @@ public class CameraImpulse : MonoBehaviour
     private Vector3 originalPosition;
     private Vector3 destinyPosition;
 
-    //--------------------------------------------------------------------------------//
-    // PROPERTIES
+    public static CameraImpulse Instance
+    {
+        get => instance;
+    }
 
-    public static CameraImpulse Instance { get { return instance; }}
-
-    //--------------------------------------------------------------------------------//
-
-    private void Awake () 
+    private void Awake()
     {
         instance = this;
     }
 
-    private void Start () 
+    private void Start()
     {
         originalPosition = this.transform.position;
-        destinyPosition = new Vector3 (originalPosition.x, 1f, originalPosition.z);
+        destinyPosition = new Vector3(originalPosition.x, 1f, originalPosition.z);
     }
 
-    private void LateUpdate ()
+    private void LateUpdate()
     {
-        LerpCamera ();
+        LerpCamera();
     }
-
-    //--------------------------------------------------------------------------------//
 
     // Set initial camera impulse upwards
-    public void TriggerImpulse ()
+    public void TriggerImpulse()
     {
-        if (canLerp) { return; }
+        if (canLerp) return;
         this.transform.position = destinyPosition;
         canLerp = true;
     }
 
     // Lerp between current position and original position
-    private void LerpCamera ()
+    private void LerpCamera()
     {
         if (canLerp)
         {
-            if (this.transform.position == originalPosition || this.transform.position.y <= 0.1f) { this.transform.position = originalPosition; canLerp = false; return; }
-            this.transform.position = Vector3.Lerp (this.transform.position, originalPosition, movementSpeed * Time.deltaTime);
+            if (this.transform.position == originalPosition || this.transform.position.y <= 0.1f)
+            {
+                this.transform.position = originalPosition;
+                canLerp = false;
+                return;
+            }
+
+            this.transform.position = Vector3.Lerp(this.transform.position, originalPosition, movementSpeed * Time.deltaTime);
         }
     }
 }
