@@ -69,7 +69,7 @@ Some thanks for all those asset makers and/or artists!
 * ["16 button clicks" by Independent.nu](https://opengameart.org/content/16-button-clicks)
 * ["Level up, power up, Coin get (13 Sounds)" by wobbleboxx.com](https://opengameart.org/content/level-up-power-up-coin-get-13-sounds)
 * ["Pew Laser fire Sound" by sketcherskt](https://opengameart.org/content/pew-laser-fire-sound)
-* ["Country Flags" by <b> Mark James (LFA)](https://opengameart.org/content/country-flags)
+* ["Country Flags" by Mark James (LFA)](https://opengameart.org/content/country-flags)
 
 #### Music Effects (ME)
 
