@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4925448570074611656}
-  - component: {fileID: 4925448570074611657}
+  - component: {fileID: 7101162526562339444}
   m_Layer: 0
-  m_Name: Logo_Controller
+  m_Name: LogoController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4925448570074611657
+--- !u!114 &7101162526562339444
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,5 +44,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpText: {fileID: 0}
-  uiLabels:
-  - {fileID: 0}
+  uiLabels: []

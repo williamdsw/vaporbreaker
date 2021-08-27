@@ -2,14 +2,26 @@
 
 public class FadeEffect : MonoBehaviour
 {
+    private class FunctionNames
+    {
+        public static string CallLevelMenu => "CallLevelMenu";
+        public static string CallResetLevel => "CallResetLevel";
+        public static string DefineGameState => "DefineGameState";
+    }
+
     private Animator animator;
     private CursorController cursorController;
     private FullScreenBackground fullScreenBackground;
     private GameSession gameSession;
     private GameState newGameState;
 
+    // || Properties
+
+    public static FadeEffect Instance { get; private set; }
+
     private void Awake()
     {
+        Instance = this;
         animator = this.GetComponent<Animator>();
     }
 
@@ -123,7 +135,7 @@ public class FadeEffect : MonoBehaviour
     {
         if (!gameSession) return;
 
-        switch(gameStateInt)
+        switch (gameStateInt)
         {
             case 0: newGameState = GameState.GAMEPLAY; break;
             case 1: newGameState = GameState.PAUSE; break;

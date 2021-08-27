@@ -39,6 +39,7 @@ namespace MVC.Enums
         leveldetails_level,
         leveldetails_play,
         leveldetails_besttime,
+        logo_pressanykey,
         pause_levels,
         pause_paused,
         pause_restart,
