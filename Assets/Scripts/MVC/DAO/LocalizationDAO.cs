@@ -2,6 +2,7 @@ using MVC.Global;
 using MVC.Models;
 using MVC.Utils;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace MVC.DAO
@@ -19,7 +20,24 @@ namespace MVC.DAO
             }
             catch (Exception ex)
             {
-                Debug.LogErrorFormat("LocalizationDAO::Get -> {0}", ex.Message);
+                Debug.LogErrorFormat("LocalizationDAO::GetByLanguage -> {0}", ex.Message);
+                throw ex;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+
+        public List<Localization> GetLanguages()
+        {
+            try
+            {
+                return Factory<Localization>.CreateMany(ExecuteQuery(Configuration.Queries.Localization.GetLanguages));
+            }
+            catch (Exception ex)
+            {
+                Debug.LogErrorFormat("LocalizationDAO::GetLanguages -> {0}", ex.Message);
                 throw ex;
             }
             finally

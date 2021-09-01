@@ -1,0 +1,108 @@
+{
+    "about": {
+        "rights": "1994-2021, Todos Direitos Reservados."
+    },
+    "configurations": {
+        "backgroundmusic": "Musica de Fundo",
+        "configurations": "Configuracoes",
+        "fullscreen": "Tela Cheia",
+        "musiceffects": "Efeitos Musicais",
+        "resetprogress": "Redefinir Progresso",
+        "resolution": "Resolucao",
+        "soundeffects": "Efeitos Sonoros"
+    },
+    "general": {
+        "about": "Sobre",
+        "back": "Voltar",
+        "continue": "Continuar",
+        "default": "Padrao",
+        "no": "Nao",
+        "score": "Pontuacao",
+        "scoreboard": "Placar",
+        "time": "Tempo",
+        "timescore": "Pontuacao do Tempo",
+        "yes": "Sim"
+    },
+    "icons": {
+        "accept": "Aceitar",
+        "cancel": "Cancelar",
+        "move": "Mover"
+    },
+    "instructions": {
+        "changesong": "Mudar Musica",
+        "darkblock": "Bloco Pesado: 3 Golpes",
+        "dragtoaim": "Arraste para Mirar",
+        "gamepadlayout": "Layout do Controle",
+        "goldblock": "Blocos Dourados: 5 Golpes",
+        "impulsepaddle": "Impulsionar Remo",
+        "instructions": "Instrucoes",
+        "keyboardlayout": "Layout do Teclado",
+        "lightblock": "Bloco Leve: 1 Golpe",
+        "movepaddle": "Mover Remo",
+        "normalblock": "Bloco Normal: 2 Golpes",
+        "powerups": "Poderes",
+        "pause": "Pausar",
+        "releaseball": "Soltar Bola / Atirar",
+        "silverblock": "Blocos Prateados: 4 Golpes",
+        "unbreakableblock": "Bloco Indestrutivel"
+    },
+    "levelcomplete": {
+        "bestcombo": "Melhor Combo",
+        "currentballs": "Bolas Restantes",
+        "levelcompleted": "Nivel Completo!",
+        "newscore": "Nova Pontuacao!",
+        "total": "Total"
+    },
+    "leveldetails": {
+        "bestscore": "Melhor Pontuacao",
+        "level": "Nivel",
+        "play": "Jogar!",
+        "besttime": "Melhor Tempo"
+    },
+    "logo": {
+        "pressanykey": "Aperte qualquer tecla ou botao"
+    },
+    "mainmenu": {
+        "credits": "Creditos",
+        "language": "Idioma",
+        "options": "Opcoes",
+        "quit": "Sair",
+        "soundtrack": "Trilha Sonora"
+    },
+    "messages": {
+        "credits": "\nDeveloped by Retrogemn\n\nPROGRAMMING : William\n\nGAME DESIGNER : William\n\nLEVEL DESIGNER : William\n\n\nASSETS USED \n\n\nFONTS \n\"VCR OCD Mono\" by Riciery Leal  \n<u> <size=36> https://www.dafont.com/pt/vcr-osd-mono.font </size> </u>\n\n\"Aji Hand\" by  Ajith Rajan  \n<u> <size=36> https://www.dafont.com/pt/aji-hand.font </size> </u>\n\n\nSPRITES / IMAGES \n\n\"Background Gradient\" by William \n\n\"Select Levels BG\" by William \n\n\"Paddles\" by William \n\n\"Power Ups Placeholders\" by William \n\n\"Power Ups Icons\" by William \n\n\"Retrogemn Icon\" by William \n\n\"Retrogemn Logo\" by William \n\n\"Vaporbreaker Logo\" by William \n\n\"Vaporbreaker Icon\" by William \n\n\"Line\" by William \n\n\"Blocks Breaking Block Pack HD\" by John B. Marine  \n<u> <size=36> https://opengameart.org/content/block-breaking-block-pack-hd </size> </u>\n\n\"Arkanoid Assets\" by pudman  \n<u> <size=36> https://opengameart.org/content/arkanoid-assets </size> </u>\n\n\"Side Blaster GFX (M484 Games)\" by Master484  \n<u> <size=36> https://opengameart.org/content/side-blaster-gfx-m484-games </size> </u>\n\n\"Explosion Set 1 (M484 Games)\" by Master484  \n<u> <size=36> https://opengameart.org/content/explosion-set-1-m484-games </size> </u>\n\n\"Basic 16px GUI Pack\" by tavoarts  \n<u> <size=36> https://tavoarts.itch.io/basic-pixel-gui-pack </size> </u>\n\n\"Animated display static\" by Cameron 'cron' Fraser  \n<u> <size=36> https://opengameart.org/content/animated-display-static </size> </u>\n\n\"Onscreen controls (8 styles)\" by Kenney.nl\n<u> <size=36> https://opengameart.org/content/onscreen-controls-8-styles </size> </u>\n\n\"UI pack: Space extension\" by Kenney.nl\n<u> <size=36> https://opengameart.org/content/ui-pack-space-extension </size> </u>\n\n\"Grid HUD\" by Ivan Voirol\n<u> <size=36> https://opengameart.org/content/grid-hud </size> </u>\n\n\"[LPC but not really] Bean Bag and Really Old TV\" by Spring\n<u> <size=36> https://opengameart.org/content/lpc-but-not-really-bean-bag-and-really-old-tv </size> </u>\n\n\nAUDIO (MUSIC & MUSIC EFFECTS & SOUND EFFECTS) \n\n\nSOUND EFFECTS \n\n\"Hitting in a Face\" by florianreichelt  \n<u> <size=36> https://freesound.org/people/florianreichelt/sounds/460509/ </size> </u>\n\n\"Blip\" by n_audioman  \n<u> <size=36> https://freesound.org/people/n_audioman/sounds/275897/ </size> </u>\n\n\"8 Bit Slam\" by josepharaoh99  \n<u> <size=36> https://freesound.org/people/josepharaoh99/sounds/361636/ </size> </u>\n\n\"50 CC0 retro / synth SFX\" by rubberduck  \n<u> <size=36> https://opengameart.org/content/50-cc0-retro-synth-sfx </size> </u>\n\n\"Level up, power up, Coin get (13 Sounds)\" by wobbleboxx.com  \n<u> <size=36> https://opengameart.org/content/level-up-power-up-coin-get-13-sounds </size> </u>\n\n\"Pew Laser fire Sound\" by sketcherskt  \n<u> <size=36> https://opengameart.org/content/pew-laser-fire-sound </size> </u>\n\n\"Wall Impact\" by spookymodem  \n<u> <size=36> https://opengameart.org/content/wall-impact </size> </u>\n\n\nMUSIC EFFECTS\n\n\"Fire Burning Loop\" by midimagician  \n<u> <size=36> https://freesound.org/people/midimagician/sounds/249418/ </size> </u>\n\n\"Mission Success\" by  StormBat  \n<u> <size=36> https://freesound.org/people/StormBat/sounds/406371/ </size> </u>\n\n\nBACKGROUND MUSIC \n\n\n\"120 bpm lofi synthwave loop\" by waveplay_old\n<u> <size=36> https://freesound.org/people/waveplay_old/sounds/424610/ </size> </u>\n\n\"Synth Wave\" by Alex McCulloch\n<u> <size=36> https://opengameart.org/content/synth-wave </size> </u>\n\n\"Aerobics Synth Wave\" by Alex McCulloch  \n<u> <size=36> https://opengameart.org/content/aerobics-synth-wave </size> </u>\n\n\"And Then We Left\" by Kim Lightyear  \n<u> <size=36> https://opengameart.org/content/and-then-we-left </size> </u>\n\n\"Destiny (Wave G)\" by Kim Lightyear  \n<u> <size=36> https://opengameart.org/content/destiny-wave-g </size> </u>\n\n\"Saw You In My Dreams\" by Kim Lightyear\n<u> <size=36> https://opengameart.org/content/saw-you-in-my-dreams </size> </u>\n\n\"Neon Transit\" by Alexandr Zhelanov\n<u> <size=36> https://opengameart.org/content/neon-transit </size> </u>\n\n\"Ocean Wave Crashing the GUI\" by Kris Occhipint\n<u> <size=36> https://opengameart.org/content/ocean-wave-crashing-the-gui </size> </u>\n\n\n\nTHANK YOU FOR PLAYING!"
+    },
+    "pause": {
+        "levels": "Niveis",
+        "paused": "Pause",
+        "restart": "Reiniciar",
+        "resume": "Resumir"
+    },
+    "powerups": {
+        "allbreakablesblocks": "Todos Blocos Destrutiveis",
+        "ballbigger": "Bola Maior",
+        "ballfaster": "Bola Rápida",
+        "ballslower": "Bola Lenta",
+        "ballsmaller": "Bola Menor",
+        "duplicateball": "Duplica Bola",
+        "expandpaddle": "Expande Remo",
+        "fireball": "Bola de Fogo",
+        "onehitblock": "Blocos de 1 Golpe",
+        "pullblocksdown": "Puxa Blocos p/ Baixo",
+        "pullblocksleft": "Puxa Blocos p/ Esquerda",
+        "pullblocksright": "Puxa Blocos p/ Direita",
+        "pullblocksup": "Puxa Blocos p/ Cima",
+        "resetballs": "Redefine Bolas",
+        "resetpaddle": "Redefine Remo",
+        "shooter": "Atirador",
+        "shrinkpaddle": "Diminui Remo"
+    },
+    "resetprogress": {
+        "areyousure": "Voce tem certeza?",
+        "warning": "Todo seu progresso sera resetado, incluindo pontuacoes e niveis desbloqueados!"
+    },
+    "selectlevels": {
+        "chooseanlevel": "Escolha um Nivel",
+        "saving": "Salvando..."
+    }
+}

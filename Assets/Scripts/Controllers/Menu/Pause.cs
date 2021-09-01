@@ -1,4 +1,5 @@
 ﻿using Luminosity.IO;
+using MVC.Global;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -83,7 +84,7 @@ public class Pause : MonoBehaviour
     {
         if (canPause)
         {
-            if (InputManager.GetButtonDown("Pause"))
+            if (InputManager.GetButtonDown(Configuration.InputsNames.Pause))
             {
                 PauseGame();
             }
@@ -118,7 +119,7 @@ public class Pause : MonoBehaviour
         allMenuButtons[1].onClick.AddListener(() => StartCoroutine(ResetGameCoroutine(SceneManagerController.GetSelectLevelsSceneName())));
 
         // Main Menu Button
-        allMenuButtons[2].onClick.AddListener(() => StartCoroutine(ResetGameCoroutine(SceneManagerController.GetMainMenuSceneName())));
+        allMenuButtons[2].onClick.AddListener(() => StartCoroutine(ResetGameCoroutine(SceneManagerController.MainMenuSceneName)));
     }
 
     public void PauseGame()

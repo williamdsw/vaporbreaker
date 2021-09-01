@@ -3,47 +3,24 @@ using UnityEngine.SceneManagement;
 
 public class SceneManagerController
 {
-    private const string CREDITS_SCENE_NAME = "Credits";
     private const string LOADING_SCENE_NAME = "Loading";
-    private const string MAIN_MENU_SCENE_NAME = "Main_Menu";
-    private const string POWER_UPS_SCENE_NAME = "PowerUps_Guide";
     private const string SELECT_LEVELS_SCENE_NAME = "Select_Levels";
-    private const string SOUNDTRACK_SCENE_NAME = "Soundtracks";
 
+    public static string CreditsSceneName => "Credits";
     public static string LoadingSceneName => "Loading";
-    public static string MainMenuSceneName => "Main_Menu";
+    public static string MainMenuSceneName => "MainMenu";
     public static string SelectLevelsSceneName => "Select_Levels";
+    public static string SoundtracksSceneName => "Soundtracks";
     public static string TitleSceneName => "Title";
     
-
-
-    public static string GetCreditsSceneName()
-    {
-        return CREDITS_SCENE_NAME;
-    }
-
     public static string GetLoadingSceneName()
     {
         return LOADING_SCENE_NAME;
     }
 
-    public static string GetMainMenuSceneName()
-    {
-        return MAIN_MENU_SCENE_NAME;
-    }
-    public static string GetPowerUpsSceneName()
-    {
-        return POWER_UPS_SCENE_NAME;
-    }
-
     public static string GetSelectLevelsSceneName()
     {
         return SELECT_LEVELS_SCENE_NAME;
-    }
-
-    public static string GetSoundtrackSceneName()
-    {
-        return SOUNDTRACK_SCENE_NAME;
     }
 
     /// <summary>

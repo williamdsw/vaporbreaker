@@ -1,4 +1,5 @@
 ﻿using Luminosity.IO;
+using MVC.Global;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -98,14 +99,14 @@ public class PowerUpsMenu : MonoBehaviour
         // Cancels
         if (powerUpsSpritesList.Length == 0) return;
 
-        if (InputManager.GetButtonDown("UI_Right"))
+        if (InputManager.GetButtonDown(Configuration.InputsNames.UiRight))
         {
             audioController.PlaySFX(audioController.PowerUpSound, audioController.GetMaxSFXVolume());
             currentLevelIndex++;
             currentLevelIndex = (currentLevelIndex >= powerUpsSpritesList.Length ? 0 : currentLevelIndex);
             UpdateUI();
         }
-        else if (InputManager.GetButtonDown("UI_Left"))
+        else if (InputManager.GetButtonDown(Configuration.InputsNames.UiLeft))
         {
             audioController.PlaySFX(audioController.PowerUpSound, audioController.GetMaxSFXVolume());
             currentLevelIndex--;
@@ -127,11 +128,11 @@ public class PowerUpsMenu : MonoBehaviour
     // Capture Cancel Button on situations
     private void CaptureCancelButton()
     {
-        if (InputManager.GetButtonDown("UI_Cancel"))
+        if (InputManager.GetButtonDown(Configuration.InputsNames.UiCancel))
         {
             audioController.StopMusic();
             audioController.PlaySFX(audioController.UiCancel, audioController.GetMaxSFXVolume());
-            StartCoroutine(CallNextScene(SceneManagerController.GetMainMenuSceneName()));
+            StartCoroutine(CallNextScene(SceneManagerController.MainMenuSceneName));
         }
     }
 

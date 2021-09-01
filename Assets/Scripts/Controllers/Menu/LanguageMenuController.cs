@@ -1,186 +1,183 @@
 ﻿using Luminosity.IO;
+using MVC.BL;
+using MVC.Enums;
+using MVC.Global;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using Utilities;
 
-public class LanguageMenuController : MonoBehaviour
+namespace Controllers.Menu
 {
-    [Header("Menus")]
-    [SerializeField] private GameObject languageMenu;
-    [SerializeField] private GameObject mainMenu;
-
-    [Header("Buttons")]
-    [SerializeField] private Button[] allButtons;
-    [SerializeField] private Button[] allDefaultButtons;
-    [SerializeField] private Button backButton;
-
-    [Header("Labels to Translate")]
-    [SerializeField] private List<TextMeshProUGUI> uiLabels = new List<TextMeshProUGUI>();
-
-    // State
-    private List<string> languages = new List<string>() { "English", "Portuguese", "Spanish", "Italian" };
-    private int currentButtonIndex;
-    private string currentLanguage;
-    private string currentFolderPath;
-
-    // Cached
-    private AudioController audioController;
-    private BindingMenu bindingMenuController;
-    private DefaultLayoutMenu defaultLayoutMenu;
-    private InputControllerUI inputControllerUI;
-    private LocalizationController localizationController;
-    private MainMenu mainMenuController;
-    private OptionsMenu optionsMenuController;
-
-    private void Start()
+    public class LanguageMenuController : MonoBehaviour
     {
-        // Find Objects
-        audioController = FindObjectOfType<AudioController>();
-        bindingMenuController = FindObjectOfType<BindingMenu>();
-        defaultLayoutMenu = FindObjectOfType<DefaultLayoutMenu>();
-        inputControllerUI = FindObjectOfType<InputControllerUI>();
-        localizationController = FindObjectOfType<LocalizationController>();
-        mainMenuController = FindObjectOfType<MainMenu>();
-        optionsMenuController = FindObjectOfType<OptionsMenu>();
+        [Header("Required UI Elements")]
+        [SerializeField] private GameObject panel;
+        [SerializeField] private Button[] allButtons;
+        [SerializeField] private Button backButton;
 
-        BindingClickEvents();
-        TranslateLabels();
+        [Header("Other Texts to Translate")]
+        [SerializeField] private TextMeshProUGUI header;
 
-        // Default Language
-        string language = PlayerPrefsController.GetLanguage();
-        currentButtonIndex = languages.IndexOf(language);
-    }
+        // || State
 
-    private void Update()
-    {
-        if (!languageMenu.activeSelf) return;
-        CaptureInputs();
-    }
+        private List<string> languages;
+        private int currentButtonIndex;
+        private string currentLanguage;
 
-    //--------------------------------------------------------------------------------//
-    // START USED
+        // || Cached
 
-    private void BindingClickEvents()
-    {
-        if (!languageMenu || !mainMenu || allButtons.Length == 0 || allDefaultButtons.Length == 0) return;
+        private TextMeshProUGUI backButtonLabel;
+        private LocalizationBL localizationBL;
 
-        // BACK
-        backButton.onClick.AddListener(() =>
+        // || Properties
+
+        public static LanguageMenuController Instance { get; private set; }
+
+        private void Awake()
+        {
+            Instance = this;
+            localizationBL = new LocalizationBL();
+            languages = localizationBL.GetLanguages().Select(x => x.Language).ToList();
+
+            currentButtonIndex = languages.IndexOf(PlayerPrefsController.GetLanguage());
+
+            GetRequiredComponents();
+            Translate();
+            BindEventListeners();
+        }
+
+        private void Update()
+        {
+            CheckSelectedGameObject();
+            CaptureCancelButton();
+        }
+
+        /// <summary>
+        /// Get required components
+        /// </summary>
+        private void GetRequiredComponents()
+        {
+            try
+            {
+                backButtonLabel = backButton.GetComponentInChildren<TextMeshProUGUI>();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Translates the UI
+        /// </summary>
+        public void Translate()
+        {
+            try
+            {
+                header.text = LocalizationController.Instance.GetWord(LocalizationFields.mainmenu_language);
+                backButtonLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.general_back);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Bind event listeners to elements
+        /// </summary>
+        private void BindEventListeners()
+        {
+            try
+            {
+                for (int index = 0; index < allButtons.Length; index++)
+                {
+                    int currentIndex = index;
+                    allButtons[index].onClick.AddListener(() => ActionButton(currentIndex));
+                }
+
+                backButton.onClick.AddListener(() => SaveAndBackToMainMenu());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Save current select language and get back to main menu
+        /// </summary>
+        private void SaveAndBackToMainMenu()
         {
             PlayerPrefsController.SetLanguage(currentLanguage);
-            audioController.PlaySFX(audioController.UiCancel, audioController.GetMaxSFXVolume());
-            languageMenu.SetActive(false);
-            mainMenu.SetActive(true);
-            allDefaultButtons[1].Select();
-        });
-    }
-
-    // Translate labels based on choosed language
-    private void TranslateLabels()
-    {
-        if (!localizationController) return;
-        List<string> labels = localizationController.GetLanguageMenuLabels();
-        if (labels.Count == 0 || uiLabels.Count == 0) return;
-        for (int index = 0; index < labels.Count; index++)
-        {
-            uiLabels[index].SetText(labels[index]);
-        }
-    }
-
-    public void MakeSelectOnPointerEnter(Button button)
-    {
-        if (!button || !button.interactable) return;
-        button.Select();
-    }
-
-    public void SetCurrentButtonIndex(int index)
-    {
-        currentButtonIndex = index;
-    }
-
-    // Capture User Inputs
-    private void CaptureInputs()
-    {
-        // Cancels 
-        if (allButtons.Length == 0) return;
-
-        // Right / Left
-        if (InputManager.GetButtonDown("UI_Right"))
-        {
-            currentButtonIndex++;
-            currentButtonIndex = (currentButtonIndex >= allButtons.Length ? 0 : currentButtonIndex);
-            allButtons[currentButtonIndex].Select();
-        }
-        else if (InputManager.GetButtonDown("UI_Left"))
-        {
-            currentButtonIndex--;
-            currentButtonIndex = (currentButtonIndex < 0 ? allButtons.Length - 1 : currentButtonIndex);
-            allButtons[currentButtonIndex].Select();
+            AudioController.Instance.PlaySFX(AudioController.Instance.UiCancel, AudioController.Instance.GetMaxSFXVolume());
+            TogglePanel(false);
+            MainMenuController.Instance.TogglePanel(true);
         }
 
-        // Submit
-        if (currentButtonIndex == -1) return;
-        if (EventSystem.current.currentSelectedGameObject)
+        /// <summary>
+        /// Show or hide the panel
+        /// </summary>
+        /// <param name="toShow"> Is to show the panel ? </param>
+        public void TogglePanel(bool toShow)
         {
-            if (InputManager.GetButtonDown("UI_Submit"))
+            panel.SetActive(toShow);
+
+            if (toShow)
             {
-                ActionButton(currentButtonIndex);
+                allButtons[0].Select();
             }
         }
-    }
 
-    // Sets the action for button click
-    private void ActionButton(int index)
-    {
-        // Play SFX
-        audioController.PlaySFX(audioController.ClickSound, audioController.GetMaxSFXVolume());
-
-        switch (currentButtonIndex)
+        /// <summary>
+        /// Check last selected object case mouse clicks outside
+        /// </summary>
+        private void CheckSelectedGameObject()
         {
-            // ENGLISH
-            case 0:
-            {
-                currentLanguage = "English";
-                currentFolderPath = FileManager.LocalizationEnglishFolderPath;
-                break;
-            }
+            if (!panel.activeSelf) return;
 
-            // PORTUGUESE
-            case 1:
+            if (EventSystem.current.currentSelectedGameObject == null)
             {
-                currentLanguage = "Portuguese";
-                currentFolderPath = FileManager.LocalizationPortugueseFolderPath;
-                break;
+                EventSystem.current.SetSelectedGameObject(allButtons[0].gameObject);
             }
-
-            // SPANISH
-            case 2:
-            {
-                currentLanguage = "Spanish";
-                currentFolderPath = FileManager.LocalizationSpanishFolderPath;
-                break;
-            }
-
-            // ITALIAN
-            case 3:
-            {
-                currentLanguage = "Italian";
-                currentFolderPath = FileManager.LocalizationItalianFolderPath;
-                break;
-            }
-
-            default: { break; }
         }
 
-        localizationController.LoadLocalization(currentFolderPath);
-        TranslateLabels();
-        mainMenuController.TranslateLabels();
-        optionsMenuController.TranslateLabels();
-        bindingMenuController.TranslateLabels();
-        inputControllerUI.TranslateLabels();
-        defaultLayoutMenu.TranslateLabels();
+        /// <summary>
+        /// Capture B or Esc to close panel
+        /// </summary>
+        private void CaptureCancelButton()
+        {
+            if (panel.activeSelf)
+            {
+                if (InputManager.GetButtonDown(Configuration.InputsNames.UiCancel, PlayerID.One))
+                {
+                    SaveAndBackToMainMenu();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Applies the selected flag button
+        /// </summary>
+        /// <param name="index"> Button index </param>
+        private void ActionButton(int index)
+        {
+            try
+            {
+                currentLanguage = languages[index];
+                AudioController.Instance.PlaySFX(AudioController.Instance.ClickSound, AudioController.Instance.GetMaxSFXVolume());
+                LocalizationController.Instance.LoadSavedLocalization(currentLanguage);
+                Translate();
+                InputControllerUI.Instance.Translate();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

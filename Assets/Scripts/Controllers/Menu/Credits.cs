@@ -59,7 +59,7 @@ public class Credits : MonoBehaviour
             {
                 canCalculateTime = false;
                 canMoveText = false;
-                StartCoroutine(CallNextScene(SceneManagerController.GetMainMenuSceneName(), true));
+                StartCoroutine(CallNextScene(SceneManagerController.MainMenuSceneName, true));
             }
         }
     }
@@ -79,7 +79,7 @@ public class Credits : MonoBehaviour
             if (InputManager.anyKeyDown)
             {
                 canPressButton = false;
-                StartCoroutine(CallNextScene(SceneManagerController.GetMainMenuSceneName(), false));
+                StartCoroutine(CallNextScene(SceneManagerController.MainMenuSceneName, false));
             }
         }
     }

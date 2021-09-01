@@ -1,4 +1,5 @@
 ﻿using Luminosity.IO;
+using MVC.Global;
 using TMPro;
 using UnityEngine;
 using Utilities;
@@ -408,7 +409,7 @@ public class GameSession : MonoBehaviour
     {
         if (canChangeMusicInGame)
         {
-            if (InputManager.GetButtonDown("Change_Song"))
+            if (InputManager.GetButtonDown(Configuration.InputsNames.ChangeSong))
             {
                 canChangeMusicInGame = false;
                 canCalculate = true;

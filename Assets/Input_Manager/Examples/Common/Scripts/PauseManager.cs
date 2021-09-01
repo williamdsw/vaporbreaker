@@ -23,6 +23,7 @@
 using UnityEngine;
 using System;
 using UnityEngine.SceneManagement;
+using MVC.Global;
 
 namespace Luminosity.IO.Examples
 {
@@ -132,7 +133,7 @@ namespace Luminosity.IO.Examples
 				break;
 			}
 			
-			if(InputManager.GetButtonDown("Pause"))
+			if(InputManager.GetButtonDown(Configuration.InputsNames.Pause))
 			{
 				if(m_state == PauseManagerState.Idle)
 				{

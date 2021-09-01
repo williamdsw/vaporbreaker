@@ -1,4 +1,5 @@
 ﻿using Luminosity.IO;
+using MVC.Global;
 using UnityEngine;
 using Utilities;
 
@@ -285,7 +286,7 @@ public class Ball : MonoBehaviour
     {
         if (remainingPosition.y >= 1f)
         {
-            if (InputManager.GetButtonDown("Shoot"))
+            if (InputManager.GetButtonDown(Configuration.InputsNames.Shoot))
             {
                 gameSession.SetHasStarted(true);
                 float startTimeToSpawnAnotherBall = Random.Range(5f, 20f);

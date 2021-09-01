@@ -12,15 +12,15 @@ namespace Utilities
         public static string PowerUpsParentName => "Power_Ups_Container";
         public static string ProjectilesParentName => "Projectiles_Container";
 
-        // PANELS
-        public static string BindingsPanelName => "Bindings_Panel";
-        public static string DefaultGamepadLayoutPanelName => "Default_Gamepad_Layout_Panel";
-        public static string DefaultKeyboardLayoutPanelName => "Default_Keyboard_Layout_Panel";
-        public static string MainPanelName => "Main_Menu_Panel";
-        public static string OptionsPanelName => "Options_Panel";
-        public static string PausePanelName => "Pause_Panel";
-        public static string ProgressPanelName => "Progress_Panel";
-        public static string SelectLevelPanelName => "Select_Level_Panel";
+        public class Panels
+        {
+            public static string LanguagePanelName => "LanguagePanel";
+            public static string MainPanelName => "MainMenuPanel";
+            public static string OptionsPanelName => "OptionsPanel";
+            public static string PausePanelName => "Pause_Panel";
+            public static string ProgressPanelName => "ProgressPanel";
+            public static string SelectLevelPanelName => "Select_Level_Panel";
+        }
 
         // OBJECTS
         public static string PowerUpAllBlocksOneHitName => "PowerUp_All_Blocks_1_Hit";

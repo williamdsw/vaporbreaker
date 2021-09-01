@@ -213,7 +213,7 @@ public class LocalizationController : MonoBehaviour
         LoadLocalization(folderPath);
     }
 
-    public void DefineLocalizationNew()
+    public void GetSavedLocalization()
     {
         try
         {
@@ -232,13 +232,26 @@ public class LocalizationController : MonoBehaviour
                 PlayerPrefsController.Language = language;
             }
 
+            LoadSavedLocalization(language);
+        }
+        catch (Exception ex)
+        {
+            Debug.LogErrorFormat("LocalizationController::GetSavedLocalization -> {0}", ex.Message);
+            throw ex;
+        }
+    }
+
+    public void LoadSavedLocalization(string language)
+    {
+        try
+        {
             LocalizationBL localizationBL = new LocalizationBL();
             Localization localization = localizationBL.GetByLanguage(language);
             dictionary = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, string>>>(localization.Content);
         }
         catch (Exception ex)
         {
-            Debug.LogErrorFormat("LocalizationController::DefineLocalizationNew -> {0}", ex.Message);
+            Debug.LogErrorFormat("LocalizationController::LoadSavedLocalization -> {0}", ex.Message);
             throw ex;
         }
     }

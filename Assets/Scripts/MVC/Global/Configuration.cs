@@ -26,6 +26,7 @@ namespace MVC.Global
             public class Localization
             {
                 public static string GetByLanguage => " SELECT id, language, content FROM localization WHERE language = '{0}'; ";
+                public static string GetLanguages => " SELECT id, language, content FROM localization ";
             }
         }
 
@@ -34,14 +35,17 @@ namespace MVC.Global
             public static string DatabaseName => "database.s3db";
             public static string DatabasePath => string.Format("{0}/{1}", Application.persistentDataPath, DatabaseName);
             public static string DatabaseStreamingAssetsPath => string.Format("{0}/StreamingAssets/{1}", Application.dataPath, DatabaseName);
+        }
 
-#if UNITY_ANDROID
-            public static string MobileDatabasePath => string.Format("jar:file://{0}!/assets/{1}", Application.dataPath, DatabaseName);
-#elif UNITY_IOS
-            public static string MobileDatabasePath => string.Format("file://{0}/Raw/{1}", Application.dataPath, DatabaseName);
-#else
-            public static string MobileDatabasePath => string.Empty;
-#endif
+        public class InputsNames
+        {
+            public static string ChangeSong => "Change_Song";
+            public static string Pause => "Pause";
+            public static string Shoot => "Shoot";
+            public static string UiCancel => "UI_Cancel";
+            public static string UiLeft => "UI_Left";
+            public static string UiRight => "UI_Right";
+            public static string UiSubmit => "UI_Submit";
         }
     }
 }

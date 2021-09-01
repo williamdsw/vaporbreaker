@@ -97,6 +97,10 @@ public class AudioController : MonoBehaviour
     public AudioClip UiCancel { get { return uiCancel; } }
     public AudioClip UiSubmit { get { return uiSubmit; } }
 
+    public AudioSource AudioSourceBGM => audioSourceBGM;
+    public AudioSource AudioSourceME => audioSourceME;
+    public AudioSource AudioSourceSFX => audioSourceSFX;
+
     //--------------------------------------------------------------------------------//
 
     private void Awake() => SetupSingleton();
@@ -128,8 +132,8 @@ public class AudioController : MonoBehaviour
     {
         if (!clip) return;
         float temporaryVolume = (volume > maxSFXVolume ? maxSFXVolume : volume);
-        audioSourceSFX.volume = temporaryVolume;
-        audioSourceSFX.PlayOneShot(clip);
+        AudioSourceSFX.volume = temporaryVolume;
+        AudioSourceSFX.PlayOneShot(clip);
     }
 
     // Play clip at point
@@ -148,15 +152,15 @@ public class AudioController : MonoBehaviour
     {
         if (!clip) return;
         float temporaryVolume = (volume > maxMEVolume ? maxMEVolume : volume);
-        audioSourceME.volume = temporaryVolume;
-        audioSourceME.clip = clip;
-        audioSourceME.loop = loop;
-        audioSourceME.Play();
+        AudioSourceME.volume = temporaryVolume;
+        AudioSourceME.clip = clip;
+        AudioSourceME.loop = loop;
+        AudioSourceME.Play();
     }
 
     public void StopME()
     {
-        audioSourceME.Stop();
+        AudioSourceME.Stop();
     }
 
     //--------------------------------------------------------------------------------//
@@ -176,7 +180,7 @@ public class AudioController : MonoBehaviour
 
     public string GetActualMusicName()
     {
-        return (audioSourceBGM.clip ? audioSourceBGM.clip.name : string.Empty);
+        return (AudioSourceBGM.clip ? AudioSourceBGM.clip.name : string.Empty);
     }
 
     // Get clip length
@@ -203,22 +207,22 @@ public class AudioController : MonoBehaviour
 
     public void PauseMusic(bool pause)
     {
-        if (!audioSourceBGM) return;
+        if (!AudioSourceBGM) return;
 
         if (pause)
         {
-            audioSourceBGM.Pause();
+            AudioSourceBGM.Pause();
         }
         else
         {
-            audioSourceBGM.UnPause();
+            AudioSourceBGM.UnPause();
         }
     }
 
     public void RepeatMusic(bool repeat)
     {
-        if (!audioSourceBGM) return;
-        audioSourceBGM.loop = repeat;
+        if (!AudioSourceBGM) return;
+        AudioSourceBGM.loop = repeat;
     }
 
     public void StopMusic()
@@ -237,15 +241,15 @@ public class AudioController : MonoBehaviour
         for (float volume = maxBGMVolume; volume >= 0; volume -= 0.1f)
         {
             yield return new WaitForSecondsRealtime(0.1f);
-            audioSourceBGM.volume = volume;
+            AudioSourceBGM.volume = volume;
         }
 
         // Change and play
         isSongPlaying = false;
-        audioSourceBGM.volume = 0;
-        audioSourceBGM.clip = nextMusic;
-        audioSourceBGM.loop = loopMusic;
-        audioSourceBGM.Play();
+        AudioSourceBGM.volume = 0;
+        AudioSourceBGM.clip = nextMusic;
+        AudioSourceBGM.loop = loopMusic;
+        AudioSourceBGM.Play();
         isSongPlaying = true;
 
         // Information to pause controller
@@ -263,7 +267,7 @@ public class AudioController : MonoBehaviour
         for (float volume = 0; volume <= maxBGMVolume; volume += 0.1f)
         {
             yield return new WaitForSecondsRealtime(0.1f);
-            audioSourceBGM.volume = volume;
+            AudioSourceBGM.volume = volume;
         }
 
         if (!loopMusic && changeOnMusicEnd)
@@ -271,7 +275,7 @@ public class AudioController : MonoBehaviour
             // Cancel
             if (!pauseController) yield return null;
 
-            yield return new WaitForSecondsRealtime(audioSourceBGM.clip.length);
+            yield return new WaitForSecondsRealtime(AudioSourceBGM.clip.length);
             pauseController.SetPreviousSongName(FormatMusicName(nextMusic.name));
             int index = Random.Range(0, allNotLoopedSongs.Length);
             ChangeMusic(allNotLoopedSongs[index], false, "", false, true);
@@ -287,11 +291,11 @@ public class AudioController : MonoBehaviour
         for (float volume = maxBGMVolume; volume >= 0; volume -= 0.1f)
         {
             yield return new WaitForSecondsRealtime(0.1f);
-            audioSourceBGM.volume = volume;
+            AudioSourceBGM.volume = volume;
         }
 
         // Change and play
-        audioSourceBGM.volume = 0;
-        audioSourceBGM.Stop();
+        AudioSourceBGM.volume = 0;
+        AudioSourceBGM.Stop();
     }
 }

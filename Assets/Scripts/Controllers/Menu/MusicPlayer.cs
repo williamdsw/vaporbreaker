@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Luminosity.IO;
+using MVC.Global;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -125,13 +126,13 @@ public class MusicPlayer : MonoBehaviour
         if (musicControllerButtons.Length == 0) return;
 
         // Right / Left
-        if (InputManager.GetButtonDown("UI_Right"))
+        if (InputManager.GetButtonDown(Configuration.InputsNames.UiRight))
         {
             currentButtonIndex++;
             currentButtonIndex = (currentButtonIndex >= musicControllerButtons.Length ? 0 : currentButtonIndex);
             musicControllerButtons[currentButtonIndex].Select();
         }
-        else if (InputManager.GetButtonDown("UI_Left"))
+        else if (InputManager.GetButtonDown(Configuration.InputsNames.UiLeft))
         {
             currentButtonIndex--;
             currentButtonIndex = (currentButtonIndex < 0 ? musicControllerButtons.Length - 1 : currentButtonIndex);
@@ -141,7 +142,7 @@ public class MusicPlayer : MonoBehaviour
         // Submit
         if (EventSystem.current.currentSelectedGameObject)
         {
-            if (InputManager.GetButtonDown("UI_Submit"))
+            if (InputManager.GetButtonDown(Configuration.InputsNames.UiSubmit))
             {
                 ActionButton(currentButtonIndex);
             }
@@ -229,7 +230,7 @@ public class MusicPlayer : MonoBehaviour
             // QUIT
             case 5:
             {
-                StartCoroutine(CallNextScene(SceneManagerController.GetMainMenuSceneName()));
+                StartCoroutine(CallNextScene(SceneManagerController.MainMenuSceneName));
                 break;
             }
 

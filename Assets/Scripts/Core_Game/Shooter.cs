@@ -1,4 +1,5 @@
 ﻿using Luminosity.IO;
+using MVC.Global;
 using System.Collections.Generic;
 using UnityEngine;
 using Utilities;
@@ -33,7 +34,7 @@ public class Shooter : MonoBehaviour
     {
         if (gameSession.GetActualGameState() == GameState.GAMEPLAY)
         {
-            if (InputManager.GetButtonDown("Shoot"))
+            if (InputManager.GetButtonDown(Configuration.InputsNames.Shoot))
             {
                 Shoot();
             }

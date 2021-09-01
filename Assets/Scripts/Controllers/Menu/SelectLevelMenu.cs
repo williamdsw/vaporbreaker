@@ -1,4 +1,5 @@
 ﻿using Luminosity.IO;
+using MVC.Global;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -197,7 +198,7 @@ public class SelectLevelMenu : MonoBehaviour
             highScoresList.Count == 0 || highTimeScoresList.Count == 0 ||
             levelsSprites.Length == 0) return;
 
-        if (InputManager.GetButtonDown("UI_Right"))
+        if (InputManager.GetButtonDown(Configuration.InputsNames.UiRight))
         {
             knobEffect.TurnDirection("Turn_Right");
             audioController.PlaySFX(audioController.TvSwitch, audioController.GetMaxSFXVolume());
@@ -205,7 +206,7 @@ public class SelectLevelMenu : MonoBehaviour
             currentLevelIndex = (currentLevelIndex >= levelsNamesList.Count ? 0 : currentLevelIndex);
             UpdateUI();
         }
-        else if (InputManager.GetButtonDown("UI_Left"))
+        else if (InputManager.GetButtonDown(Configuration.InputsNames.UiLeft))
         {
             knobEffect.TurnDirection("Turn_Left");
             audioController.PlaySFX(audioController.TvSwitch, audioController.GetMaxSFXVolume());
@@ -264,20 +265,20 @@ public class SelectLevelMenu : MonoBehaviour
         // Leave to Main Menu
         if (levelScreenButton.interactable)
         {
-            if (InputManager.GetButtonDown("UI_Cancel"))
+            if (InputManager.GetButtonDown(Configuration.InputsNames.UiCancel))
             {
                 audioController.StopMusic();
                 audioController.StopME();
                 audioController.PlaySFX(audioController.UiCancel, audioController.GetMaxSFXVolume());
                 gameStatusController.SetIsLevelCompleted(false);
-                StartCoroutine(CallNextScene(SceneManagerController.GetMainMenuSceneName()));
+                StartCoroutine(CallNextScene(SceneManagerController.MainMenuSceneName));
             }
         }
 
         // Leave question (Equals to "No Button")
         if (questionText.activeSelf)
         {
-            if (InputManager.GetButtonDown("UI_Cancel"))
+            if (InputManager.GetButtonDown(Configuration.InputsNames.UiCancel))
             {
                 audioController.PlaySFX(audioController.UiCancel, audioController.GetMaxSFXVolume());
                 questionText.SetActive(false);

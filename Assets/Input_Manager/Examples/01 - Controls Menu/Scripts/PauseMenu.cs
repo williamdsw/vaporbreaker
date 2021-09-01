@@ -20,6 +20,7 @@
 //	FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, 
 //	ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #endregion
+using MVC.Global;
 using UnityEngine;
 
 namespace Luminosity.IO.Examples
@@ -52,7 +53,7 @@ namespace Luminosity.IO.Examples
 
 		private void Update()
 		{
-			if(InputManager.GetButtonDown("PauseMenu"))
+			if(InputManager.GetButtonDown(Configuration.InputsNames.Pause))
 			{
 				if(!m_isOpen)
 					Open();

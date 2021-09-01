@@ -53,7 +53,7 @@ namespace Controllers.Menu
 
             yield return new WaitForSecondsRealtime(TIME_TO_WAIT);
             yield return new WaitUntil(() => LocalizationController.Instance != null);
-            LocalizationController.Instance.DefineLocalizationNew();
+            LocalizationController.Instance.GetSavedLocalization();
             yield return new WaitUntil(() => LocalizationController.Instance.DictionaryCount > 0);
 
             yield return CallNextScene();
