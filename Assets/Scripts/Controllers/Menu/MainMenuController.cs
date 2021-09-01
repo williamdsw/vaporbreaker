@@ -43,6 +43,7 @@ namespace Controllers.Menu
         private void Awake()
         {
             Instance = this;
+            ConfigurationsController.ToggleCursor(false);
             GetRequiredComponents();
             Translate();
 
@@ -51,8 +52,6 @@ namespace Controllers.Menu
             // Resets for animation works
             Time.timeScale = 1f;
             HasSavedGame = ProgressManager.HasProgress();
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
 
             BindEventListeners();
             InputManager.Load();
