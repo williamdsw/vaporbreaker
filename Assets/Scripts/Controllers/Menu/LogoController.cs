@@ -50,6 +50,7 @@ namespace Controllers.Menu
             int index = Random.Range(0, AudioController.Instance.AllLogoVoices.Length);
             yield return new WaitForSecondsRealtime(TIME_TO_CALL_LOGO_VOICE);
             AudioController.Instance.PlaySFX(AudioController.Instance.AllLogoVoices[index], AudioController.Instance.GetMaxSFXVolume());
+            AudioController.Instance.GetTracks();
 
             yield return new WaitForSecondsRealtime(TIME_TO_WAIT);
             yield return new WaitUntil(() => LocalizationController.Instance != null);

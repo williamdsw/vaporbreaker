@@ -1,4 +1,7 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
+using MVC.BL;
+using MVC.Models;
 using UnityEngine;
 
 public class AudioController : MonoBehaviour
@@ -44,21 +47,19 @@ public class AudioController : MonoBehaviour
     private bool changeScene;
     private string nextSceneName;
     private bool changeOnMusicEnd = false;
-    private bool isSongPlaying = false;
     private bool loopMusic = false;
 
     // Cached
     private Pause pauseController;
+    private TrackBL trackBL;
 
     //--------------------------------------------------------------------------------//
     // GETTERS / SETTERS
 
-    public bool GetIsSongPlaying() { return isSongPlaying; }
     public float GetMaxBGMVolume() { return maxBGMVolume; }
     public float GetMaxMEVolume() { return maxMEVolume; }
     public float GetMaxSFXVolume() { return maxSFXVolume; }
 
-    public void SetIsSongPlaying(bool isSongPlaying) { this.isSongPlaying = isSongPlaying; }
     public void SetMaxBGMVolume(float volume) { this.maxBGMVolume = volume; }
     public void SetMaxMEVolume(float volume) { this.maxMEVolume = volume; }
     public void SetMaxSFXVolume(float volume) { this.maxSFXVolume = volume; }
@@ -101,9 +102,16 @@ public class AudioController : MonoBehaviour
     public AudioSource AudioSourceME => audioSourceME;
     public AudioSource AudioSourceSFX => audioSourceSFX;
 
+    public List<Track> Tracks { get; private set; } = new List<Track>();
+    public bool IsSongPlaying { get; set; }
+
     //--------------------------------------------------------------------------------//
 
-    private void Awake() => SetupSingleton();
+    private void Awake()
+    {
+        SetupSingleton();
+        trackBL = new TrackBL();
+    }
 
     private void Start()
     {
@@ -207,8 +215,6 @@ public class AudioController : MonoBehaviour
 
     public void PauseMusic(bool pause)
     {
-        if (!AudioSourceBGM) return;
-
         if (pause)
         {
             AudioSourceBGM.Pause();
@@ -219,17 +225,13 @@ public class AudioController : MonoBehaviour
         }
     }
 
-    public void RepeatMusic(bool repeat)
-    {
-        if (!AudioSourceBGM) return;
-        AudioSourceBGM.loop = repeat;
-    }
+    public void RepeatMusic(bool repeat) => AudioSourceBGM.loop = repeat;
 
     public void StopMusic()
     {
         StopAllCoroutines();
         StartCoroutine(StopMusicCoroutine());
-        isSongPlaying = false;
+        IsSongPlaying = false;
     }
 
     //--------------------------------------------------------------------------------//
@@ -237,20 +239,15 @@ public class AudioController : MonoBehaviour
 
     private IEnumerator ChangeMusicCoroutine()
     {
-        // Drops down volume
-        for (float volume = maxBGMVolume; volume >= 0; volume -= 0.1f)
-        {
-            yield return new WaitForSecondsRealtime(0.1f);
-            AudioSourceBGM.volume = volume;
-        }
+        yield return DropVolume();
 
         // Change and play
-        isSongPlaying = false;
+        IsSongPlaying = false;
         AudioSourceBGM.volume = 0;
         AudioSourceBGM.clip = nextMusic;
         AudioSourceBGM.loop = loopMusic;
         AudioSourceBGM.Play();
-        isSongPlaying = true;
+        IsSongPlaying = true;
 
         // Information to pause controller
         if (!pauseController)
@@ -264,11 +261,7 @@ public class AudioController : MonoBehaviour
         }
 
         // Drops up volume
-        for (float volume = 0; volume <= maxBGMVolume; volume += 0.1f)
-        {
-            yield return new WaitForSecondsRealtime(0.1f);
-            AudioSourceBGM.volume = volume;
-        }
+        yield return GainVolume();
 
         if (!loopMusic && changeOnMusicEnd)
         {
@@ -287,15 +280,34 @@ public class AudioController : MonoBehaviour
 
     private IEnumerator StopMusicCoroutine()
     {
-        // Drops down volume
-        for (float volume = maxBGMVolume; volume >= 0; volume -= 0.1f)
-        {
-            yield return new WaitForSecondsRealtime(0.1f);
-            AudioSourceBGM.volume = volume;
-        }
+        yield return DropVolume();
 
         // Change and play
         AudioSourceBGM.volume = 0;
         AudioSourceBGM.Stop();
+    }
+
+    private IEnumerator DropVolume()
+    {
+        for (float volume = maxBGMVolume; volume >= 0; volume -= 0.1f)
+        {
+            AudioSourceBGM.volume = volume;
+            yield return new WaitForSecondsRealtime(0.1f);
+        }
+    }
+
+    private IEnumerator GainVolume()
+    {
+        for (float volume = 0; volume <= maxBGMVolume; volume += 0.1f)
+        {
+            AudioSourceBGM.volume = volume;
+            yield return new WaitForSecondsRealtime(0.1f);
+        }
+    }
+
+    public void GetTracks()
+    {
+
+        Tracks = trackBL.ListAll();
     }
 }

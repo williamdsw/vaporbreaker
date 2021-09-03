@@ -15,6 +15,12 @@ namespace MVC.Global
                 public static string UpdateFieldById => " UPDATE level {0} WHERE id = {1}; ";
             }
 
+            public class Localization
+            {
+                public static string GetByLanguage => " SELECT id, language, content FROM localization WHERE language = '{0}'; ";
+                public static string GetLanguages => " SELECT id, language, content FROM localization ";
+            }
+
             public class Scoreboard
             {
                 public static string DeleteAll => " DELETE FROM scoreboard; ";
@@ -23,10 +29,9 @@ namespace MVC.Global
                 public static string ListByLevel => " SELECT id, level_id, score, time_score, moment FROM scoreboard WHERE level_id = {0} ORDER BY score DESC; ";
             }
 
-            public class Localization
+            public class Track
             {
-                public static string GetByLanguage => " SELECT id, language, content FROM localization WHERE language = '{0}'; ";
-                public static string GetLanguages => " SELECT id, language, content FROM localization ";
+                public static string ListAll => " SELECT * FROM track ";
             }
         }
 

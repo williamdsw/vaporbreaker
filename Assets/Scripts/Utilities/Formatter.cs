@@ -12,6 +12,14 @@ namespace Utilities
             return string.Concat(hours.ToString("00"), ":", minutes.ToString("00"), ":", seconds.ToString("00"));
         }
 
+        public static string FormatEllapsedTimeInMinutes(int timer)
+        {
+            int hours = timer / 3600;
+            int minutes = (timer - (hours * 3600)) / 60;
+            int seconds = timer - (hours * 3600) - (minutes * 60);
+            return string.Format("{0}:{1}", minutes.ToString("00"), seconds.ToString("00"));
+        }
+
         public static string FormatLevelName(string levelName)
         {
             // Cancels
