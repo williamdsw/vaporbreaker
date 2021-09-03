@@ -1,4 +1,5 @@
-﻿using Luminosity.IO;
+﻿using Controllers.Core;
+using Luminosity.IO;
 using MVC.Enums;
 using MVC.Global;
 using System;
@@ -324,7 +325,7 @@ namespace Controllers.Menu
                 // Case Input is cancel
                 if (InputManager.GetButtonDown(Configuration.InputsNames.UiCancel, PlayerID.One))
                 {
-                    AudioController.Instance.PlaySFX(AudioController.Instance.UiCancel, AudioController.Instance.GetMaxSFXVolume());
+                    AudioController.Instance.PlaySFX(AudioController.Instance.UiCancel, AudioController.Instance.MaxSFXVolume);
                     resolutionValueButton.interactable = false;
                     ToggleButtonColor(resolutionValueButton);
                     ToggleAllLabelButtonsInteractable();
@@ -371,7 +372,7 @@ namespace Controllers.Menu
                 // Case Input is cancel
                 if (InputManager.GetButtonDown(Configuration.InputsNames.UiCancel, PlayerID.One))
                 {
-                    AudioController.Instance.PlaySFX(AudioController.Instance.UiCancel, AudioController.Instance.GetMaxSFXVolume());
+                    AudioController.Instance.PlaySFX(AudioController.Instance.UiCancel, AudioController.Instance.MaxSFXVolume);
                     fullScreenValueButton.interactable = false;
                     ToggleButtonColor(fullScreenValueButton);
                     ToggleAllLabelButtonsInteractable();
@@ -531,8 +532,8 @@ namespace Controllers.Menu
                     return;
                 }
 
-                AudioController.Instance.SetMaxBGMVolume(BGMVolume);
-                AudioController.Instance.SetMaxSFXVolume(SFXVolume);
+                AudioController.Instance.MaxBGMVolume = BGMVolume;
+                AudioController.Instance.MaxSFXVolume = SFXVolume;
 
                 UpdateUI();
                 ApplyValues();
@@ -576,8 +577,8 @@ namespace Controllers.Menu
                 divider = (SFXVolume > 1f ? 100f : 1f);
                 ConfigurationsController.SetAudioSourceVolume(AudioController.Instance.AudioSourceSFX, (SFXVolume / divider));
 
-                AudioController.Instance.SetMaxBGMVolume(BGMVolume);
-                AudioController.Instance.SetMaxSFXVolume(SFXVolume);
+                AudioController.Instance.MaxBGMVolume = BGMVolume;
+                AudioController.Instance.MaxSFXVolume = SFXVolume;
             }
             catch (Exception ex)
             {

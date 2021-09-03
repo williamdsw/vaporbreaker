@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Utilities;
+using Controllers.Core;
 
 public enum BlockColors
 {
@@ -98,7 +99,7 @@ public class Block : MonoBehaviour
                 }
                 else if (CompareTag(NamesTags.UnbreakableBlockTag))
                 {
-                    audioController.PlaySFX(audioController.MetalPingSound, audioController.GetMaxSFXVolume() / 2);
+                    audioController.PlaySFX(audioController.MetalPingSound, audioController.MaxSFXVolume / 2);
                 }
 
                 if (collidedWithBall)
@@ -149,7 +150,7 @@ public class Block : MonoBehaviour
 
         // SFX & VFX
         AudioClip clip = (isBallBig ? audioController.HittingFace : audioController.SlamSound);
-        audioController.PlaySFX(clip, audioController.GetMaxSFXVolume() / 2f);
+        audioController.PlaySFX(clip, audioController.MaxSFXVolume / 2f);
         SpawnDebris(50f, 100f);
         print(clip.name);
     }
@@ -243,7 +244,7 @@ public class Block : MonoBehaviour
     {
         if (explosionPrefabs.Length >= 1)
         {
-            audioController.PlaySFX(audioController.ExplosionSound, audioController.GetMaxSFXVolume() / 2);
+            audioController.PlaySFX(audioController.ExplosionSound, audioController.MaxSFXVolume / 2);
             int randomIndex = Random.Range(0, explosionPrefabs.Length);
             GameObject explosion = Instantiate(explosionPrefabs[randomIndex], this.transform.position, Quaternion.identity) as GameObject;
             explosion.transform.SetParent(gameSession.FindOrCreateObjectParent(NamesTags.ExplosionsParentName).transform);
@@ -306,7 +307,7 @@ public class Block : MonoBehaviour
         int randomIndex = CalculateIndexChance();
         GameObject powerUp = Instantiate(powerUpPrefabs[randomIndex].gameObject, this.transform.position, Quaternion.identity) as GameObject;
         powerUp.transform.SetParent(gameSession.FindOrCreateObjectParent(NamesTags.PowerUpsParentName).transform);
-        audioController.PlaySFX(audioController.ShowUpSound, audioController.GetMaxSFXVolume());
+        audioController.PlaySFX(audioController.ShowUpSound, audioController.MaxSFXVolume);
     }
 
     // Calculate chance percent and possibly decide when have other options... 

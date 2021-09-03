@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Controllers.Core;
 using MVC.Enums;
 using MVC.Models;
 using TMPro;
@@ -142,7 +143,7 @@ namespace Controllers.Menu
             {
                 previousButton.onClick.AddListener(() =>
                 {
-                    AudioController.Instance.PlaySFX(AudioController.Instance.ClickSound, AudioController.Instance.GetMaxSFXVolume());
+                    AudioController.Instance.PlaySFX(AudioController.Instance.ClickSound, AudioController.Instance.MaxSFXVolume);
                     currentSongIndex--;
                     currentSongIndex = (currentSongIndex < 0 ? AudioController.Instance.AllNotLoopedSongs.Length - 1 : currentSongIndex);
                     PlaySong(currentSongIndex);
@@ -150,7 +151,7 @@ namespace Controllers.Menu
 
                 playButton.onClick.AddListener(() =>
                 {
-                    AudioController.Instance.PlaySFX(AudioController.Instance.ClickSound, AudioController.Instance.GetMaxSFXVolume());
+                    AudioController.Instance.PlaySFX(AudioController.Instance.ClickSound, AudioController.Instance.MaxSFXVolume);
                     PlaySong(currentSongIndex);
                 });
 
@@ -158,7 +159,7 @@ namespace Controllers.Menu
                 {
                     if (AudioController.Instance.IsSongPlaying)
                     {
-                        AudioController.Instance.PlaySFX(AudioController.Instance.ClickSound, AudioController.Instance.GetMaxSFXVolume());
+                        AudioController.Instance.PlaySFX(AudioController.Instance.ClickSound, AudioController.Instance.MaxSFXVolume);
                         isSongPaused = !isSongPaused;
                         Color current = pauseButtonImage.color;
                         current.a = (isSongPaused ? 0.5f : 1f);
@@ -169,7 +170,7 @@ namespace Controllers.Menu
 
                 nextButton.onClick.AddListener(() =>
                 {
-                    AudioController.Instance.PlaySFX(AudioController.Instance.ClickSound, AudioController.Instance.GetMaxSFXVolume());
+                    AudioController.Instance.PlaySFX(AudioController.Instance.ClickSound, AudioController.Instance.MaxSFXVolume);
                     currentSongIndex++;
                     currentSongIndex = (currentSongIndex >= AudioController.Instance.AllNotLoopedSongs.Length ? 0 : currentSongIndex);
                     PlaySong(currentSongIndex);
@@ -178,7 +179,7 @@ namespace Controllers.Menu
                 repeatButton.onClick.AddListener(() =>
                 {
                     isSongRepeated = !isSongRepeated;
-                    AudioController.Instance.RepeatMusic(isSongRepeated);
+                    AudioController.Instance.ToggleRepeatTrack(isSongRepeated);
                     Color current = repeatButtonImage.color;
                     current.a = (isSongRepeated ? 0.5f : 1f);
                     repeatButtonImage.color = current;

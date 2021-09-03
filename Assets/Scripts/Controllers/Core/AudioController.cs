@@ -4,310 +4,290 @@ using MVC.BL;
 using MVC.Models;
 using UnityEngine;
 
-public class AudioController : MonoBehaviour
+namespace Controllers.Core
 {
-    [Header("Audio Sources")]
-    [SerializeField] private AudioSource audioSourceBGM;
-    [SerializeField] private AudioSource audioSourceME;
-    [SerializeField] private AudioSource audioSourceSFX;
-
-    [Header("BGM")]
-    [SerializeField] private AudioClip[] allLoopedSongs;
-    [SerializeField] private AudioClip[] allNotLoopedSongs;
-
-    [Header("ME")]
-    [SerializeField] private AudioClip[] allLogoVoices;
-    [SerializeField] private AudioClip[] allTitleVoices;
-    [SerializeField] private AudioClip eightiesRiff;
-    [SerializeField] private AudioClip newScoreEffect;
-    [SerializeField] private AudioClip successEffect;
-    [SerializeField] private AudioClip tvStatic;
-
-    [Header("SFX")]
-    [SerializeField] private AudioClip blipSound;
-    [SerializeField] private AudioClip boomSound;
-    [SerializeField] private AudioClip clickSound;
-    [SerializeField] private AudioClip explosionSound;
-    [SerializeField] private AudioClip laserPewSound;
-    [SerializeField] private AudioClip metalPingSound;
-    [SerializeField] private AudioClip hitButton;
-    [SerializeField] private AudioClip hittingFace;
-    [SerializeField] private AudioClip powerUpSound;
-    [SerializeField] private AudioClip showUpSound;
-    [SerializeField] private AudioClip slamSound;
-    [SerializeField] private AudioClip tvSwitch;
-    [SerializeField] private AudioClip uiCancel;
-    [SerializeField] private AudioClip uiSubmit;
-
-    // Config
-    private float maxBGMVolume = 1f;
-    private float maxMEVolume = 1f;
-    private float maxSFXVolume = 1f;
-    private AudioClip nextMusic;
-    private bool changeScene;
-    private string nextSceneName;
-    private bool changeOnMusicEnd = false;
-    private bool loopMusic = false;
-
-    // Cached
-    private Pause pauseController;
-    private TrackBL trackBL;
-
-    //--------------------------------------------------------------------------------//
-    // GETTERS / SETTERS
-
-    public float GetMaxBGMVolume() { return maxBGMVolume; }
-    public float GetMaxMEVolume() { return maxMEVolume; }
-    public float GetMaxSFXVolume() { return maxSFXVolume; }
-
-    public void SetMaxBGMVolume(float volume) { this.maxBGMVolume = volume; }
-    public void SetMaxMEVolume(float volume) { this.maxMEVolume = volume; }
-    public void SetMaxSFXVolume(float volume) { this.maxSFXVolume = volume; }
-
-    //--------------------------------------------------------------------------------//
-
-    // PROPERTIES
-
-    public static AudioController Instance { get; private set; }
-
-    // BGM
-    public AudioClip[] AllLoopedSongs { get { return allLoopedSongs; } }
-    public AudioClip[] AllNotLoopedSongs { get { return allNotLoopedSongs; } }
-
-    // ME
-    public AudioClip[] AllLogoVoices { get { return allLogoVoices; } }
-    public AudioClip[] AllTitleVoices { get { return allTitleVoices; } }
-    public AudioClip EightiesRiff { get { return eightiesRiff; } }
-    public AudioClip NewScoreEffect { get { return newScoreEffect; } }
-    public AudioClip SuccessEffect { get { return successEffect; } }
-    public AudioClip TvStatic { get { return tvStatic; } }
-
-    // SFX
-    public AudioClip BlipSound { get { return blipSound; } }
-    public AudioClip BoomSound { get { return boomSound; } }
-    public AudioClip ClickSound { get { return clickSound; } }
-    public AudioClip ExplosionSound { get { return explosionSound; } }
-    public AudioClip HitButton { get { return hitButton; } }
-    public AudioClip HittingFace { get { return hittingFace; } }
-    public AudioClip LaserPewSound { get { return laserPewSound; } }
-    public AudioClip MetalPingSound { get { return metalPingSound; } }
-    public AudioClip PowerUpSound { get { return powerUpSound; } }
-    public AudioClip ShowUpSound { get { return showUpSound; } }
-    public AudioClip SlamSound { get { return slamSound; } }
-    public AudioClip TvSwitch { get { return tvSwitch; } }
-    public AudioClip UiCancel { get { return uiCancel; } }
-    public AudioClip UiSubmit { get { return uiSubmit; } }
-
-    public AudioSource AudioSourceBGM => audioSourceBGM;
-    public AudioSource AudioSourceME => audioSourceME;
-    public AudioSource AudioSourceSFX => audioSourceSFX;
-
-    public List<Track> Tracks { get; private set; } = new List<Track>();
-    public bool IsSongPlaying { get; set; }
-
-    //--------------------------------------------------------------------------------//
-
-    private void Awake()
+    public class AudioController : MonoBehaviour
     {
-        SetupSingleton();
-        trackBL = new TrackBL();
-    }
+        // || Inspector References
 
-    private void Start()
-    {
-        pauseController = FindObjectOfType<Pause>();
-    }
+        [Header("Audio Sources")]
+        [SerializeField] private AudioSource audioSourceBGM;
+        [SerializeField] private AudioSource audioSourceME;
+        [SerializeField] private AudioSource audioSourceSFX;
 
-    private void SetupSingleton()
-    {
-        int numberOfInstances = FindObjectsOfType(GetType()).Length;
-        if (numberOfInstances > 1)
+        [Header("BGM")]
+        [SerializeField] private AudioClip[] allLoopedSongs;
+        [SerializeField] private AudioClip[] allNotLoopedSongs;
+
+        [Header("ME")]
+        [SerializeField] private AudioClip[] allLogoVoices;
+        [SerializeField] private AudioClip[] allTitleVoices;
+        [SerializeField] private AudioClip newScoreEffect;
+        [SerializeField] private AudioClip successEffect;
+        [SerializeField] private AudioClip tvStatic;
+
+        [Header("SFX")]
+        [SerializeField] private AudioClip blipSound;
+        [SerializeField] private AudioClip boomSound;
+        [SerializeField] private AudioClip clickSound;
+        [SerializeField] private AudioClip explosionSound;
+        [SerializeField] private AudioClip laserPewSound;
+        [SerializeField] private AudioClip metalPingSound;
+        [SerializeField] private AudioClip hittingFace;
+        [SerializeField] private AudioClip powerUpSound;
+        [SerializeField] private AudioClip showUpSound;
+        [SerializeField] private AudioClip slamSound;
+        [SerializeField] private AudioClip tvSwitch;
+        [SerializeField] private AudioClip uiCancel;
+        [SerializeField] private AudioClip uiSubmit;
+
+        // || State
+
+        private AudioClip nextTrack;
+        private string nextSceneName;
+        private bool changeScene;
+        private bool changeOnTrackEnd = false;
+        private bool isToLoopTrack = false;
+
+        // || Cached
+
+        private TrackBL trackBL;
+
+        // || Properties
+
+        public static AudioController Instance { get; private set; }
+
+        // Config
+        public float MaxBGMVolume { get; set; } = 1f;
+        public float MaxMEVolume { get; set; } = 1f;
+        public float MaxSFXVolume { get; set; } = 1f;
+
+        // BGM
+        public AudioClip[] AllLoopedSongs => allLoopedSongs;
+        public AudioClip[] AllNotLoopedSongs => allNotLoopedSongs;
+
+        // ME
+        public AudioClip[] AllLogoVoices => allLogoVoices;
+        public AudioClip[] AllTitleVoices => allTitleVoices;
+        public AudioClip NewScoreEffect => newScoreEffect;
+        public AudioClip SuccessEffect => successEffect;
+        public AudioClip TvStatic => tvStatic;
+
+        // SFX
+        public AudioClip BlipSound => blipSound;
+        public AudioClip BoomSound => boomSound;
+        public AudioClip ClickSound => clickSound;
+        public AudioClip ExplosionSound => explosionSound;
+        public AudioClip HittingFace => hittingFace;
+        public AudioClip LaserPewSound => laserPewSound;
+        public AudioClip MetalPingSound => metalPingSound;
+        public AudioClip PowerUpSound => powerUpSound;
+        public AudioClip ShowUpSound => showUpSound;
+        public AudioClip SlamSound => slamSound;
+        public AudioClip TvSwitch => tvSwitch;
+        public AudioClip UiCancel => uiCancel;
+        public AudioClip UiSubmit => uiSubmit;
+
+        public AudioSource AudioSourceBGM => audioSourceBGM;
+        public AudioSource AudioSourceME => audioSourceME;
+        public AudioSource AudioSourceSFX => audioSourceSFX;
+
+        public List<Track> Tracks { get; private set; } = new List<Track>();
+        public bool IsSongPlaying { get; set; }
+
+        private void Awake()
         {
-            DestroyImmediate(gameObject);
-        }
-        else
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-    }
-
-    //--------------------------------------------------------------------------------//
-    // SFX FUNCTIONS
-
-    // Play one shot of clip
-    public void PlaySFX(AudioClip clip, float volume)
-    {
-        if (!clip) return;
-        float temporaryVolume = (volume > maxSFXVolume ? maxSFXVolume : volume);
-        AudioSourceSFX.volume = temporaryVolume;
-        AudioSourceSFX.PlayOneShot(clip);
-    }
-
-    // Play clip at point
-    public void PlaySoundAtPoint(AudioClip clip)
-    {
-        if (!clip) return;
-        AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position);
-    }
-
-    //--------------------------------------------------------------------------------//
-
-    // ME FUNCTIONS
-
-    // Plays Music Effect
-    public void PlayME(AudioClip clip, float volume, bool loop)
-    {
-        if (!clip) return;
-        float temporaryVolume = (volume > maxMEVolume ? maxMEVolume : volume);
-        AudioSourceME.volume = temporaryVolume;
-        AudioSourceME.clip = clip;
-        AudioSourceME.loop = loop;
-        AudioSourceME.Play();
-    }
-
-    public void StopME()
-    {
-        AudioSourceME.Stop();
-    }
-
-    //--------------------------------------------------------------------------------//
-    // CLIP / SONG PROPERTIES
-
-    // Formats string
-    public string FormatMusicName(string musicName)
-    {
-        if (string.IsNullOrEmpty(musicName) || string.IsNullOrWhiteSpace(musicName))
-        {
-            return "Music Name";
+            SetupSingleton();
+            trackBL = new TrackBL();
         }
 
-        musicName = musicName.Replace("__", " - ").Replace("_", " ");
-        return musicName;
-    }
-
-    public string GetActualMusicName()
-    {
-        return (AudioSourceBGM.clip ? AudioSourceBGM.clip.name : string.Empty);
-    }
-
-    // Get clip length
-    public float GetClipLength(AudioClip clip)
-    {
-        return (clip ? clip.length : 0f);
-    }
-
-    //--------------------------------------------------------------------------------//
-    // BGM
-
-    public void ChangeMusic(AudioClip nextMusic, bool changeScene, string nextSceneName, bool loopMusic, bool changeOnMusicEnd)
-    {
-        if (!nextMusic) return;
-
-        this.nextMusic = nextMusic;
-        this.changeScene = changeScene;
-        this.nextSceneName = nextSceneName;
-        this.loopMusic = loopMusic;
-        this.changeOnMusicEnd = changeOnMusicEnd;
-
-        StartCoroutine(ChangeMusicCoroutine());
-    }
-
-    public void PauseMusic(bool pause)
-    {
-        if (pause)
+        /// <summary>
+        /// Setup singleton instance
+        /// </summary>
+        private void SetupSingleton()
         {
-            AudioSourceBGM.Pause();
-        }
-        else
-        {
-            AudioSourceBGM.UnPause();
-        }
-    }
-
-    public void RepeatMusic(bool repeat) => AudioSourceBGM.loop = repeat;
-
-    public void StopMusic()
-    {
-        StopAllCoroutines();
-        StartCoroutine(StopMusicCoroutine());
-        IsSongPlaying = false;
-    }
-
-    //--------------------------------------------------------------------------------//
-    // COROUTINES
-
-    private IEnumerator ChangeMusicCoroutine()
-    {
-        yield return DropVolume();
-
-        // Change and play
-        IsSongPlaying = false;
-        AudioSourceBGM.volume = 0;
-        AudioSourceBGM.clip = nextMusic;
-        AudioSourceBGM.loop = loopMusic;
-        AudioSourceBGM.Play();
-        IsSongPlaying = true;
-
-        // Information to pause controller
-        if (!pauseController)
-        {
-            pauseController = FindObjectOfType<Pause>();
+            int numberOfInstances = FindObjectsOfType(GetType()).Length;
+            if (numberOfInstances > 1)
+            {
+                DestroyImmediate(gameObject);
+            }
+            else
+            {
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
         }
 
-        if (pauseController)
+        /// <summary>
+        /// Play SFX at volume
+        /// </summary>
+        /// <param name="clip"> Clip to be played </param>
+        /// <param name="volume"> Volume amount </param>
+        public void PlaySFX(AudioClip clip, float volume)
         {
-            pauseController.SetActualSongName(FormatMusicName(nextMusic.name));
+            float temporaryVolume = (volume > MaxSFXVolume ? MaxSFXVolume : volume);
+            AudioSourceSFX.volume = temporaryVolume;
+            AudioSourceSFX.PlayOneShot(clip);
         }
 
-        // Drops up volume
-        yield return GainVolume();
-
-        if (!loopMusic && changeOnMusicEnd)
+        /// <summary>
+        /// Play ME at volume with loop
+        /// </summary>
+        /// <param name="clip"> Clip to be played </param>
+        /// <param name="volume"> Volume amount </param>
+        /// <param name="toLoop"> Is to loop ? </param>
+        public void PlayME(AudioClip clip, float volume, bool toLoop)
         {
-            // Cancel
-            if (!pauseController) yield return null;
-
-            yield return new WaitForSecondsRealtime(AudioSourceBGM.clip.length);
-            pauseController.SetPreviousSongName(FormatMusicName(nextMusic.name));
-            int index = Random.Range(0, allNotLoopedSongs.Length);
-            ChangeMusic(allNotLoopedSongs[index], false, "", false, true);
-
-            // Information to pause controller
-            pauseController.SetActualSongName(FormatMusicName(allNotLoopedSongs[index].name));
+            float temporaryVolume = (volume > MaxMEVolume ? MaxMEVolume : volume);
+            AudioSourceME.volume = temporaryVolume;
+            AudioSourceME.clip = clip;
+            AudioSourceME.loop = toLoop;
+            AudioSourceME.Play();
         }
-    }
 
-    private IEnumerator StopMusicCoroutine()
-    {
-        yield return DropVolume();
-
-        // Change and play
-        AudioSourceBGM.volume = 0;
-        AudioSourceBGM.Stop();
-    }
-
-    private IEnumerator DropVolume()
-    {
-        for (float volume = maxBGMVolume; volume >= 0; volume -= 0.1f)
+        /// <summary>
+        /// Stops the current ME
+        /// </summary>
+        public void StopME()
         {
-            AudioSourceBGM.volume = volume;
-            yield return new WaitForSecondsRealtime(0.1f);
+            AudioSourceME.Stop();
+            audioSourceME.loop = false;
         }
-    }
 
-    private IEnumerator GainVolume()
-    {
-        for (float volume = 0; volume <= maxBGMVolume; volume += 0.1f)
+        /// <summary>
+        /// Get the duration of a track
+        /// </summary>
+        /// <param name="clip"></param>
+        /// <returns> Duration of the track </returns>
+        public float GetClipLength(AudioClip clip) => (clip ? clip.length : 0f);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="nextMusic"></param>
+        /// <param name="changeScene"></param>
+        /// <param name="nextSceneName"></param>
+        /// <param name="loopMusic"></param>
+        /// <param name="changeOnMusicEnd"></param>
+        public void ChangeMusic(AudioClip nextMusic, bool changeScene, string nextSceneName, bool loopMusic, bool changeOnMusicEnd)
         {
-            AudioSourceBGM.volume = volume;
-            yield return new WaitForSecondsRealtime(0.1f);
+            this.nextTrack = nextMusic;
+            this.changeScene = changeScene;
+            this.nextSceneName = nextSceneName;
+            this.isToLoopTrack = loopMusic;
+            this.changeOnTrackEnd = changeOnMusicEnd;
+
+            StartCoroutine(ChangeMusicCoroutine());
         }
-    }
 
-    public void GetTracks()
-    {
+        /// <summary>
+        /// Do all process to change current track
+        /// </summary>
+        private IEnumerator ChangeMusicCoroutine()
+        {
+            yield return DropVolume();
 
-        Tracks = trackBL.ListAll();
+            // Change and play
+            IsSongPlaying = false;
+            AudioSourceBGM.volume = 0;
+            AudioSourceBGM.clip = nextTrack;
+            AudioSourceBGM.loop = isToLoopTrack;
+            AudioSourceBGM.Play();
+            IsSongPlaying = true;
+
+            if (Pause.Instance)
+            {
+                //pauseController.SetActualSongName(FormatMusicName(nextMusic.name));
+            }
+
+            // Drops up volume
+            yield return GainVolume();
+
+            if (!isToLoopTrack && changeOnTrackEnd)
+            {
+                // Cancel
+                if (!Pause.Instance) yield return null;
+
+                yield return new WaitForSecondsRealtime(AudioSourceBGM.clip.length);
+                //pauseController.SetPreviousSongName(FormatMusicName(nextMusic.name));
+                int index = Random.Range(0, allNotLoopedSongs.Length);
+                ChangeMusic(allNotLoopedSongs[index], false, "", false, true);
+
+                // Information to pause controller
+                //pauseController.SetActualSongName(FormatMusicName(allNotLoopedSongs[index].name));
+            }
+        }
+
+        /// <summary>
+        /// Fade in volume to zero
+        /// </summary>
+        private IEnumerator DropVolume()
+        {
+            for (float volume = MaxBGMVolume; volume >= 0; volume -= 0.1f)
+            {
+                AudioSourceBGM.volume = volume;
+                yield return new WaitForSecondsRealtime(0.1f);
+            }
+        }
+
+        /// <summary>
+        /// Fade out volume to MaxBGMVolume
+        /// </summary>
+        private IEnumerator GainVolume()
+        {
+            for (float volume = 0; volume <= MaxBGMVolume; volume += 0.1f)
+            {
+                AudioSourceBGM.volume = volume;
+                yield return new WaitForSecondsRealtime(0.1f);
+            }
+        }
+
+        /// <summary>
+        /// Pause or unpause current track
+        /// </summary>
+        /// <param name="isToPause"> Is to pause current track ? </param>
+        public void PauseMusic(bool isToPause)
+        {
+            if (isToPause)
+            {
+                AudioSourceBGM.Pause();
+            }
+            else
+            {
+                AudioSourceBGM.UnPause();
+            }
+        }
+
+        /// <summary>
+        /// Toggle track's loop property
+        /// </summary>
+        /// <param name="isToRepeat"> Is to repeat current track ? </param>
+        public void ToggleRepeatTrack(bool isToRepeat) => AudioSourceBGM.loop = isToRepeat;
+
+        /// <summary>
+        /// Stop current track
+        /// </summary>
+        public void StopMusic()
+        {
+            StopAllCoroutines();
+            StartCoroutine(StopMusicCoroutine());
+            IsSongPlaying = false;
+        }
+
+        /// <summary>
+        /// Stop current track
+        /// </summary>
+        private IEnumerator StopMusicCoroutine()
+        {
+            yield return DropVolume();
+
+            AudioSourceBGM.volume = 0;
+            AudioSourceBGM.Stop();
+        }
+
+        /// <summary>
+        /// List all tracks
+        /// </summary>
+        public void GetTracks() => Tracks = trackBL.ListAll();
     }
 }

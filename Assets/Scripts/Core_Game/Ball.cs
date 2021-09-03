@@ -1,4 +1,5 @@
-﻿using Luminosity.IO;
+﻿using Controllers.Core;
+using Luminosity.IO;
 using MVC.Global;
 using UnityEngine;
 using Utilities;
@@ -218,7 +219,7 @@ public class Ball : MonoBehaviour
                             velocity += hitDirection;
                             rigidBody2D.velocity = velocity.normalized * moveSpeed * Time.deltaTime;
                             AudioClip clip = (isBallBig ? audioController.HittingFace : audioController.BlipSound);
-                            audioController.PlaySFX(clip, audioController.GetMaxSFXVolume());
+                            audioController.PlaySFX(clip, audioController.MaxSFXVolume);
                         }
 
                         if (other.GetContact(0).normal == Vector2.up)
@@ -237,7 +238,7 @@ public class Ball : MonoBehaviour
                     {
                         ClampVelocity();
                         AudioClip clip = (isBallBig ? audioController.HittingFace : audioController.BlipSound);
-                        audioController.PlaySFX(clip, audioController.GetMaxSFXVolume());
+                        audioController.PlaySFX(clip, audioController.MaxSFXVolume);
                         break;
                     }
 

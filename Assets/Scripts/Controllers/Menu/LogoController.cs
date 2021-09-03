@@ -1,4 +1,5 @@
-﻿using MVC.Global;
+﻿using Controllers.Core;
+using MVC.Global;
 using System.Collections;
 using UnityEngine;
 using Utilities;
@@ -49,7 +50,7 @@ namespace Controllers.Menu
 
             int index = Random.Range(0, AudioController.Instance.AllLogoVoices.Length);
             yield return new WaitForSecondsRealtime(TIME_TO_CALL_LOGO_VOICE);
-            AudioController.Instance.PlaySFX(AudioController.Instance.AllLogoVoices[index], AudioController.Instance.GetMaxSFXVolume());
+            AudioController.Instance.PlaySFX(AudioController.Instance.AllLogoVoices[index], AudioController.Instance.MaxSFXVolume);
             AudioController.Instance.GetTracks();
 
             yield return new WaitForSecondsRealtime(TIME_TO_WAIT);

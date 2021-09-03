@@ -1,4 +1,5 @@
-﻿using Luminosity.IO;
+﻿using Controllers.Core;
+using Luminosity.IO;
 using MVC.Global;
 using System.Collections;
 using System.Collections.Generic;
@@ -56,6 +57,13 @@ public class Pause : MonoBehaviour
     public void SetActualSongName(string actualSongName)
     {
         this.actualSongName = actualSongName;
+    }
+
+    public static Pause Instance { get; private set; }
+
+    private void Awake()
+    {
+        Instance = this;
     }
 
     private void Start()
@@ -134,7 +142,7 @@ public class Pause : MonoBehaviour
         // Config
         if (pauseState)
         {
-            audioController.PlaySFX(audioController.UiCancel, audioController.GetMaxSFXVolume());
+            audioController.PlaySFX(audioController.UiCancel, audioController.MaxSFXVolume);
             gameSession.SetActualGameState(GameState.PAUSE);
             allDefaultButtons[0].Select();
         }

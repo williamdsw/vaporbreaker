@@ -1,4 +1,5 @@
-﻿using Luminosity.IO;
+﻿using Controllers.Core;
+using Luminosity.IO;
 using MVC.Global;
 using System;
 using System.Collections;
@@ -129,7 +130,7 @@ public class SelectLevelMenu : MonoBehaviour
 
             if (isLevelUnlockedList[currentLevelIndex])
             {
-                audioController.PlaySFX(audioController.UiSubmit, audioController.GetMaxSFXVolume());
+                audioController.PlaySFX(audioController.UiSubmit, audioController.MaxSFXVolume);
                 levelScreenButton.interactable = false;
                 questionText.SetActive(true);
                 noButton.Select();
@@ -141,7 +142,7 @@ public class SelectLevelMenu : MonoBehaviour
         {
             if (actualGameState != GameState.GAMEPLAY) return;
 
-            audioController.PlaySFX(audioController.UiCancel, audioController.GetMaxSFXVolume());
+            audioController.PlaySFX(audioController.UiCancel, audioController.MaxSFXVolume);
             questionText.SetActive(false);
             levelScreenButton.interactable = true;
             levelScreenButton.Select();
@@ -156,7 +157,7 @@ public class SelectLevelMenu : MonoBehaviour
             questionText.SetActive(false);
 
             // Params
-            audioController.PlaySFX(audioController.UiSubmit, audioController.GetMaxSFXVolume());
+            audioController.PlaySFX(audioController.UiSubmit, audioController.MaxSFXVolume);
             audioController.StopMusic();
 
             // Game status params
@@ -201,7 +202,7 @@ public class SelectLevelMenu : MonoBehaviour
         if (InputManager.GetButtonDown(Configuration.InputsNames.UiRight))
         {
             knobEffect.TurnDirection("Turn_Right");
-            audioController.PlaySFX(audioController.TvSwitch, audioController.GetMaxSFXVolume());
+            audioController.PlaySFX(audioController.TvSwitch, audioController.MaxSFXVolume);
             currentLevelIndex++;
             currentLevelIndex = (currentLevelIndex >= levelsNamesList.Count ? 0 : currentLevelIndex);
             UpdateUI();
@@ -209,7 +210,7 @@ public class SelectLevelMenu : MonoBehaviour
         else if (InputManager.GetButtonDown(Configuration.InputsNames.UiLeft))
         {
             knobEffect.TurnDirection("Turn_Left");
-            audioController.PlaySFX(audioController.TvSwitch, audioController.GetMaxSFXVolume());
+            audioController.PlaySFX(audioController.TvSwitch, audioController.MaxSFXVolume);
             currentLevelIndex--;
             currentLevelIndex = (currentLevelIndex < 0 ? levelsNamesList.Count - 1 : currentLevelIndex);
             UpdateUI();
@@ -255,7 +256,7 @@ public class SelectLevelMenu : MonoBehaviour
             tvTimeText.text = string.Empty;
             levelScreenImage.sprite = null;
             animationEffect.enabled = true;
-            audioController.PlayME(audioController.TvStatic, audioController.GetMaxSFXVolume() / 2, true);
+            audioController.PlayME(audioController.TvStatic, audioController.MaxSFXVolume / 2, true);
         }
     }
 
@@ -269,7 +270,7 @@ public class SelectLevelMenu : MonoBehaviour
             {
                 audioController.StopMusic();
                 audioController.StopME();
-                audioController.PlaySFX(audioController.UiCancel, audioController.GetMaxSFXVolume());
+                audioController.PlaySFX(audioController.UiCancel, audioController.MaxSFXVolume);
                 gameStatusController.SetIsLevelCompleted(false);
                 StartCoroutine(CallNextScene(SceneManagerController.MainMenuSceneName));
             }
@@ -280,7 +281,7 @@ public class SelectLevelMenu : MonoBehaviour
         {
             if (InputManager.GetButtonDown(Configuration.InputsNames.UiCancel))
             {
-                audioController.PlaySFX(audioController.UiCancel, audioController.GetMaxSFXVolume());
+                audioController.PlaySFX(audioController.UiCancel, audioController.MaxSFXVolume);
                 questionText.SetActive(false);
                 levelScreenButton.interactable = true;
                 levelScreenButton.Select();

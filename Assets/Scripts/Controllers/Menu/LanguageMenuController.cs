@@ -1,4 +1,5 @@
-﻿using Luminosity.IO;
+﻿using Controllers.Core;
+using Luminosity.IO;
 using MVC.BL;
 using MVC.Enums;
 using MVC.Global;
@@ -114,7 +115,7 @@ namespace Controllers.Menu
         private void SaveAndBackToMainMenu()
         {
             PlayerPrefsController.SetLanguage(currentLanguage);
-            AudioController.Instance.PlaySFX(AudioController.Instance.UiCancel, AudioController.Instance.GetMaxSFXVolume());
+            AudioController.Instance.PlaySFX(AudioController.Instance.UiCancel, AudioController.Instance.MaxSFXVolume);
             TogglePanel(false);
             MainMenuController.Instance.TogglePanel(true);
         }
@@ -169,7 +170,7 @@ namespace Controllers.Menu
             try
             {
                 currentLanguage = languages[index];
-                AudioController.Instance.PlaySFX(AudioController.Instance.ClickSound, AudioController.Instance.GetMaxSFXVolume());
+                AudioController.Instance.PlaySFX(AudioController.Instance.ClickSound, AudioController.Instance.MaxSFXVolume);
                 LocalizationController.Instance.LoadSavedLocalization(currentLanguage);
                 Translate();
                 InputControllerUI.Instance.Translate();

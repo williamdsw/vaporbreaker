@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Controllers.Core;
+using UnityEngine;
 using Utilities;
 
 public class PowerUp : MonoBehaviour
@@ -118,7 +119,7 @@ public class PowerUp : MonoBehaviour
     private void DealCollisionWithPaddle()
     {
         Destroy(this.gameObject);
-        audioController.PlaySFX(audioController.PowerUpSound, audioController.GetMaxSFXVolume());
+        audioController.PlaySFX(audioController.PowerUpSound, audioController.MaxSFXVolume);
         gameSession.SetHasPowerUpCollidedWithPaddle(true);
         gameSession.ResetHideTime();
         string name = this.gameObject.name;

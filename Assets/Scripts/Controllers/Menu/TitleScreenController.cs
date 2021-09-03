@@ -1,4 +1,5 @@
-﻿using Luminosity.IO;
+﻿using Controllers.Core;
+using Luminosity.IO;
 using MVC.Enums;
 using System;
 using System.Collections;
@@ -92,7 +93,7 @@ namespace Controllers.Menu
         {
             int index = UnityEngine.Random.Range(0, AudioController.Instance.AllTitleVoices.Length);
             float duration = AudioController.Instance.GetClipLength(AudioController.Instance.AllTitleVoices[index]);
-            AudioController.Instance.PlayME(AudioController.Instance.AllTitleVoices[index], AudioController.Instance.GetMaxMEVolume(), false);
+            AudioController.Instance.PlayME(AudioController.Instance.AllTitleVoices[index], AudioController.Instance.MaxMEVolume, false);
             yield return new WaitForSecondsRealtime(duration);
             canPressKey = true;
             pressAnyKeyText.gameObject.SetActive(true);
@@ -103,7 +104,7 @@ namespace Controllers.Menu
         /// </summary>
         private IEnumerator CallNextScene()
         {
-            AudioController.Instance.PlaySFX(AudioController.Instance.UiSubmit, AudioController.Instance.GetMaxSFXVolume());
+            AudioController.Instance.PlaySFX(AudioController.Instance.UiSubmit, AudioController.Instance.MaxSFXVolume);
             flashTextEffect.SetTimeToFlick(0.1f);
             yield return new WaitForSecondsRealtime(TIME_TO_WAIT);
 

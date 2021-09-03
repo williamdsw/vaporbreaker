@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Controllers.Core;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -190,7 +191,7 @@ public class LevelCompleteController : MonoBehaviour
 
         // Plays success sound
         yield return new WaitForSecondsRealtime(defaultSecondsValue);
-        audioController.PlaySFX(audioController.SuccessEffect, audioController.GetMaxSFXVolume());
+        audioController.PlaySFX(audioController.SuccessEffect, audioController.MaxSFXVolume);
 
         // Show panel
         yield return new WaitForSecondsRealtime(defaultSecondsValue);
@@ -200,7 +201,7 @@ public class LevelCompleteController : MonoBehaviour
         yield return new WaitForSecondsRealtime(defaultSecondsValue);
         for (int index = 0; index < labelsText.Count; index++)
         {
-            audioController.PlaySFX(audioController.HittingFace, audioController.GetMaxSFXVolume());
+            audioController.PlaySFX(audioController.HittingFace, audioController.MaxSFXVolume);
             GameObject labelParent = labelsText[index].gameObject.transform.parent.gameObject;
             GameObject valueParent = valuesText[index].gameObject.transform.parent.gameObject;
             labelParent.SetActive(true);
@@ -211,7 +212,7 @@ public class LevelCompleteController : MonoBehaviour
         // Case have a new score
         if (totalScore > gameStatusController.GetOldScore())
         {
-            audioController.PlaySFX(audioController.NewScoreEffect, audioController.GetMaxSFXVolume());
+            audioController.PlaySFX(audioController.NewScoreEffect, audioController.MaxSFXVolume);
             newScoreText.enabled = true;
             newScoreText.GetComponent<FlashTextEffect>().enabled = true;
         }
