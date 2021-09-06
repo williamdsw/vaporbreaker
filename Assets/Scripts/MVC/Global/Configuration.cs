@@ -1,3 +1,4 @@
+using System.IO;
 using UnityEngine;
 
 namespace MVC.Global
@@ -24,9 +25,9 @@ namespace MVC.Global
             public class Scoreboard
             {
                 public static string DeleteAll => " DELETE FROM scoreboard; ";
-                public static string GetByMaxScoreByLevel => " SELECT id, level_id, MAX(score) as score, MIN(time_score) as time_score, moment FROM scoreboard WHERE level_id = {0}; ";
-                public static string Insert => " INSERT INTO scoreboard (level_id, score, time_score, moment) VALUES ({0}, {1}, {2}, {3}); ";
-                public static string ListByLevel => " SELECT id, level_id, score, time_score, moment FROM scoreboard WHERE level_id = {0} ORDER BY score DESC; ";
+                public static string GetByMaxScoreByLevel => " SELECT id, level_id, MAX(score) as score, MIN(time_score) as time_score, MAX(best_combo) as best_combo, moment FROM scoreboard WHERE level_id = {0}; ";
+                public static string Insert => " INSERT INTO scoreboard (level_id, score, time_score, best_combo, moment) VALUES ({0}, {1}, {2}, {3}, {4}); ";
+                public static string ListByLevel => " SELECT id, level_id, score, time_score, best_combo, moment FROM scoreboard WHERE level_id = {0} ORDER BY score DESC; ";
             }
 
             public class Track
@@ -40,6 +41,7 @@ namespace MVC.Global
             public static string DatabaseName => "database.s3db";
             public static string DatabasePath => string.Format("{0}/{1}", Application.persistentDataPath, DatabaseName);
             public static string DatabaseStreamingAssetsPath => string.Format("{0}/StreamingAssets/{1}", Application.dataPath, DatabaseName);
+            public static string ProgressPath => Path.Combine(Application.persistentDataPath, "SaveProgress.dat");
         }
 
         public class InputsNames

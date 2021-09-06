@@ -4,23 +4,18 @@ using UnityEngine.SceneManagement;
 public class SceneManagerController
 {
     private const string LOADING_SCENE_NAME = "Loading";
-    private const string SELECT_LEVELS_SCENE_NAME = "Select_Levels";
 
     public static string CreditsSceneName => "Credits";
+    public static string LevelSceneName => "Level";
     public static string LoadingSceneName => "Loading";
     public static string MainMenuSceneName => "MainMenu";
-    public static string SelectLevelsSceneName => "Select_Levels";
+    public static string SelectLevelsSceneName => "SelectLevels";
     public static string SoundtracksSceneName => "Soundtracks";
     public static string TitleSceneName => "Title";
-    
+
     public static string GetLoadingSceneName()
     {
         return LOADING_SCENE_NAME;
-    }
-
-    public static string GetSelectLevelsSceneName()
-    {
-        return SELECT_LEVELS_SCENE_NAME;
     }
 
     /// <summary>

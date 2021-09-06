@@ -166,7 +166,7 @@ namespace Controllers.Menu
             {
                 AudioController.Instance.PlaySFX(AudioController.Instance.UiSubmit, AudioController.Instance.MaxSFXVolume);
                 continueButton.interactable = resetProgressButton.interactable = true;
-                ProgressManager.DeleteProgress();
+                // ProgressManager.DeleteProgress(); TODO
                 MainMenuController.Instance.HasSavedGame = false;
                 questionObject.SetActive(false);
                 MainMenuController.Instance.TogglePanel(true);

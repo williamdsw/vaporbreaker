@@ -232,6 +232,6 @@ public class LevelCompleteController : MonoBehaviour
         float fadeOutLength = fadeEffect.GetFadeOutLength();
         fadeEffect.FadeToLevel();
         yield return new WaitForSecondsRealtime(fadeOutLength);
-        gameSession.ResetGame(SceneManagerController.GetSelectLevelsSceneName());
+        gameSession.ResetGame(SceneManagerController.SelectLevelsSceneName);
     }
 }

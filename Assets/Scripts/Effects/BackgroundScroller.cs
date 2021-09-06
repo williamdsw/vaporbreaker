@@ -1,57 +1,88 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
-public class BackgroundScroller : MonoBehaviour
+namespace Effects
 {
-    // Config
-    [SerializeField] private bool randomMaterial;
-    [SerializeField] private bool randomMovementSpeeds;
-    [SerializeField] private float xMovementSpeed = 0.1f;
-    [SerializeField] private float yMovementSpeed = 0.1f;
-    [SerializeField] private Material[] listOfMaterials;
-
-    // Const
-    private const float TEXTURE_OFFSET_VALUE = 0.2f;
-
-    // State
-    private bool canOffsetTexture = false;
-
-    // Cached
-    private Material material;
-    private Renderer myRenderer;
-    private Vector2 offset;
-
-    private void Awake () 
+    public class BackgroundScroller : MonoBehaviour
     {
-        myRenderer = this.GetComponent<Renderer>();
-    }
+        // || Inspector References
 
-    private void Start ()
-    {
-        // Chooses random material
-        if (randomMaterial)
+        [Header("Required Configuration")]
+        [SerializeField] private bool chooseRandomMaterial;
+        [SerializeField] private Material[] materials;
+        [SerializeField] private bool chooseRandomMovementSpeed;
+        [SerializeField] private float movementSpeedInX = 0.1f;
+        [SerializeField] private float movementSpeedInY = 0.1f;
+
+        // || CONFIG
+
+        private const float TEXTURE_OFFSET_VALUE = 0.2f;
+
+        // || State
+        private bool canOffsetTexture = false;
+
+        // || Cached
+
+        private Material material;
+        private Renderer myRenderer;
+        private Vector2 offset;
+
+        private void Awake()
         {
-            if (listOfMaterials.Length == 0) return;
-            int index = Random.Range (0, listOfMaterials.Length);
-            myRenderer.material = listOfMaterials[index];
+            GetRequiredComponents();
+            Config();
         }
 
-        // Chooses movement speed
-        if (randomMovementSpeeds)
+        private void FixedUpdate()
         {
-            xMovementSpeed = Random.Range (- TEXTURE_OFFSET_VALUE, TEXTURE_OFFSET_VALUE);
-            yMovementSpeed = Random.Range (- TEXTURE_OFFSET_VALUE, TEXTURE_OFFSET_VALUE);
+            if (canOffsetTexture)
+            {
+                material.mainTextureOffset += (offset * Time.fixedDeltaTime);
+            }
         }
 
-        material = myRenderer.material;
-        offset = new Vector2 (xMovementSpeed, yMovementSpeed);
-        canOffsetTexture = (material.name.Contains ("Grid"));
-    }
-
-    private void FixedUpdate ()
-    {
-        if (canOffsetTexture)
+        /// <summary>
+        /// Get required components
+        /// </summary>
+        private void GetRequiredComponents()
         {
-            material.mainTextureOffset += (offset * Time.fixedDeltaTime);    
+            try
+            {
+                myRenderer = GetComponent<Renderer>();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Config settings
+        /// </summary>
+        private void Config()
+        {
+            try
+            {
+                if (chooseRandomMaterial && materials != null && materials.Length != 0)
+                {
+                    int index = UnityEngine.Random.Range(0, materials.Length);
+                    myRenderer.material = materials[index];
+                }
+
+                if (chooseRandomMovementSpeed)
+                {
+                    movementSpeedInX = UnityEngine.Random.Range(-TEXTURE_OFFSET_VALUE, TEXTURE_OFFSET_VALUE);
+                    movementSpeedInY = UnityEngine.Random.Range(-TEXTURE_OFFSET_VALUE, TEXTURE_OFFSET_VALUE);
+                }
+
+                material = myRenderer.material;
+                offset = new Vector2(movementSpeedInX, movementSpeedInY);
+                canOffsetTexture = (!material.name.Contains("Flat"));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

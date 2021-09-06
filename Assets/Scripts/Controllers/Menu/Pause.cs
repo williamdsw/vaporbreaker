@@ -124,7 +124,7 @@ public class Pause : MonoBehaviour
         allMenuButtons[0].onClick.AddListener(() => PauseGame());
 
         // Select Levels Button
-        allMenuButtons[1].onClick.AddListener(() => StartCoroutine(ResetGameCoroutine(SceneManagerController.GetSelectLevelsSceneName())));
+        allMenuButtons[1].onClick.AddListener(() => StartCoroutine(ResetGameCoroutine(SceneManagerController.SelectLevelsSceneName)));
 
         // Main Menu Button
         allMenuButtons[2].onClick.AddListener(() => StartCoroutine(ResetGameCoroutine(SceneManagerController.MainMenuSceneName)));

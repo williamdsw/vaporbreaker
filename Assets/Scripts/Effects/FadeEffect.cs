@@ -128,7 +128,7 @@ public class FadeEffect : MonoBehaviour
     {
         if (!gameSession || !cursorController || !fullScreenBackground) return;
         animator.Rebind();
-        gameSession.ResetGame(SceneManagerController.GetSelectLevelsSceneName());
+        gameSession.ResetGame(SceneManagerController.SelectLevelsSceneName);
     }
 
     public void DefineGameState(int gameStateInt)

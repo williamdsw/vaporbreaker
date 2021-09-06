@@ -1,4 +1,5 @@
-﻿using MVC.Enums;
+﻿using Controllers.Core;
+using MVC.Enums;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -59,15 +60,15 @@ namespace Controllers.Menu
                 fullScreenBackground.DestroyInstance();
             }
 
-            if (!GameStatusController.Instance.CameFromLevel)
-            {
-                loadingPanel.SetActive(false);
-                StartCoroutine(CallNextScene());
-            }
-            else
+            if (GameStatusController.Instance.NextSceneName.Equals(SceneManagerController.LevelSceneName))
             {
                 Translate();
                 BindEventListeners();
+            }
+            else
+            {
+                loadingPanel.SetActive(false);
+                StartCoroutine(CallNextScene());
             }
         }
 

@@ -8132,7 +8132,72 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6635976026891775980, guid: 860a803223840254fb864029077b0b28,
         type: 3}
+      propertyPath: movementSpeedInX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6635976026891775980, guid: 860a803223840254fb864029077b0b28,
+        type: 3}
+      propertyPath: movementSpeedInY
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6635976026891775980, guid: 860a803223840254fb864029077b0b28,
+        type: 3}
+      propertyPath: chooseRandomMaterial
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6635976026891775980, guid: 860a803223840254fb864029077b0b28,
+        type: 3}
+      propertyPath: materials.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6635976026891775980, guid: 860a803223840254fb864029077b0b28,
+        type: 3}
       propertyPath: randomMovementSpeeds
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6635976026891775980, guid: 860a803223840254fb864029077b0b28,
+        type: 3}
+      propertyPath: materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: be9a8d870da99284da0f2fb591946397, type: 2}
+    - target: {fileID: 6635976026891775980, guid: 860a803223840254fb864029077b0b28,
+        type: 3}
+      propertyPath: materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2d8480ff90786944a91f7f48bcd02595, type: 2}
+    - target: {fileID: 6635976026891775980, guid: 860a803223840254fb864029077b0b28,
+        type: 3}
+      propertyPath: materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: e8f389b00b954914f9de2058d390b670, type: 2}
+    - target: {fileID: 6635976026891775980, guid: 860a803223840254fb864029077b0b28,
+        type: 3}
+      propertyPath: materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: 17c50c05224168b4c9b6236a16a42b37, type: 2}
+    - target: {fileID: 6635976026891775980, guid: 860a803223840254fb864029077b0b28,
+        type: 3}
+      propertyPath: materials.Array.data[4]
+      value: 
+      objectReference: {fileID: 2100000, guid: 753e939e813e54c4aa2a583775e7fd75, type: 2}
+    - target: {fileID: 6635976026891775980, guid: 860a803223840254fb864029077b0b28,
+        type: 3}
+      propertyPath: materials.Array.data[5]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7378cd15690b95c4ebec98776e8edfef, type: 2}
+    - target: {fileID: 6635976026891775980, guid: 860a803223840254fb864029077b0b28,
+        type: 3}
+      propertyPath: materials.Array.data[6]
+      value: 
+      objectReference: {fileID: 2100000, guid: 18827baeffb06fc43b9857da495925ec, type: 2}
+    - target: {fileID: 6635976026891775980, guid: 860a803223840254fb864029077b0b28,
+        type: 3}
+      propertyPath: materials.Array.data[7]
+      value: 
+      objectReference: {fileID: 2100000, guid: 573d24eddf74c134a8aaeca9bc4f8c18, type: 2}
+    - target: {fileID: 6635976026891775980, guid: 860a803223840254fb864029077b0b28,
+        type: 3}
+      propertyPath: chooseRandomMovementSpeed
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6635976026891775980, guid: 860a803223840254fb864029077b0b28,

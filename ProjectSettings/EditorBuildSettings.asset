@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Menus/MainMenu.unity
     guid: 5dda09cc5254bbe49b6f70ac6cc44253
   - enabled: 1
-    path: Assets/Scenes/Menus/Select_Levels.unity
+    path: Assets/Scenes/Menus/SelectLevels.unity
     guid: d0d7b860b1b39fd45962e1550329355c
   - enabled: 1
     path: Assets/Scenes/Menus/Soundtracks.unity
