@@ -928,7 +928,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -40, y: -40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &195914744
 MonoBehaviour:
@@ -950,7 +950,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5758792016804471211, guid: c678281fd1825cc4392fe177911db5f9,
+  m_Sprite: {fileID: -6830161032362373619, guid: c678281fd1825cc4392fe177911db5f9,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -979,8 +979,9 @@ GameObject:
   m_Component:
   - component: {fileID: 230341439}
   - component: {fileID: 230341440}
+  - component: {fileID: 230341441}
   m_Layer: 5
-  m_Name: PowerUp (13)
+  m_Name: ShrinkPaddle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1014,6 +1015,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 230341438}
   m_CullTransparentMesh: 1
+--- !u!114 &230341441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 230341438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1817843319}
+          m_TargetAssemblyTypeName: Controllers.Menu.LoadingController, Assembly-CSharp
+          m_MethodName: SetPowerUpName
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: powerups_shrinkpaddle
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &237896083
 GameObject:
   m_ObjectHideFlags: 0
@@ -1222,8 +1252,9 @@ GameObject:
   m_Component:
   - component: {fileID: 282223876}
   - component: {fileID: 282223877}
+  - component: {fileID: 282223878}
   m_Layer: 5
-  m_Name: PowerUp (9)
+  m_Name: MoveBlocksUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1257,6 +1288,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 282223875}
   m_CullTransparentMesh: 1
+--- !u!114 &282223878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282223875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1817843319}
+          m_TargetAssemblyTypeName: Controllers.Menu.LoadingController, Assembly-CSharp
+          m_MethodName: SetPowerUpName
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: powerups_pullblocksup
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &288922415
 GameObject:
   m_ObjectHideFlags: 0
@@ -1292,7 +1352,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -40, y: -40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &288922417
 MonoBehaviour:
@@ -1314,7 +1374,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5758792016804471211, guid: c678281fd1825cc4392fe177911db5f9,
+  m_Sprite: {fileID: -2594035901300498998, guid: c678281fd1825cc4392fe177911db5f9,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -1959,8 +2019,9 @@ GameObject:
   m_Component:
   - component: {fileID: 348761566}
   - component: {fileID: 348761567}
+  - component: {fileID: 348761568}
   m_Layer: 5
-  m_Name: PowerUp (7)
+  m_Name: ResetBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1994,6 +2055,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 348761565}
   m_CullTransparentMesh: 1
+--- !u!114 &348761568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348761565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1817843319}
+          m_TargetAssemblyTypeName: Controllers.Menu.LoadingController, Assembly-CSharp
+          m_MethodName: SetPowerUpName
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: powerups_resetballs
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &391070243
 GameObject:
   m_ObjectHideFlags: 0
@@ -2076,7 +2166,6 @@ GameObject:
   m_Component:
   - component: {fileID: 425745713}
   - component: {fileID: 425745715}
-  - component: {fileID: 425745714}
   m_Layer: 5
   m_Name: LoadingPanel
   m_TagString: Untagged
@@ -2095,6 +2184,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 2089523132}
   - {fileID: 3388058904573951922}
   - {fileID: 1564243204}
   - {fileID: 1353161672}
@@ -2107,36 +2197,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &425745714
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 425745712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 0
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &425745715
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2231,8 +2291,9 @@ GameObject:
   m_Component:
   - component: {fileID: 486419393}
   - component: {fileID: 486419394}
+  - component: {fileID: 486419395}
   m_Layer: 5
-  m_Name: PowerUp (15)
+  m_Name: Shooter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2266,6 +2327,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 486419392}
   m_CullTransparentMesh: 1
+--- !u!114 &486419395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486419392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1817843319}
+          m_TargetAssemblyTypeName: Controllers.Menu.LoadingController, Assembly-CSharp
+          m_MethodName: SetPowerUpName
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: powerups_shooter
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &510790340
 GameObject:
   m_ObjectHideFlags: 0
@@ -2376,7 +2466,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -40, y: -40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &553606961
 MonoBehaviour:
@@ -2398,7 +2488,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5758792016804471211, guid: c678281fd1825cc4392fe177911db5f9,
+  m_Sprite: {fileID: -4496869542410834579, guid: c678281fd1825cc4392fe177911db5f9,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -2417,6 +2507,141 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 553606959}
   m_CullTransparentMesh: 1
+--- !u!1 &559989732
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 559989733}
+  - component: {fileID: 559989735}
+  - component: {fileID: 559989734}
+  m_Layer: 5
+  m_Name: PowerUpNameLabel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &559989733
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559989732}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1353161672}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 245}
+  m_SizeDelta: {x: 1920, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &559989734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559989732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 3e389f5e31f8f5d4cad0c2e7fbba0f9e, type: 2}
+  m_sharedMaterial: {fileID: 6460813143119297946, guid: 3e389f5e31f8f5d4cad0c2e7fbba0f9e,
+    type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294836145
+  m_fontColor: {r: 0.6933962, g: 1, b: 0.99108547, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 60
+  m_fontSizeBase: 60
+  m_fontWeight: 400
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 18
+  m_fontSizeMax: 64
+  m_fontStyle: 33
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 10
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 0
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 1
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &559989735
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559989732}
+  m_CullTransparentMesh: 0
 --- !u!1001 &590922704
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2427,7 +2652,7 @@ PrefabInstance:
     - target: {fileID: 2657296023071832792, guid: d0859ef692afc0b4789c5d4dc39bc898,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2657296023071832792, guid: d0859ef692afc0b4789c5d4dc39bc898,
         type: 3}
@@ -2527,7 +2752,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -40, y: -40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &593390861
 MonoBehaviour:
@@ -2549,7 +2774,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5758792016804471211, guid: c678281fd1825cc4392fe177911db5f9,
+  m_Sprite: {fileID: -1783121506625662668, guid: c678281fd1825cc4392fe177911db5f9,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -3000,8 +3225,9 @@ GameObject:
   m_Component:
   - component: {fileID: 634886461}
   - component: {fileID: 634886462}
+  - component: {fileID: 634886463}
   m_Layer: 5
-  m_Name: PowerUp (6)
+  m_Name: FireBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3035,6 +3261,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 634886460}
   m_CullTransparentMesh: 1
+--- !u!114 &634886463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 634886460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1817843319}
+          m_TargetAssemblyTypeName: Controllers.Menu.LoadingController, Assembly-CSharp
+          m_MethodName: SetPowerUpName
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: powerups_fireball
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &650939609
 GameObject:
   m_ObjectHideFlags: 0
@@ -3222,7 +3477,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -40, y: -40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &671203639
 MonoBehaviour:
@@ -3244,7 +3499,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5758792016804471211, guid: c678281fd1825cc4392fe177911db5f9,
+  m_Sprite: {fileID: 6551218203312537173, guid: c678281fd1825cc4392fe177911db5f9,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -3290,11 +3545,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1218179215}
   - {fileID: 1817843320}
   - {fileID: 590922705}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &723274427
 GameObject:
@@ -3306,8 +3560,9 @@ GameObject:
   m_Component:
   - component: {fileID: 723274428}
   - component: {fileID: 723274429}
+  - component: {fileID: 723274430}
   m_Layer: 5
-  m_Name: PowerUp (4)
+  m_Name: SlowerBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3341,6 +3596,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 723274427}
   m_CullTransparentMesh: 1
+--- !u!114 &723274430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723274427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1817843319}
+          m_TargetAssemblyTypeName: Controllers.Menu.LoadingController, Assembly-CSharp
+          m_MethodName: SetPowerUpName
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: powerups_ballslower
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &729146963
 GameObject:
   m_ObjectHideFlags: 0
@@ -3376,7 +3660,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -40, y: -40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &729146965
 MonoBehaviour:
@@ -3398,7 +3682,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5758792016804471211, guid: c678281fd1825cc4392fe177911db5f9,
+  m_Sprite: {fileID: 7430495685032599062, guid: c678281fd1825cc4392fe177911db5f9,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -3549,8 +3833,9 @@ GameObject:
   m_Component:
   - component: {fileID: 752773154}
   - component: {fileID: 752773155}
+  - component: {fileID: 752773156}
   m_Layer: 5
-  m_Name: PowerUp (1)
+  m_Name: BiggerBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3584,6 +3869,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 752773153}
   m_CullTransparentMesh: 1
+--- !u!114 &752773156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752773153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1817843319}
+          m_TargetAssemblyTypeName: Controllers.Menu.LoadingController, Assembly-CSharp
+          m_MethodName: SetPowerUpName
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: powerups_ballbigger
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &766116814
 GameObject:
   m_ObjectHideFlags: 0
@@ -3695,7 +4009,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -40, y: -40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &816078837
 MonoBehaviour:
@@ -3717,7 +4031,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5758792016804471211, guid: c678281fd1825cc4392fe177911db5f9,
+  m_Sprite: {fileID: 5645545094182031178, guid: c678281fd1825cc4392fe177911db5f9,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -4016,8 +4330,9 @@ GameObject:
   m_Component:
   - component: {fileID: 920449826}
   - component: {fileID: 920449827}
+  - component: {fileID: 920449828}
   m_Layer: 5
-  m_Name: PowerUp (2)
+  m_Name: SmallerBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4051,6 +4366,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 920449825}
   m_CullTransparentMesh: 1
+--- !u!114 &920449828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920449825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1817843319}
+          m_TargetAssemblyTypeName: Controllers.Menu.LoadingController, Assembly-CSharp
+          m_MethodName: SetPowerUpName
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: powerups_ballsmaller
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &925875316
 GameObject:
   m_ObjectHideFlags: 0
@@ -4137,8 +4481,9 @@ GameObject:
   m_Component:
   - component: {fileID: 925922396}
   - component: {fileID: 925922397}
+  - component: {fileID: 925922398}
   m_Layer: 5
-  m_Name: PowerUp (8)
+  m_Name: MoveBlocksDown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4172,6 +4517,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 925922395}
   m_CullTransparentMesh: 1
+--- !u!114 &925922398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925922395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1817843319}
+          m_TargetAssemblyTypeName: Controllers.Menu.LoadingController, Assembly-CSharp
+          m_MethodName: SetPowerUpName
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: powerups_pullblocksdown
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &997927495
 GameObject:
   m_ObjectHideFlags: 0
@@ -4312,7 +4686,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1045843954
 GameObject:
@@ -4560,7 +4934,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -40, y: -40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1151692129
 MonoBehaviour:
@@ -4582,7 +4956,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5758792016804471211, guid: c678281fd1825cc4392fe177911db5f9,
+  m_Sprite: {fileID: -1954348251150698259, guid: c678281fd1825cc4392fe177911db5f9,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -4611,8 +4985,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1167122850}
   - component: {fileID: 1167122852}
+  - component: {fileID: 1167122851}
   m_Layer: 5
-  m_Name: PowerUp
+  m_Name: 1HitBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4638,6 +5013,35 @@ RectTransform:
   m_AnchoredPosition: {x: 128, y: -133}
   m_SizeDelta: {x: 192, y: 192}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1167122851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1167122849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1817843319}
+          m_TargetAssemblyTypeName: Controllers.Menu.LoadingController, Assembly-CSharp
+          m_MethodName: SetPowerUpName
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: powerups_onehitblock
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!222 &1167122852
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4803,12 +5207,12 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 700365430}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 135199837022091345, guid: 358b1289b543b66449452f3ca709a886,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 135199837022091345, guid: 358b1289b543b66449452f3ca709a886,
         type: 3}
@@ -4887,12 +5291,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 358b1289b543b66449452f3ca709a886, type: 3}
---- !u!4 &1218179215 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 135199837022091345, guid: 358b1289b543b66449452f3ca709a886,
-    type: 3}
-  m_PrefabInstance: {fileID: 1218179214}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1298659145
 GameObject:
   m_ObjectHideFlags: 0
@@ -5025,8 +5423,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1312468684}
   - component: {fileID: 1312468685}
+  - component: {fileID: 1312468686}
   m_Layer: 5
-  m_Name: PowerUp (14)
+  m_Name: ResetPaddle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5060,6 +5459,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1312468683}
   m_CullTransparentMesh: 1
+--- !u!114 &1312468686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1312468683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1817843319}
+          m_TargetAssemblyTypeName: Controllers.Menu.LoadingController, Assembly-CSharp
+          m_MethodName: SetPowerUpName
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: powerups_resetpaddle
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1338115171
 GameObject:
   m_ObjectHideFlags: 0
@@ -5095,7 +5523,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -40, y: -40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1338115173
 MonoBehaviour:
@@ -5117,7 +5545,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5758792016804471211, guid: c678281fd1825cc4392fe177911db5f9,
+  m_Sprite: {fileID: -4347294913349003966, guid: c678281fd1825cc4392fe177911db5f9,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -5168,8 +5596,9 @@ RectTransform:
   - {fileID: 1611478684}
   - {fileID: 1382433214}
   - {fileID: 290159073}
+  - {fileID: 559989733}
   m_Father: {fileID: 425745713}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -5824,8 +6253,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1475831676}
   - component: {fileID: 1475831677}
+  - component: {fileID: 1475831678}
   m_Layer: 5
-  m_Name: PowerUp (5)
+  m_Name: DuplicateBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5859,6 +6289,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1475831675}
   m_CullTransparentMesh: 1
+--- !u!114 &1475831678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1475831675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1817843319}
+          m_TargetAssemblyTypeName: Controllers.Menu.LoadingController, Assembly-CSharp
+          m_MethodName: SetPowerUpName
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: powerups_duplicateball
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1518690580
 GameObject:
   m_ObjectHideFlags: 0
@@ -6114,7 +6573,7 @@ RectTransform:
   m_Children:
   - {fileID: 867629700}
   m_Father: {fileID: 425745713}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -6429,7 +6888,7 @@ RectTransform:
   - {fileID: 1298659146}
   - {fileID: 751437675}
   m_Father: {fileID: 425745713}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -6619,8 +7078,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1570364565}
   - component: {fileID: 1570364566}
+  - component: {fileID: 1570364567}
   m_Layer: 5
-  m_Name: PowerUp (10)
+  m_Name: MoveBlocksLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6654,6 +7114,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1570364564}
   m_CullTransparentMesh: 1
+--- !u!114 &1570364567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570364564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1817843319}
+          m_TargetAssemblyTypeName: Controllers.Menu.LoadingController, Assembly-CSharp
+          m_MethodName: SetPowerUpName
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: powerups_pullblocksleft
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1598007525
 GameObject:
   m_ObjectHideFlags: 0
@@ -6664,8 +7153,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1598007526}
   - component: {fileID: 1598007527}
+  - component: {fileID: 1598007528}
   m_Layer: 5
-  m_Name: PowerUp (11)
+  m_Name: MoveBlocksRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6699,6 +7189,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1598007525}
   m_CullTransparentMesh: 1
+--- !u!114 &1598007528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598007525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1817843319}
+          m_TargetAssemblyTypeName: Controllers.Menu.LoadingController, Assembly-CSharp
+          m_MethodName: SetPowerUpName
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: powerups_pullblocksright
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1611478683
 GameObject:
   m_ObjectHideFlags: 0
@@ -7079,7 +7598,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -40, y: -40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1635860590
 MonoBehaviour:
@@ -7101,7 +7620,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5758792016804471211, guid: c678281fd1825cc4392fe177911db5f9,
+  m_Sprite: {fileID: 4881033863375431695, guid: c678281fd1825cc4392fe177911db5f9,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -7231,7 +7750,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -40, y: -40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1662738839
 MonoBehaviour:
@@ -7253,7 +7772,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5758792016804471211, guid: c678281fd1825cc4392fe177911db5f9,
+  m_Sprite: {fileID: -3189170033639422497, guid: c678281fd1825cc4392fe177911db5f9,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -7535,7 +8054,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -40, y: -40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1778223508
 MonoBehaviour:
@@ -7557,7 +8076,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5758792016804471211, guid: c678281fd1825cc4392fe177911db5f9,
+  m_Sprite: {fileID: 6261899506108267232, guid: c678281fd1825cc4392fe177911db5f9,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -7900,6 +8419,7 @@ MonoBehaviour:
   - {fileID: 751437676}
   - {fileID: 290159074}
   continueButton: {fileID: 1530436134}
+  powerUpNameLabel: {fileID: 559989734}
   keyboardLayoutHeader: {fileID: 3388058902575680975}
   gamepadLayoutHeader: {fileID: 1799004803}
   powerUpHeader: {fileID: 1611478685}
@@ -7930,7 +8450,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 700365430}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1829217780
 GameObject:
@@ -8116,7 +8636,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -40, y: -40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1938437713
 MonoBehaviour:
@@ -8192,7 +8712,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -40, y: -40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1938553828
 MonoBehaviour:
@@ -8214,7 +8734,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5758792016804471211, guid: c678281fd1825cc4392fe177911db5f9,
+  m_Sprite: {fileID: -7615034909056904175, guid: c678281fd1825cc4392fe177911db5f9,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -8420,7 +8940,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -40, y: -40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1963947833
 MonoBehaviour:
@@ -8442,7 +8962,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5758792016804471211, guid: c678281fd1825cc4392fe177911db5f9,
+  m_Sprite: {fileID: -4760204353828230908, guid: c678281fd1825cc4392fe177911db5f9,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -8471,8 +8991,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1965646052}
   - component: {fileID: 1965646053}
+  - component: {fileID: 1965646054}
   m_Layer: 5
-  m_Name: PowerUp (16)
+  m_Name: AllBreakablesBlocks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8506,6 +9027,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1965646051}
   m_CullTransparentMesh: 1
+--- !u!114 &1965646054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1965646051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1817843319}
+          m_TargetAssemblyTypeName: Controllers.Menu.LoadingController, Assembly-CSharp
+          m_MethodName: SetPowerUpName
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: powerups_allbreakablesblocks
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &1980911203
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8701,7 +9251,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -40, y: -40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2014888442
 MonoBehaviour:
@@ -8723,8 +9273,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5758792016804471211, guid: c678281fd1825cc4392fe177911db5f9,
-    type: 3}
+  m_Sprite: {fileID: 200398327531009200, guid: c678281fd1825cc4392fe177911db5f9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8889,6 +9438,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2057802954}
   m_CullTransparentMesh: 1
+--- !u!1 &2089523131
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2089523132}
+  - component: {fileID: 2089523134}
+  - component: {fileID: 2089523133}
+  m_Layer: 5
+  m_Name: Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2089523132
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089523131}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 425745713}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0.000061035156, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2089523133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089523131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 95ab6428506fb5644b7f534df76bb22b, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &2089523134
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089523131}
+  m_CullTransparentMesh: 1
 --- !u!1 &2118637594
 GameObject:
   m_ObjectHideFlags: 0
@@ -8899,8 +9523,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2118637595}
   - component: {fileID: 2118637596}
+  - component: {fileID: 2118637597}
   m_Layer: 5
-  m_Name: PowerUp (12)
+  m_Name: ExpandPaddle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8934,6 +9559,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2118637594}
   m_CullTransparentMesh: 1
+--- !u!114 &2118637597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118637594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1817843319}
+          m_TargetAssemblyTypeName: Controllers.Menu.LoadingController, Assembly-CSharp
+          m_MethodName: SetPowerUpName
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: powerups_expandpaddle
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &2123020334
 GameObject:
   m_ObjectHideFlags: 0
@@ -9045,7 +9699,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -40, y: -40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2137365087
 MonoBehaviour:
@@ -9067,7 +9721,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5758792016804471211, guid: c678281fd1825cc4392fe177911db5f9,
+  m_Sprite: {fileID: 5302034821386069903, guid: c678281fd1825cc4392fe177911db5f9,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -9096,8 +9750,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2146596619}
   - component: {fileID: 2146596620}
+  - component: {fileID: 2146596621}
   m_Layer: 5
-  m_Name: PowerUp (3)
+  m_Name: FasterBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9131,6 +9786,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2146596618}
   m_CullTransparentMesh: 1
+--- !u!114 &2146596621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2146596618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1817843319}
+          m_TargetAssemblyTypeName: Controllers.Menu.LoadingController, Assembly-CSharp
+          m_MethodName: SetPowerUpName
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: powerups_ballfaster
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &3388058902575680973
 GameObject:
   m_ObjectHideFlags: 0
@@ -9299,7 +9983,7 @@ RectTransform:
   - {fileID: 1359872674}
   - {fileID: 279633528}
   m_Father: {fileID: 425745713}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}

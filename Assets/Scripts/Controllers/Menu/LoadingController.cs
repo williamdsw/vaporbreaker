@@ -18,6 +18,7 @@ namespace Controllers.Menu
         [SerializeField] private GameObject[] instructionsPanels;
         [SerializeField] private Button[] gotoButtons;
         [SerializeField] private Button continueButton;
+        [SerializeField] private TextMeshProUGUI powerUpNameLabel;
 
         [Header("Labels to Translate Global")]
         [SerializeField] private TextMeshProUGUI keyboardLayoutHeader;
@@ -67,6 +68,7 @@ namespace Controllers.Menu
             }
             else
             {
+                powerUpNameLabel.text = string.Empty;
                 loadingPanel.SetActive(false);
                 StartCoroutine(CallNextScene());
             }
@@ -126,6 +128,7 @@ namespace Controllers.Menu
                 // POWER UPS PANEL - LEFT BUTTON
                 gotoButtons[3].onClick.AddListener(() =>
                 {
+                    powerUpNameLabel.text = string.Empty;
                     instructionsPanels[2].SetActive(false);
                     instructionsPanels[1].SetActive(true);
                 });
@@ -152,6 +155,23 @@ namespace Controllers.Menu
             FadeEffect.Instance.FadeToLevel();
             yield return new WaitForSecondsRealtime(fadeOutLength);
             AsyncOperation operation = SceneManagerController.CallSceneAsync(GameStatusController.Instance.NextSceneName);
+        }
+
+        /// <summary>
+        /// Set power up name in label by hovering icons
+        /// </summary>
+        /// <param name="field"> Desired field </param>
+        public void SetPowerUpName(string sentence)
+        {
+            try
+            {
+                LocalizationFields field = (LocalizationFields)Enum.Parse(typeof(LocalizationFields), sentence);
+                powerUpNameLabel.text = LocalizationController.Instance.GetWord(field);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }
