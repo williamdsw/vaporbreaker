@@ -1,112 +1,137 @@
-﻿using Luminosity.IO;
+﻿using Controllers.Menu;
+using Luminosity.IO;
+using System;
 using UnityEngine;
+using Utilities;
 
-public class CursorController : MonoBehaviour
+namespace Controllers.Core
 {
-    private float minXCoordinate;
-    private float maxXCoordinate;
-    private float minYCoordinate;
-    private float maxYCoordinate;
-    private float speed = 100f;
-    private Vector3 startPosition;
-
-    // Cached
-    private SpriteRenderer spriteRenderer;
-
-    public SpriteRenderer GetSpriteRenderer()
+    [RequireComponent(typeof(SpriteRenderer))]
+    [RequireComponent(typeof(Animator))]
+    public class CursorController : MonoBehaviour
     {
-        return spriteRenderer;
-    }
+        // || State
 
-    private void Start()
-    {
-        spriteRenderer = this.GetComponent<SpriteRenderer>();
-        Cursor.visible = false;
-        DefineBounds();
-    }
+        [SerializeField] private Vector2 minXYCoordinates = Vector2.zero;
+        [SerializeField] private Vector2 maxXYCoordinates = Vector2.zero;
 
-    private void Update()
-    {
-        FindAndSetPosition();
-        DefineBounds();
-        LockPositionToScreen();
-    }
 
-    private void SetupSingleton()
-    {
-        int numberOfInstances = FindObjectsOfType(GetType()).Length;
-        if (numberOfInstances > 1)
+        private float speed = 100f;
+        private Vector3 startPosition;
+
+        // || Cached
+
+        private SpriteRenderer spriteRenderer;
+
+        // || Properties
+
+        public static CursorController Instance { get; private set; }
+
+        private void Awake()
         {
-            Destroy(this.gameObject);
+            Instance = this;
+            GetRequiredComponents();
+            ConfigurationsController.ToggleCursor(true);
+            DefineBounds();
         }
-        else
-        {
-            DontDestroyOnLoad(this.gameObject);
-        }
-    }
 
-    // Sets position to either mouse or gamepad
-    private void FindAndSetPosition()
-    {
-        if (GamepadState.IsConnected(GamepadIndex.GamepadOne))
+        private void Update()
         {
-            Vector3 inputDirection = Vector3.zero;
-            float horizontal = InputManager.GetAxis("MouseHorizontal");
-            float vertical = InputManager.GetAxis("MouseVertical");
-            inputDirection.x = horizontal * speed * Time.deltaTime;
-            inputDirection.y = vertical * speed * Time.deltaTime;
-            transform.position = startPosition + inputDirection * 0.2f;
-            startPosition = transform.position;
-        }
-        else
-        {
-            // Finds camera
-            Camera mainCamera = Camera.main;
-            if (!mainCamera)
+            if (GameSessionController.Instance.ActualGameState == Enumerators.GameStates.GAMEPLAY)
             {
-                mainCamera = FindObjectOfType<Camera>();
-                return;
+                DefineBounds();
+                SetPosition();
+                LockPositionToScreen();
             }
-
-            Vector2 cursorPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-            transform.position = cursorPosition;
         }
-    }
 
-    // Define bounds to camera
-    private void DefineBounds()
-    {
-        // Cancels
-        if (!spriteRenderer) return;
+        /// <summary>
+        /// Get required components
+        /// </summary>
+        public void GetRequiredComponents()
+        {
+            try
+            {
+                spriteRenderer = GetComponent<SpriteRenderer>();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
-        // Values
-        Vector3 zeroPoints = new Vector3(0, 0, 0);
-        Vector3 screenSize = new Vector3(Screen.width, Screen.height, 0);
-        float minScreenX = Camera.main.ScreenToWorldPoint(zeroPoints).x;
-        float maxScreenX = Camera.main.ScreenToWorldPoint(screenSize).x;
-        float minScreenY = Camera.main.ScreenToWorldPoint(zeroPoints).y;
-        float maxScreenY = Camera.main.ScreenToWorldPoint(screenSize).y;
-        float spriteExtentsX = spriteRenderer.bounds.extents.x;
-        float spriteExtentsY = spriteRenderer.bounds.extents.y;
+        /// <summary>
+        /// Define cursor bounds
+        /// </summary>
+        private void DefineBounds()
+        {
+            try
+            {
+                Vector3 zeroPoints = new Vector3(0, 0, 0);
+                Vector3 screenSize = new Vector3(Screen.width, Screen.height, 0);
+                float minScreenX = Camera.main.ScreenToWorldPoint(zeroPoints).x;
+                float maxScreenX = Camera.main.ScreenToWorldPoint(screenSize).x;
+                float minScreenY = Camera.main.ScreenToWorldPoint(zeroPoints).y;
+                float maxScreenY = Camera.main.ScreenToWorldPoint(screenSize).y;
+                float spriteExtentsX = spriteRenderer.bounds.extents.x;
+                float spriteExtentsY = spriteRenderer.bounds.extents.y;
 
-        // Set
-        minXCoordinate = minScreenX + spriteExtentsX;
-        maxXCoordinate = maxScreenX - spriteExtentsX;
-        minYCoordinate = minScreenY + spriteExtentsY;
-        maxYCoordinate = maxScreenY - spriteExtentsY;
-    }
+                // Set
+                minXYCoordinates.x = (minScreenX + spriteExtentsX);
+                maxXYCoordinates.x = (maxScreenX - spriteExtentsX);
+                minXYCoordinates.y = (minScreenY + spriteExtentsY);
+                maxXYCoordinates.y = (maxScreenY - spriteExtentsY);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
-    private void LockPositionToScreen()
-    {
-        float xPosition = transform.position.x;
-        float yPosition = transform.position.y;
-        xPosition = Mathf.Clamp(xPosition, minXCoordinate, maxXCoordinate);
-        yPosition = Mathf.Clamp(yPosition, minYCoordinate, maxYCoordinate);
-        transform.position = new Vector3(xPosition, yPosition, transform.position.z);
-    }
+        /// <summary>
+        /// Set cursor position by mouse or gamepad
+        /// </summary>
+        private void SetPosition()
+        {
+            if (GamepadState.IsConnected(GamepadIndex.GamepadOne))
+            {
+                Vector3 inputDirection = Vector3.zero;
+                float horizontal = InputManager.GetAxis("MouseHorizontal");
+                float vertical = InputManager.GetAxis("MouseVertical");
+                inputDirection.x = (horizontal * speed * Time.deltaTime);
+                inputDirection.y = (vertical * speed * Time.deltaTime);
+                transform.position = (startPosition + inputDirection * 0.2f);
+                startPosition = transform.position;
+            }
+            else
+            {
+                Camera mainCamera = Camera.main;
+                if (!mainCamera)
+                {
+                    mainCamera = FindObjectOfType<Camera>();
+                    return;
+                }
 
-    public void DestroyInstance()
-    {
-        Destroy(this.gameObject);
+                Vector2 cursorPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+                transform.position = cursorPosition;
+            }
+        }
+
+        /// <summary>
+        /// Lock cursor position to screen
+        /// </summary>
+        private void LockPositionToScreen()
+        {
+            float positionInX = transform.position.x;
+            float positionInY = transform.position.y;
+            positionInX = Mathf.Clamp(positionInX, minXYCoordinates.x, maxXYCoordinates.x);
+            positionInY = Mathf.Clamp(positionInY, minXYCoordinates.y, maxXYCoordinates.y);
+            transform.position = new Vector3(positionInX, positionInY, transform.position.z);
+        }
+
+        /// <summary>
+        /// Destroy object
+        /// </summary>
+        public void DestroyInstance() => Destroy(gameObject);
     }
 }

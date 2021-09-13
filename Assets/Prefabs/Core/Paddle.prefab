@@ -48,6 +48,8 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -59,6 +61,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -100,14 +103,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.25, y: 0.375}
+    oldSize: {x: 2, y: 0.33333334}
     newSize: {x: 1.5, y: 0.375}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.25, y: 0.375}
+  m_Size: {x: 2, y: 0.33333334}
   m_EdgeRadius: 0
 --- !u!114 &8014031417291714536
 MonoBehaviour:
@@ -121,16 +124,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47c81d9c2eea5b646b3992097fcc5de2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 15
-  minXCoordinate: 2
-  maxXCoordinate: 20
   ball: {fileID: 0}
+  echoEffectSpawner: {fileID: 8014031418363072485}
   paddleSprites:
   - {fileID: 5275959952676599290, guid: 201dd5369616e9b4593f71aeb4b5dbc8, type: 3}
   - {fileID: 4144469285353641508, guid: 201dd5369616e9b4593f71aeb4b5dbc8, type: 3}
   - {fileID: 6774390876116620772, guid: 201dd5369616e9b4593f71aeb4b5dbc8, type: 3}
   - {fileID: 1913627966956265730, guid: 201dd5369616e9b4593f71aeb4b5dbc8, type: 3}
-  echoEffectSpawner: {fileID: 8014031418363072485}
 --- !u!1001 &1295569598755355336
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -138,10 +138,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8014031417291714538}
     m_Modifications:
-    - target: {fileID: 9137036953445889327, guid: 5ce6bed32c5d0e64a9dcf732d020d181,
+    - target: {fileID: 9137036953445889324, guid: 5ce6bed32c5d0e64a9dcf732d020d181,
         type: 3}
-      propertyPath: m_Name
-      value: Paddle_Echo_Spawner
+      propertyPath: m_RootOrder
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9137036953445889324, guid: 5ce6bed32c5d0e64a9dcf732d020d181,
         type: 3}
@@ -160,6 +160,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9137036953445889324, guid: 5ce6bed32c5d0e64a9dcf732d020d181,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9137036953445889324, guid: 5ce6bed32c5d0e64a9dcf732d020d181,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -171,16 +176,6 @@ PrefabInstance:
     - target: {fileID: 9137036953445889324, guid: 5ce6bed32c5d0e64a9dcf732d020d181,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137036953445889324, guid: 5ce6bed32c5d0e64a9dcf732d020d181,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137036953445889324, guid: 5ce6bed32c5d0e64a9dcf732d020d181,
-        type: 3}
-      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9137036953445889324, guid: 5ce6bed32c5d0e64a9dcf732d020d181,
@@ -207,6 +202,11 @@ PrefabInstance:
         type: 3}
       propertyPath: startTimeBetweenSpanws
       value: 0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 9137036953445889327, guid: 5ce6bed32c5d0e64a9dcf732d020d181,
+        type: 3}
+      propertyPath: m_Name
+      value: PaddleEchoSpawner
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ce6bed32c5d0e64a9dcf732d020d181, type: 3}

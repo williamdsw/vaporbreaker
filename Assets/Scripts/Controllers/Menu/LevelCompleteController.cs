@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Controllers.Core;
+using Core;
+using Effects;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -34,40 +36,27 @@ public class LevelCompleteController : MonoBehaviour
     private float countdownTimer = 3f;
 
     // Cached
-    private AudioController audioController;
-    private GameSession gameSession;
-    private FadeEffect fadeEffect;
     private FullScreenBackground fullScreenBackground;
-    private GameStatusController gameStatusController;
     private Ball[] balls;
-    private LocalizationController localizationController;
+
+    public static LevelCompleteController Instance { get; private set; }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
         // Find objects
-        audioController = FindObjectOfType<AudioController>();
-        gameSession = FindObjectOfType<GameSession>();
-        fadeEffect = FindObjectOfType<FadeEffect>();
         fullScreenBackground = FindObjectOfType<FullScreenBackground>();
-        gameStatusController = FindObjectOfType<GameStatusController>();
-        localizationController = FindObjectOfType<LocalizationController>();
 
         levelCompletedPanel.SetActive(false);
-        TranslateLabels();
+        //TranslateLabels();
         DefaultUIValues();
     }
 
-    // Translate labels based on choosed language
-    private void TranslateLabels()
-    {
-        if (!localizationController) return;
-        List<string> labels = localizationController.GetLevelCompleteLabels();
-        if (labels.Count == 0 || uiLabels.Count == 0 || labels.Count != uiLabels.Count) return;
-        for (int index = 0; index < labels.Count; index++)
-        {
-            uiLabels[index].SetText(labels[index]);
-        }
-    }
+   
 
     private void DefaultUIValues()
     {
@@ -91,18 +80,15 @@ public class LevelCompleteController : MonoBehaviour
         countdownText.enabled = false;
     }
 
-    public void CallLevelComplete(float timeScore, int blocksDestroyed, int totalOfBlocks, int bestCombo, int currentScore, int numberOfDeaths)
+    public void CallLevelComplete(float timeScore, int bestCombo, int currentScore)
     {
         // Finds the balls
         balls = FindObjectsOfType<Ball>();
 
         // Passing values
         this.timeScore = Mathf.FloorToInt(timeScore);
-        this.blocksDestroyed = blocksDestroyed;
-        this.totalOfBlocks = totalOfBlocks;
         this.bestCombo = bestCombo;
         this.currentScore = currentScore;
-        this.numberOfDeaths = numberOfDeaths;
         this.numberOfBalls = balls.Length;
 
         StartCoroutine(LevelComplete());
@@ -161,7 +147,7 @@ public class LevelCompleteController : MonoBehaviour
         totalScore += (numberOfDeaths * 25000);
         totalScore += (numberOfBalls * 50000);
 
-        string[] values = 
+        string[] values =
         {
             currentScore.ToString(), totalTimeScore.ToString(), string.Concat(blocksDestroyed, " / ", totalOfBlocks),
             bestCombo.ToString(), numberOfDeaths.ToString(), numberOfBalls.ToString(), totalScore.ToString()
@@ -181,17 +167,17 @@ public class LevelCompleteController : MonoBehaviour
             ball.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
 
-        audioController.StopMusic();
+        AudioController.Instance.StopMusic();
         CalculateTotalScore();
 
         // Pass values
-        gameStatusController.SetNewScore(totalScore);
-        gameStatusController.SetNewTimeScore(timeScore);
-        gameStatusController.SetIsLevelCompleted(true);
+        GameStatusController.Instance.NewScore = totalScore;
+        GameStatusController.Instance.NewTimeScore = timeScore;
+        GameStatusController.Instance.IsLevelCompleted = true;
 
         // Plays success sound
         yield return new WaitForSecondsRealtime(defaultSecondsValue);
-        audioController.PlaySFX(audioController.SuccessEffect, audioController.MaxSFXVolume);
+        AudioController.Instance.PlaySFX(AudioController.Instance.SuccessEffect, AudioController.Instance.MaxSFXVolume);
 
         // Show panel
         yield return new WaitForSecondsRealtime(defaultSecondsValue);
@@ -201,7 +187,7 @@ public class LevelCompleteController : MonoBehaviour
         yield return new WaitForSecondsRealtime(defaultSecondsValue);
         for (int index = 0; index < labelsText.Count; index++)
         {
-            audioController.PlaySFX(audioController.HittingFace, audioController.MaxSFXVolume);
+            AudioController.Instance.PlaySFX(AudioController.Instance.HittingFaceSound, AudioController.Instance.MaxSFXVolume);
             GameObject labelParent = labelsText[index].gameObject.transform.parent.gameObject;
             GameObject valueParent = valuesText[index].gameObject.transform.parent.gameObject;
             labelParent.SetActive(true);
@@ -210,9 +196,9 @@ public class LevelCompleteController : MonoBehaviour
         }
 
         // Case have a new score
-        if (totalScore > gameStatusController.GetOldScore())
+        if (totalScore > GameStatusController.Instance.OldScore)
         {
-            audioController.PlaySFX(audioController.NewScoreEffect, audioController.MaxSFXVolume);
+            AudioController.Instance.PlaySFX(AudioController.Instance.NewScoreEffect, AudioController.Instance.MaxSFXVolume);
             newScoreText.enabled = true;
             newScoreText.GetComponent<FlashTextEffect>().enabled = true;
         }
@@ -227,11 +213,10 @@ public class LevelCompleteController : MonoBehaviour
         }
 
         // Calls fade
-        fadeEffect = FindObjectOfType<FadeEffect>();
-        fadeEffect.ResetAnimationFunctions();
-        float fadeOutLength = fadeEffect.GetFadeOutLength();
-        fadeEffect.FadeToLevel();
+        FadeEffect.Instance.ResetAnimationFunctions();
+        float fadeOutLength = FadeEffect.Instance.GetFadeOutLength();
+        FadeEffect.Instance.FadeToLevel();
         yield return new WaitForSecondsRealtime(fadeOutLength);
-        gameSession.ResetGame(SceneManagerController.SelectLevelsSceneName);
+        GameSessionController.Instance.GotoScene(SceneManagerController.SelectLevelsSceneName);
     }
 }

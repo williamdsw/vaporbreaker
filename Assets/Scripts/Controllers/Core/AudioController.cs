@@ -1,7 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using MVC.BL;
+﻿using MVC.BL;
 using MVC.Models;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Controllers.Core
@@ -24,7 +25,8 @@ namespace Controllers.Core
         [SerializeField] private AudioClip[] allTitleVoices;
         [SerializeField] private AudioClip newScoreEffect;
         [SerializeField] private AudioClip successEffect;
-        [SerializeField] private AudioClip tvStatic;
+        [SerializeField] private AudioClip tvStaticEffect;
+        [SerializeField] private AudioClip fireEffect;
 
         [Header("SFX")]
         [SerializeField] private AudioClip blipSound;
@@ -32,21 +34,22 @@ namespace Controllers.Core
         [SerializeField] private AudioClip clickSound;
         [SerializeField] private AudioClip explosionSound;
         [SerializeField] private AudioClip laserPewSound;
-        [SerializeField] private AudioClip metalPingSound;
-        [SerializeField] private AudioClip hittingFace;
+        [SerializeField] private AudioClip hittingFaceSound;
+        [SerializeField] private AudioClip hittingWallSound;
         [SerializeField] private AudioClip powerUpSound;
         [SerializeField] private AudioClip showUpSound;
         [SerializeField] private AudioClip slamSound;
-        [SerializeField] private AudioClip tvSwitch;
-        [SerializeField] private AudioClip uiCancel;
-        [SerializeField] private AudioClip uiSubmit;
+        [SerializeField] private AudioClip tvSwitchSound;
+        [SerializeField] private AudioClip uiCancelSound;
+        [SerializeField] private AudioClip uiSubmitSound;
 
         // || State
 
-        private AudioClip nextTrack;
+        private AudioClip nextTrackClip;
+        private Track nextTrackInfo;
         private string nextSceneName;
-        private bool changeScene;
-        private bool changeOnTrackEnd = false;
+        private bool isToChangeScene;
+        private bool isToChangeOnTrackEnd = false;
         private bool isToLoopTrack = false;
 
         // || Cached
@@ -71,22 +74,23 @@ namespace Controllers.Core
         public AudioClip[] AllTitleVoices => allTitleVoices;
         public AudioClip NewScoreEffect => newScoreEffect;
         public AudioClip SuccessEffect => successEffect;
-        public AudioClip TvStatic => tvStatic;
+        public AudioClip TvStaticEffect => tvStaticEffect;
+        public AudioClip FireEffect => fireEffect;
 
         // SFX
         public AudioClip BlipSound => blipSound;
         public AudioClip BoomSound => boomSound;
         public AudioClip ClickSound => clickSound;
         public AudioClip ExplosionSound => explosionSound;
-        public AudioClip HittingFace => hittingFace;
+        public AudioClip HittingFaceSound => hittingFaceSound;
+        public AudioClip HittingWallSound => hittingWallSound;
         public AudioClip LaserPewSound => laserPewSound;
-        public AudioClip MetalPingSound => metalPingSound;
         public AudioClip PowerUpSound => powerUpSound;
         public AudioClip ShowUpSound => showUpSound;
         public AudioClip SlamSound => slamSound;
-        public AudioClip TvSwitch => tvSwitch;
-        public AudioClip UiCancel => uiCancel;
-        public AudioClip UiSubmit => uiSubmit;
+        public AudioClip TvSwitchSound => tvSwitchSound;
+        public AudioClip UiCancelSound => uiCancelSound;
+        public AudioClip UiSubmitSound => uiSubmitSound;
 
         public AudioSource AudioSourceBGM => audioSourceBGM;
         public AudioSource AudioSourceME => audioSourceME;
@@ -106,8 +110,7 @@ namespace Controllers.Core
         /// </summary>
         private void SetupSingleton()
         {
-            int numberOfInstances = FindObjectsOfType(GetType()).Length;
-            if (numberOfInstances > 1)
+            if (FindObjectsOfType(GetType()).Length > 1)
             {
                 DestroyImmediate(gameObject);
             }
@@ -128,6 +131,17 @@ namespace Controllers.Core
             float temporaryVolume = (volume > MaxSFXVolume ? MaxSFXVolume : volume);
             AudioSourceSFX.volume = temporaryVolume;
             AudioSourceSFX.PlayOneShot(clip);
+        }
+
+        /// <summary>
+        /// Play SFX at camera
+        /// </summary>
+        /// <param name="clip"> Clip to be played </param>
+        /// <param name="volume"> Volume amount </param>
+        public void PlaySoundAtPoint(AudioClip clip, float volume)
+        {
+            float temporaryVolume = (volume > MaxSFXVolume ? MaxSFXVolume : volume);
+            AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position, temporaryVolume);
         }
 
         /// <summary>
@@ -162,20 +176,22 @@ namespace Controllers.Core
         public float GetClipLength(AudioClip clip) => (clip ? clip.length : 0f);
 
         /// <summary>
-        /// 
+        /// Pass values to change music
         /// </summary>
-        /// <param name="nextMusic"></param>
-        /// <param name="changeScene"></param>
-        /// <param name="nextSceneName"></param>
-        /// <param name="loopMusic"></param>
-        /// <param name="changeOnMusicEnd"></param>
-        public void ChangeMusic(AudioClip nextMusic, bool changeScene, string nextSceneName, bool loopMusic, bool changeOnMusicEnd)
+        /// <param name="nextTrackClip"> Next track to be played </param>
+        /// <param name="isToChangeScene"> Is to change scene ? </param>
+        /// <param name="nextSceneName"> Next scene name </param>
+        /// <param name="isToLoopTrack"> Is to loop current track ? </param>
+        /// <param name="isToChangeOnTrackEnd"> Is to change on track ending ? </param>
+        /// <param name="nextTrackInfo"> Next track information </param>
+        public void ChangeMusic(AudioClip nextTrackClip, bool isToChangeScene, string nextSceneName, bool isToLoopTrack, bool isToChangeOnTrackEnd, Track nextTrackInfo = null)
         {
-            this.nextTrack = nextMusic;
-            this.changeScene = changeScene;
+            this.nextTrackClip = nextTrackClip;
+            this.isToChangeScene = isToChangeScene;
             this.nextSceneName = nextSceneName;
-            this.isToLoopTrack = loopMusic;
-            this.changeOnTrackEnd = changeOnMusicEnd;
+            this.isToLoopTrack = isToLoopTrack;
+            this.isToChangeOnTrackEnd = isToChangeOnTrackEnd;
+            this.nextTrackInfo = nextTrackInfo;
 
             StartCoroutine(ChangeMusicCoroutine());
         }
@@ -187,34 +203,27 @@ namespace Controllers.Core
         {
             yield return DropVolume();
 
-            // Change and play
             IsSongPlaying = false;
             AudioSourceBGM.volume = 0;
-            AudioSourceBGM.clip = nextTrack;
+            AudioSourceBGM.clip = nextTrackClip;
             AudioSourceBGM.loop = isToLoopTrack;
             AudioSourceBGM.Play();
             IsSongPlaying = true;
 
-            if (Pause.Instance)
+            if (PauseController.Instance && nextTrackInfo != null)
             {
-                //pauseController.SetActualSongName(FormatMusicName(nextMusic.name));
+                PauseController.Instance.SetTrackInfo(nextTrackInfo);
             }
 
-            // Drops up volume
             yield return GainVolume();
 
-            if (!isToLoopTrack && changeOnTrackEnd)
+            if (!isToLoopTrack && isToChangeOnTrackEnd && PauseController.Instance)
             {
-                // Cancel
-                if (!Pause.Instance) yield return null;
-
                 yield return new WaitForSecondsRealtime(AudioSourceBGM.clip.length);
-                //pauseController.SetPreviousSongName(FormatMusicName(nextMusic.name));
                 int index = Random.Range(0, allNotLoopedSongs.Length);
-                ChangeMusic(allNotLoopedSongs[index], false, "", false, true);
-
-                // Information to pause controller
-                //pauseController.SetActualSongName(FormatMusicName(allNotLoopedSongs[index].name));
+                AudioClip nextClip = allNotLoopedSongs[index];
+                Track nextRandomTrack = Tracks.Find(t => t.FileName.Equals(nextClip.name));
+                ChangeMusic(nextClip, false, string.Empty, false, true, nextRandomTrack);
             }
         }
 

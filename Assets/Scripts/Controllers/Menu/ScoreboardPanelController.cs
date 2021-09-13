@@ -10,6 +10,7 @@ using TMPro;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
+using Utilities;
 
 namespace Controllers.Menu
 {
@@ -151,7 +152,7 @@ namespace Controllers.Menu
         /// </summary>
         private void CaptureCancel()
         {
-            if (!panel.activeSelf || SelectLevelsController.Instance.ActualGameState != GameState.GAMEPLAY) return;
+            if (!panel.activeSelf || SelectLevelsController.Instance.ActualGameState != Enumerators.GameStates.GAMEPLAY) return;
 
             if (InputManager.GetButtonDown(Configuration.InputsNames.UiCancel))
             {
@@ -164,7 +165,7 @@ namespace Controllers.Menu
         /// </summary>
         private void Close()
         {
-            AudioController.Instance.PlaySFX(AudioController.Instance.UiCancel, AudioController.Instance.MaxSFXVolume);
+            AudioController.Instance.PlaySFX(AudioController.Instance.UiCancelSound, AudioController.Instance.MaxSFXVolume);
             panel.SetActive(false);
             SelectLevelsController.Instance.Show();
         }

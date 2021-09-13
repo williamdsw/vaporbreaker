@@ -116,7 +116,7 @@ namespace Controllers.Menu
 
             if (MainMenuController.Instance.HasSavedGame && panel.activeSelf)
             {
-                AudioController.Instance.PlaySFX(AudioController.Instance.UiSubmit, AudioController.Instance.MaxSFXVolume);
+                AudioController.Instance.PlaySFX(AudioController.Instance.UiSubmitSound, AudioController.Instance.MaxSFXVolume);
                 StartCoroutine(MainMenuController.Instance.CallNextScene(SceneManagerController.SelectLevelsSceneName));
             }
         }
@@ -148,7 +148,7 @@ namespace Controllers.Menu
 
             if (questionObject.activeSelf)
             {
-                AudioController.Instance.PlaySFX(AudioController.Instance.UiSubmit, AudioController.Instance.MaxSFXVolume);
+                AudioController.Instance.PlaySFX(AudioController.Instance.UiSubmitSound, AudioController.Instance.MaxSFXVolume);
                 continueButton.interactable = resetProgressButton.interactable = true;
                 questionObject.SetActive(false);
                 continueButton.Select();
@@ -164,7 +164,7 @@ namespace Controllers.Menu
 
             if (questionObject.activeSelf)
             {
-                AudioController.Instance.PlaySFX(AudioController.Instance.UiSubmit, AudioController.Instance.MaxSFXVolume);
+                AudioController.Instance.PlaySFX(AudioController.Instance.UiSubmitSound, AudioController.Instance.MaxSFXVolume);
                 continueButton.interactable = resetProgressButton.interactable = true;
                 // ProgressManager.DeleteProgress(); TODO
                 MainMenuController.Instance.HasSavedGame = false;
@@ -209,7 +209,7 @@ namespace Controllers.Menu
                 {
                     if (InputManager.GetButtonDown(Configuration.InputsNames.UiCancel))
                     {
-                        AudioController.Instance.PlaySFX(AudioController.Instance.UiCancel, AudioController.Instance.MaxSFXVolume);
+                        AudioController.Instance.PlaySFX(AudioController.Instance.UiCancelSound, AudioController.Instance.MaxSFXVolume);
                         TogglePanel(false);
                         MainMenuController.Instance.TogglePanel(true);
                     }

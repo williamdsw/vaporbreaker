@@ -4,7 +4,7 @@ namespace Utilities
 {
     public class Formatter
     {
-        public static string FormatEllapsedTime(int timer)
+        public static string FormatEllapsedTimeInHours(int timer)
         {
             int hours = timer / 3600;
             int minutes = (timer - (hours * 3600)) / 60;

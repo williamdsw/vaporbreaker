@@ -35,7 +35,7 @@ namespace UI
             {
                 orderColumnValue.text = order.ToString();
                 scoreColumnValue.text = Formatter.FormatToCurrency(score);
-                timeScoreColumnValue.text = Formatter.FormatEllapsedTime((int)timeScore);
+                timeScoreColumnValue.text = Formatter.FormatEllapsedTimeInHours((int)timeScore);
                 bestComboColumnValue.text = bestCombo.ToString();
                 momentColumnValue.text = DateTimeOffset.FromUnixTimeSeconds(moment).ToString("yyyy-MM-dd HH:mm:ss");
                 image.color = (isOdd ? oddColor : evenColor);

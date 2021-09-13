@@ -2,9 +2,11 @@
 
 namespace Controllers.Core
 {
-
     public class GameStatusController : MonoBehaviour
     {
+        // || Config
+
+        [Header("Current Values")]
         [SerializeField] private string nextSceneName;
         [SerializeField] private int levelIndex = 0;
         [SerializeField] private long levelId = 0;
@@ -17,38 +19,6 @@ namespace Controllers.Core
         [SerializeField] private bool cameFromLevel = false;
         [SerializeField] private bool hasStartedSong = false;
         [SerializeField] private bool isLevelCompleted = false;
-
-
-        public long GetOldScore()
-        {
-            return oldScore;
-        }
-
-        public void SetNextSceneName(string sceneName)
-        {
-            this.nextSceneName = sceneName;
-        }
-
-        public void SetNewScore(int newScore)
-        {
-            this.newScore = newScore;
-        }
-
-        public void SetNewTimeScore(int newTimeScore)
-        {
-            this.newTimeScore = newTimeScore;
-        }
-
-        public void SetHasStartedSong(bool hasStartedSong)
-        {
-            this.hasStartedSong = hasStartedSong;
-        }
-
-        public void SetIsLevelCompleted(bool isLevelCompleted)
-        {
-            this.isLevelCompleted = isLevelCompleted;
-        }
-
 
         // || Properties
 
@@ -69,6 +39,9 @@ namespace Controllers.Core
 
         private void Awake() => SetupSingleton();
 
+        /// <summary>
+        /// Setup singleton instance
+        /// </summary>
         private void SetupSingleton()
         {
             int numberOfInstances = FindObjectsOfType(GetType()).Length;

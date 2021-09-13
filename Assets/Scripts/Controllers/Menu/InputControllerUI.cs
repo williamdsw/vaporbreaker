@@ -130,11 +130,11 @@ namespace Controllers.Menu
         {
             try
             {
-                acceptLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.icons_accept);
+                /*acceptLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.icons_accept);
                 cancelLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.icons_cancel);
                 horizontalLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.icons_move);
                 verticalLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.icons_move);
-                changeSongLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.instructions_changesong);
+                changeSongLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.instructions_changesong);*/
             }
             catch (Exception ex)
             {

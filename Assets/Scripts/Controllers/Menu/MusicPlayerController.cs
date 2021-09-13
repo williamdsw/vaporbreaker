@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Controllers.Core;
+using Effects;
 using MVC.Enums;
 using MVC.Models;
 using TMPro;
@@ -42,7 +43,7 @@ namespace Controllers.Menu
 
         // || State
 
-        [SerializeField] private GameState actualGameState = GameState.GAMEPLAY;
+        [SerializeField] private Enumerators.GameStates actualGameState = Enumerators.GameStates.GAMEPLAY;
         private int currentButtonIndex = 0;
         private int currentSongIndex = 0;
         [SerializeField] private bool isSongPaused = true;
@@ -73,7 +74,7 @@ namespace Controllers.Menu
 
         private void Update()
         {
-            if (actualGameState == GameState.GAMEPLAY)
+            if (actualGameState == Enumerators.GameStates.GAMEPLAY)
             {
                 if (AudioController.Instance.IsSongPlaying && !isSongPaused && canEllapseTime)
                 {
@@ -273,7 +274,7 @@ namespace Controllers.Menu
         private IEnumerator CallNextScene()
         {
             canvasGroup.interactable = false;
-            actualGameState = GameState.TRANSITION;
+            actualGameState = Enumerators.GameStates.TRANSITION;
             AudioController.Instance.StopMusic();
 
             FadeEffect.Instance.FadeToLevel();

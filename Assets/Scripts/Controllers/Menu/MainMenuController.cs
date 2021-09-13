@@ -1,4 +1,5 @@
 ﻿using Controllers.Core;
+using Effects;
 using Luminosity.IO;
 using MVC.Enums;
 using System;
@@ -129,7 +130,7 @@ namespace Controllers.Menu
         {
             if (EventSystem.current.currentSelectedGameObject != creditsButton.gameObject) return;
 
-            AudioController.Instance.PlaySFX(AudioController.Instance.UiSubmit, AudioController.Instance.MaxSFXVolume);
+            AudioController.Instance.PlaySFX(AudioController.Instance.UiSubmitSound, AudioController.Instance.MaxSFXVolume);
             StartCoroutine(CallNextScene(SceneManagerController.CreditsSceneName));
         }
 
@@ -140,7 +141,7 @@ namespace Controllers.Menu
         {
             if (EventSystem.current.currentSelectedGameObject != soundtrackButton.gameObject) return;
 
-            AudioController.Instance.PlaySFX(AudioController.Instance.UiSubmit, AudioController.Instance.MaxSFXVolume);
+            AudioController.Instance.PlaySFX(AudioController.Instance.UiSubmitSound, AudioController.Instance.MaxSFXVolume);
             StartCoroutine(CallNextScene(SceneManagerController.SoundtracksSceneName));
         }
 
@@ -161,7 +162,7 @@ namespace Controllers.Menu
         {
             if (EventSystem.current.currentSelectedGameObject != languageButton.gameObject) return;
 
-            AudioController.Instance.PlaySFX(AudioController.Instance.UiSubmit, AudioController.Instance.MaxSFXVolume);
+            AudioController.Instance.PlaySFX(AudioController.Instance.UiSubmitSound, AudioController.Instance.MaxSFXVolume);
             TogglePanel(false);
             LanguageMenuController.Instance.TogglePanel(true);
         }
@@ -173,7 +174,7 @@ namespace Controllers.Menu
         {
             if (EventSystem.current.currentSelectedGameObject != optionsButton.gameObject) return;
 
-            AudioController.Instance.PlaySFX(AudioController.Instance.UiSubmit, AudioController.Instance.MaxSFXVolume);
+            AudioController.Instance.PlaySFX(AudioController.Instance.UiSubmitSound, AudioController.Instance.MaxSFXVolume);
             TogglePanel(false);
             OptionsMenuController.Instance.TogglePanel(true);
         }
@@ -185,7 +186,7 @@ namespace Controllers.Menu
         {
             if (EventSystem.current.currentSelectedGameObject != levelsButton.gameObject) return;
 
-            AudioController.Instance.PlaySFX(AudioController.Instance.UiSubmit, AudioController.Instance.MaxSFXVolume);
+            AudioController.Instance.PlaySFX(AudioController.Instance.UiSubmitSound, AudioController.Instance.MaxSFXVolume);
             if (HasSavedGame)
             {
                 TogglePanel(false);

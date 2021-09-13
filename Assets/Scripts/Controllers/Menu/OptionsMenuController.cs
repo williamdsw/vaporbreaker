@@ -199,7 +199,7 @@ namespace Controllers.Menu
                 backButton.onClick.AddListener(() => GetBackToMainMenu());
                 defaultButton.onClick.AddListener(() =>
                 {
-                    AudioController.Instance.PlaySFX(AudioController.Instance.UiSubmit, SFXVolume);
+                    AudioController.Instance.PlaySFX(AudioController.Instance.UiSubmitSound, SFXVolume);
                     SetDefaultValues();
                 });
             }
@@ -241,7 +241,7 @@ namespace Controllers.Menu
         /// </summary>
         private void GetBackToMainMenu()
         {
-            AudioController.Instance.PlaySFX(AudioController.Instance.UiCancel, SFXVolume);
+            AudioController.Instance.PlaySFX(AudioController.Instance.UiCancelSound, SFXVolume);
             ApplyValues();
             SaveSettings();
             TogglePanel(false);
@@ -254,7 +254,7 @@ namespace Controllers.Menu
         /// <param name="button"> Instance of button </param>
         private void ToggleButton(Button button, bool enable)
         {
-            AudioController.Instance.PlaySFX(AudioController.Instance.UiSubmit, SFXVolume);
+            AudioController.Instance.PlaySFX(AudioController.Instance.UiSubmitSound, SFXVolume);
             button.interactable = enable;
 
             if (enable)
@@ -325,7 +325,7 @@ namespace Controllers.Menu
                 // Case Input is cancel
                 if (InputManager.GetButtonDown(Configuration.InputsNames.UiCancel, PlayerID.One))
                 {
-                    AudioController.Instance.PlaySFX(AudioController.Instance.UiCancel, AudioController.Instance.MaxSFXVolume);
+                    AudioController.Instance.PlaySFX(AudioController.Instance.UiCancelSound, AudioController.Instance.MaxSFXVolume);
                     resolutionValueButton.interactable = false;
                     ToggleButtonColor(resolutionValueButton);
                     ToggleAllLabelButtonsInteractable();
@@ -372,7 +372,7 @@ namespace Controllers.Menu
                 // Case Input is cancel
                 if (InputManager.GetButtonDown(Configuration.InputsNames.UiCancel, PlayerID.One))
                 {
-                    AudioController.Instance.PlaySFX(AudioController.Instance.UiCancel, AudioController.Instance.MaxSFXVolume);
+                    AudioController.Instance.PlaySFX(AudioController.Instance.UiCancelSound, AudioController.Instance.MaxSFXVolume);
                     fullScreenValueButton.interactable = false;
                     ToggleButtonColor(fullScreenValueButton);
                     ToggleAllLabelButtonsInteractable();
@@ -464,7 +464,7 @@ namespace Controllers.Menu
 
                 if (InputManager.GetButtonDown(Configuration.InputsNames.UiCancel, PlayerID.One))
                 {
-                    AudioController.Instance.PlaySFX(AudioController.Instance.UiCancel, SFXVolume);
+                    AudioController.Instance.PlaySFX(AudioController.Instance.UiCancelSound, SFXVolume);
                     volumeButton.interactable = false;
                     ToggleButtonColor(volumeButton);
                     ToggleAllLabelButtonsInteractable();

@@ -1,4 +1,5 @@
 ﻿using Controllers.Core;
+using Effects;
 using MVC.Enums;
 using System;
 using System.Collections;
@@ -38,23 +39,13 @@ namespace Controllers.Menu
         private TextMeshProUGUI continueButtonLabel;
 
 
-        // Destructables singletons
-        private CursorController cursorController;
         private FullScreenBackground fullScreenBackground;
 
         private void Awake() => continueButtonLabel = continueButton.GetComponentInChildren<TextMeshProUGUI>();
 
         private void Start()
         {
-            // Find Objects
-            cursorController = FindObjectOfType<CursorController>();
             fullScreenBackground = FindObjectOfType<FullScreenBackground>();
-
-            // Destroy some singletons
-            if (cursorController)
-            {
-                cursorController.DestroyInstance();
-            }
 
             if (fullScreenBackground)
             {
@@ -151,9 +142,8 @@ namespace Controllers.Menu
         private IEnumerator CallNextScene()
         {
             yield return new WaitForSecondsRealtime(TIME_TO_WAIT);
-            float fadeOutLength = FadeEffect.Instance.GetFadeOutLength();
             FadeEffect.Instance.FadeToLevel();
-            yield return new WaitForSecondsRealtime(fadeOutLength);
+            yield return new WaitForSecondsRealtime(FadeEffect.Instance.GetFadeOutLength());
             AsyncOperation operation = SceneManagerController.CallSceneAsync(GameStatusController.Instance.NextSceneName);
         }
 

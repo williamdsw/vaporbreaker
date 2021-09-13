@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 3542721587732851016}
   - component: {fileID: 3542721587732851014}
   m_Layer: 14
-  m_Name: Audio_Controller
+  m_Name: AudioController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -207,24 +207,24 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 27215cd95f837c04286ff9cb81cd9b74, type: 3}
   - {fileID: 8300000, guid: 6024a8033448ea84ab633c456928062f, type: 3}
   - {fileID: 8300000, guid: ba5b4e57ec38aa94a8228d73282de2e2, type: 3}
-  eightiesRiff: {fileID: 8300000, guid: 7a32884b5fdf5864d865c19d9ad933f2, type: 3}
   newScoreEffect: {fileID: 8300000, guid: 658be09aaeab8fb4a98ffb65efb99612, type: 3}
   successEffect: {fileID: 8300000, guid: a690a68d59b648749b7c4d3fc884247f, type: 3}
-  tvStatic: {fileID: 8300000, guid: ab36f2bdc9cc285409e25f3e06561f1a, type: 3}
+  tvStaticEffect: {fileID: 8300000, guid: ab36f2bdc9cc285409e25f3e06561f1a, type: 3}
+  fireEffect: {fileID: 0}
   blipSound: {fileID: 8300000, guid: 6de2eb556fec80e439e21e545bc2eee4, type: 3}
   boomSound: {fileID: 8300000, guid: 844c7b4d439ba554b8f72a35e726a881, type: 3}
   clickSound: {fileID: 8300000, guid: 50a58365b4d5da24b8c891e2e5d9edc1, type: 3}
   explosionSound: {fileID: 8300000, guid: 7830e3fa90501b643ac46b18e3b714f7, type: 3}
   laserPewSound: {fileID: 8300000, guid: b4a2c315bd840e74b954a2aac6782b47, type: 3}
   metalPingSound: {fileID: 8300000, guid: 7d45460550433594392215e36828bb94, type: 3}
-  hitButton: {fileID: 8300000, guid: 51c87c06fd793154bb04b25512ecb617, type: 3}
-  hittingFace: {fileID: 8300000, guid: 77a3676463d223b4cac46f92885c4cc2, type: 3}
+  hittingFaceSound: {fileID: 8300000, guid: 77a3676463d223b4cac46f92885c4cc2, type: 3}
+  hittingWallSound: {fileID: 0}
   powerUpSound: {fileID: 8300000, guid: 57a187728e3317e40a2ba5dbaf8c3bf4, type: 3}
   showUpSound: {fileID: 8300000, guid: 43bd213338b688c4cbde682e1d00054d, type: 3}
   slamSound: {fileID: 8300000, guid: 00c6ee0324377bb4eb1e50731dc93ad7, type: 3}
-  tvSwitch: {fileID: 8300000, guid: 876f9a0f223b42b4da2f497a57405e06, type: 3}
-  uiCancel: {fileID: 8300000, guid: 611054dfeca2e1742afca8d0c5d34f4b, type: 3}
-  uiSubmit: {fileID: 8300000, guid: 57a187728e3317e40a2ba5dbaf8c3bf4, type: 3}
+  tvSwitchSound: {fileID: 8300000, guid: 876f9a0f223b42b4da2f497a57405e06, type: 3}
+  uiCancelSound: {fileID: 8300000, guid: 611054dfeca2e1742afca8d0c5d34f4b, type: 3}
+  uiSubmitSound: {fileID: 8300000, guid: e93b4507e022f2e419a3a622026d3939, type: 3}
 --- !u!1 &3542721587877858603
 GameObject:
   m_ObjectHideFlags: 0

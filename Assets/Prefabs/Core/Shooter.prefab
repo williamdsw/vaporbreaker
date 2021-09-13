@@ -10,9 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8899339500864998867}
   - component: {fileID: 8899339500864998869}
-  - component: {fileID: 8899339500864998868}
   m_Layer: 0
-  m_Name: Right_Cannon
+  m_Name: RightCannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,6 +46,8 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -58,6 +59,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -82,25 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &8899339500864998868
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8899339500864998866}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ee62d218d035b5f4f978541cf6a48972, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8899339501034000545
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8899339501034000546}
   m_Layer: 0
-  m_Name: Shooting_Point
+  m_Name: ShootingPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -141,9 +124,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8899339501189108431}
   - component: {fileID: 8899339501189108430}
-  - component: {fileID: 8899339501189108432}
   m_Layer: 0
-  m_Name: Left_Cannon
+  m_Name: LeftCannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -178,6 +160,8 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -189,6 +173,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -213,25 +198,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &8899339501189108432
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8899339501189108429}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ee62d218d035b5f4f978541cf6a48972, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8899339501381192428
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,7 +208,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8899339501381192429}
   m_Layer: 0
-  m_Name: Shooting_Point
+  m_Name: ShootingPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -310,11 +276,11 @@ MonoBehaviour:
   cannons:
   - {fileID: 8899339501189108429}
   - {fileID: 8899339500864998866}
-  shootingPoints:
-  - {fileID: 8899339501381192429}
-  - {fileID: 8899339501034000546}
   projectiles:
   - {fileID: 6743495495356871175, guid: 0d0a449fd49531945a7cf3df97da7f55, type: 3}
   - {fileID: 4088987405812648853, guid: f5999cd181854c741859550aed1dca1a, type: 3}
   - {fileID: 137974523663191861, guid: 8de6342e56b0fc6489626e4a42d5c1e3, type: 3}
   - {fileID: 5763412486418999706, guid: 43bc5384b827a2e4bb1837c994030e07, type: 3}
+  shootingPoints:
+  - {fileID: 8899339501381192429}
+  - {fileID: 8899339501034000546}

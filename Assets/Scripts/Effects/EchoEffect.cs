@@ -1,73 +1,100 @@
-﻿using UnityEngine;
+﻿using System;
+using Controllers.Core;
+using Core;
+using UnityEngine;
 using Utilities;
 
-public class EchoEffect : MonoBehaviour
+namespace Effects
 {
-    // Params Config
-    [SerializeField] private GameObject echoPrefab;
-    private float startTimeBetweenSpanws = 0.05f;
-    private float timeBetweenSpawns = 0;
-    private float timeToSelfDestruct = 1f;
-
-    // Cached
-    private Ball ball;
-    private GameSession gameSession;
-    private Paddle paddle;
-
-    public void SetTimeToSelfDestruct(float time)
+    public class EchoEffect : MonoBehaviour
     {
-        this.timeToSelfDestruct = time;
-    }
+        // || Inspector References
 
-    private void Start()
-    {
-        gameSession = FindObjectOfType<GameSession>();
-        DefineReferences();
-    }
+        [Header("Required Configuration")]
+        [SerializeField] private GameObject echoPrefab;
 
-    private void Update()
-    {
-        SpawnEchoEffect();
-    }
+        // || Config
 
-    private void DefineReferences()
-    {
-        if (tag == NamesTags.BallEchoTag)
+        private float startTimeBetweenSpanws = 0.05f;
+
+        // || State
+
+        private float timeBetweenSpawns = 0;
+
+        // || Cached
+
+        private Ball ball;
+        private Paddle paddle;
+
+        // || Properties
+
+        public float TimeToSelfDestruct { get; set; } = 1f;
+
+        private void Awake() => FindNeededReferences();
+
+        private void Update() => SpawnEchoEffect();
+
+        /// <summary>
+        /// Find needed references
+        /// </summary>
+        private void FindNeededReferences()
         {
-            ball = this.transform.parent.GetComponent<Ball>();
-        }
-        else if (tag == NamesTags.PaddleEchoTag)
-        {
-            paddle = this.transform.parent.GetComponent<Paddle>();
-        }
-    }
-
-    // Verify times and instantiate the prefab of echo
-    private void SpawnEchoEffect()
-    {
-        if (timeBetweenSpawns <= 0)
-        {
-            GameObject echo = Instantiate(echoPrefab, transform.position, Quaternion.identity) as GameObject;
-            echo.transform.parent = gameSession.FindOrCreateObjectParent(NamesTags.EchosParentName).transform;
-            if (tag == NamesTags.BallEchoTag && ball)
+            try
             {
-                echo.transform.localScale = ball.transform.localScale;
-                echo.transform.rotation = ball.transform.rotation;
-                SpriteRenderer spriteRenderer = echo.GetComponent<SpriteRenderer>();
-                spriteRenderer.color = ball.GetBallColor();
+                if (tag == NamesTags.BallEchoTag)
+                {
+                    ball = transform.parent.GetComponent<Ball>();
+                }
+                else if (tag == NamesTags.PaddleEchoTag)
+                {
+                    paddle = transform.parent.GetComponent<Paddle>();
+                }
             }
-            else if (tag == NamesTags.PaddleEchoTag && paddle)
+            catch (Exception ex)
             {
-                SpriteRenderer spriteRenderer = echo.GetComponent<SpriteRenderer>();
-                spriteRenderer.sprite = paddle.GetSprite();
+                throw ex;
             }
-
-            Destroy(echo, timeToSelfDestruct);
-            timeBetweenSpawns = startTimeBetweenSpanws;
         }
-        else
+
+        /// <summary>
+        /// Spawn echo effect
+        /// </summary>
+        private void SpawnEchoEffect()
         {
-            timeBetweenSpawns -= Time.deltaTime;
+            try
+            {
+                if (GameSessionController.Instance.ActualGameState != Enumerators.GameStates.GAMEPLAY) return;
+
+                if (timeBetweenSpawns <= 0)
+                {
+                    GameObject echo = Instantiate(echoPrefab, transform.position, Quaternion.identity) as GameObject;
+                    echo.transform.parent = GameSessionController.Instance.FindOrCreateObjectParent(NamesTags.EchosParentName).transform;
+                    if (tag.Equals(NamesTags.BallEchoTag) && ball)
+                    {
+                        echo.transform.localScale = ball.transform.localScale;
+                        echo.transform.rotation = ball.transform.rotation;
+                        SpriteRenderer spriteRenderer = echo.GetComponent<SpriteRenderer>();
+                        spriteRenderer.color = ball.CurrentColor;
+                        spriteRenderer.sprite = ball.Sprite;
+                    }
+                    else if (tag.Equals(NamesTags.PaddleEchoTag) && paddle)
+                    {
+                        SpriteRenderer spriteRenderer = echo.GetComponent<SpriteRenderer>();
+                        spriteRenderer.sprite = paddle.GetSprite();
+                    }
+
+                    Destroy(echo, TimeToSelfDestruct);
+                    timeBetweenSpawns = startTimeBetweenSpanws;
+                }
+                else
+                {
+                    timeBetweenSpawns -= Time.deltaTime;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

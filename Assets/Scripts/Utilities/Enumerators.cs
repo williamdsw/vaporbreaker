@@ -3,7 +3,10 @@ namespace Utilities
 {
     public class Enumerators
     {
-        public enum GameStates { LEVEL_COMPLETE, GAMEPLAY, PAUSE, SAVE_LOAD, TRANSITION }
+        public enum GameStates
+        {
+            LEVEL_COMPLETE, GAMEPLAY, PAUSE, SAVE_LOAD, TRANSITION
+        }
 
         public enum PowerUpsNames
         {
@@ -26,6 +29,9 @@ namespace Utilities
             PowerUp_Unbreakables_To_Breakables
         }
 
-        public enum Directions { Down, Left, Right, Up, None }
+        public enum Directions
+        {
+            Down, Left, Right, Up, None
+        }
     }
 }

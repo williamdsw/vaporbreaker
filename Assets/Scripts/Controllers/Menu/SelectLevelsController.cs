@@ -47,7 +47,7 @@ namespace Controllers.Menu
 
         private int currentLevelIndex = 0;
         private bool hasPlayerFinishedGame = false;
-        private GameState actualGameState = GameState.GAMEPLAY;
+        private Enumerators.GameStates actualGameState = Enumerators.GameStates.GAMEPLAY;
 
         // || Cached
 
@@ -61,7 +61,7 @@ namespace Controllers.Menu
         // || Properties
 
         public static SelectLevelsController Instance { get; private set; }
-        public GameState ActualGameState { get => actualGameState; set => actualGameState = value; }
+        public Enumerators.GameStates ActualGameState { get => actualGameState; set => actualGameState = value; }
 
         private void Awake()
         {
@@ -92,7 +92,7 @@ namespace Controllers.Menu
 
         private void Update()
         {
-            if (ActualGameState != GameState.GAMEPLAY || !panel.activeSelf) return;
+            if (ActualGameState != Enumerators.GameStates.GAMEPLAY || !panel.activeSelf) return;
 
             ChangeLevel();
             CaptureCancelButton();
@@ -217,7 +217,7 @@ namespace Controllers.Menu
                 if (InputManager.GetButtonDown(Configuration.InputsNames.UiRight))
                 {
                     KnobEffect.Instance.TurnDirection("Turn_Right");
-                    AudioController.Instance.PlaySFX(AudioController.Instance.TvSwitch, AudioController.Instance.MaxSFXVolume);
+                    AudioController.Instance.PlaySFX(AudioController.Instance.TvSwitchSound, AudioController.Instance.MaxSFXVolume);
                     currentLevelIndex++;
                     currentLevelIndex = (currentLevelIndex >= levels.Count ? 0 : currentLevelIndex);
                     UpdateLevelInfo();
@@ -225,7 +225,7 @@ namespace Controllers.Menu
                 else if (InputManager.GetButtonDown(Configuration.InputsNames.UiLeft))
                 {
                     KnobEffect.Instance.TurnDirection("Turn_Left");
-                    AudioController.Instance.PlaySFX(AudioController.Instance.TvSwitch, AudioController.Instance.MaxSFXVolume);
+                    AudioController.Instance.PlaySFX(AudioController.Instance.TvSwitchSound, AudioController.Instance.MaxSFXVolume);
                     currentLevelIndex--;
                     currentLevelIndex = (currentLevelIndex < 0 ? levels.Count - 1 : currentLevelIndex);
                     UpdateLevelInfo();
@@ -252,7 +252,7 @@ namespace Controllers.Menu
                 DateTime moment = new DateTime(bestScoreboard.Moment);
                 playedLastTimeLabel.text = (current.IsUnlocked && current.IsCompleted ? moment.ToString("hh:mm tt MMM dd yyyy") : string.Empty);
                 bestScoreValueLabel.text = (current.IsUnlocked && current.IsCompleted ? bestScoreboard.Score.ToString() : string.Empty);
-                bestTimeValueLabel.text = (current.IsUnlocked && current.IsCompleted ? Formatter.FormatEllapsedTime((int)bestScoreboard.TimeScore) : string.Empty);
+                bestTimeValueLabel.text = (current.IsUnlocked && current.IsCompleted ? Formatter.FormatEllapsedTimeInHours((int)bestScoreboard.TimeScore) : string.Empty);
                 scoreboardButton.interactable = (current.IsUnlocked && current.IsCompleted);
                 playButton.interactable = (current.IsUnlocked);
                 recLabel.text = (current.IsUnlocked ? "REC" : string.Empty);
@@ -265,7 +265,7 @@ namespace Controllers.Menu
                     scoreboardButton.onClick.AddListener(() =>
                     {
                         panel.SetActive(false);
-                        AudioController.Instance.PlaySFX(AudioController.Instance.UiSubmit, AudioController.Instance.MaxSFXVolume);
+                        AudioController.Instance.PlaySFX(AudioController.Instance.UiSubmitSound, AudioController.Instance.MaxSFXVolume);
                         ScoreboardPanelController.Instance.Show(scoreboards);
                     });
                 }
@@ -279,9 +279,9 @@ namespace Controllers.Menu
                     playButton.onClick.RemoveAllListeners();
                     playButton.onClick.AddListener(() =>
                     {
-                        if (ActualGameState != GameState.GAMEPLAY || !panel.activeSelf) return;
+                        if (ActualGameState != Enumerators.GameStates.GAMEPLAY || !panel.activeSelf) return;
 
-                        AudioController.Instance.PlaySFX(AudioController.Instance.UiSubmit, AudioController.Instance.MaxSFXVolume);
+                        AudioController.Instance.PlaySFX(AudioController.Instance.UiSubmitSound, AudioController.Instance.MaxSFXVolume);
                         AudioController.Instance.StopMusic();
 
                         // Game status params
@@ -304,7 +304,7 @@ namespace Controllers.Menu
                 }
                 else
                 {
-                    AudioController.Instance.PlayME(AudioController.Instance.TvStatic, AudioController.Instance.MaxSFXVolume / 2, true);
+                    AudioController.Instance.PlayME(AudioController.Instance.TvStaticEffect, AudioController.Instance.MaxSFXVolume / 2, true);
                 }
             }
             catch (Exception ex)
@@ -322,7 +322,7 @@ namespace Controllers.Menu
             {
                 AudioController.Instance.StopMusic();
                 AudioController.Instance.StopME();
-                AudioController.Instance.PlaySFX(AudioController.Instance.UiCancel, AudioController.Instance.MaxSFXVolume);
+                AudioController.Instance.PlaySFX(AudioController.Instance.UiCancelSound, AudioController.Instance.MaxSFXVolume);
                 StartCoroutine(CallNextScene(SceneManagerController.MainMenuSceneName));
             }
         }
@@ -333,7 +333,7 @@ namespace Controllers.Menu
         /// <param name="nextSceneName"> Name of the next scene </param>
         private IEnumerator CallNextScene(string nextSceneName)
         {
-            ActualGameState = GameState.TRANSITION;
+            ActualGameState = Enumerators.GameStates.TRANSITION;
 
             FadeEffect.Instance.FadeToLevel();
             yield return new WaitForSecondsRealtime(FadeEffect.Instance.GetFadeOutLength());
@@ -349,7 +349,7 @@ namespace Controllers.Menu
         /// </summary>
         private IEnumerator SaveProgress()
         {
-            ActualGameState = GameState.SAVE_LOAD;
+            ActualGameState = Enumerators.GameStates.SAVE_LOAD;
             savingLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.selectlevels_saving);
 
             progress.CurrentLevelIndex = currentLevelIndex;
@@ -359,7 +359,7 @@ namespace Controllers.Menu
 
             yield return new WaitForSecondsRealtime(TIME_TO_WAIT_AFTER_SAVE);
             savingLabel.text = string.Empty;
-            ActualGameState = GameState.GAMEPLAY;
+            ActualGameState = Enumerators.GameStates.GAMEPLAY;
         }
 
         /// <summary>

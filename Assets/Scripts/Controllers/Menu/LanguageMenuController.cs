@@ -115,7 +115,7 @@ namespace Controllers.Menu
         private void SaveAndBackToMainMenu()
         {
             PlayerPrefsController.SetLanguage(currentLanguage);
-            AudioController.Instance.PlaySFX(AudioController.Instance.UiCancel, AudioController.Instance.MaxSFXVolume);
+            AudioController.Instance.PlaySFX(AudioController.Instance.UiCancelSound, AudioController.Instance.MaxSFXVolume);
             TogglePanel(false);
             MainMenuController.Instance.TogglePanel(true);
         }

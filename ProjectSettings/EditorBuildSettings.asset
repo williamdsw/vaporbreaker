@@ -27,6 +27,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Menus/Credits.unity
     guid: 7dea70c2b1676ec47ba0ffd921971925
   - enabled: 1
+    path: Assets/Scenes/Levels/Level.unity
+    guid: 5b946132629ec74499117fee2b9f9ffa
+  - enabled: 1
     path: Assets/Scenes/Levels/Level_01__1_Hit_Blocks.unity
     guid: 16fc758ec5647cf4cb885d12c9feef4f
   - enabled: 1

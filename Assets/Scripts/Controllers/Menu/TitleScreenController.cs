@@ -1,4 +1,5 @@
 ﻿using Controllers.Core;
+using Effects;
 using Luminosity.IO;
 using MVC.Enums;
 using System;
@@ -104,7 +105,7 @@ namespace Controllers.Menu
         /// </summary>
         private IEnumerator CallNextScene()
         {
-            AudioController.Instance.PlaySFX(AudioController.Instance.UiSubmit, AudioController.Instance.MaxSFXVolume);
+            AudioController.Instance.PlaySFX(AudioController.Instance.UiSubmitSound, AudioController.Instance.MaxSFXVolume);
             flashTextEffect.SetTimeToFlick(0.1f);
             yield return new WaitForSecondsRealtime(TIME_TO_WAIT);
 
