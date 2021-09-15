@@ -56,7 +56,7 @@ namespace Controllers.Menu
 
             yield return new WaitForSecondsRealtime(TIME_TO_WAIT);
             yield return new WaitUntil(() => LocalizationController.Instance != null);
-            LocalizationController.Instance.GetSavedLocalization();
+            LocalizationController.Instance.GetLocalization();
             yield return new WaitUntil(() => LocalizationController.Instance.DictionaryCount > 0);
 
             yield return CallNextScene();
@@ -67,10 +67,8 @@ namespace Controllers.Menu
         /// </summary>
         private IEnumerator CallNextScene()
         {
-            // Fade Out
-            float fadeOutLength = FadeEffect.Instance.GetFadeOutLength();
             FadeEffect.Instance.FadeToLevel();
-            yield return new WaitForSecondsRealtime(fadeOutLength);
+            yield return new WaitForSecondsRealtime(FadeEffect.Instance.GetFadeOutLength());
             GameStatusController.Instance.NextSceneName = SceneManagerController.TitleSceneName;
             GameStatusController.Instance.CameFromLevel = false;
             SceneManagerController.CallScene(SceneManagerController.LoadingSceneName);

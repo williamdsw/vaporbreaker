@@ -44,7 +44,7 @@ namespace Controllers.Menu
             localizationBL = new LocalizationBL();
             languages = localizationBL.GetLanguages().Select(x => x.Language).ToList();
 
-            currentButtonIndex = languages.IndexOf(PlayerPrefsController.GetLanguage());
+            currentButtonIndex = languages.IndexOf(PlayerPrefsController.Language);
 
             GetRequiredComponents();
             Translate();
@@ -114,7 +114,7 @@ namespace Controllers.Menu
         /// </summary>
         private void SaveAndBackToMainMenu()
         {
-            PlayerPrefsController.SetLanguage(currentLanguage);
+            PlayerPrefsController.Language = currentLanguage;
             AudioController.Instance.PlaySFX(AudioController.Instance.UiCancelSound, AudioController.Instance.MaxSFXVolume);
             TogglePanel(false);
             MainMenuController.Instance.TogglePanel(true);
@@ -171,7 +171,7 @@ namespace Controllers.Menu
             {
                 currentLanguage = languages[index];
                 AudioController.Instance.PlaySFX(AudioController.Instance.ClickSound, AudioController.Instance.MaxSFXVolume);
-                LocalizationController.Instance.LoadSavedLocalization(currentLanguage);
+                LocalizationController.Instance.LoadLocalization(currentLanguage);
                 Translate();
                 InputControllerUI.Instance.Translate();
             }

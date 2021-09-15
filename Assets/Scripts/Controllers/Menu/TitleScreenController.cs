@@ -109,9 +109,8 @@ namespace Controllers.Menu
             flashTextEffect.SetTimeToFlick(0.1f);
             yield return new WaitForSecondsRealtime(TIME_TO_WAIT);
 
-            float fadeOutLength = FadeEffect.Instance.GetFadeOutLength();
             FadeEffect.Instance.FadeToLevel();
-            yield return new WaitForSecondsRealtime(fadeOutLength);
+            yield return new WaitForSecondsRealtime(FadeEffect.Instance.GetFadeOutLength());
             GameStatusController.Instance.NextSceneName = SceneManagerController.MainMenuSceneName;
             GameStatusController.Instance.CameFromLevel = false;
             SceneManagerController.CallScene(SceneManagerController.LoadingSceneName);

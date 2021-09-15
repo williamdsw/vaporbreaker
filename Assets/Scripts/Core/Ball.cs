@@ -309,6 +309,6 @@ namespace Core
         /// <summary>
         /// Stop ball's velocity
         /// </summary>
-        public void StopBall() => rigidBody2D.velocity = Vector2.zero;
+        public void Stop() => rigidBody2D.velocity = Vector2.zero;
     }
 }

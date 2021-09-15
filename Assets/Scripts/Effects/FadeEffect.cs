@@ -172,7 +172,7 @@ namespace Effects
         /// </summary>
         public void FadeToLevel()
         {
-            //animator.Rebind();
+            animator.Rebind();
             animator.SetTrigger("FadeOut");
         }
 

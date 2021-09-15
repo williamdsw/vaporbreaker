@@ -447,7 +447,7 @@ namespace Controllers.Menu
                 }
 
                 // Plays sound only if it's SFX active
-                if (InputManager.GetButton(Configuration.InputsNames.UiLeft, PlayerID.One) || 
+                if (InputManager.GetButton(Configuration.InputsNames.UiLeft, PlayerID.One) ||
                     InputManager.GetButton(Configuration.InputsNames.UiRight, PlayerID.One))
                 {
                     if (audioSource == AudioController.Instance.AudioSourceSFX)
@@ -519,18 +519,17 @@ namespace Controllers.Menu
         {
             try
             {
-                actualResolution = PlayerPrefsController.GetResolution();
-                resolutionIndex = resolutions.IndexOf(actualResolution);
-                isFullscreen = (PlayerPrefsController.GetFullScreen() == 1);
-                BGMVolume = PlayerPrefsController.GetBGMVolume();
-                SFXVolume = PlayerPrefsController.GetSFXVolume();
-
-                // Verifies
-                if (string.IsNullOrEmpty(actualResolution) || string.IsNullOrWhiteSpace(actualResolution) || resolutionIndex == -1)
+                if (!PlayerPrefsController.HasPlayerPrefs)
                 {
                     SetDefaultValues();
                     return;
                 }
+
+                actualResolution = PlayerPrefsController.Resolution;
+                resolutionIndex = resolutions.IndexOf(actualResolution);
+                isFullscreen = (PlayerPrefsController.IsFullScreen == 1);
+                BGMVolume = PlayerPrefsController.BackgroundMusicVolume;
+                SFXVolume = PlayerPrefsController.SoundEffectsVolume;
 
                 AudioController.Instance.MaxBGMVolume = BGMVolume;
                 AudioController.Instance.MaxSFXVolume = SFXVolume;
@@ -551,10 +550,11 @@ namespace Controllers.Menu
         {
             try
             {
-                PlayerPrefsController.SetResolution(actualResolution);
-                PlayerPrefsController.SetFullScreen(isFullscreen ? 1 : 0);
-                PlayerPrefsController.SetBGMVolume(BGMVolume);
-                PlayerPrefsController.SetSFXVolume(SFXVolume);
+                PlayerPrefsController.Resolution = actualResolution;
+                PlayerPrefsController.IsFullScreen = (isFullscreen ? 1 : 0);
+                PlayerPrefsController.BackgroundMusicVolume = BGMVolume;
+                PlayerPrefsController.SoundEffectsVolume = SFXVolume;
+                PlayerPrefsController.HasPlayerPrefs = true;
             }
             catch (Exception ex)
             {

@@ -216,7 +216,6 @@ MonoBehaviour:
   clickSound: {fileID: 8300000, guid: 50a58365b4d5da24b8c891e2e5d9edc1, type: 3}
   explosionSound: {fileID: 8300000, guid: 7830e3fa90501b643ac46b18e3b714f7, type: 3}
   laserPewSound: {fileID: 8300000, guid: b4a2c315bd840e74b954a2aac6782b47, type: 3}
-  metalPingSound: {fileID: 8300000, guid: 7d45460550433594392215e36828bb94, type: 3}
   hittingFaceSound: {fileID: 8300000, guid: 77a3676463d223b4cac46f92885c4cc2, type: 3}
   hittingWallSound: {fileID: 0}
   powerUpSound: {fileID: 8300000, guid: 57a187728e3317e40a2ba5dbaf8c3bf4, type: 3}
@@ -224,7 +223,7 @@ MonoBehaviour:
   slamSound: {fileID: 8300000, guid: 00c6ee0324377bb4eb1e50731dc93ad7, type: 3}
   tvSwitchSound: {fileID: 8300000, guid: 876f9a0f223b42b4da2f497a57405e06, type: 3}
   uiCancelSound: {fileID: 8300000, guid: 611054dfeca2e1742afca8d0c5d34f4b, type: 3}
-  uiSubmitSound: {fileID: 8300000, guid: e93b4507e022f2e419a3a622026d3939, type: 3}
+  uiSubmitSound: {fileID: 8300000, guid: 57a187728e3317e40a2ba5dbaf8c3bf4, type: 3}
 --- !u!1 &3542721587877858603
 GameObject:
   m_ObjectHideFlags: 0
