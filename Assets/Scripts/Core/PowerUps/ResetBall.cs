@@ -19,11 +19,9 @@ namespace Core.PowerUps
                 {
                     foreach (Ball ball in balls)
                     {
-                        Rigidbody2D ballRB = ball.GetComponent<Rigidbody2D>();
-                        float defaultSpeed = ball.DefaultSpeed;
                         ball.transform.localScale = Vector3.one;
-                        ball.MoveSpeed = defaultSpeed;
-                        ballRB.velocity = (ballRB.velocity.normalized * Time.deltaTime * defaultSpeed);
+                        ball.Velocity = ball.OriginalVelocity;
+                        ball.MoveSpeed = ball.DefaultSpeed;
                     }
 
                     GameSessionController.Instance.AddToScore(UnityEngine.Random.Range(100, 1000));

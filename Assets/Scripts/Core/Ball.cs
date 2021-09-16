@@ -22,10 +22,6 @@ namespace Core
         [SerializeField] private Sprite defaultBallSprite;
         [SerializeField] private Sprite fireballSprite;
 
-        // || Config
-
-        private readonly Vector2 minMaxVelocity = new Vector2(2f, 20f);
-
         // || State
 
         private Vector3 paddleToBallPosition;
@@ -42,31 +38,34 @@ namespace Core
         // || Properties
 
         public bool IsBallOnFire { get; set; } = false;
-        public float DefaultSpeed { get; set; } = 300f;
-        public float MoveSpeed { get; set; } = 300f;
+        public float DefaultSpeed { get; set; }
+        public float MoveSpeed { get; set; } = 3f;
         public float RotationDegree { get; set; } = 20f;
-        public Vector2 MinMaxMoveSpeed => new Vector2(200f, 600f);
         public Vector2 MinMaxLocalScale => new Vector2(0.5f, 8f);
         public Vector2 MinMaxRotationDegree => new Vector2(10f, 90f);
         public Color32 CurrentColor => spriteRenderer.color;
         public Sprite Sprite => spriteRenderer.sprite;
+        public float MinVelocity => 2f;
+        public float MaxVelocity => 7f;
+        public float VelocityChanger => 1.25f;
+        public Vector2 Velocity { get => rigidBody2D.velocity; set => rigidBody2D.velocity = value; }
+        public Vector2 OriginalVelocity { get; private set; }
 
         private void Awake() => GetRequiredComponents();
 
         private void Start()
         {
             DefaultSpeed = MoveSpeed;
-            echoEffectSpawnerPrefab.tag = NamesTags.BallEchoTag;
+            echoEffectSpawnerPrefab.tag = NamesTags.Tags.BallEcho;
 
-            // Locks only if it's the first ball
-            int ballCount = FindObjectsOfType(GetType()).Length;
-            if (ballCount == 1)
+            // First Ball
+            if (FindObjectsOfType(GetType()).Length == 1)
             {
                 echoEffectSpawnerPrefab.gameObject.SetActive(false);
 
                 if (!initialLinePrefab)
                 {
-                    initialLinePrefab = GameObject.FindGameObjectWithTag(NamesTags.LineBetweenBallPointerTag);
+                    initialLinePrefab = GameObject.FindGameObjectWithTag(NamesTags.Tags.LineBetweenBallPointer);
                 }
 
                 initialLineRenderer = initialLinePrefab.GetComponent<LineRenderer>();
@@ -80,8 +79,10 @@ namespace Core
                 transform.position = new Vector3(paddle.transform.position.x, paddle.transform.position.y + 0.25f, paddle.transform.position.z);
                 DrawLineToMouse();
             }
-
-            ChooseRandomColor();
+            else
+            {
+                ChooseRandomColor();
+            }
         }
 
         private void Update()
@@ -114,7 +115,8 @@ namespace Core
                 {
                     bool isBallBig = (transform.localScale.y >= 8f);
 
-                    if (other.gameObject.CompareTag(NamesTags.PaddleTag) || other.gameObject.CompareTag(NamesTags.WallTag))
+                    if (other.gameObject.CompareTag(NamesTags.Tags.Paddle) ||
+                        other.gameObject.CompareTag(NamesTags.Tags.Wall))
                     {
                         GameSessionController.Instance.ResetCombo();
                     }
@@ -147,7 +149,6 @@ namespace Core
                                 break;
                             }
 
-                        // Colision with walls
                         case "Wall":
                             {
                                 ClampVelocity();
@@ -216,8 +217,8 @@ namespace Core
                         GameSessionController.Instance.CurrentNumberOfBalls++;
 
                         // Other
-                        remainingPosition.Normalize();
-                        rigidBody2D.velocity = (remainingPosition * MoveSpeed * Time.deltaTime);
+                        rigidBody2D.velocity = (remainingPosition.normalized * MoveSpeed);
+                        OriginalVelocity = rigidBody2D.velocity;
                         initialLineRenderer.enabled = false;
                         echoEffectSpawnerPrefab.gameObject.SetActive(true);
                         CursorController.Instance.gameObject.SetActive(false);
@@ -253,8 +254,8 @@ namespace Core
         private void ClampVelocity()
         {
             Vector2 currentVelocity = rigidBody2D.velocity;
-            float x = Mathf.Clamp(Mathf.Abs(currentVelocity.x), minMaxVelocity.x, minMaxVelocity.y);
-            float y = Mathf.Clamp(Mathf.Abs(currentVelocity.y), minMaxVelocity.x, minMaxVelocity.y);
+            float x = Mathf.Clamp(Mathf.Abs(currentVelocity.x), 2, 10);
+            float y = Mathf.Clamp(Mathf.Abs(currentVelocity.y), 2, 10);
             currentVelocity.x = (currentVelocity.x > 0 ? x : x * -1);
             currentVelocity.y = (currentVelocity.y > 0 ? y : y * -1);
             rigidBody2D.velocity = currentVelocity;
@@ -284,7 +285,7 @@ namespace Core
             try
             {
                 GameObject particles = Instantiate(paddleParticlesPrefab, contactPoint, paddleParticlesPrefab.transform.rotation) as GameObject;
-                particles.transform.SetParent(GameSessionController.Instance.FindOrCreateObjectParent(NamesTags.DebrisParentName).transform);
+                particles.transform.SetParent(GameSessionController.Instance.FindOrCreateObjectParent(NamesTags.Parents.Debris).transform);
                 ParticleSystem debrisParticleSystem = paddleParticlesPrefab.GetComponent<ParticleSystem>();
                 float durationLength = (debrisParticleSystem.main.duration + debrisParticleSystem.main.startLifetime.constant);
                 Destroy(particles, durationLength);

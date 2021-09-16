@@ -41,11 +41,11 @@ namespace Effects
         {
             try
             {
-                if (tag == NamesTags.BallEchoTag)
+                if (tag == NamesTags.Tags.BallEcho)
                 {
                     ball = transform.parent.GetComponent<Ball>();
                 }
-                else if (tag == NamesTags.PaddleEchoTag)
+                else if (tag == NamesTags.Tags.PaddleEcho)
                 {
                     paddle = transform.parent.GetComponent<Paddle>();
                 }
@@ -68,8 +68,8 @@ namespace Effects
                 if (timeBetweenSpawns <= 0)
                 {
                     GameObject echo = Instantiate(echoPrefab, transform.position, Quaternion.identity) as GameObject;
-                    echo.transform.parent = GameSessionController.Instance.FindOrCreateObjectParent(NamesTags.EchosParentName).transform;
-                    if (tag.Equals(NamesTags.BallEchoTag) && ball)
+                    echo.transform.parent = GameSessionController.Instance.FindOrCreateObjectParent(NamesTags.Parents.Echos).transform;
+                    if (tag.Equals(NamesTags.Tags.BallEcho) && ball)
                     {
                         echo.transform.localScale = ball.transform.localScale;
                         echo.transform.rotation = ball.transform.rotation;
@@ -77,7 +77,7 @@ namespace Effects
                         spriteRenderer.color = ball.CurrentColor;
                         spriteRenderer.sprite = ball.Sprite;
                     }
-                    else if (tag.Equals(NamesTags.PaddleEchoTag) && paddle)
+                    else if (tag.Equals(NamesTags.Tags.PaddleEcho) && paddle)
                     {
                         SpriteRenderer spriteRenderer = echo.GetComponent<SpriteRenderer>();
                         spriteRenderer.sprite = paddle.GetSprite();

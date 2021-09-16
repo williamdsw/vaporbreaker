@@ -1,5 +1,4 @@
-﻿using Controllers.Menu;
-using Core;
+﻿using Core;
 using Luminosity.IO;
 using MVC.BL;
 using MVC.Global;
@@ -8,7 +7,6 @@ using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 using Utilities;
@@ -52,7 +50,6 @@ namespace Controllers.Core
 
         // || Config
 
-        private const int MAX_NUMBER_OF_BALLS = 10;
         private const float TIME_TO_PUT_OUT_FIRE_BALL = 5f;
 
         // || Cached
@@ -111,9 +108,9 @@ namespace Controllers.Core
         public Enumerators.Directions BlockDirection { get; set; } = Enumerators.Directions.None;
         public int CurrentNumberOfBalls { get; set; } = 1;
         public int ComboMultiplier { get; private set; } = 0;
-        public int MaxNumberOfBalls => MAX_NUMBER_OF_BALLS;
-        public float StartTimeToSpawnAnotherBall => 10f;
-        public float TimeToSpawnAnotherBall { get; set; } = 0f;
+        public int MaxNumberOfBalls => 20;
+        public float StartTimeToSpawnAnotherBall { get; set; } = 10f;
+        public float TimeToSpawnAnotherBall { get; set; } = -1f;
         public bool CanMoveBlocks { get; set; } = false;
         public bool HasStarted { get; set; } = false;
         public bool CanSpawnAnotherBall { private get; set; } = false;
@@ -221,7 +218,7 @@ namespace Controllers.Core
                 foreach (Layout.BlockInfo info in layout.Blocks)
                 {
                     Block clone = Instantiate(blocksPrefabsDictionary[info.PrefabName], new Vector3(info.Position.X, info.Position.Y, info.Position.Z), Quaternion.identity) as Block;
-                    clone.transform.SetParent(FindOrCreateObjectParent(NamesTags.BlocksParentName).transform);
+                    clone.transform.SetParent(FindOrCreateObjectParent(NamesTags.Parents.Blocks).transform);
                     clone.SetColor(new Color32(info.Color.R, info.Color.G, info.Color.B, 255));
                 }
             }
@@ -337,11 +334,11 @@ namespace Controllers.Core
         {
             try
             {
-                GameObject[] blocks = GameObject.FindGameObjectsWithTag(NamesTags.BreakableBlockTag);
+                GameObject[] blocks = GameObject.FindGameObjectsWithTag(NamesTags.Tags.BreakableBlock);
                 if (blocks.Length == 0) return;
 
-                minMaxNumberOfRandomBlocks.x = Mathf.FloorToInt((blocks.Length * (10f / 100f)));
-                minMaxNumberOfRandomBlocks.y = Mathf.FloorToInt((blocks.Length * (20f / 100f)));
+                minMaxNumberOfRandomBlocks.x = Mathf.FloorToInt((blocks.Length * (5 / 100f)));
+                minMaxNumberOfRandomBlocks.y = Mathf.FloorToInt((blocks.Length * (10f / 100f)));
                 numberOfRandomBlocks = UnityEngine.Random.Range(minMaxNumberOfRandomBlocks.x, minMaxNumberOfRandomBlocks.y + 1);
 
                 // Instantiates new power up blocks
@@ -351,7 +348,7 @@ namespace Controllers.Core
                     int index = UnityEngine.Random.Range(0, blocks.Length);
                     Block old = blocks[index].GetComponent<Block>();
                     Block powerUp = Instantiate(blocksPrefabsDictionary[NamesTags.Blocks.PowerUpBlock], old.transform.position, Quaternion.identity) as Block;
-                    powerUp.transform.SetParent(FindOrCreateObjectParent(NamesTags.BlocksParentName).transform);
+                    powerUp.transform.SetParent(FindOrCreateObjectParent(NamesTags.Parents.Blocks).transform);
                     powerUp.SetColor(old.ParticlesColor);
                     oldBlocks.Add(old.gameObject);
                 }
@@ -402,7 +399,7 @@ namespace Controllers.Core
                         int numberOfOcorrences = 0;
                         foreach (Block block in blocks)
                         {
-                            if (block.CompareTag(NamesTags.BreakableBlockTag))
+                            if (block.CompareTag(NamesTags.Tags.BreakableBlock))
                             {
                                 switch (direction)
                                 {
@@ -500,7 +497,7 @@ namespace Controllers.Core
                     {
                         areBallOnFire = true;
 
-                        GameObject[] blocks = GameObject.FindGameObjectsWithTag(NamesTags.BreakableBlockTag);
+                        GameObject[] blocks = GameObject.FindGameObjectsWithTag(NamesTags.Tags.BreakableBlock);
                         foreach (GameObject blockObject in blocks)
                         {
                             BoxCollider2D blockCollider = blockObject.GetComponent<BoxCollider2D>();
@@ -537,7 +534,7 @@ namespace Controllers.Core
             {
                 areBallOnFire = false;
 
-                GameObject[] blocks = GameObject.FindGameObjectsWithTag(NamesTags.BreakableBlockTag);
+                GameObject[] blocks = GameObject.FindGameObjectsWithTag(NamesTags.Tags.BreakableBlock);
                 foreach (GameObject blockObject in blocks)
                 {
                     BoxCollider2D blockCollider = blockObject.GetComponent<BoxCollider2D>();
@@ -608,21 +605,31 @@ namespace Controllers.Core
 
                     if (TimeToSpawnAnotherBall >= StartTimeToSpawnAnotherBall)
                     {
-                        Ball firstBall = FindObjectOfType<Ball>();
-
-                        if (firstBall != null)
+                        Ball[] balls = FindObjectsOfType<Ball>();
+                        if (balls.Length != 0)
                         {
-                            Rigidbody2D ballRB = firstBall.GetComponent<Rigidbody2D>();
-                            Ball newBall = Instantiate(firstBall, firstBall.transform.position, Quaternion.identity) as Ball;
-                            Rigidbody2D newBallRB = newBall.GetComponent<Rigidbody2D>();
-                            newBallRB.velocity = (ballRB.velocity.normalized * -1 * Time.deltaTime * firstBall.MoveSpeed);
-                            newBall.MoveSpeed = firstBall.DefaultSpeed;
-                            newBall.IsBallOnFire = firstBall.IsBallOnFire;
-                            newBall.ChangeBallSprite(newBall.IsBallOnFire);
-                            CurrentNumberOfBalls++;
+                            foreach (Ball ball in balls)
+                            {
+                                if (CurrentNumberOfBalls < MaxNumberOfBalls)
+                                {
+                                    if (ball.Velocity.x < ball.MaxVelocity && ball.Velocity.y < ball.MaxVelocity)
+                                    {
+                                        ball.Velocity *= ball.VelocityChanger;
+                                        ball.MoveSpeed += ball.VelocityChanger;
+                                    }
+
+                                    Ball newBall = Instantiate(ball, ball.transform.position, Quaternion.identity) as Ball;
+                                    newBall.MoveSpeed = ball.MoveSpeed;
+                                    newBall.IsBallOnFire = ball.IsBallOnFire;
+                                    newBall.ChangeBallSprite(newBall.IsBallOnFire);
+                                    newBall.Velocity = (ball.Velocity * -1);
+                                    CurrentNumberOfBalls++;
+                                }
+                            }
                         }
 
                         TimeToSpawnAnotherBall = -1f;
+                        StartTimeToSpawnAnotherBall += 5f;
                     }
                 }
             }
@@ -638,7 +645,6 @@ namespace Controllers.Core
                 foreach (Ball ball in FindObjectsOfType<Ball>())
                 {
                     ball.transform.localScale = Vector2.one;
-                    ball.MoveSpeed = ball.DefaultSpeed;
                 }
 
                 foreach (Shooter shooter in FindObjectsOfType<Shooter>())
@@ -666,9 +672,11 @@ namespace Controllers.Core
         {
             try
             {
-                TimeToSpawnAnotherBall = 0f;
+                TimeToSpawnAnotherBall = -1f;
+                StartTimeToSpawnAnotherBall = 10f;
                 CurrentNumberOfBalls = 0;
                 currentScore = 0;
+                bestCombo = 0;
                 CanSpawnAnotherBall = false;
                 HasStarted = false;
                 CanMoveBlocks = false;

@@ -46,7 +46,7 @@ namespace Controllers.Core
                             int chance = UnityEngine.Random.Range(0, 100);
                             int index = (prefabs.Length == 2 ? (chance >= 80 ? 1 : 0) : UnityEngine.Random.Range(0, prefabs.Length));
                             GameObject powerUp = Instantiate(prefabs[index], this.transform.position, Quaternion.identity) as GameObject;
-                            powerUp.transform.SetParent(GameObject.Find(NamesTags.PowerUpsParentName).transform);
+                            powerUp.transform.SetParent(GameObject.Find(NamesTags.Parents.PowerUps).transform);
 
                             if (hasLimitedNumberOfSpawns)
                             {

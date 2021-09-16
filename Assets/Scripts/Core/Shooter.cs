@@ -58,7 +58,7 @@ namespace Core
                 int index = UnityEngine.Random.Range(0, projectiles.Length);
                 Projectile projectile = Instantiate(projectiles[index]);
                 projectile.gameObject.SetActive(false);
-                projectile.transform.SetParent(GameSessionController.Instance.FindOrCreateObjectParent(NamesTags.ProjectilesParentName).transform);
+                projectile.transform.SetParent(GameSessionController.Instance.FindOrCreateObjectParent(NamesTags.Parents.Projectiles).transform);
                 projectilesPool.Add(projectile.gameObject);
             }
         }

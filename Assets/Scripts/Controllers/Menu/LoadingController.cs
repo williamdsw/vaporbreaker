@@ -51,20 +51,10 @@ namespace Controllers.Menu
 
         private TextMeshProUGUI continueButtonLabel;
 
-
-        private FullScreenBackground fullScreenBackground;
-
-        private void Awake() => continueButtonLabel = continueButton.GetComponentInChildren<TextMeshProUGUI>();
+        private void Awake() => GetRequiredComponents();
 
         private void Start()
         {
-            fullScreenBackground = FindObjectOfType<FullScreenBackground>();
-
-            if (fullScreenBackground)
-            {
-                fullScreenBackground.DestroyInstance();
-            }
-
             if (GameStatusController.Instance.NextSceneName.Equals(SceneManagerController.LevelSceneName))
             {
                 Translate();
@@ -75,6 +65,21 @@ namespace Controllers.Menu
                 powerUpNameLabel.text = string.Empty;
                 loadingPanel.SetActive(false);
                 StartCoroutine(CallNextScene());
+            }
+        }
+
+        /// <summary>
+        /// Get required components
+        /// </summary>
+        private void GetRequiredComponents()
+        {
+            try
+            {
+                continueButtonLabel = continueButton.GetComponentInChildren<TextMeshProUGUI>();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 

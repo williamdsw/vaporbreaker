@@ -44,7 +44,7 @@ namespace Core
             // Default values
             defaultSpeed = moveSpeed;
             doubleSpeed = (moveSpeed * 2);
-            echoEffectSpawner.tag = NamesTags.PaddleEchoTag;
+            echoEffectSpawner.tag = NamesTags.Tags.PaddleEcho;
 
             DefineStartPosition();
             DefineBounds();

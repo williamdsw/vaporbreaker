@@ -28,14 +28,13 @@ namespace Core.PowerUps
                 {
                     foreach (Ball ball in balls)
                     {
-                        Rigidbody2D ballRB = ball.GetComponent<Rigidbody2D>();
-                        float moveSpeed = ball.MoveSpeed;
                         float rotationDegree = ball.MinMaxRotationDegree.x;
                         if (moveFaster)
                         {
-                            if (moveSpeed < ball.MinMaxMoveSpeed.y)
+                            if (ball.Velocity.x < ball.MaxVelocity && ball.Velocity.y < ball.MaxVelocity)
                             {
-                                moveSpeed += 100f;
+                                ball.Velocity *= ball.VelocityChanger;
+                                ball.MoveSpeed += ball.VelocityChanger;
                             }
 
                             if (rotationDegree < ball.MinMaxRotationDegree.y)
@@ -45,10 +44,12 @@ namespace Core.PowerUps
                         }
                         else
                         {
-                            if (moveSpeed > ball.MinMaxMoveSpeed.x)
+                            if (ball.Velocity.x > ball.MinVelocity && ball.Velocity.y > ball.MinVelocity)
                             {
-                                moveSpeed -= 100f;
+                                ball.Velocity /= ball.VelocityChanger;
+                                ball.MoveSpeed -= ball.VelocityChanger;
                             }
+
 
                             if (rotationDegree > ball.MinMaxRotationDegree.x)
                             {
@@ -56,9 +57,7 @@ namespace Core.PowerUps
                             }
                         }
 
-                        ball.MoveSpeed = moveSpeed;
                         ball.RotationDegree = rotationDegree;
-                        ballRB.velocity = (ballRB.velocity.normalized * Time.deltaTime * moveSpeed);
                     }
 
                     Vector2Int minMaxScore = new Vector2Int(moveFaster ? 5000 : 1000, moveFaster ? 10000 : 5000);

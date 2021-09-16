@@ -71,19 +71,9 @@ namespace Core
                 {
                     collidedWithBall = (other.gameObject.GetComponent<Ball>() != null);
 
-                    if (CompareTag(NamesTags.BreakableBlockTag))
+                    if (CompareTag(NamesTags.Tags.BreakableBlock))
                     {
                         HandleHit();
-                    }
-
-                    if (collidedWithBall)
-                    {
-                        GameObject ball = other.gameObject;
-                        isBallBig = ball.transform.localScale.y >= 8f;
-                        if (isBallBig)
-                        {
-                            CameraImpulse.Instance.TriggerImpulse();
-                        }
                     }
                 }
             }
@@ -97,7 +87,7 @@ namespace Core
                 {
                     collidedWithBall = (other.gameObject.GetComponent<Ball>() != null);
 
-                    if (CompareTag(NamesTags.BreakableBlockTag))
+                    if (CompareTag(NamesTags.Tags.BreakableBlock))
                     {
                         HandleHit();
                     }
@@ -127,7 +117,7 @@ namespace Core
         /// </summary>
         private void CountBreakableBlocks()
         {
-            if (CompareTag(NamesTags.BreakableBlockTag))
+            if (CompareTag(NamesTags.Tags.BreakableBlock))
             {
                 GameSessionController.Instance.CountBlocks();
             }
@@ -258,7 +248,7 @@ namespace Core
                     AudioController.Instance.PlaySFX(AudioController.Instance.ExplosionSound, AudioController.Instance.MaxSFXVolume / 2);
                     int randomIndex = UnityEngine.Random.Range(0, explosionPrefabs.Length);
                     GameObject explosion = Instantiate(explosionPrefabs[randomIndex], transform.position, Quaternion.identity) as GameObject;
-                    explosion.transform.SetParent(GameSessionController.Instance.FindOrCreateObjectParent(NamesTags.ExplosionsParentName).transform);
+                    explosion.transform.SetParent(GameSessionController.Instance.FindOrCreateObjectParent(NamesTags.Parents.Explosions).transform);
                     Animator animator = explosion.GetComponent<Animator>();
                     float animationLength = animator.GetCurrentAnimatorStateInfo(0).length;
                     Destroy(explosion, animationLength);
@@ -279,9 +269,9 @@ namespace Core
             try
             {
                 TextMeshPro textMeshPro = blockScoreTextPrefab.GetComponentInChildren<TextMeshPro>();
-                textMeshPro.text = score.ToString();
+                textMeshPro.text = Formatter.FormatToCurrency(score);
                 GameObject scoreText = Instantiate(blockScoreTextPrefab, transform.position, Quaternion.identity) as GameObject;
-                scoreText.transform.SetParent(GameSessionController.Instance.FindOrCreateObjectParent(NamesTags.BlockScoreTextParentName).transform);
+                scoreText.transform.SetParent(GameSessionController.Instance.FindOrCreateObjectParent(NamesTags.Parents.BlockScoreText).transform);
                 Animator animator = scoreText.GetComponent<Animator>();
                 float durationLength = animator.GetCurrentAnimatorStateInfo(0).length;
                 Destroy(scoreText, durationLength);
@@ -301,7 +291,7 @@ namespace Core
             {
                 // Instantiate and Destroy
                 GameObject debris = Instantiate(particlesPrefab, transform.position, particlesPrefab.transform.rotation) as GameObject;
-                debris.transform.SetParent(GameSessionController.Instance.FindOrCreateObjectParent(NamesTags.DebrisParentName).transform);
+                debris.transform.SetParent(GameSessionController.Instance.FindOrCreateObjectParent(NamesTags.Parents.Debris).transform);
 
                 // Color
                 ParticleSystem debrisParticleSystem = debris.GetComponent<ParticleSystem>();
@@ -330,7 +320,7 @@ namespace Core
 
                 int randomIndex = UnityEngine.Random.Range(0, powerUpPrefabs.Length);
                 GameObject powerUp = Instantiate(powerUpPrefabs[randomIndex].gameObject, transform.position, Quaternion.identity) as GameObject;
-                powerUp.transform.SetParent(GameSessionController.Instance.FindOrCreateObjectParent(NamesTags.PowerUpsParentName).transform);
+                powerUp.transform.SetParent(GameSessionController.Instance.FindOrCreateObjectParent(NamesTags.Parents.PowerUps).transform);
                 AudioController.Instance.PlaySFX(AudioController.Instance.ShowUpSound, AudioController.Instance.MaxSFXVolume);
             }
             catch (Exception ex)

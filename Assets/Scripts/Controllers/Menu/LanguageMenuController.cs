@@ -173,7 +173,6 @@ namespace Controllers.Menu
                 AudioController.Instance.PlaySFX(AudioController.Instance.ClickSound, AudioController.Instance.MaxSFXVolume);
                 LocalizationController.Instance.LoadLocalization(currentLanguage);
                 Translate();
-                InputControllerUI.Instance.Translate();
             }
             catch (Exception ex)
             {
