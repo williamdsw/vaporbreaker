@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Utilities;
 
 namespace Controllers.Core
 {
@@ -165,11 +166,11 @@ namespace Controllers.Core
             totalScore += (bestCombo > 1 ? bestCombo * 50000 : 0);
 
             // Update UI
-            scoreValueLabel.text = currentScore.ToString();
-            timeScoreValueLabel.text = totalTimeScore.ToString();
+            scoreValueLabel.text = Formatter.FormatToCurrency(currentScore);
+            timeScoreValueLabel.text = (totalTimeScore > 0 ? Formatter.FormatToCurrency((long)totalTimeScore) : "0");
             bestComboValueLabel.text = bestCombo.ToString();
             currentBallsValueLabel.text = numberOfBalls.ToString();
-            totalValueLabel.text = totalScore.ToString();
+            totalValueLabel.text = Formatter.FormatToCurrency(totalScore);
         }
 
         /// <summary>

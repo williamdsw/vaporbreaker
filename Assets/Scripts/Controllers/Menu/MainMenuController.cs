@@ -45,9 +45,10 @@ namespace Controllers.Menu
         private void Awake()
         {
             Instance = this;
-            ConfigurationsController.ToggleCursor(false);
+
             GetRequiredComponents();
             Translate();
+            BindEventListeners();
 
             AudioController.Instance.ChangeMusic(AudioController.Instance.AllLoopedSongs[0], false, "", true, false);
 
@@ -55,7 +56,6 @@ namespace Controllers.Menu
             Time.timeScale = 1f;
             HasSavedGame = ProgressManager.HasProgress();
 
-            BindEventListeners();
             InputManager.Load();
 
             levelsButton.Select();
@@ -95,7 +95,7 @@ namespace Controllers.Menu
                 languageButtonLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.mainmenu_language);
                 soundtrackButtonLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.mainmenu_soundtrack);
                 creditsButtonLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.mainmenu_credits);
-                quitButtonLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.mainmenu_quit);
+                quitButtonLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.general_quit);
             }
             catch (Exception ex)
             {

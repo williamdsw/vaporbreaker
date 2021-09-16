@@ -112,9 +112,8 @@ namespace Controllers.Core
         public int CurrentNumberOfBalls { get; set; } = 1;
         public int ComboMultiplier { get; private set; } = 0;
         public int MaxNumberOfBalls => MAX_NUMBER_OF_BALLS;
-        public float StartTimeToSpawnAnotherBall { private get; set; } = 0f;
-        public float TimeToSpawnAnotherBall { private get; set; } = 0f;
-        public float TimeToWaitToSpawnAnotherBall => -5f;
+        public float StartTimeToSpawnAnotherBall => 10f;
+        public float TimeToSpawnAnotherBall { get; set; } = 0f;
         public bool CanMoveBlocks { get; set; } = false;
         public bool HasStarted { get; set; } = false;
         public bool CanSpawnAnotherBall { private get; set; } = false;
@@ -239,8 +238,9 @@ namespace Controllers.Core
         {
             try
             {
-                currentScoreLabel.SetText(currentScore.ToString());
-                ellapsedTimeLabel.text = Formatter.FormatEllapsedTimeInHours((int)ellapsedTime);
+                //currentScoreLabel.SetText(currentScore.ToString());
+                currentScoreLabel.SetText(Formatter.FormatToCurrency(currentScore));
+                ellapsedTimeLabel.text = Formatter.GetEllapsedTimeInHours((int)ellapsedTime);
 
                 if (ComboMultiplier > 1)
                 {
@@ -252,10 +252,10 @@ namespace Controllers.Core
                     comboMultiplierLabel.SetText(string.Empty);
                 }
 
-                if (CanSpawnAnotherBall && TimeToSpawnAnotherBall >= 0)
+                if (CanSpawnAnotherBall)
                 {
                     int ballCountdown = (int)(StartTimeToSpawnAnotherBall - TimeToSpawnAnotherBall);
-                    ballCountdownLabel.SetText((ballCountdown > 0 ? ballCountdown.ToString("00") : string.Empty));
+                    ballCountdownLabel.SetText(ballCountdown.ToString("00"));
                 }
                 else
                 {
@@ -377,7 +377,7 @@ namespace Controllers.Core
         /// <param name="numberOfOcorrences"> Number of blocks moved </param>
         private void MoveBlockAtPosition(Block block, Vector3 position, bool expression, ref int numberOfOcorrences)
         {
-            if (BlockGrid.GetBlock(position) == null && expression)
+            if (expression && BlockGrid.CheckPosition(position) && BlockGrid.GetBlock(position) == null)
             {
                 BlockGrid.RedefineBlock(block.transform.position, null);
                 BlockGrid.RedefineBlock(position, block);
@@ -433,7 +433,7 @@ namespace Controllers.Core
                                         {
                                             Paddle paddle = FindObjectOfType<Paddle>();
                                             Vector3 up = new Vector3(block.transform.position.x, block.transform.position.y + 0.5f, 0f);
-                                            bool isValid = (up.y <= BlockGrid.MaxCoordinatesInXY.y && up.y + 1f < paddle.transform.position.y);
+                                            bool isValid = (up.y <= BlockGrid.MaxCoordinatesInXY.y && up.y + 1f >= paddle.transform.position.y);
                                             MoveBlockAtPosition(block, up, isValid, ref numberOfOcorrences);
                                             break;
                                         }
@@ -621,10 +621,9 @@ namespace Controllers.Core
                             newBall.ChangeBallSprite(newBall.IsBallOnFire);
                             CurrentNumberOfBalls++;
                         }
-                    }
 
-                    TimeToSpawnAnotherBall = TimeToWaitToSpawnAnotherBall;
-                    StartTimeToSpawnAnotherBall = 5f;
+                        TimeToSpawnAnotherBall = -1f;
+                    }
                 }
             }
         }
@@ -667,8 +666,7 @@ namespace Controllers.Core
         {
             try
             {
-                TimeToSpawnAnotherBall = TimeToWaitToSpawnAnotherBall;
-                StartTimeToSpawnAnotherBall = 5f;
+                TimeToSpawnAnotherBall = 0f;
                 CurrentNumberOfBalls = 0;
                 currentScore = 0;
                 CanSpawnAnotherBall = false;

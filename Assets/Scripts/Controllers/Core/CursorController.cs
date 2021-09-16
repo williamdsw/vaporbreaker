@@ -1,4 +1,5 @@
 ﻿using Controllers.Menu;
+using Core;
 using Luminosity.IO;
 using System;
 using UnityEngine;
@@ -79,8 +80,8 @@ namespace Controllers.Core
                 // Set
                 minXYCoordinates.x = (minScreenX + spriteExtentsX);
                 maxXYCoordinates.x = (maxScreenX - spriteExtentsX);
-                minXYCoordinates.y = (minScreenY + spriteExtentsY);
-                maxXYCoordinates.y = (maxScreenY - spriteExtentsY);
+                minXYCoordinates.y = (minScreenY + spriteExtentsY) + 2.5f;
+                maxXYCoordinates.y = (maxScreenY - spriteExtentsY) - 1.5f;
             }
             catch (Exception ex)
             {
@@ -105,14 +106,7 @@ namespace Controllers.Core
             }
             else
             {
-                Camera mainCamera = Camera.main;
-                if (!mainCamera)
-                {
-                    mainCamera = FindObjectOfType<Camera>();
-                    return;
-                }
-
-                Vector2 cursorPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+                Vector2 cursorPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 transform.position = cursorPosition;
             }
         }

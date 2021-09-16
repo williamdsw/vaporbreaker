@@ -77,7 +77,7 @@ namespace Controllers.Menu
                 scoreColumnLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.general_score);
                 timeScoreColumnLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.general_timescore);
                 bestComboColumnLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.levelcomplete_bestcombo);
-                //momentColumnLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.); // TODO!
+                momentColumnLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.general_moment);
             }
             catch (Exception ex)
             {
@@ -144,7 +144,6 @@ namespace Controllers.Menu
         {
             StartCoroutine(ListScoreboard(scoreboards));
             panel.SetActive(true);
-            table.Select();
         }
 
         /// <summary>

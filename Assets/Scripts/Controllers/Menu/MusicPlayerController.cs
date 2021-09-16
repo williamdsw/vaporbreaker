@@ -127,7 +127,7 @@ namespace Controllers.Menu
         {
             try
             {
-                quitButtonLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.mainmenu_quit);
+                quitButtonLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.general_quit);
             }
             catch (Exception ex)
             {
@@ -229,7 +229,7 @@ namespace Controllers.Menu
                 trackNameLabel.text = track.Title;
                 artistNameLabel.text = track.Artist;
                 songDuration = currentSong.length;
-                totalDurationLabel.text = Formatter.FormatEllapsedTimeInMinutes((int)songDuration);
+                totalDurationLabel.text = Formatter.GetEllapsedTimeInMinutes((int)songDuration);
                 trackSlider.maxValue = songDuration;
                 coverImage.sprite = coversDictionary[track.Cover];
                 UpdateSongEllapsedTimeText();
@@ -246,7 +246,7 @@ namespace Controllers.Menu
         private void UpdateSongEllapsedTimeText()
         {
             trackSlider.value = songEllapsedTime;
-            string songEllapsedTimeText = Formatter.FormatEllapsedTimeInMinutes((int)songEllapsedTime);
+            string songEllapsedTimeText = Formatter.GetEllapsedTimeInMinutes((int)songEllapsedTime);
             currentDurationLabel.text = songEllapsedTimeText;
 
             if (songEllapsedTime >= songDuration)

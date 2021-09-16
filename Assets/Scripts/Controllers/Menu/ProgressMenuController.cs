@@ -1,10 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Controllers.Core;
 using Luminosity.IO;
+using MVC.BL;
 using MVC.Enums;
 using MVC.Global;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -37,6 +36,8 @@ namespace Controllers.Menu
         private TextMeshProUGUI resetProgressButtonLabel;
         private TextMeshProUGUI noButtonLabel;
         private TextMeshProUGUI yesButtonLabel;
+        private LevelBL levelBL;
+        private ScoreboardBL scoreboardBL;
 
         // || Properties
 
@@ -45,6 +46,9 @@ namespace Controllers.Menu
         private void Awake()
         {
             Instance = this;
+            levelBL = new LevelBL();
+            scoreboardBL = new ScoreboardBL();
+
             GetRequiredComponents();
             Translate();
             BindEventListeners();
@@ -78,7 +82,7 @@ namespace Controllers.Menu
             try
             {
                 continueButtonLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.general_continue);
-                resetProgressButtonLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.configurations_resetprogress);
+                resetProgressButtonLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.options_resetprogress);
                 noButtonLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.general_no);
                 yesButtonLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.general_yes);
                 areYouSureLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.resetprogress_areyousure);
@@ -148,7 +152,7 @@ namespace Controllers.Menu
 
             if (questionObject.activeSelf)
             {
-                AudioController.Instance.PlaySFX(AudioController.Instance.UiSubmitSound, AudioController.Instance.MaxSFXVolume);
+                AudioController.Instance.PlaySFX(AudioController.Instance.UiCancelSound, AudioController.Instance.MaxSFXVolume);
                 continueButton.interactable = resetProgressButton.interactable = true;
                 questionObject.SetActive(false);
                 continueButton.Select();
@@ -166,9 +170,12 @@ namespace Controllers.Menu
             {
                 AudioController.Instance.PlaySFX(AudioController.Instance.UiSubmitSound, AudioController.Instance.MaxSFXVolume);
                 continueButton.interactable = resetProgressButton.interactable = true;
-                // ProgressManager.DeleteProgress(); TODO
-                MainMenuController.Instance.HasSavedGame = false;
+                scoreboardBL.DeleteAll();
+                levelBL.ResetLevels();
+                ProgressManager.DeleteProgress();
                 questionObject.SetActive(false);
+                TogglePanel(false);
+                MainMenuController.Instance.HasSavedGame = false;
                 MainMenuController.Instance.TogglePanel(true);
             }
         }

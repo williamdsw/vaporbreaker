@@ -62,7 +62,7 @@ namespace Core.PowerUps
                     }
 
                     Vector2Int minMaxScore = new Vector2Int(moveFaster ? 5000 : 1000, moveFaster ? 10000 : 5000);
-                    LocalizationFields field = (moveFaster ? LocalizationFields.powerups_ballfaster : LocalizationFields.powerups_ballslower);
+                    LocalizationFields field = (moveFaster ? LocalizationFields.powerups_fasterball : LocalizationFields.powerups_slowerball);
                     GameSessionController.Instance.AddToScore(UnityEngine.Random.Range(minMaxScore.x, minMaxScore.y));
                     GameSessionController.Instance.ShowPowerUpName(LocalizationController.Instance.GetWord(field));
                 }

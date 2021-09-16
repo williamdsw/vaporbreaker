@@ -124,10 +124,10 @@ namespace Controllers.Menu
             try
             {
                 header.text = LocalizationController.Instance.GetWord(LocalizationFields.mainmenu_options);
-                fullScreenButtonLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.configurations_fullscreen);
-                resolutionButtonLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.configurations_resolution);
-                bgmVolumeButtonLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.configurations_backgroundmusic);
-                sfxVolumeButtonLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.configurations_soundeffects);
+                fullScreenButtonLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.options_fullscreen);
+                resolutionButtonLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.options_resolution);
+                bgmVolumeButtonLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.options_backgroundvolume);
+                sfxVolumeButtonLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.options_effectsvolume);
                 backButtonLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.general_back);
                 defaultButtonLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.general_default);
             }

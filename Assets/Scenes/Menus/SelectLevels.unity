@@ -1052,7 +1052,7 @@ MonoBehaviour:
     m_Right: 10
     m_Top: 30
     m_Bottom: 0
-  m_ChildAlignment: 4
+  m_ChildAlignment: 1
   m_Spacing: 40
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 0
@@ -1073,6 +1073,7 @@ GameObject:
   - component: {fileID: 510012851}
   - component: {fileID: 510012850}
   - component: {fileID: 510012849}
+  - component: {fileID: 510012852}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -1113,19 +1114,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 4
+    m_Mode: 0
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 1248686627}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 1802302203}
+    m_SelectOnDown: {fileID: 1802302203}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.6226415, g: 0.6226415, b: 0.6226415, a: 1}
-    m_HighlightedColor: {r: 0.8679245, g: 0.8679245, b: 0.8679245, a: 1}
-    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5882353}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.9019608}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 0.9019608}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.19607843}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1182,6 +1183,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 510012847}
   m_CullTransparentMesh: 1
+--- !u!114 &510012852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510012847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8722a17ae62f15b47b4ad886e5f21efb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!20 &519420031 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 2108588817205554731, guid: e13fea4a12de05442b211b66e12230c7,
@@ -1584,6 +1597,7 @@ GameObject:
   - component: {fileID: 642516733}
   - component: {fileID: 642516732}
   - component: {fileID: 642516731}
+  - component: {fileID: 642516734}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
@@ -1632,11 +1646,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.6226415, g: 0.6226415, b: 0.6226415, a: 1}
-    m_HighlightedColor: {r: 0.8679245, g: 0.8679245, b: 0.8679245, a: 1}
-    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5882353}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.9019608}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 0.9019608}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.19607843}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1693,6 +1707,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 642516729}
   m_CullTransparentMesh: 1
+--- !u!114 &642516734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642516729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8722a17ae62f15b47b4ad886e5f21efb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &647028472
 GameObject:
   m_ObjectHideFlags: 0
@@ -2908,7 +2934,7 @@ MonoBehaviour:
   timeScoreColumnLabel: {fileID: 419539648}
   bestComboColumnLabel: {fileID: 62195856}
   momentColumnLabel: {fileID: 1037100420}
-  table: {fileID: 1248686627}
+  table: {fileID: 0}
   tableBodyViewportContent: {fileID: 1293025967}
   scoreboardRowPrefab: {fileID: 409796470550513232, guid: 82d1705a54ca44044a2fb436e633d208,
     type: 3}
@@ -3272,7 +3298,6 @@ GameObject:
   - component: {fileID: 1248686625}
   - component: {fileID: 1248686624}
   - component: {fileID: 1248686626}
-  - component: {fileID: 1248686627}
   m_Layer: 5
   m_Name: Table
   m_TagString: Untagged
@@ -3365,47 +3390,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &1248686627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1248686622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a98125502f715b4b83cfb77b434e436, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 4
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 510012849}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 1248686624}
 --- !u!1 &1255823213
 GameObject:
   m_ObjectHideFlags: 0
@@ -5236,6 +5220,7 @@ GameObject:
   - component: {fileID: 1802302205}
   - component: {fileID: 1802302204}
   - component: {fileID: 1802302203}
+  - component: {fileID: 1802302206}
   m_Layer: 5
   m_Name: ScoreboardButton
   m_TagString: Untagged
@@ -5284,11 +5269,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.6226415, g: 0.6226415, b: 0.6226415, a: 1}
-    m_HighlightedColor: {r: 0.8679245, g: 0.8679245, b: 0.8679245, a: 1}
-    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5882353}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.9019608}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 0.9019608}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.19607843}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -5345,6 +5330,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1802302201}
   m_CullTransparentMesh: 1
+--- !u!114 &1802302206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1802302201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8722a17ae62f15b47b4ad886e5f21efb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1923390591
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5736,6 +5733,7 @@ GameObject:
   - component: {fileID: 2026467032}
   - component: {fileID: 2026467031}
   - component: {fileID: 2026467030}
+  - component: {fileID: 2026467033}
   m_Layer: 5
   m_Name: Viewport
   m_TagString: Untagged
@@ -5814,6 +5812,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2026467028}
   m_CullTransparentMesh: 1
+--- !u!114 &2026467033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026467028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8722a17ae62f15b47b4ad886e5f21efb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2034922965
 GameObject:
   m_ObjectHideFlags: 0

@@ -44,14 +44,11 @@ namespace Core.PowerUps
                             }
                         }
 
-                        Debug.Log(ball.transform.localScale);
                         ball.transform.localScale = newLocalScale;
-                        Debug.Log(newLocalScale);
-                        Debug.Log(ball.transform.localScale);
                     }
 
                     Vector2Int minMaxScore = new Vector2Int(makeBigger ? 0 : 1000, makeBigger ? 1000 : 5000);
-                    LocalizationFields field = (makeBigger ? LocalizationFields.powerups_ballbigger : LocalizationFields.powerups_ballsmaller);
+                    LocalizationFields field = (makeBigger ? LocalizationFields.powerups_biggerball : LocalizationFields.powerups_smallerball);
                     GameSessionController.Instance.AddToScore(UnityEngine.Random.Range(minMaxScore.x, minMaxScore.y));
                     GameSessionController.Instance.ShowPowerUpName(LocalizationController.Instance.GetWord(field));
                 }

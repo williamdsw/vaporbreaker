@@ -53,5 +53,23 @@ namespace Utilities
                 throw ex;
             }
         }
+
+        /// <summary>
+        /// Delete current progress
+        /// </summary>
+        public static void DeleteProgress()
+        {
+            try
+            {
+                if (HasProgress())
+                {
+                    FileManager.Delete(Configuration.Properties.ProgressPath);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

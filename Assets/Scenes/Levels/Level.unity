@@ -211,7 +211,6 @@ GameObject:
   - component: {fileID: 28772852}
   - component: {fileID: 28772855}
   - component: {fileID: 28772854}
-  - component: {fileID: 28772853}
   m_Layer: 14
   m_Name: BallCountdownLabel
   m_TagString: Untagged
@@ -238,20 +237,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 300, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &28772853
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 28772851}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b9783ff8ba6cf3468045f08c03655fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToFlick: 0.01
-  isLooping: 1
 --- !u!114 &28772854
 MonoBehaviour:
   m_ObjectHideFlags: 0

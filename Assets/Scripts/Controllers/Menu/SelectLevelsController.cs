@@ -70,6 +70,7 @@ namespace Controllers.Menu
             levelBL = new LevelBL();
             scoreboardBL = new ScoreboardBL();
             levels = new List<Level>();
+
             GetRequiredComponents();
             Translate();
         }
@@ -247,18 +248,17 @@ namespace Controllers.Menu
                 Level current = levels[currentLevelIndex];
                 List<Scoreboard> scoreboards = scoreboardBL.ListByLevel(current.Id);
                 Scoreboard bestScoreboard = scoreboardBL.GetByMaxScoreByLevel(current.Id);
-                levelNameLabel.text = (current.IsUnlocked ? current.Name : "No Signal");
+                levelNameLabel.text = (current.IsUnlocked ? current.Name : LocalizationController.Instance.GetWord(LocalizationFields.selectlevels_nosignal));
                 levelOrderLabel.text = (currentLevelIndex + 1).ToString("000");
-                DateTime moment = new DateTime(bestScoreboard.Moment);
-                playedLastTimeLabel.text = (current.IsUnlocked && current.IsCompleted ? moment.ToString("hh:mm tt MMM dd yyyy") : string.Empty);
-                bestScoreValueLabel.text = (current.IsUnlocked && current.IsCompleted ? bestScoreboard.Score.ToString() : string.Empty);
-                bestTimeValueLabel.text = (current.IsUnlocked && current.IsCompleted ? Formatter.FormatEllapsedTimeInHours((int)bestScoreboard.TimeScore) : string.Empty);
-                scoreboardButton.interactable = (current.IsUnlocked && current.IsCompleted);
-                playButton.interactable = (current.IsUnlocked);
+                playedLastTimeLabel.text = (current.IsUnlocked && current.IsCompleted ? Formatter.FormatDateTimer(bestScoreboard.Moment, "hh:mm tt MMM dd yyyy") : string.Empty);
+                bestScoreValueLabel.text = (current.IsUnlocked && current.IsCompleted ? Formatter.FormatToCurrency(bestScoreboard.Score) : string.Empty);
+                bestTimeValueLabel.text = (current.IsUnlocked && current.IsCompleted ? Formatter.GetEllapsedTimeInHours((int)bestScoreboard.TimeScore) : string.Empty);
+                scoreboardButton.gameObject.SetActive(current.IsUnlocked && current.IsCompleted);
+                playButton.gameObject.SetActive(current.IsUnlocked);
                 recLabel.text = (current.IsUnlocked ? "REC" : string.Empty);
                 levelImage.sprite = (current.IsUnlocked ? levelsSprites[currentLevelIndex] : noSignalSprite);
 
-                if (scoreboardButton.interactable)
+                if (scoreboardButton.isActiveAndEnabled)
                 {
                     scoreboardButton.Select();
                     scoreboardButton.onClick.RemoveAllListeners();

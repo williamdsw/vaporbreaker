@@ -6,30 +6,20 @@ namespace Utilities
 {
     public class FileManager
     {
-        public static string ConfigurationFolderPath => "Configuration/";
-        public static string LocalizationEnglishFolderPath => "Localization/en/";
-        public static string LocalizationItalianFolderPath => "Localization/it/";
-        public static string LocalizationPortugueseFolderPath => "Localization/pt-br/";
-        public static string LocalizationSpanishFolderPath => "Localization/es/";
-        public static string OtherFolderPath => "Other/";
-        public static string CreditsPath => "Credits";
-        public static string LevelsNamesPath => "LevelsNames";
-        public static string PowerUpsDescriptionsPath => "PowerUpsDescriptions";
-        public static string PowerUpsNamesPath => "PowerUpsNames";
-        public static string ResolutionsPath => "Resolutions";
-        public static string UILabelsPath => "UILabels";
-
-        public static string LoadAsset(string folderName, string filePath)
-        {
-            string newPath = (string.IsNullOrEmpty(folderName) ? filePath : string.Concat(folderName, filePath));
-            newPath = string.Concat("Files/", newPath);
-            TextAsset textAsset = Resources.Load(newPath) as TextAsset;
-            string content = (textAsset ? textAsset.text : string.Empty);
-            return content;
-        }
-
+        /// <summary>
+        /// File exists ?
+        /// </summary>
+        /// <param name="path"> Path of requested file </param>
+        /// <returns> true | false </returns>
         public static bool Exists(string path) => File.Exists(path);
 
+
+        /// <summary>
+        /// Copy file from source path to destination path
+        /// </summary>
+        /// <param name="source"> Source path of File </param>
+        /// <param name="destination"> Destinarion path of File </param>
+        /// <returns> true | false </returns>
         public static bool Copy(string source, string destination)
         {
             try
@@ -39,21 +29,22 @@ namespace Utilities
             }
             catch (Exception ex)
             {
-                Debug.LogErrorFormat("FileManager::Copy -> {0}", ex.Message);
                 throw ex;
             }
         }
 
-        public static bool WriteAllBytes(string path, byte[] bytes)
+        /// <summary>
+        /// Delete file from path
+        /// </summary>
+        /// <param name="path"> File's path </param>
+        public static void Delete(string path)
         {
             try
             {
-                File.WriteAllBytes(path, bytes);
-                return Exists(path);
+                 File.Delete(path);
             }
             catch (Exception ex)
             {
-                Debug.LogErrorFormat("FileManager::WriteAllBytes -> {0}", ex.Message);
                 throw ex;
             }
         }

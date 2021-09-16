@@ -22,7 +22,6 @@ namespace Effects
         // || Cached
 
         private Animator animator;
-        private FullScreenBackground fullScreenBackground;
 
         // || State
 
@@ -40,11 +39,8 @@ namespace Effects
 
         private void Start()
         {
-            fullScreenBackground = FindObjectOfType<FullScreenBackground>();
-
             if (SceneManagerController.GetActiveSceneIndex() >= minimumSceneIndexToEvents)
             {
-                Debug.Log("Events...");
                 CreateFadeInEvents();
                 CreateFadeOutEvents();
             }

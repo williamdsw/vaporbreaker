@@ -33,7 +33,7 @@ namespace Core.PowerUps
                         }
 
                         GameSessionController.Instance.AddToScore(UnityEngine.Random.Range(100, 500));
-                        GameSessionController.Instance.ShowPowerUpName(LocalizationController.Instance.GetWord(LocalizationFields.instructions_unbreakableblock));
+                        GameSessionController.Instance.ShowPowerUpName(LocalizationController.Instance.GetWord(LocalizationFields.loading_unbreakableblock));
                     }
                 }
             }

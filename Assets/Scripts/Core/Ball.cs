@@ -211,8 +211,7 @@ namespace Core
                     {
                         // Game Session parameters
                         GameSessionController.Instance.HasStarted = true;
-                        GameSessionController.Instance.TimeToSpawnAnotherBall = GameSessionController.Instance.TimeToWaitToSpawnAnotherBall;
-                        GameSessionController.Instance.StartTimeToSpawnAnotherBall = 5f;
+                        GameSessionController.Instance.TimeToSpawnAnotherBall = 0f;
                         GameSessionController.Instance.CanSpawnAnotherBall = true;
                         GameSessionController.Instance.CurrentNumberOfBalls++;
 

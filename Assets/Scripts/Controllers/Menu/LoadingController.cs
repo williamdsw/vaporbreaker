@@ -24,12 +24,25 @@ namespace Controllers.Menu
         [Header("Labels to Translate Global")]
         [SerializeField] private TextMeshProUGUI keyboardLayoutHeader;
         [SerializeField] private TextMeshProUGUI gamepadLayoutHeader;
+        [SerializeField] private TextMeshProUGUI blocksHeader;
         [SerializeField] private TextMeshProUGUI powerUpHeader;
         [SerializeField] private List<TextMeshProUGUI> movePaddleLabels;
+
+        [Header("Keyboard / Gamepad Layouts Labels")]
         [SerializeField] private List<TextMeshProUGUI> impulsePaddleLabels;
         [SerializeField] private List<TextMeshProUGUI> pauseLabels;
         [SerializeField] private List<TextMeshProUGUI> changeSongLabels;
         [SerializeField] private List<TextMeshProUGUI> releaseBallShootLabels;
+
+        [Header("Blocks Labels")]
+        [SerializeField] private TextMeshProUGUI oneHitBlockLabel;
+        [SerializeField] private TextMeshProUGUI twoHitsBlockLabel;
+        [SerializeField] private TextMeshProUGUI threeHitsBlockLabel;
+        [SerializeField] private TextMeshProUGUI fourHitsBlockLabel;
+        [SerializeField] private TextMeshProUGUI fiveHitsBlockLabel;
+        [SerializeField] private TextMeshProUGUI randomHitsBlockLabel;
+        [SerializeField] private TextMeshProUGUI powerUpBlockLabel;
+        [SerializeField] private TextMeshProUGUI unbreakableBlockLabel;
 
         // || Config
         private const float TIME_TO_WAIT = 1f;
@@ -72,14 +85,23 @@ namespace Controllers.Menu
         {
             try
             {
-                keyboardLayoutHeader.text = LocalizationController.Instance.GetWord(LocalizationFields.instructions_keyboardlayout);
-                gamepadLayoutHeader.text = LocalizationController.Instance.GetWord(LocalizationFields.instructions_gamepadlayout);
-                powerUpHeader.text = LocalizationController.Instance.GetWord(LocalizationFields.instructions_powerups);
-                movePaddleLabels.ForEach(label => label.text = LocalizationController.Instance.GetWord(LocalizationFields.instructions_movepaddle));
-                impulsePaddleLabels.ForEach(label => label.text = LocalizationController.Instance.GetWord(LocalizationFields.instructions_impulsepaddle));
-                pauseLabels.ForEach(label => label.text = LocalizationController.Instance.GetWord(LocalizationFields.instructions_pause));
-                changeSongLabels.ForEach(label => label.text = LocalizationController.Instance.GetWord(LocalizationFields.instructions_changesong));
-                releaseBallShootLabels.ForEach(label => label.text = LocalizationController.Instance.GetWord(LocalizationFields.instructions_releaseball));
+                keyboardLayoutHeader.text = LocalizationController.Instance.GetWord(LocalizationFields.loading_keyboardlayout);
+                gamepadLayoutHeader.text = LocalizationController.Instance.GetWord(LocalizationFields.loading_gamepadlayout);
+                blocksHeader.text = LocalizationController.Instance.GetWord(LocalizationFields.loading_blocks);
+                powerUpHeader.text = LocalizationController.Instance.GetWord(LocalizationFields.loading_powerups);
+                movePaddleLabels.ForEach(label => label.text = LocalizationController.Instance.GetWord(LocalizationFields.loading_movepaddle));
+                impulsePaddleLabels.ForEach(label => label.text = LocalizationController.Instance.GetWord(LocalizationFields.loading_impulsepaddle));
+                pauseLabels.ForEach(label => label.text = LocalizationController.Instance.GetWord(LocalizationFields.loading_pause));
+                changeSongLabels.ForEach(label => label.text = LocalizationController.Instance.GetWord(LocalizationFields.loading_changesong));
+                releaseBallShootLabels.ForEach(label => label.text = LocalizationController.Instance.GetWord(LocalizationFields.loading_releaseball));
+                oneHitBlockLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.loading_onehitblock);
+                twoHitsBlockLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.loading_twohitsblock);
+                threeHitsBlockLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.loading_threehitsblock);
+                fourHitsBlockLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.loading_fourhitsblock);
+                fiveHitsBlockLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.loading_fivehitsblock);
+                randomHitsBlockLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.loading_randomhitblock);
+                powerUpBlockLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.loading_powerupblock);
+                unbreakableBlockLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.loading_unbreakableblock);
                 continueButtonLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.general_continue);
             }
             catch (Exception ex)
@@ -116,12 +138,26 @@ namespace Controllers.Menu
                     instructionsPanels[2].SetActive(true);
                 });
 
-                // POWER UPS PANEL - LEFT BUTTON
+                // BLOCKS PANEL - LEFT BUTTON
                 gotoButtons[3].onClick.AddListener(() =>
                 {
-                    powerUpNameLabel.text = string.Empty;
                     instructionsPanels[2].SetActive(false);
                     instructionsPanels[1].SetActive(true);
+                });
+
+                // BLOCKS PANEL - RIGHT BUTTON
+                gotoButtons[4].onClick.AddListener(() =>
+                {
+                    instructionsPanels[2].SetActive(false);
+                    instructionsPanels[3].SetActive(true);
+                });
+
+                // POWER UPS PANEL - LEFT BUTTON
+                gotoButtons[5].onClick.AddListener(() =>
+                {
+                    powerUpNameLabel.text = string.Empty;
+                    instructionsPanels[3].SetActive(false);
+                    instructionsPanels[2].SetActive(true);
                 });
 
                 continueButton.onClick.AddListener(() =>
