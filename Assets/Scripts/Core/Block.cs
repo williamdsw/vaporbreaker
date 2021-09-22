@@ -1,19 +1,12 @@
 ﻿using Controllers.Core;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using Utilities;
 
 namespace Core
 {
-    public enum BlockColors
-    {
-        Artic, Blue, Brown, Butter, Cerulean, Dark_Green, Green, Lilac, Ocean, Olive,
-        Orange, Periwinkle, Pine, Pink, Purple, Red, Ruby, Silver, Strawberry, Teal, Yellow
-    }
-
     [RequireComponent(typeof(SpriteRenderer))]
     [RequireComponent(typeof(BoxCollider2D))]
     public class Block : MonoBehaviour
@@ -26,7 +19,6 @@ namespace Core
         [SerializeField] private GameObject particlesPrefab;
         [SerializeField] private GameObject blockScoreTextPrefab;
         [SerializeField] private PowerUp[] powerUpPrefabs;
-        [SerializeField] private BlockColors blockColor;
         [SerializeField] private bool hasRandomHits = false;
         [SerializeField] private bool spawnPowerUp = false;
 
@@ -43,15 +35,13 @@ namespace Core
 
         // || Cached
 
-        private Color32 particlesColor;
         private SpriteRenderer spriteRenderer;
 
         // || Properties
 
         public int MaxHits { get; set; } = 0;
         public int StartMaxHits { get; set; } = 0;
-        public Color32 ParticlesColor { get => particlesColor; set => particlesColor = value; }
-        public BlockColors BlockColor { get => blockColor; set => blockColor = value; }
+        public Color32 ParticlesColor { get; set; }
 
         private void Awake() => GetRequiredComponents();
 
@@ -75,6 +65,25 @@ namespace Core
                     {
                         HandleHit();
                     }
+
+                    if (other.gameObject.CompareTag(NamesTags.Tags.Paddle))
+                    {
+                        ToggleSpriteAlpha(false);
+                    }
+                }
+            }
+        }
+
+        private void OnCollisionExit2D(Collision2D other)
+        {
+            if (GameSessionController.Instance.ActualGameState == Enumerators.GameStates.GAMEPLAY)
+            {
+                if (!lastCollision)
+                {
+                    if (other.gameObject.CompareTag(NamesTags.Tags.Paddle))
+                    {
+                        ToggleSpriteAlpha(true);
+                    }
                 }
             }
         }
@@ -90,6 +99,25 @@ namespace Core
                     if (CompareTag(NamesTags.Tags.BreakableBlock))
                     {
                         HandleHit();
+                    }
+
+                    if (other.gameObject.CompareTag(NamesTags.Tags.Paddle))
+                    {
+                        ToggleSpriteAlpha(false);
+                    }
+                }
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            if (GameSessionController.Instance.ActualGameState == Enumerators.GameStates.GAMEPLAY)
+            {
+                if (!lastCollision)
+                {
+                    if (other.gameObject.CompareTag(NamesTags.Tags.Paddle))
+                    {
+                        ToggleSpriteAlpha(true);
                     }
                 }
             }
@@ -110,7 +138,7 @@ namespace Core
             }
         }
 
-        public void SetColor(Color32 color) => spriteRenderer.color = particlesColor = color;
+        public void SetColor(Color32 color) => spriteRenderer.color = ParticlesColor = color;
 
         /// <summary>
         /// Count number of breakable blocks
@@ -207,35 +235,6 @@ namespace Core
             }
         }
 
-        public void DefineParticlesColor(BlockColors blockColor)
-        {
-            switch (blockColor)
-            {
-                case BlockColors.Artic: { ParticlesColor = new Color32(23, 255, 255, 255); break; }
-                case BlockColors.Blue: { ParticlesColor = Color.blue; break; }
-                case BlockColors.Brown: { ParticlesColor = new Color32(144, 88, 64, 255); break; }
-                case BlockColors.Butter: { ParticlesColor = new Color32(222, 148, 99, 255); break; }
-                case BlockColors.Cerulean: { ParticlesColor = new Color32(66, 165, 255, 255); break; }
-                case BlockColors.Dark_Green: { ParticlesColor = new Color32(0, 64, 32, 255); break; }
-                case BlockColors.Green: { ParticlesColor = Color.green; break; }
-                case BlockColors.Lilac: { ParticlesColor = new Color32(205, 128, 209, 255); break; }
-                case BlockColors.Ocean: { ParticlesColor = new Color32(0, 214, 181, 255); break; }
-                case BlockColors.Olive: { ParticlesColor = new Color32(139, 173, 15, 255); break; }
-                case BlockColors.Orange: { ParticlesColor = new Color32(255, 107, 0, 255); break; }
-                case BlockColors.Periwinkle: { ParticlesColor = new Color32(177, 108, 248, 255); break; }
-                case BlockColors.Pine: { ParticlesColor = new Color32(0, 96, 96, 255); break; }
-                case BlockColors.Pink: { ParticlesColor = new Color32(208, 47, 216, 255); break; }
-                case BlockColors.Purple: { ParticlesColor = new Color32(74, 16, 107, 255); break; }
-                case BlockColors.Red: { ParticlesColor = Color.red; break; }
-                case BlockColors.Ruby: { ParticlesColor = new Color32(64, 0, 0, 255); break; }
-                case BlockColors.Silver: { ParticlesColor = Color.gray; break; }
-                case BlockColors.Strawberry: { ParticlesColor = new Color32(198, 49, 82, 255); break; }
-                case BlockColors.Teal: { ParticlesColor = new Color32(91, 255, 255, 255); break; }
-                case BlockColors.Yellow: { ParticlesColor = Color.yellow; break; }
-                default: { ParticlesColor = Color.white; break; }
-            }
-        }
-
         /// <summary>
         /// Trigger explosion animation
         /// </summary>
@@ -327,6 +326,17 @@ namespace Core
             {
                 throw ex;
             }
+        }
+
+        /// <summary>
+        /// Toggle sprite alpha based on collision with paddle
+        /// </summary>
+        /// <param name="fullAlpha"> Is to use full alpha ? </param>
+        private void ToggleSpriteAlpha(bool fullAlpha)
+        {
+            Color color = spriteRenderer.color;
+            color.a = (fullAlpha ? 1.0f : 0.5f);
+            spriteRenderer.color = color;
         }
     }
 }

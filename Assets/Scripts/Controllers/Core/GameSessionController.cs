@@ -25,6 +25,7 @@ namespace Controllers.Core
         [SerializeField] private Canvas canvas;
         [SerializeField] private GameObject ballPrefab;
         [SerializeField] private Block[] blockPrefabs;
+        [SerializeField] private PrefabSpawnerController powerUpSpawnerPrefab;
 
         [Header("UI Texts")]
         [SerializeField] private TextMeshProUGUI powerUpNameLabel;
@@ -109,7 +110,7 @@ namespace Controllers.Core
         public int CurrentNumberOfBalls { get; set; } = 1;
         public int ComboMultiplier { get; private set; } = 0;
         public int MaxNumberOfBalls => 20;
-        public float StartTimeToSpawnAnotherBall { get; set; } = 10f;
+        public float StartTimeToSpawnAnotherBall => 10f;
         public float TimeToSpawnAnotherBall { get; set; } = -1f;
         public bool CanMoveBlocks { get; set; } = false;
         public bool HasStarted { get; set; } = false;
@@ -145,6 +146,11 @@ namespace Controllers.Core
             if (layout.CanChooseRandomBlocks)
             {
                 ChooseRandomPowerUpsBlocks();
+            }
+
+            if (layout.HasPrefabSpawner)
+            {
+                SpawnPrefabSpawner();
             }
 
             FillBlockGrid();
@@ -235,7 +241,6 @@ namespace Controllers.Core
         {
             try
             {
-                //currentScoreLabel.SetText(currentScore.ToString());
                 currentScoreLabel.SetText(Formatter.FormatToCurrency(currentScore));
                 ellapsedTimeLabel.text = Formatter.GetEllapsedTimeInHours((int)ellapsedTime);
 
@@ -366,6 +371,21 @@ namespace Controllers.Core
         }
 
         /// <summary>
+        /// Spawn prefab spawner
+        /// </summary>
+        private void SpawnPrefabSpawner()
+        {
+            try
+            {
+                Instantiate(powerUpSpawnerPrefab, Vector3.zero, Quaternion.identity);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
         /// Move block at position
         /// </summary>
         /// <param name="block"> Block instance </param>
@@ -404,36 +424,34 @@ namespace Controllers.Core
                                 switch (direction)
                                 {
                                     case Enumerators.Directions.Right:
-                                        {
-                                            Vector3 right = new Vector3(block.transform.position.x + 1f, block.transform.position.y, 0f);
-                                            MoveBlockAtPosition(block, right, (right.x <= BlockGrid.MaxCoordinatesInXY.x), ref numberOfOcorrences);
-                                            break;
-                                        }
+                                    {
+                                        Vector3 right = new Vector3(block.transform.position.x + 1f, block.transform.position.y, 0f);
+                                        MoveBlockAtPosition(block, right, (right.x <= BlockGrid.MaxCoordinatesInXY.x), ref numberOfOcorrences);
+                                        break;
+                                    }
 
                                     case Enumerators.Directions.Left:
-                                        {
-                                            Vector3 left = new Vector3(block.transform.position.x - 1f, block.transform.position.y, 0f);
-                                            MoveBlockAtPosition(block, left, (left.x >= BlockGrid.MinCoordinatesInXY.x), ref numberOfOcorrences);
-                                            break;
-                                        }
+                                    {
+                                        Vector3 left = new Vector3(block.transform.position.x - 1f, block.transform.position.y, 0f);
+                                        MoveBlockAtPosition(block, left, (left.x >= BlockGrid.MinCoordinatesInXY.x), ref numberOfOcorrences);
+                                        break;
+                                    }
 
                                     case Enumerators.Directions.Down:
-                                        {
-                                            Paddle paddle = FindObjectOfType<Paddle>();
-                                            Vector3 down = new Vector3(block.transform.position.x, block.transform.position.y - 0.5f, 0f);
-                                            bool isValid = (down.y >= BlockGrid.MinCoordinatesInXY.y && down.y - 1f > paddle.transform.position.y);
-                                            MoveBlockAtPosition(block, down, isValid, ref numberOfOcorrences);
-                                            break;
-                                        }
+                                    {
+                                        Paddle paddle = FindObjectOfType<Paddle>();
+                                        Vector3 down = new Vector3(block.transform.position.x, block.transform.position.y - 0.5f, 0f);
+                                        MoveBlockAtPosition(block, down, down.y >= BlockGrid.MinCoordinatesInXY.y, ref numberOfOcorrences);
+                                        break;
+                                    }
 
                                     case Enumerators.Directions.Up:
-                                        {
-                                            Paddle paddle = FindObjectOfType<Paddle>();
-                                            Vector3 up = new Vector3(block.transform.position.x, block.transform.position.y + 0.5f, 0f);
-                                            bool isValid = (up.y <= BlockGrid.MaxCoordinatesInXY.y && up.y + 1f >= paddle.transform.position.y);
-                                            MoveBlockAtPosition(block, up, isValid, ref numberOfOcorrences);
-                                            break;
-                                        }
+                                    {
+                                        Paddle paddle = FindObjectOfType<Paddle>();
+                                        Vector3 up = new Vector3(block.transform.position.x, block.transform.position.y + 0.5f, 0f);
+                                        MoveBlockAtPosition(block, up, up.y <= BlockGrid.MaxCoordinatesInXY.y, ref numberOfOcorrences);
+                                        break;
+                                    }
 
                                     default: break;
                                 }
@@ -612,12 +630,6 @@ namespace Controllers.Core
                             {
                                 if (CurrentNumberOfBalls < MaxNumberOfBalls)
                                 {
-                                    if (ball.Velocity.x < ball.MaxVelocity && ball.Velocity.y < ball.MaxVelocity)
-                                    {
-                                        ball.Velocity *= ball.VelocityChanger;
-                                        ball.MoveSpeed += ball.VelocityChanger;
-                                    }
-
                                     Ball newBall = Instantiate(ball, ball.transform.position, Quaternion.identity) as Ball;
                                     newBall.MoveSpeed = ball.MoveSpeed;
                                     newBall.IsBallOnFire = ball.IsBallOnFire;
@@ -629,7 +641,6 @@ namespace Controllers.Core
                         }
 
                         TimeToSpawnAnotherBall = -1f;
-                        StartTimeToSpawnAnotherBall += 5f;
                     }
                 }
             }
@@ -673,7 +684,6 @@ namespace Controllers.Core
             try
             {
                 TimeToSpawnAnotherBall = -1f;
-                StartTimeToSpawnAnotherBall = 10f;
                 CurrentNumberOfBalls = 0;
                 currentScore = 0;
                 bestCombo = 0;

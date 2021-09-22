@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2813070210544745073}
   - component: {fileID: 2813070210544745102}
   m_Layer: 14
-  m_Name: PowerUp_Spawner
+  m_Name: PowerUpSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,6 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabs:
-  - {fileID: 8624560920167937620, guid: 68a4ae4951b7a8545bc4133bbd8956e0, type: 3}
-  - {fileID: 8624560920167937620, guid: 4b8fa0cd7a9d7114aae2b56c50a5ebe9, type: 3}
-  timeToSpawn: 5
+  - {fileID: 8624560920167937620, guid: 46ea672a4e0a80246855d90463a25e7f, type: 3}
+  numberOfSpawns: 10

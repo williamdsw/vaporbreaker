@@ -144,26 +144,13 @@ namespace Controllers.Core
         /// </summary>
         private void CalculateTotalScore()
         {
-            int totalTimeScore = 0;
-
-            if (timeScore > 120) { totalTimeScore = 0; }
-            else if (timeScore > 110 && timeScore <= 120) { totalTimeScore = 20000; }
-            else if (timeScore > 100 && timeScore <= 110) { totalTimeScore = 40000; }
-            else if (timeScore > 90 && timeScore <= 100) { totalTimeScore = 50000; }
-            else if (timeScore > 80 && timeScore <= 90) { totalTimeScore = 60000; }
-            else if (timeScore > 70 && timeScore <= 80) { totalTimeScore = 80000; }
-            else if (timeScore > 60 && timeScore <= 70) { totalTimeScore = 100000; }
-            else if (timeScore > 50 && timeScore <= 60) { totalTimeScore = 120000; }
-            else if (timeScore > 40 && timeScore <= 50) { totalTimeScore = 130000; }
-            else if (timeScore > 40 && timeScore <= 50) { totalTimeScore = 140000; }
-            else if (timeScore > 30 && timeScore <= 40) { totalTimeScore = 150000; }
-            else if (timeScore > 20 && timeScore <= 30) { totalTimeScore = 160000; }
-            else if (timeScore > 10 && timeScore <= 20) { totalTimeScore = 180000; }
-            else if (timeScore > 0 && timeScore <= 10) { totalTimeScore = 200000; }
+            long totalTimeScore = 1000000;
+            long minutes = (timeScore - ((timeScore / 3600) * 3600)) / 60;
+            totalTimeScore = (minutes != 0 ? totalTimeScore / minutes : totalTimeScore);
 
             totalScore = (currentScore + totalTimeScore);
-            totalScore += (numberOfBalls >= 1 ? numberOfBalls * 50000 : 0);
-            totalScore += (bestCombo > 1 ? bestCombo * 50000 : 0);
+            totalScore += (numberOfBalls >= 1 ? numberOfBalls * 10000 : 0);
+            totalScore += (bestCombo > 1 ? bestCombo * 10000 : 0);
 
             // Update UI
             scoreValueLabel.text = Formatter.FormatToCurrency(currentScore);

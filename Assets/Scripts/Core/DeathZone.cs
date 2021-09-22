@@ -56,11 +56,26 @@ namespace Core
         {
             try
             {
-                Vector2 lowerLeftCorner = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0));
-                Vector2 lowerRightCorner = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0));
-                lowerLeftCorner.x = Mathf.FloorToInt(lowerLeftCorner.x) * 2;
-                lowerRightCorner.x = Mathf.CeilToInt(lowerRightCorner.x) * 2;
-                edgeCollider.points = new Vector2[] { lowerLeftCorner, lowerRightCorner };
+                // Size Vectors
+                Vector2 screenHeight = new Vector2(0, Screen.height);
+                Vector2 screenSize = new Vector2(Screen.width, Screen.height);
+                Vector2 screenWidth = new Vector2(Screen.width, 0);
+
+                // Converts
+                Vector2 lowerLeftCorner = Camera.main.ScreenToWorldPoint(Vector2.zero);
+                Vector2 upperLeftCorner = Camera.main.ScreenToWorldPoint(screenHeight);
+                Vector2 upperRightCorner = Camera.main.ScreenToWorldPoint(screenSize);
+                Vector2 lowerRightCorner = Camera.main.ScreenToWorldPoint(screenWidth);
+                Vector2 padding = new Vector2(2, 2);
+
+                edgeCollider.points = new Vector2[]
+                {
+                    lowerLeftCorner - padding,
+                    new Vector2(upperLeftCorner.x - padding.x, upperLeftCorner.y + padding.y),
+                    upperRightCorner + padding,
+                    new Vector2(lowerRightCorner.x + padding.x, lowerRightCorner.y - padding.y),
+                    lowerLeftCorner - padding,
+                };
             }
             catch (Exception ex)
             {

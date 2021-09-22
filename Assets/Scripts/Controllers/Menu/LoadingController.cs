@@ -15,6 +15,7 @@ namespace Controllers.Menu
         // || Inspector References
 
         [Header("UI Elements")]
+        [SerializeField] private CanvasGroup canvasGroup;
         [SerializeField] private GameObject loadingPanel;
         [SerializeField] private GameObject[] instructionsPanels;
         [SerializeField] private Button[] gotoButtons;
@@ -167,7 +168,7 @@ namespace Controllers.Menu
 
                 continueButton.onClick.AddListener(() =>
                 {
-                    continueButton.interactable = false;
+                    canvasGroup.interactable = false;
                     StartCoroutine(CallNextScene());
                 });
             }

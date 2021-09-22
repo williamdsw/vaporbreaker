@@ -20,6 +20,7 @@ namespace Controllers.Menu
         // || Inspector References
 
         [Header("Required TV Elements")]
+        [SerializeField] private CanvasGroup canvasGroup;
         [SerializeField] private GameObject panel;
         [SerializeField] private Image levelImage;
         [SerializeField] private Sprite noSignalSprite;
@@ -281,6 +282,8 @@ namespace Controllers.Menu
                     {
                         if (ActualGameState != Enumerators.GameStates.GAMEPLAY || !panel.activeSelf) return;
 
+                        canvasGroup.interactable = false;
+
                         AudioController.Instance.PlaySFX(AudioController.Instance.UiSubmitSound, AudioController.Instance.MaxSFXVolume);
                         AudioController.Instance.StopMusic();
 
@@ -351,6 +354,7 @@ namespace Controllers.Menu
         {
             ActualGameState = Enumerators.GameStates.SAVE_LOAD;
             savingLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.selectlevels_saving);
+            canvasGroup.interactable = false;
 
             progress.CurrentLevelIndex = currentLevelIndex;
             progress.HasPlayerFinishedGame = hasPlayerFinishedGame;
@@ -359,6 +363,7 @@ namespace Controllers.Menu
 
             yield return new WaitForSecondsRealtime(TIME_TO_WAIT_AFTER_SAVE);
             savingLabel.text = string.Empty;
+            canvasGroup.interactable = true;
             ActualGameState = Enumerators.GameStates.GAMEPLAY;
         }
 

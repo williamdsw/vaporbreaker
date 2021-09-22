@@ -55,6 +55,7 @@ namespace Core
 
         private void Start()
         {
+            name = NamesTags.Tags.Ball;
             DefaultSpeed = MoveSpeed;
             echoEffectSpawnerPrefab.tag = NamesTags.Tags.BallEcho;
 
@@ -79,10 +80,8 @@ namespace Core
                 transform.position = new Vector3(paddle.transform.position.x, paddle.transform.position.y + 0.25f, paddle.transform.position.z);
                 DrawLineToMouse();
             }
-            else
-            {
-                ChooseRandomColor();
-            }
+
+            ChooseRandomColor();
         }
 
         private void Update()
