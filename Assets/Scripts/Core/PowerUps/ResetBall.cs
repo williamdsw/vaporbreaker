@@ -20,8 +20,8 @@ namespace Core.PowerUps
                     foreach (Ball ball in balls)
                     {
                         ball.transform.localScale = Vector3.one;
-                        ball.Velocity = ball.OriginalVelocity;
                         ball.MoveSpeed = ball.DefaultSpeed;
+                        ball.Velocity = (ball.Velocity.normalized * Time.fixedDeltaTime * ball.MoveSpeed);
                     }
 
                     GameSessionController.Instance.AddToScore(UnityEngine.Random.Range(100, 1000));

@@ -28,13 +28,13 @@ namespace Core.PowerUps
                 {
                     foreach (Ball ball in balls)
                     {
+                        float moveSpeed = ball.MoveSpeed;
                         float rotationDegree = ball.MinMaxRotationDegree.x;
                         if (moveFaster)
                         {
-                            if (ball.Velocity.x < ball.MaxVelocity && ball.Velocity.y < ball.MaxVelocity)
+                            if (moveSpeed < ball.MinMaxMoveSpeed.y)
                             {
-                                ball.Velocity *= ball.VelocityChanger;
-                                ball.MoveSpeed += ball.VelocityChanger;
+                                moveSpeed += 100f;
                             }
 
                             if (rotationDegree < ball.MinMaxRotationDegree.y)
@@ -44,12 +44,10 @@ namespace Core.PowerUps
                         }
                         else
                         {
-                            if (ball.Velocity.x > ball.MinVelocity && ball.Velocity.y > ball.MinVelocity)
+                            if (moveSpeed > ball.MinMaxMoveSpeed.x)
                             {
-                                ball.Velocity /= ball.VelocityChanger;
-                                ball.MoveSpeed -= ball.VelocityChanger;
+                                moveSpeed -= 100f;
                             }
-
 
                             if (rotationDegree > ball.MinMaxRotationDegree.x)
                             {
@@ -57,7 +55,9 @@ namespace Core.PowerUps
                             }
                         }
 
+                        ball.MoveSpeed = moveSpeed;
                         ball.RotationDegree = rotationDegree;
+                        ball.Velocity = (ball.Velocity.normalized * Time.fixedDeltaTime * ball.MoveSpeed);
                     }
 
                     Vector2Int minMaxScore = new Vector2Int(moveFaster ? 5000 : 1000, moveFaster ? 10000 : 5000);

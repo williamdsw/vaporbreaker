@@ -80,7 +80,7 @@ namespace Effects
                     else if (tag.Equals(NamesTags.Tags.PaddleEcho) && paddle)
                     {
                         SpriteRenderer spriteRenderer = echo.GetComponent<SpriteRenderer>();
-                        spriteRenderer.sprite = paddle.GetSprite();
+                        spriteRenderer.sprite = paddle.Sprite;
                     }
 
                     Destroy(echo, TimeToSelfDestruct);

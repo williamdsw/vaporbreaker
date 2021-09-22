@@ -33,9 +33,9 @@ namespace Controllers.Core
         [SerializeField] private AudioClip boomSound;
         [SerializeField] private AudioClip clickSound;
         [SerializeField] private AudioClip explosionSound;
-        [SerializeField] private AudioClip laserPewSound;
         [SerializeField] private AudioClip hittingFaceSound;
         [SerializeField] private AudioClip hittingWallSound;
+        [SerializeField] private AudioClip laserPewSound;
         [SerializeField] private AudioClip powerUpSound;
         [SerializeField] private AudioClip showUpSound;
         [SerializeField] private AudioClip slamSound;

@@ -17,7 +17,7 @@ namespace Effects
 
         // Config
 
-        private int minimumSceneIndexToEvents = 7;
+        private int sceneToApplyEvents = 5;
 
         // || Cached
 
@@ -39,7 +39,7 @@ namespace Effects
 
         private void Start()
         {
-            if (SceneManagerController.GetActiveSceneIndex() >= minimumSceneIndexToEvents)
+            if (SceneManagerController.GetActiveSceneIndex() == sceneToApplyEvents)
             {
                 CreateFadeInEvents();
                 CreateFadeOutEvents();

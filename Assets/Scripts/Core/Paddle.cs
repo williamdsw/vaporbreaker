@@ -1,7 +1,7 @@
-﻿using System;
-using Controllers.Core;
+﻿using Controllers.Core;
 using Effects;
 using Luminosity.IO;
+using System;
 using UnityEngine;
 using Utilities;
 
@@ -30,12 +30,10 @@ namespace Core
 
         private BoxCollider2D boxCollider2D;
 
-        public SpriteRenderer SpriteRenderer { get; private set; }
+        // || Properties
 
-        public Sprite GetSprite()
-        {
-            return SpriteRenderer.sprite;
-        }
+        public SpriteRenderer SpriteRenderer { get; private set; }
+        public Sprite Sprite => SpriteRenderer.sprite;
 
         private void Awake()
         {

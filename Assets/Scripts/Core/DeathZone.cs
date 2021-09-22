@@ -13,7 +13,6 @@ namespace Core
         // || Cached
 
         private EdgeCollider2D edgeCollider;
-        private Ball[] balls;
 
         private void Awake() => GetRequiredComponents();
 
@@ -91,9 +90,7 @@ namespace Core
         {
             try
             {
-                balls = FindObjectsOfType<Ball>();
-
-                if (balls.Length == 1)
+                if (FindObjectsOfType<Ball>().Length == 1)
                 {
                     StartCoroutine(WaitToReset());
                 }

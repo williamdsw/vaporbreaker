@@ -13,7 +13,7 @@ namespace Core.PowerUps
         {
             try
             {
-                if (paddle)
+                if (paddle != null)
                 {
                     paddle.ResetPaddle();
                     GameSessionController.Instance.AddToScore(UnityEngine.Random.Range(100, 1000));

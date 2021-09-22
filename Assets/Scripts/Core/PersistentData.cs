@@ -44,6 +44,6 @@ namespace Core
         /// <summary>
         /// Destroy current instance
         /// </summary>
-        public void DestroyInstance() => DestroyImmediate(gameObject);
+        public void DestroyInstance() => Destroy(gameObject);
     }
 }

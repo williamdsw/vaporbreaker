@@ -14,8 +14,6 @@ namespace Core
 
         private void Start() => DefineColliderPoints();
 
-        private void Update() => DefineColliderPoints();
-
         /// <summary>
         /// Get required components
         /// </summary>

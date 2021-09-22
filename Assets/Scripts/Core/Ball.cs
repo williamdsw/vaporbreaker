@@ -29,6 +29,10 @@ namespace Core
         private Color32 defaultBallColor;
         private Color32 fireballColor = Color.white;
 
+        // || Config
+
+        private const float MIN_DISTANCE_TO_LAUNCH = 1f;
+
         // || Cached
 
         private LineRenderer initialLineRenderer;
@@ -39,8 +43,10 @@ namespace Core
 
         public bool IsBallOnFire { get; set; } = false;
         public float DefaultSpeed { get; set; }
-        public float MoveSpeed { get; set; } = 3f;
+        public float MoveSpeed { get; set; } = 300f;
         public float RotationDegree { get; set; } = 20f;
+        private Vector2 MinMaxVelocity => new Vector2(2f, 20f);
+        public Vector2 MinMaxMoveSpeed => new Vector2(200f, 600f);
         public Vector2 MinMaxLocalScale => new Vector2(0.5f, 8f);
         public Vector2 MinMaxRotationDegree => new Vector2(10f, 90f);
         public Color32 CurrentColor => spriteRenderer.color;
@@ -49,7 +55,6 @@ namespace Core
         public float MaxVelocity => 7f;
         public float VelocityChanger => 1.25f;
         public Vector2 Velocity { get => rigidBody2D.velocity; set => rigidBody2D.velocity = value; }
-        public Vector2 OriginalVelocity { get; private set; }
 
         private void Awake() => GetRequiredComponents();
 
@@ -82,6 +87,7 @@ namespace Core
             }
 
             ChooseRandomColor();
+            ChangeBallSprite(IsBallOnFire);
         }
 
         private void Update()
@@ -123,38 +129,37 @@ namespace Core
                     switch (other.gameObject.tag)
                     {
                         case "Paddle":
-                            {
-                                if (other.GetContact(0).normal != Vector2.down)
-                                {
-                                    ClampVelocity();
-                                    AudioClip clip = (isBallBig ? AudioController.Instance.HittingFaceSound : AudioController.Instance.BlipSound);
-                                    AudioController.Instance.PlaySFX(clip, AudioController.Instance.MaxSFXVolume);
-                                }
-
-                                if (other.GetContact(0).normal == Vector2.up)
-                                {
-                                    if (MoveSpeed > DefaultSpeed)
-                                    {
-                                        SpawnPaddleDebris(other.GetContact(0).point);
-                                    }
-                                }
-
-                                // Case "Move Blocks" power-up is activated
-                                if (GameSessionController.Instance.CanMoveBlocks)
-                                {
-                                    GameSessionController.Instance.MoveBlocks(GameSessionController.Instance.BlockDirection);
-                                }
-
-                                break;
-                            }
-
-                        case "Wall":
+                        {
+                            if (other.GetContact(0).normal != Vector2.down)
                             {
                                 ClampVelocity();
                                 AudioClip clip = (isBallBig ? AudioController.Instance.HittingFaceSound : AudioController.Instance.BlipSound);
                                 AudioController.Instance.PlaySFX(clip, AudioController.Instance.MaxSFXVolume);
-                                break;
                             }
+
+                            if (other.GetContact(0).normal == Vector2.up)
+                            {
+                                if (MoveSpeed > DefaultSpeed)
+                                {
+                                    SpawnPaddleDebris(other.GetContact(0).point);
+                                }
+                            }
+
+                            if (GameSessionController.Instance.CanMoveBlocks)
+                            {
+                                GameSessionController.Instance.MoveBlocks(GameSessionController.Instance.BlockDirection);
+                            }
+
+                            break;
+                        }
+
+                        case "Wall":
+                        {
+                            ClampVelocity();
+                            AudioClip clip = (isBallBig ? AudioController.Instance.HittingFaceSound : AudioController.Instance.BlipSound);
+                            AudioController.Instance.PlaySFX(clip, AudioController.Instance.MaxSFXVolume);
+                            break;
+                        }
 
                         case "Breakable": case "Unbreakable": ClampVelocity(); break;
                         default: break;
@@ -205,7 +210,7 @@ namespace Core
         {
             try
             {
-                if (remainingPosition.y >= 1f)
+                if (remainingPosition.y >= MIN_DISTANCE_TO_LAUNCH)
                 {
                     if (InputManager.GetButtonDown(Configuration.InputsNames.Shoot))
                     {
@@ -216,8 +221,7 @@ namespace Core
                         GameSessionController.Instance.CurrentNumberOfBalls++;
 
                         // Other
-                        rigidBody2D.velocity = (remainingPosition.normalized * MoveSpeed);
-                        OriginalVelocity = rigidBody2D.velocity;
+                        rigidBody2D.velocity = (remainingPosition.normalized * MoveSpeed * Time.fixedDeltaTime);
                         initialLineRenderer.enabled = false;
                         echoEffectSpawnerPrefab.gameObject.SetActive(true);
                         CursorController.Instance.gameObject.SetActive(false);
@@ -252,12 +256,12 @@ namespace Core
         /// </summary>
         private void ClampVelocity()
         {
-            Vector2 currentVelocity = rigidBody2D.velocity;
-            float x = Mathf.Clamp(Mathf.Abs(currentVelocity.x), 2, 10);
-            float y = Mathf.Clamp(Mathf.Abs(currentVelocity.y), 2, 10);
+            Vector2 currentVelocity = Velocity;
+            float x = Mathf.Clamp(Mathf.Abs(currentVelocity.x), MinMaxVelocity.x, MinMaxVelocity.y);
+            float y = Mathf.Clamp(Mathf.Abs(currentVelocity.y), MinMaxVelocity.x, MinMaxVelocity.y);
             currentVelocity.x = (currentVelocity.x > 0 ? x : x * -1);
             currentVelocity.y = (currentVelocity.y > 0 ? y : y * -1);
-            rigidBody2D.velocity = currentVelocity;
+            Velocity = currentVelocity;
         }
 
         /// <summary>
@@ -308,6 +312,6 @@ namespace Core
         /// <summary>
         /// Stop ball's velocity
         /// </summary>
-        public void Stop() => rigidBody2D.velocity = Vector2.zero;
+        public void Stop() => Velocity = Vector2.zero;
     }
 }

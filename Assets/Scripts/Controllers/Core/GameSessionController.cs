@@ -424,34 +424,32 @@ namespace Controllers.Core
                                 switch (direction)
                                 {
                                     case Enumerators.Directions.Right:
-                                    {
-                                        Vector3 right = new Vector3(block.transform.position.x + 1f, block.transform.position.y, 0f);
-                                        MoveBlockAtPosition(block, right, (right.x <= BlockGrid.MaxCoordinatesInXY.x), ref numberOfOcorrences);
-                                        break;
-                                    }
+                                        {
+                                            Vector3 right = new Vector3(block.transform.position.x + 1f, block.transform.position.y, 0f);
+                                            MoveBlockAtPosition(block, right, (right.x <= BlockGrid.MaxCoordinatesInXY.x), ref numberOfOcorrences);
+                                            break;
+                                        }
 
                                     case Enumerators.Directions.Left:
-                                    {
-                                        Vector3 left = new Vector3(block.transform.position.x - 1f, block.transform.position.y, 0f);
-                                        MoveBlockAtPosition(block, left, (left.x >= BlockGrid.MinCoordinatesInXY.x), ref numberOfOcorrences);
-                                        break;
-                                    }
+                                        {
+                                            Vector3 left = new Vector3(block.transform.position.x - 1f, block.transform.position.y, 0f);
+                                            MoveBlockAtPosition(block, left, (left.x >= BlockGrid.MinCoordinatesInXY.x), ref numberOfOcorrences);
+                                            break;
+                                        }
 
                                     case Enumerators.Directions.Down:
-                                    {
-                                        Paddle paddle = FindObjectOfType<Paddle>();
-                                        Vector3 down = new Vector3(block.transform.position.x, block.transform.position.y - 0.5f, 0f);
-                                        MoveBlockAtPosition(block, down, down.y >= BlockGrid.MinCoordinatesInXY.y, ref numberOfOcorrences);
-                                        break;
-                                    }
+                                        {
+                                            Vector3 down = new Vector3(block.transform.position.x, block.transform.position.y - 0.5f, 0f);
+                                            MoveBlockAtPosition(block, down, down.y >= BlockGrid.MinCoordinatesInXY.y, ref numberOfOcorrences);
+                                            break;
+                                        }
 
                                     case Enumerators.Directions.Up:
-                                    {
-                                        Paddle paddle = FindObjectOfType<Paddle>();
-                                        Vector3 up = new Vector3(block.transform.position.x, block.transform.position.y + 0.5f, 0f);
-                                        MoveBlockAtPosition(block, up, up.y <= BlockGrid.MaxCoordinatesInXY.y, ref numberOfOcorrences);
-                                        break;
-                                    }
+                                        {
+                                            Vector3 up = new Vector3(block.transform.position.x, block.transform.position.y + 0.5f, 0f);
+                                            MoveBlockAtPosition(block, up, up.y <= BlockGrid.MaxCoordinatesInXY.y, ref numberOfOcorrences);
+                                            break;
+                                        }
 
                                     default: break;
                                 }
@@ -461,7 +459,7 @@ namespace Controllers.Core
                         CanMoveBlocks = (numberOfOcorrences >= 1);
                         if (CanMoveBlocks)
                         {
-                            //AudioController.Instance.PlaySFX(AudioController.Instance.HittingWall, AudioController.Instance.MaxSFXVolume);
+                            AudioController.Instance.PlaySFX(AudioController.Instance.HittingWallSound, AudioController.Instance.MaxSFXVolume);
                         }
                     }
                 }
@@ -518,10 +516,9 @@ namespace Controllers.Core
                         GameObject[] blocks = GameObject.FindGameObjectsWithTag(NamesTags.Tags.BreakableBlock);
                         foreach (GameObject blockObject in blocks)
                         {
-                            BoxCollider2D blockCollider = blockObject.GetComponent<BoxCollider2D>();
-                            blockCollider.isTrigger = true;
                             Block block = blockObject.GetComponent<Block>();
                             block.MaxHits = 1;
+                            block.BoxCollider2D.isTrigger = true;
                         }
 
                         Ball[] balls = FindObjectsOfType<Ball>();
@@ -531,7 +528,7 @@ namespace Controllers.Core
                             ball.ChangeBallSprite(true);
                         }
 
-                        //AudioController.Instance.PlayME(AudioController.Instance.FireEffect, AudioController.Instance.MaxMEVolume / 2f, true);
+                        AudioController.Instance.PlayME(AudioController.Instance.FireEffect, AudioController.Instance.MaxMEVolume / 2f, true);
 
                         Invoke(NamesTags.Functions.UndoFireBalls, TIME_TO_PUT_OUT_FIRE_BALL);
                     }
@@ -555,10 +552,9 @@ namespace Controllers.Core
                 GameObject[] blocks = GameObject.FindGameObjectsWithTag(NamesTags.Tags.BreakableBlock);
                 foreach (GameObject blockObject in blocks)
                 {
-                    BoxCollider2D blockCollider = blockObject.GetComponent<BoxCollider2D>();
-                    blockCollider.isTrigger = false;
                     Block block = blockObject.GetComponent<Block>();
                     block.MaxHits = block.StartMaxHits;
+                    block.BoxCollider2D.isTrigger = false;
                 }
 
                 Ball[] balls = FindObjectsOfType<Ball>();
@@ -615,33 +611,39 @@ namespace Controllers.Core
         /// </summary>
         private void CheckSpawnAnotherBall()
         {
-            if (CurrentNumberOfBalls < MaxNumberOfBalls)
+            if (CanSpawnAnotherBall)
             {
-                if (CanSpawnAnotherBall)
+                if (CurrentNumberOfBalls >= MaxNumberOfBalls)
                 {
-                    TimeToSpawnAnotherBall += Time.deltaTime;
+                    TimeToSpawnAnotherBall = -1f;
+                    return;
+                }
 
-                    if (TimeToSpawnAnotherBall >= StartTimeToSpawnAnotherBall)
+                TimeToSpawnAnotherBall += Time.deltaTime;
+
+                if (TimeToSpawnAnotherBall >= StartTimeToSpawnAnotherBall)
+                {
+                    Ball[] balls = FindObjectsOfType<Ball>();
+                    if (balls.Length != 0)
                     {
-                        Ball[] balls = FindObjectsOfType<Ball>();
-                        if (balls.Length != 0)
+                        foreach (Ball ball in balls)
                         {
-                            foreach (Ball ball in balls)
-                            {
-                                if (CurrentNumberOfBalls < MaxNumberOfBalls)
-                                {
-                                    Ball newBall = Instantiate(ball, ball.transform.position, Quaternion.identity) as Ball;
-                                    newBall.MoveSpeed = ball.MoveSpeed;
-                                    newBall.IsBallOnFire = ball.IsBallOnFire;
-                                    newBall.ChangeBallSprite(newBall.IsBallOnFire);
-                                    newBall.Velocity = (ball.Velocity * -1);
-                                    CurrentNumberOfBalls++;
-                                }
-                            }
-                        }
+                            if (CurrentNumberOfBalls >= MaxNumberOfBalls) break;
 
-                        TimeToSpawnAnotherBall = -1f;
+                            Ball newBall = Instantiate(ball, ball.transform.position, Quaternion.identity) as Ball;
+                            newBall.Velocity = (ball.Velocity.normalized * -1 * Time.fixedDeltaTime * ball.MoveSpeed);
+                            newBall.MoveSpeed = ball.MoveSpeed;
+                            if (ball.IsBallOnFire)
+                            {
+                                newBall.IsBallOnFire = true;
+                                newBall.ChangeBallSprite(newBall.IsBallOnFire);
+                            }
+
+                            CurrentNumberOfBalls++;
+                        }
                     }
+
+                    TimeToSpawnAnotherBall = -1f;
                 }
             }
         }
@@ -655,7 +657,7 @@ namespace Controllers.Core
             {
                 foreach (Ball ball in FindObjectsOfType<Ball>())
                 {
-                    ball.transform.localScale = Vector2.one;
+                    Destroy(ball.gameObject);
                 }
 
                 foreach (Shooter shooter in FindObjectsOfType<Shooter>())
@@ -668,7 +670,7 @@ namespace Controllers.Core
                     Destroy(powerUp.gameObject);
                 }
 
-                FindObjectOfType<Paddle>().ResetPaddle();
+                Destroy(FindObjectOfType<Paddle>().gameObject);
             }
             catch (Exception ex)
             {

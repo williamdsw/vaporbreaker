@@ -42,6 +42,7 @@ namespace Core
         public int MaxHits { get; set; } = 0;
         public int StartMaxHits { get; set; } = 0;
         public Color32 ParticlesColor { get; set; }
+        public BoxCollider2D BoxCollider2D { get; private set; }
 
         private void Awake() => GetRequiredComponents();
 
@@ -65,25 +66,6 @@ namespace Core
                     {
                         HandleHit();
                     }
-
-                    if (other.gameObject.CompareTag(NamesTags.Tags.Paddle))
-                    {
-                        ToggleSpriteAlpha(false);
-                    }
-                }
-            }
-        }
-
-        private void OnCollisionExit2D(Collision2D other)
-        {
-            if (GameSessionController.Instance.ActualGameState == Enumerators.GameStates.GAMEPLAY)
-            {
-                if (!lastCollision)
-                {
-                    if (other.gameObject.CompareTag(NamesTags.Tags.Paddle))
-                    {
-                        ToggleSpriteAlpha(true);
-                    }
                 }
             }
         }
@@ -100,25 +82,6 @@ namespace Core
                     {
                         HandleHit();
                     }
-
-                    if (other.gameObject.CompareTag(NamesTags.Tags.Paddle))
-                    {
-                        ToggleSpriteAlpha(false);
-                    }
-                }
-            }
-        }
-
-        private void OnTriggerExit2D(Collider2D other)
-        {
-            if (GameSessionController.Instance.ActualGameState == Enumerators.GameStates.GAMEPLAY)
-            {
-                if (!lastCollision)
-                {
-                    if (other.gameObject.CompareTag(NamesTags.Tags.Paddle))
-                    {
-                        ToggleSpriteAlpha(true);
-                    }
                 }
             }
         }
@@ -131,6 +94,7 @@ namespace Core
             try
             {
                 spriteRenderer = GetComponent<SpriteRenderer>();
+                BoxCollider2D = GetComponent<BoxCollider2D>();
             }
             catch (Exception ex)
             {
@@ -244,7 +208,7 @@ namespace Core
             {
                 if (explosionPrefabs.Length >= 1)
                 {
-                    AudioController.Instance.PlaySFX(AudioController.Instance.ExplosionSound, AudioController.Instance.MaxSFXVolume / 2);
+                    AudioController.Instance.PlaySoundAtPoint(AudioController.Instance.ExplosionSound, AudioController.Instance.MaxSFXVolume / 2);
                     int randomIndex = UnityEngine.Random.Range(0, explosionPrefabs.Length);
                     GameObject explosion = Instantiate(explosionPrefabs[randomIndex], transform.position, Quaternion.identity) as GameObject;
                     explosion.transform.SetParent(GameSessionController.Instance.FindOrCreateObjectParent(NamesTags.Parents.Explosions).transform);
@@ -315,28 +279,15 @@ namespace Core
         {
             try
             {
-                if (powerUpPrefabs == null || powerUpPrefabs.Length == 0) return;
-
                 int randomIndex = UnityEngine.Random.Range(0, powerUpPrefabs.Length);
                 GameObject powerUp = Instantiate(powerUpPrefabs[randomIndex].gameObject, transform.position, Quaternion.identity) as GameObject;
                 powerUp.transform.SetParent(GameSessionController.Instance.FindOrCreateObjectParent(NamesTags.Parents.PowerUps).transform);
-                AudioController.Instance.PlaySFX(AudioController.Instance.ShowUpSound, AudioController.Instance.MaxSFXVolume);
+                AudioController.Instance.PlaySoundAtPoint(AudioController.Instance.ShowUpSound, AudioController.Instance.MaxSFXVolume);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-        }
-
-        /// <summary>
-        /// Toggle sprite alpha based on collision with paddle
-        /// </summary>
-        /// <param name="fullAlpha"> Is to use full alpha ? </param>
-        private void ToggleSpriteAlpha(bool fullAlpha)
-        {
-            Color color = spriteRenderer.color;
-            color.a = (fullAlpha ? 1.0f : 0.5f);
-            spriteRenderer.color = color;
         }
     }
 }

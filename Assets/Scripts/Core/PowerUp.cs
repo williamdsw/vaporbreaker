@@ -1,5 +1,5 @@
-﻿using System;
-using Controllers.Core;
+﻿using Controllers.Core;
+using System;
 using UnityEngine;
 using Utilities;
 
@@ -18,6 +18,7 @@ namespace Core
         private readonly float maxForceXY = 1000f;
 
         // || State
+
         private float angleToIncrement = 0f;
         private int canRotateChance;
         private float moveSpeed = 0f;
@@ -52,8 +53,6 @@ namespace Core
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (!GameSessionController.Instance || !AudioController.Instance) return;
-
             if (GameSessionController.Instance.ActualGameState == Enumerators.GameStates.GAMEPLAY)
             {
                 paddle = other.collider.GetComponent<Paddle>();
@@ -88,7 +87,7 @@ namespace Core
             float randomY = UnityEngine.Random.Range(minForceXY.y, maxForceXY);
             Vector2 randomForce = new Vector2(randomX, randomY);
             moveSpeed = UnityEngine.Random.Range(minMaxMoveSpeed.x, minMaxMoveSpeed.y + 1);
-            randomForce *= (Time.deltaTime * moveSpeed);
+            randomForce *= (Time.fixedDeltaTime * moveSpeed);
             rigidBody2D.AddForce(randomForce);
         }
 
@@ -111,10 +110,8 @@ namespace Core
         private void DealCollisionWithPaddle()
         {
             Destroy(gameObject);
-            AudioController.Instance.PlaySFX(AudioController.Instance.PowerUpSound, AudioController.Instance.MaxSFXVolume);
+            AudioController.Instance.PlaySoundAtPoint(AudioController.Instance.PowerUpSound, AudioController.Instance.MaxSFXVolume);
             Apply();
-            //GameSession.Instance.SetHasPowerUpCollidedWithPaddle(true);
-            //GameSession.Instance.ResetHideTime();
         }
 
         /// <summary>
@@ -128,6 +125,9 @@ namespace Core
             angleToIncrement = 0;
         }
 
+        /// <summary>
+        /// Applies power up effect
+        /// </summary>
         protected abstract void Apply();
     }
 }

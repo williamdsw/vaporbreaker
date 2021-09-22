@@ -21,11 +21,18 @@ namespace Core.PowerUps
                 {
                     foreach (Ball ball in balls)
                     {
+                        if (GameSessionController.Instance.CurrentNumberOfBalls >= GameSessionController.Instance.MaxNumberOfBalls) break;
+
                         Ball newBall = Instantiate(ball, ball.transform.position, Quaternion.identity) as Ball;
-                        newBall.Velocity = (ball.Velocity * -1);
+                        newBall.Velocity = (ball.Velocity.normalized * -1 * Time.fixedDeltaTime * ball.MoveSpeed);
                         newBall.MoveSpeed = ball.MoveSpeed;
-                        newBall.IsBallOnFire = ball.IsBallOnFire;
-                        newBall.ChangeBallSprite(newBall.IsBallOnFire);
+                        if (ball.IsBallOnFire)
+                        {
+                            newBall.IsBallOnFire = true;
+                            newBall.ChangeBallSprite(newBall.IsBallOnFire);
+                        }
+
+                        GameSessionController.Instance.CurrentNumberOfBalls++;
                     }
 
                     GameSessionController.Instance.AddToScore(UnityEngine.Random.Range(500, 2500));

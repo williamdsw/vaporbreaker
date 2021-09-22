@@ -18,7 +18,7 @@ namespace Core.PowerUps
             try
             {
                 Core.Shooter shooter = FindObjectOfType<Core.Shooter>();
-                if (shooter) return;
+                if (shooter != null) return;
 
                 shooter = Instantiate(shooterPrefab, paddle.transform.position, Quaternion.identity) as Core.Shooter;
                 shooter.transform.parent = paddle.transform;

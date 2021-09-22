@@ -210,14 +210,14 @@ MonoBehaviour:
   newScoreEffect: {fileID: 8300000, guid: 658be09aaeab8fb4a98ffb65efb99612, type: 3}
   successEffect: {fileID: 8300000, guid: a690a68d59b648749b7c4d3fc884247f, type: 3}
   tvStaticEffect: {fileID: 8300000, guid: ab36f2bdc9cc285409e25f3e06561f1a, type: 3}
-  fireEffect: {fileID: 0}
+  fireEffect: {fileID: 8300000, guid: c32651a9d5423b241821bf6d7d7595ef, type: 3}
   blipSound: {fileID: 8300000, guid: 6de2eb556fec80e439e21e545bc2eee4, type: 3}
   boomSound: {fileID: 8300000, guid: 844c7b4d439ba554b8f72a35e726a881, type: 3}
   clickSound: {fileID: 8300000, guid: 50a58365b4d5da24b8c891e2e5d9edc1, type: 3}
   explosionSound: {fileID: 8300000, guid: 7830e3fa90501b643ac46b18e3b714f7, type: 3}
-  laserPewSound: {fileID: 8300000, guid: b4a2c315bd840e74b954a2aac6782b47, type: 3}
+  laserPewSound: {fileID: 8300000, guid: cac9081af2b62c1418b4fdfe98300c71, type: 3}
   hittingFaceSound: {fileID: 8300000, guid: 77a3676463d223b4cac46f92885c4cc2, type: 3}
-  hittingWallSound: {fileID: 0}
+  hittingWallSound: {fileID: 8300000, guid: f445472940e6e6748925c0e6103c7c10, type: 3}
   powerUpSound: {fileID: 8300000, guid: 57a187728e3317e40a2ba5dbaf8c3bf4, type: 3}
   showUpSound: {fileID: 8300000, guid: 43bd213338b688c4cbde682e1d00054d, type: 3}
   slamSound: {fileID: 8300000, guid: 00c6ee0324377bb4eb1e50731dc93ad7, type: 3}
