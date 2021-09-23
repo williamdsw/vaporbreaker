@@ -96,7 +96,7 @@ namespace Controllers.Core
                 resumeButtonLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.pause_resume);
                 restartButtonLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.pause_restart);
                 levelsButtonLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.pause_levels);
-                //mainMenuButtonLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.main); // TODO!
+                mainMenuButtonLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.pause_mainmenu);
             }
             catch (Exception ex)
             {

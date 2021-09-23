@@ -12,14 +12,6 @@ namespace Controllers.Menu
         public static void SetAudioSourceVolume(AudioSource audioSource, float volume) => audioSource.volume = volume;
 
         /// <summary>
-        /// Change resolution
-        /// </summary>
-        /// <param name="width"> Desired Width </param>
-        /// <param name="height"> Desired Height </param>
-        /// <param name="isFullscreen"> Is fullscreen? </param>
-        public static void SetResolution(int width, int height, bool isFullscreen) => Screen.SetResolution(width, height, isFullscreen);
-
-        /// <summary>
         /// Show or hide cursor
         /// </summary>
         /// <param name="toShow"></param>

@@ -46,11 +46,13 @@ namespace Controllers.Menu
         {
             Instance = this;
 
+            ConfigurationsController.ToggleCursor(true);
+
             GetRequiredComponents();
             Translate();
             BindEventListeners();
 
-            AudioController.Instance.ChangeMusic(AudioController.Instance.AllLoopedSongs[0], false, "", true, false);
+            AudioController.Instance.ChangeMusic(AudioController.Instance.AllLoopedSongs[0], false, string.Empty, true, false);
 
             // Resets for animation works
             Time.timeScale = 1f;

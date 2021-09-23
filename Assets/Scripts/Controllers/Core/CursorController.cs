@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Controllers.Menu;
+using System;
 using UnityEngine;
 using Utilities;
 
@@ -18,6 +19,7 @@ namespace Controllers.Core
         private void Awake()
         {
             Instance = this;
+            ConfigurationsController.ToggleCursor(false);
             DefineBounds();
         }
 

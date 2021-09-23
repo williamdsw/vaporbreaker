@@ -7,10 +7,9 @@ namespace Controllers.Menu
         private class Keys
         {
             public static string BackgroundMusicVolume => "BackgroundMusicVolume";
-            public static string IsFullScreen => "IsFullScreen";
             public static string HasPlayerPrefs => "HasPlayerPrefs";
             public static string Language => "Language";
-            public static string Resolution => "Resolution";
+            public static string MusicEffectsVolume => "MusicEffectsVolume";
             public static string SoundEffectsVolume => "SoundEffectsVolume";
         }
 
@@ -20,12 +19,6 @@ namespace Controllers.Menu
         {
             get => PlayerPrefs.GetFloat(Keys.BackgroundMusicVolume);
             set => PlayerPrefs.SetFloat(Keys.BackgroundMusicVolume, value);
-        }
-
-        public static int IsFullScreen
-        {
-            get => PlayerPrefs.GetInt(Keys.IsFullScreen);
-            set => PlayerPrefs.SetInt(Keys.IsFullScreen, value);
         }
 
         public static string Language
@@ -52,10 +45,10 @@ namespace Controllers.Menu
             }
         }
 
-        public static string Resolution
+        public static float MusicEffectsVolume
         {
-            get => PlayerPrefs.GetString(Keys.Resolution);
-            set => PlayerPrefs.SetString(Keys.Resolution, value);
+            get => PlayerPrefs.GetFloat(Keys.MusicEffectsVolume);
+            set => PlayerPrefs.SetFloat(Keys.MusicEffectsVolume, value);
         }
 
         public static float SoundEffectsVolume

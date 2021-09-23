@@ -72,6 +72,8 @@ namespace Controllers.Menu
             scoreboardBL = new ScoreboardBL();
             levels = new List<Level>();
 
+            ConfigurationsController.ToggleCursor(true);
+
             GetRequiredComponents();
             Translate();
         }

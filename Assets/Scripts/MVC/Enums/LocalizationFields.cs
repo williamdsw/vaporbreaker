@@ -4,7 +4,6 @@ namespace MVC.Enums
     public enum LocalizationFields
     {
         about_rights,
-        general_about,
         general_back,
         general_continue,
         general_default,
@@ -16,18 +15,12 @@ namespace MVC.Enums
         general_time,
         general_timescore,
         general_yes,
-
-        icons_accept,
-        icons_cancel,
-        icons_move,
-        icons_select,
         levelcomplete_bestcombo,
         levelcomplete_currentballs,
         levelcomplete_levelcompleted,
         levelcomplete_newscore,
         levelcomplete_total,
         leveldetails_bestscore,
-        leveldetails_level,
         leveldetails_play,
         leveldetails_besttime,
         loading_blocks,
@@ -54,11 +47,11 @@ namespace MVC.Enums
         mainmenu_soundtrack,
         messages_credits,
         options_backgroundvolume,
-        options_fullscreen,
         options_effectsvolume,
+        options_musiceffectsvolume,
         options_resetprogress,
-        options_resolution,
         pause_levels,
+        pause_mainmenu,
         pause_paused,
         pause_restart,
         pause_resume,
@@ -80,10 +73,8 @@ namespace MVC.Enums
         powerups_slowerball,
         powerups_smallerball,
         resetprogress_areyousure,
-        resetprogress_warning,
         selectlevels_chooseanlevel,
         selectlevels_nosignal,
         selectlevels_saving,
-        soundtracks_musicplayer
     }
 }
