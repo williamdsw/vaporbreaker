@@ -23,10 +23,6 @@ namespace Controllers.Menu
         /// Show or hide cursor
         /// </summary>
         /// <param name="toShow"></param>
-        public static void ToggleCursor(bool toShow)
-        {
-            Cursor.visible = toShow;
-            Cursor.lockState = (toShow ? CursorLockMode.None : CursorLockMode.Locked);
-        }
+        public static void ToggleCursor(bool toShow) => Cursor.visible = toShow;
     }
 }

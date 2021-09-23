@@ -63,7 +63,6 @@ namespace Controllers.Menu
         {
             coversDictionary = new Dictionary<string, Sprite>();
             Time.timeScale = 1f;
-            ConfigurationsController.ToggleCursor(true);
 
             FillCoversDictionary();
             GetRequiredComponents();

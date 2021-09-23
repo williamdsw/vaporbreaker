@@ -24,7 +24,6 @@ namespace Controllers.Menu
 
         private void Awake()
         {
-            ConfigurationsController.ToggleCursor(true);
             GetRequiredComponents();
             Translate();
             BindEventListeners();

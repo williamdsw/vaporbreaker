@@ -1,28 +1,15 @@
-﻿using Controllers.Menu;
-using Core;
-using Luminosity.IO;
-using System;
+﻿using System;
 using UnityEngine;
 using Utilities;
 
 namespace Controllers.Core
 {
-    [RequireComponent(typeof(SpriteRenderer))]
-    [RequireComponent(typeof(Animator))]
     public class CursorController : MonoBehaviour
     {
         // || State
 
         [SerializeField] private Vector2 minXYCoordinates = Vector2.zero;
         [SerializeField] private Vector2 maxXYCoordinates = Vector2.zero;
-
-
-        private float speed = 100f;
-        private Vector3 startPosition;
-
-        // || Cached
-
-        private SpriteRenderer spriteRenderer;
 
         // || Properties
 
@@ -31,8 +18,6 @@ namespace Controllers.Core
         private void Awake()
         {
             Instance = this;
-            GetRequiredComponents();
-            ConfigurationsController.ToggleCursor(true);
             DefineBounds();
         }
 
@@ -43,21 +28,6 @@ namespace Controllers.Core
                 DefineBounds();
                 SetPosition();
                 LockPositionToScreen();
-            }
-        }
-
-        /// <summary>
-        /// Get required components
-        /// </summary>
-        public void GetRequiredComponents()
-        {
-            try
-            {
-                spriteRenderer = GetComponent<SpriteRenderer>();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
             }
         }
 
@@ -74,14 +44,9 @@ namespace Controllers.Core
                 float maxScreenX = Camera.main.ScreenToWorldPoint(screenSize).x;
                 float minScreenY = Camera.main.ScreenToWorldPoint(zeroPoints).y;
                 float maxScreenY = Camera.main.ScreenToWorldPoint(screenSize).y;
-                float spriteExtentsX = spriteRenderer.bounds.extents.x;
-                float spriteExtentsY = spriteRenderer.bounds.extents.y;
 
-                // Set
-                minXYCoordinates.x = (minScreenX + spriteExtentsX);
-                maxXYCoordinates.x = (maxScreenX - spriteExtentsX);
-                minXYCoordinates.y = (minScreenY + spriteExtentsY) + 2.5f;
-                maxXYCoordinates.y = (maxScreenY - spriteExtentsY) - 1.5f;
+                minXYCoordinates = new Vector2(minScreenX, minScreenY);
+                maxXYCoordinates = new Vector2(maxScreenX, maxScreenY);
             }
             catch (Exception ex)
             {
@@ -92,24 +57,7 @@ namespace Controllers.Core
         /// <summary>
         /// Set cursor position by mouse or gamepad
         /// </summary>
-        private void SetPosition()
-        {
-            if (GamepadState.IsConnected(GamepadIndex.GamepadOne))
-            {
-                Vector3 inputDirection = Vector3.zero;
-                float horizontal = InputManager.GetAxis("MouseHorizontal");
-                float vertical = InputManager.GetAxis("MouseVertical");
-                inputDirection.x = (horizontal * speed * Time.deltaTime);
-                inputDirection.y = (vertical * speed * Time.deltaTime);
-                transform.position = (startPosition + inputDirection * 0.2f);
-                startPosition = transform.position;
-            }
-            else
-            {
-                Vector2 cursorPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                transform.position = cursorPosition;
-            }
-        }
+        private void SetPosition() => transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         /// <summary>
         /// Lock cursor position to screen
@@ -122,10 +70,5 @@ namespace Controllers.Core
             positionInY = Mathf.Clamp(positionInY, minXYCoordinates.y, maxXYCoordinates.y);
             transform.position = new Vector3(positionInX, positionInY, transform.position.z);
         }
-
-        /// <summary>
-        /// Destroy object
-        /// </summary>
-        public void DestroyInstance() => Destroy(gameObject);
     }
 }

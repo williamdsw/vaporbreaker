@@ -1,11 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace Utilities
 {
     [Serializable]
     public class PlayerProgress
     {
+        // || State
+
         private int currentLevelIndex;
         private bool hasPlayerFinishedGame = false;
 

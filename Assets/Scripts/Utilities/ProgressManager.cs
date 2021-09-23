@@ -1,8 +1,7 @@
-﻿using System;
+﻿using MVC.Global;
+using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using MVC.Global;
-using UnityEngine;
 
 namespace Utilities
 {

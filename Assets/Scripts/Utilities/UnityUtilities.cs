@@ -1,10 +1,12 @@
-﻿
-using UnityEngine.Analytics;
+﻿using UnityEngine.Analytics;
 
 namespace Utilities
 {
     public class UnityUtilities
     {
+        /// <summary>
+        /// Disable analytics properties
+        /// </summary>
         public static void DisableAnalytics()
         {
             Analytics.enabled = false;

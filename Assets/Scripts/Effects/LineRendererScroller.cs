@@ -7,6 +7,7 @@ namespace Effects
     public class LineRendererScroller : MonoBehaviour
     {
         // || Config
+
         private readonly Vector2 movementSpeeds = new Vector2(-5f, 0f);
 
         // || Cached

@@ -82,7 +82,6 @@ namespace Controllers.Menu
             GameStatusController.Instance.HasStartedSong = true;
 
             Time.timeScale = 1f;
-            ConfigurationsController.ToggleCursor(true);
 
             savingLabel.text = string.Empty;
 
@@ -218,7 +217,7 @@ namespace Controllers.Menu
             {
                 if (InputManager.GetButtonDown(Configuration.InputsNames.UiRight))
                 {
-                    KnobEffect.Instance.TurnDirection("Turn_Right");
+                    KnobEffect.Instance.TurnDirection(NamesTags.AnimatorTriggers.TurnRight);
                     AudioController.Instance.PlaySFX(AudioController.Instance.TvSwitchSound, AudioController.Instance.MaxSFXVolume);
                     currentLevelIndex++;
                     currentLevelIndex = (currentLevelIndex >= levels.Count ? 0 : currentLevelIndex);
@@ -226,7 +225,7 @@ namespace Controllers.Menu
                 }
                 else if (InputManager.GetButtonDown(Configuration.InputsNames.UiLeft))
                 {
-                    KnobEffect.Instance.TurnDirection("Turn_Left");
+                    KnobEffect.Instance.TurnDirection(NamesTags.AnimatorTriggers.TurnLeft);
                     AudioController.Instance.PlaySFX(AudioController.Instance.TvSwitchSound, AudioController.Instance.MaxSFXVolume);
                     currentLevelIndex--;
                     currentLevelIndex = (currentLevelIndex < 0 ? levels.Count - 1 : currentLevelIndex);

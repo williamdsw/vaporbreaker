@@ -1,49 +1,72 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
-public class AnimationEffect : MonoBehaviour
+namespace Effects
 {
-    // Config
-    [SerializeField] private Sprite[] spritesToAnimateList;
-    [SerializeField] private bool randomFPS = false;
-    [SerializeField] private float framesPerSecond = 10;
-
-    // Cached Components
-    private Image image;
-    private SpriteRenderer spriteRenderer;
-
-    private void Awake()
+    public class AnimationEffect : MonoBehaviour
     {
-        image = this.GetComponent<Image>();
-        if (!image)
+        // || Inspector References
+
+        [Header("Required Configuration")]
+        [SerializeField] private Sprite[] spritesToAnimateList;
+        [SerializeField] private bool randomFPS = false;
+        [SerializeField] private float framesPerSecond = 10;
+
+        // || Cached
+
+        private Image image;
+        private SpriteRenderer spriteRenderer;
+
+        // || Config
+
+        private readonly Vector2Int MIN_MAX_FPS = new Vector2Int(5, 30);
+
+        private void Awake() => GetRequiredComponents();
+
+        private void Start()
         {
-            spriteRenderer = this.GetComponent<SpriteRenderer>();
+            framesPerSecond = (randomFPS ? UnityEngine.Random.Range(MIN_MAX_FPS.x, MIN_MAX_FPS.y) : framesPerSecond);
         }
-    }
 
-    private void Start()
-    {
-        framesPerSecond = (randomFPS ? Random.Range(5, 30) : framesPerSecond);
-    }
+        private void FixedUpdate() => AnimateImage();
 
-    private void FixedUpdate()
-    {
-        AnimateImage();
-    }
-
-    private void AnimateImage()
-    {
-        if (spritesToAnimateList.Length == 0) return;
-
-        int index = (int)(Time.fixedTime * framesPerSecond) % spritesToAnimateList.Length;
-
-        if (image)
+        /// <summary>
+        /// Get required components
+        /// </summary>
+        private void GetRequiredComponents()
         {
-            image.sprite = spritesToAnimateList[index];
+            try
+            {
+                image = this.GetComponent<Image>();
+                if (!image)
+                {
+                    spriteRenderer = this.GetComponent<SpriteRenderer>();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
-        else
+
+        /// <summary>
+        /// Animates image or sprite rendered based on frames
+        /// </summary>
+        private void AnimateImage()
         {
-            spriteRenderer.sprite = spritesToAnimateList[index];
+            if (spritesToAnimateList.Length == 0) return;
+
+            int index = (int)(Time.fixedTime * framesPerSecond) % spritesToAnimateList.Length;
+
+            if (image)
+            {
+                image.sprite = spritesToAnimateList[index];
+            }
+            else
+            {
+                spriteRenderer.sprite = spritesToAnimateList[index];
+            }
         }
     }
 }

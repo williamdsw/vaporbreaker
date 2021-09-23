@@ -1,83 +1,95 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using TMPro;
 
-public class FlashTextEffect : MonoBehaviour
+namespace Effects
 {
-    // Config params
-    [SerializeField] private float timeToFlick = 0.01f;
-    [SerializeField] private bool isLooping = true;
-
-    // Cached
-    private Color color;
-    private TextMeshPro textMeshPro;
-    private TextMeshProUGUI textMeshProUGUI;
-
-    public void SetTimeToFlick(float timeToFlick)
+    public class FlashTextEffect : MonoBehaviour
     {
-        this.timeToFlick = timeToFlick;
-    }
+        // || Inspector References
 
-    private void Start()
-    {
-        DefineComponentType();
-        StartCoroutine(Flash());
-    }
+        [Header("Required Configuration")]
+        [SerializeField] private float timeToFlick = 0.01f;
+        [SerializeField] private bool isLooping = true;
 
-    private void DefineComponentType()
-    {
-        // Parent or children
-        textMeshPro = this.GetComponent<TextMeshPro>();
-        if (!textMeshPro)
+        // || Cached
+
+        private TextMeshPro textMeshPro;
+        private TextMeshProUGUI textMeshProUGUI;
+
+        // || Properties
+
+        public float TimeToFlick { get => timeToFlick; set => timeToFlick = value; }
+
+        private void Awake() => GetRequiredComponents();
+
+        private void Start() => StartCoroutine(Flash());
+
+        /// <summary>
+        /// Get required components
+        /// </summary>
+        private void GetRequiredComponents()
         {
-            textMeshPro = this.GetComponentInChildren<TextMeshPro>();
-        }
-
-        // For UGUI
-        if (!textMeshPro)
-        {
-            textMeshProUGUI = this.GetComponent<TextMeshProUGUI>();
-        }
-    }
-
-    // Flashes the alpha of text color
-    private IEnumerator Flash()
-    {
-        while (isLooping)
-        {
-            // Cancels
-            if (textMeshPro)
+            try
             {
-                string text = textMeshPro.text;
-                if (string.IsNullOrEmpty(text) || string.IsNullOrWhiteSpace(text))
+                textMeshPro = GetComponent<TextMeshPro>();
+                if (!textMeshPro)
                 {
-                    yield return null;
+                    textMeshPro = GetComponentInChildren<TextMeshPro>();
+                }
+
+                if (!textMeshPro)
+                {
+                    textMeshProUGUI = GetComponent<TextMeshProUGUI>();
                 }
             }
-            else if (textMeshProUGUI)
+            catch (Exception ex)
             {
-                string text = textMeshProUGUI.text;
-                if (string.IsNullOrEmpty(text) || string.IsNullOrWhiteSpace(text))
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Flashes current text
+        /// </summary>
+        private IEnumerator Flash()
+        {
+            while (isLooping)
+            {
+                if (textMeshPro)
                 {
-                    yield return null;
+                    string text = textMeshPro.text;
+                    if (string.IsNullOrEmpty(text) || string.IsNullOrWhiteSpace(text))
+                    {
+                        yield return null;
+                    }
                 }
-            }
+                else if (textMeshProUGUI)
+                {
+                    string text = textMeshProUGUI.text;
+                    if (string.IsNullOrEmpty(text) || string.IsNullOrWhiteSpace(text))
+                    {
+                        yield return null;
+                    }
+                }
 
-            // Color
-            Color color = (textMeshPro ? textMeshPro.color : textMeshProUGUI.color);
-            color.a = (color.a == 1f ? 0f : 1f);
+                // Color
+                Color color = (textMeshPro ? textMeshPro.color : textMeshProUGUI.color);
+                color.a = (color.a == 1f ? 0f : 1f);
 
-            if (textMeshPro)
-            {
-                textMeshPro.color = color;
-            }
-            else if (textMeshProUGUI)
-            {
-                textMeshProUGUI.color = color;
-            }
+                if (textMeshPro)
+                {
+                    textMeshPro.color = color;
+                }
+                else if (textMeshProUGUI)
+                {
+                    textMeshProUGUI.color = color;
+                }
 
-            yield return new WaitForSeconds(timeToFlick);
-            yield return null;
+                yield return new WaitForSeconds(TimeToFlick);
+                yield return null;
+            }
         }
     }
 }

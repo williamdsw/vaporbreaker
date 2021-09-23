@@ -3,6 +3,13 @@ namespace Utilities
 {
     public class NamesTags
     {
+        public class AnimatorTriggers
+        {
+            public static string FadeOut => "FadeOut";
+            public static string TurnLeft => "Turn_Left";
+            public static string TurnRight => "Turn_Right";
+        }
+
         public class Blocks
         {
             public static string PowerUpBlock => "PowerUpBlock";
@@ -11,16 +18,6 @@ namespace Utilities
         public class Functions
         {
             public static string UndoFireBalls => "UndoFireBalls";
-        }
-
-        public class Panels
-        {
-            public static string LanguagePanelName => "LanguagePanel";
-            public static string MainPanelName => "MainMenuPanel";
-            public static string OptionsPanelName => "OptionsPanel";
-            public static string PausePanelName => "Pause_Panel";
-            public static string ProgressPanelName => "ProgressPanel";
-            public static string SelectLevelPanelName => "Select_Level_Panel";
         }
 
         public class Parents

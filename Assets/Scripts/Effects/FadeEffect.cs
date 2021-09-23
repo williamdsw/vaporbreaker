@@ -17,7 +17,7 @@ namespace Effects
 
         // Config
 
-        private int sceneToApplyEvents = 5;
+        private readonly int SCENE_TO_APPLY_EVENTS = 5;
 
         // || Cached
 
@@ -39,7 +39,7 @@ namespace Effects
 
         private void Start()
         {
-            if (SceneManagerController.GetActiveSceneIndex() == sceneToApplyEvents)
+            if (SceneManagerController.GetActiveSceneIndex() == SCENE_TO_APPLY_EVENTS)
             {
                 CreateFadeInEvents();
                 CreateFadeOutEvents();
@@ -169,7 +169,7 @@ namespace Effects
         public void FadeToLevel()
         {
             animator.Rebind();
-            animator.SetTrigger("FadeOut");
+            animator.SetTrigger(NamesTags.AnimatorTriggers.FadeOut);
         }
 
         /// <summary>

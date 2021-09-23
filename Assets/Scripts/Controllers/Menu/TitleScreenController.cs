@@ -25,7 +25,8 @@ namespace Controllers.Menu
 
         private float TIME_TO_WAIT = 2f;
 
-        // Cached Components
+        // || Cached
+
         private FlashTextEffect flashTextEffect;
 
         private void Awake()
@@ -106,7 +107,7 @@ namespace Controllers.Menu
         private IEnumerator CallNextScene()
         {
             AudioController.Instance.PlaySFX(AudioController.Instance.UiSubmitSound, AudioController.Instance.MaxSFXVolume);
-            flashTextEffect.SetTimeToFlick(0.1f);
+            flashTextEffect.TimeToFlick = 0.1f;
             yield return new WaitForSecondsRealtime(TIME_TO_WAIT);
 
             FadeEffect.Instance.FadeToLevel();

@@ -18,9 +18,6 @@ namespace Effects
 
         private const float TEXTURE_OFFSET_VALUE = 0.2f;
 
-        // || State
-        private bool canOffsetTexture = false;
-
         // || Cached
 
         private Material material;
@@ -33,13 +30,7 @@ namespace Effects
             Config();
         }
 
-        private void FixedUpdate()
-        {
-            if (canOffsetTexture)
-            {
-                material.mainTextureOffset += (offset * Time.fixedDeltaTime);
-            }
-        }
+        private void FixedUpdate() => material.mainTextureOffset += (offset * Time.fixedDeltaTime);
 
         /// <summary>
         /// Get required components
@@ -77,7 +68,6 @@ namespace Effects
 
                 material = myRenderer.material;
                 offset = new Vector2(movementSpeedInX, movementSpeedInY);
-                canOffsetTexture = (!material.name.Contains("Flat"));
             }
             catch (Exception ex)
             {

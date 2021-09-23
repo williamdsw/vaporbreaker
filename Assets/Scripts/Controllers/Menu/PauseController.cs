@@ -1,4 +1,5 @@
-﻿using Core;
+﻿using Controllers.Menu;
+using Core;
 using Effects;
 using Luminosity.IO;
 using MVC.Enums;
@@ -129,6 +130,7 @@ namespace Controllers.Core
             pauseState = !pauseState;
             panel.SetActive(pauseState);
             GameSessionController.Instance.ActualGameState = (pauseState ? Enumerators.GameStates.PAUSE : Enumerators.GameStates.GAMEPLAY);
+            ConfigurationsController.ToggleCursor(pauseState);
         }
 
         /// <summary>

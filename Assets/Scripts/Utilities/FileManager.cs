@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using UnityEngine;
 
 namespace Utilities
 {
@@ -41,7 +40,7 @@ namespace Utilities
         {
             try
             {
-                 File.Delete(path);
+                File.Delete(path);
             }
             catch (Exception ex)
             {
