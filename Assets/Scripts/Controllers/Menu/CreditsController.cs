@@ -15,8 +15,8 @@ namespace Controllers.Menu
 
         [Header("Required UI Elements")]
         [SerializeField] private CanvasGroup canvasGroup;
-        [SerializeField] private TextMeshProUGUI creditsText;
         [SerializeField] private Button backButton;
+        [SerializeField] private TextMeshProUGUI copyrightText;
 
         // || Cached
 
@@ -55,8 +55,8 @@ namespace Controllers.Menu
         {
             try
             {
-                creditsText.text = LocalizationController.Instance.GetWord(LocalizationFields.messages_credits);
                 backButtonLabel.text = LocalizationController.Instance.GetWord(LocalizationFields.general_back);
+                copyrightText.text = LocalizationController.Instance.GetWord(LocalizationFields.about_rights);
             }
             catch (Exception ex)
             {

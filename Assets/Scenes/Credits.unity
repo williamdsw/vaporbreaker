@@ -234,7 +234,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 10300}
+  m_SizeDelta: {x: 1920, y: 9100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &82968274
 MonoBehaviour:
@@ -256,7 +256,77 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: "\rDeveloped by Retrogemn\r\n\r\nPROGRAMMING : William\r\n\r\nGAME DESIGNER
+    : William\r\n\r\nLEVEL DESIGNER : William\r\n\r\n\r\nASSETS USED \r\n\r\n\r\nFONTS
+    \r\n\"VCR OCD Mono\" by Riciery Leal\r\n<u> <size=36> https://www.dafont.com/pt/vcr-osd-mono.font
+    </size> </u>\r\n\r\n\"Aji Hand\" by  Ajith Rajan\r\n<u> <size=36> https://www.dafont.com/pt/aji-hand.font
+    </size> </u>\r\n\r\n\"Migu\"\r\n<u> <size=36> https://www.freejapanesefont.com/migu-font-\u30DF\u30B0\u30D5\u30A9\u30F3\u30C8/ 
+    </size> </u>\r\n\r\n\r\nSPRITES / IMAGES \r\n\r\n\"Background Gradient\" by William
+    \r\n\r\n\"Select Levels BG\" by William \r\n\r\n\"Paddles\" by William \r\n\r\n\"Power
+    Ups Placeholders\" by William \r\n\r\n\"Power Ups Icons\" by William \r\n\r\n\"Retrogemn
+    Icon\" by William \r\n\r\n\"Retrogemn Logo\" by William \r\n\r\n\"Vaporbreaker
+    Logo\" by William \r\n\r\n\"Vaporbreaker Icon\" by William \r\n\r\n\"Line\" by
+    William \r\n\r\n\"Blocks Breaking Block Pack HD\" by John B. Marine  \r\n<u>
+    <size=36> https://opengameart.org/content/block-breaking-block-pack-hd </size>
+    </u>\r\n\r\n\"Arkanoid Assets\" by pudman  \r\n<u> <size=36> https://opengameart.org/content/arkanoid-assets
+    </size> </u>\r\n\r\n\"Side Blaster GFX (M484 Games)\" by Master484  \r\n<u> <size=36>
+    https://opengameart.org/content/side-blaster-gfx-m484-games </size> </u>\r\n\r\n\"Explosion
+    Set 1 (M484 Games)\" by Master484  \r\n<u> <size=36> https://opengameart.org/content/explosion-set-1-m484-games
+    </size> </u>\r\n\r\n\"Animated display static\" by Cameron 'cron' Fraser  \r\n<u>
+    <size=36> https://opengameart.org/content/animated-display-static </size> </u>\r\n\r\n\"UI
+    pack: Space extension\" by Kenney.nl\r\n<u> <size=36> https://opengameart.org/content/ui-pack-space-extension
+    </size> </u>\r\n\r\n\"Grid HUD\" by Ivan Voirol\r\n<u> <size=36> https://opengameart.org/content/grid-hud
+    </size> </u>\r\n\r\n\"Free Keyboard and Controllers Prompts Pack\" by Xelu\r\n<u>
+    <size=36> https://opengameart.org/content/free-keyboard-and-controllers-prompts-pack
+    </size> </u>\r\n\r\n\"Cassette\" by Dmitry Sukhankin (Pong Man)\r\n<u> <size=36>
+    https://opengameart.org/content/cassette </size> </u>\r\n\r\n\"Pixel Art TV Sprite
+    (CC0)\" by Denislav\r\n<u> <size=36> https://opengameart.org/content/pixel-art-tv-sprite-cc0
+    </size> </u>\r\n\r\n\"Country Flags\" by Mark James (LFA)\r\n<u> <size=36> https://opengameart.org/content/country-flags
+    </size> </u>\r\n\r\n\"Vaporwave varied pixelart assets disk cover like .psd psd
+    files\" by Eduardo Martinelli\r\n<u> <size=36> https://opengameart.org/content/vaporwave-varied-pixelart-assets-disk-cover-like-psd-psd-files
+    </size> </u>\r\n\r\n\r\nAUDIO (MUSIC & MUSIC EFFECTS & SOUND EFFECTS) \r\n\r\n\r\nSOUND
+    EFFECTS \r\n\r\n\"Hitting in a Face\" by florianreichelt  \r\n<u> <size=36> https://freesound.org/people/florianreichelt/sounds/460509/
+    </size> </u>\r\n\r\n\"Blip\" by n_audioman  \r\n<u> <size=36> https://freesound.org/people/n_audioman/sounds/275897/
+    </size> </u>\r\n\r\n\"8 Bit Slam\" by josepharaoh99  \r\n<u> <size=36> https://freesound.org/people/josepharaoh99/sounds/361636/
+    </size> </u>\r\n\r\n\"50 CC0 retro / synth SFX\" by rubberduck  \r\n<u> <size=36>
+    https://opengameart.org/content/50-cc0-retro-synth-sfx </size> </u>\r\n\r\n\"Level
+    up, power up, Coin get (13 Sounds)\" by wobbleboxx.com  \r\n<u> <size=36> https://opengameart.org/content/level-up-power-up-coin-get-13-sounds
+    </size> </u>\r\n\r\n\"Laser Fire\" by farfadet46  \r\n<u> <size=36> https://opengameart.org/content/laser-fire-0
+    </size> </u>\r\n\r\n\"Wall Impact\" by spookymodem  \r\n<u> <size=36> https://opengameart.org/content/wall-impact
+    </size> </u>\r\n\r\n\r\nMUSIC EFFECTS\r\n\r\n\"TV Static Looping\" by dotY21\r\n<u>
+    <size=36> https://freesound.org/people/dotY21/sounds/335203/ </size> </u>\r\n\r\n\"Fire
+    Burning Loop\" by midimagician  \r\n<u> <size=36> https://freesound.org/people/midimagician/sounds/249418/
+    </size> </u>\r\n\r\n\"Mission Success\" by  StormBat  \r\n<u> <size=36> https://freesound.org/people/StormBat/sounds/406371/
+    </size> </u>\r\n\r\n\r\nBACKGROUND MUSIC \r\n\r\n\"Floating Synth Melody at 130
+    BPM C major loop music\" by Lemoncreme\r\n<u> <size=36> https://freesound.org/people/Lemoncreme/sounds/231578/
+    </size> </u>\r\n\r\n\"120 bpm lofi synthwave loop\" by waveplay_old\r\n<u> <size=36>
+    https://freesound.org/people/waveplay_old/sounds/424610/ </size> </u>\r\n\r\n\"Time
+    Break\" by ShadyDave\r\n<u> <size=36> https://freesound.org/people/ShadyDave/sounds/277325/
+    </size> </u>\r\n\r\n\"Reflection\" by B_Sean\r\n<u> <size=36> https://freesound.org/people/B_Sean/sounds/421887/
+    </size> </u>\r\n\r\n\"Crystalline Phases of Ice\" by Pine Voc\r\n<u> <size=36>
+    https://steviasphere.bandcamp.com/album/snow-cover </size> </u>\r\n\r\n\"Don't
+    Fall Asleep In The Snow\" by Pine Voc\r\n<u> <size=36> https://steviasphere.bandcamp.com/album/snow-cover
+    </size> </u>\r\n\r\n\"Gl\xF6gg\" by Pine Voc\r\n<u> <size=36> https://steviasphere.bandcamp.com/album/snow-cover
+    </size> </u>\r\n\r\n\"Glimmer, Part 1\" by Glaci\xE6re\r\n<u> <size=36> https://steviasphere.bandcamp.com/album/bath
+    </size> </u>\r\n\r\n\"Glimmer, Part 2\" by Glaci\xE6re\r\n<u> <size=36> https://steviasphere.bandcamp.com/album/bath
+    </size> </u>\r\n\r\n\"Waiting for the train. It's cold.\" by Glaci\xE6re\r\n<u>
+    <size=36> https://steviasphere.bandcamp.com/album/bath </size> </u>\r\n\r\n\"Reaction\"
+    by Ocean Shores\r\n<u> <size=36> https://oceanshores.bandcamp.com/album/memories-of-a-past-life
+    </size> </u>\r\n\r\n\"Windowpane\" by Ocean Shores\r\n<u> <size=36> https://oceanshores.bandcamp.com/album/memories-of-a-past-life
+    </size> </u>\r\n\r\n\"Gone Away, Out of Mind\" by Ocean Shores\r\n<u> <size=36>
+    https://oceanshores.bandcamp.com/album/memories-of-a-past-life </size> </u>\r\n\r\n\"Cashflow\"
+    by Network 91\r\n<u> <size=36> https://fantasy-deluxe.bandcamp.com/album/ultimate-opportunity
+    </size> </u>\r\n\r\n\"More than you know\" by Network 91\r\n<u> <size=36> https://fantasy-deluxe.bandcamp.com/album/ultimate-opportunity
+    </size> </u>\r\n\r\n\"New Suit\" by Network 91\r\n<u> <size=36> https://fantasy-deluxe.bandcamp.com/album/ultimate-opportunity
+    </size> </u>\r\n\r\n\"Synthwave Miami Vice Style\" by Xhale303\r\n<u> <size=36>
+    https://freesound.org/people/XHALE303/sounds/470453/ </size> </u>\r\n\r\n\"Synthwave
+    15k\" by The Cynic Project\r\n<u> <size=36> https://opengameart.org/content/calm-ambient-2-synthwave-15k
+    </size> </u>\r\n<u> <size=36> http://cynicmusic.com/ </size> </u>\r\n<u> <size=36>
+    http://pixelsphere.org/ </size> </u>\r\n\r\n\"Loading...\" by </body>\r\n<u>
+    <size=36> https://bodyendtag.bandcamp.com/album/initializing </size> </u>\r\n\r\n\"Updating
+    Settings...\" by </body> </size> </u>\r\n<u> <size=36> https://bodyendtag.bandcamp.com/album/initializing
+    </size> </u>\r\n\r\n\"Applying Update...\" by </body>\r\n<u> <size=36> https://bodyendtag.bandcamp.com/album/initializing
+    </size> </u>\r\n\r\nTHANK YOU FOR PLAYING!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e6470b9d56dde4b4eae2088e1f1ddb1d, type: 2}
   m_sharedMaterial: {fileID: 6460813143119297946, guid: e6470b9d56dde4b4eae2088e1f1ddb1d,
@@ -320,7 +390,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 50, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -378,8 +448,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 160870556}
-  creditsText: {fileID: 82968274}
   backButton: {fileID: 858552944}
+  copyrightText: {fileID: 2080065646}
 --- !u!1 &160870551
 GameObject:
   m_ObjectHideFlags: 0
@@ -717,6 +787,7 @@ RectTransform:
   - {fileID: 51955558}
   - {fileID: 1765310940}
   - {fileID: 435554288}
+  - {fileID: 2080065645}
   - {fileID: 967013170}
   m_Father: {fileID: 160870555}
   m_RootOrder: 1
@@ -942,7 +1013,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 666122970}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -1205,7 +1276,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2025021309}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.07550491
+  m_Size: 0.0854616
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1649,6 +1720,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 358b1289b543b66449452f3ca709a886, type: 3}
+--- !u!1 &2019627347
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2019627348}
+  - component: {fileID: 2019627349}
+  m_Layer: 5
+  m_Name: TMP SubMeshUI [VCR_OSD_MONO_1_OUTLINE_SDF Material + LiberationSans SDF
+    Atlas]
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2019627348
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019627347}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2080065645}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &2019627349
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019627347}
+  m_CullTransparentMesh: 0
 --- !u!1 &2025021308
 GameObject:
   m_ObjectHideFlags: 0
@@ -1724,6 +1840,142 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2025021308}
   m_CullTransparentMesh: 1
+--- !u!1 &2080065644
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2080065645}
+  - component: {fileID: 2080065647}
+  - component: {fileID: 2080065646}
+  m_Layer: 5
+  m_Name: CopyrightText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2080065645
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2080065644}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2019627348}
+  m_Father: {fileID: 666122970}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 50}
+  m_SizeDelta: {x: 1000, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2080065646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2080065644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: "\xA9 Retrogemn 1994-2019, All Rights Reserved."
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: e6470b9d56dde4b4eae2088e1f1ddb1d, type: 2}
+  m_sharedMaterial: {fileID: 6460813143119297946, guid: e6470b9d56dde4b4eae2088e1f1ddb1d,
+    type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 38
+  m_fontSizeBase: 48
+  m_fontWeight: 400
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 18
+  m_fontSizeMax: 38
+  m_fontStyle: 16
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 1
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &2080065647
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2080065644}
+  m_CullTransparentMesh: 0
 --- !u!1001 &2108588817627764308
 PrefabInstance:
   m_ObjectHideFlags: 0

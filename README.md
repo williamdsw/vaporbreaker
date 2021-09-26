@@ -40,7 +40,6 @@ Some thanks for all those asset makers and/or artists!
 
 ### Sprites | Images
 
-* Grid Backgrounds by William Santos
 * ["Blocks Breaking Block Pack HD" by John B. Marine ](https://opengameart.org/content/block-breaking-block-pack-hd)
 * ["Arkanoid Assets" by pudman](https://opengameart.org/content/arkanoid-assets)
 * ["Side Blaster GFX (M484 Games)" by Master484](https://opengameart.org/content/side-blaster-gfx-m484-games)
@@ -48,13 +47,14 @@ Some thanks for all those asset makers and/or artists!
 * ["Basic Arkanoid Pack" by Zealex](https://opengameart.org/content/basic-arkanoid-pack) 
 * ["Free Keyboard and Controllers Prompts Pack" by Xelu](https://opengameart.org/content/free-keyboard-and-controllers-prompts-pack) 
 * ["Cassette" by Dmitry Sukhankin (Pong Man)](https://opengameart.org/content/cassette)
-* ["Medals" by Buch](https://opengameart.org/content/medals-3)
 * ["Basic 16px GUI Pack" by tavoarts](https://tavoarts.itch.io/basic-pixel-gui-pack)
-* ["[LPC but not really] Bean Bag and Really Old TV" by Spring](https://opengameart.org/content/lpc-but-not-really-bean-bag-and-really-old-tv)
 * ["Pixel Art TV Sprite (CC0)" by Denislav](https://opengameart.org/content/pixel-art-tv-sprite-cc0)
 * ["Animated display static" by Cameron 'cron' Fraser](https://opengameart.org/content/animated-display-static)
 * ["8th Gen Console Vector Gamepad Collection" by TheHoodieGuy02](https://opengameart.org/content/pixel-art-tv-sprite-cc0)
-* ["KeyBoard" by LushkinR](https://opengameart.org/content/keyboard)
+* ["UI pack: Space extension" by Kenney.nl](https://opengameart.org/content/ui-pack-space-extension)
+* ["Grid HUD" by Ivan Voirol](https://opengameart.org/content/grid-hud)
+* ["Country Flags" by Mark James (LFA)](https://opengameart.org/content/country-flags)
+* ["Vaporwave varied pixelart assets disk cover like .psd psd files" by Eduardo Martinelli](https://opengameart.org/content/vaporwave-varied-pixelart-assets-disk-cover-like-psd-psd-files)
 
 ### Audio
 
@@ -62,20 +62,20 @@ Some thanks for all those asset makers and/or artists!
 
 * ["Hitting in a Face" by florianreichelt](https://freesound.org/people/florianreichelt/sounds/460509/)
 * ["Breaker" by Deathscyp](https://freesound.org/people/Deathscyp/sounds/404049/)
-* ["Metal Ping" by timgormly](https://freesound.org/people/timgormly/sounds/170957/)
 * ["Blip" by n_audioman](https://freesound.org/people/n_audioman/sounds/275897/)
 * ["8 Bit Slam" by josepharaoh99](https://freesound.org/people/josepharaoh99/sounds/361636/)
 * ["50 CC0 retro / synth SFX" by rubberduck](https://opengameart.org/content/50-cc0-retro-synth-sfx)
 * ["16 button clicks" by Independent.nu](https://opengameart.org/content/16-button-clicks)
 * ["Level up, power up, Coin get (13 Sounds)" by wobbleboxx.com](https://opengameart.org/content/level-up-power-up-coin-get-13-sounds)
 * ["Pew Laser fire Sound" by sketcherskt](https://opengameart.org/content/pew-laser-fire-sound)
-* ["Country Flags" by Mark James (LFA)](https://opengameart.org/content/country-flags)
+* ["Laser Fire" by farfadet46](https://opengameart.org/content/laser-fire-0)
+* ["Wall Impact" by spookymodem](https://opengameart.org/content/wall-impact)
 
 #### Music Effects (ME)
 
 * ["TV Static Looping" by dotY21](https://freesound.org/people/dotY21/sounds/335203/)
 * ["Mission Success" by StormBat](https://freesound.org/people/StormBat/sounds/406371)
-* ["80's riff" by ModulationStation](https://freesound.org/people/ModulationStation/sounds/392465/)
+* ["Fire Burning Loop" by midimagician](https://freesound.org/people/midimagician/sounds/249418/)
 
 #### Background Music (BMG)
 
@@ -100,7 +100,3 @@ Some thanks for all those asset makers and/or artists!
 * ["Loading..." by </body>](https://bodyendtag.bandcamp.com/album/initializing)
 * ["Updating Settings..." by </body>](https://bodyendtag.bandcamp.com/album/initializing)
 * ["Applying Update..." by </body>](https://bodyendtag.bandcamp.com/album/initializing)
-
-### Others
-
-* ["InputManager" by daemon3000](https://github.com/daemon3000/InputManager)
