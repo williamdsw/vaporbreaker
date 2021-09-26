@@ -1,6 +1,5 @@
 ﻿using Controllers.Core;
 using Effects;
-using MVC.Global;
 using System;
 using UnityEngine;
 using Utilities;
@@ -23,7 +22,6 @@ namespace Core
 
         // || State
 
-        private Vector3 paddleToBallPosition;
         private Vector3 remainingPosition;
         private Color32 defaultBallColor;
         private Color32 fireballColor = Color.white;
@@ -48,12 +46,9 @@ namespace Core
         public Vector2 MinMaxMoveSpeed => new Vector2(200f, 600f);
         public Vector2 MinMaxLocalScale => new Vector2(0.5f, 8f);
         public Vector2 MinMaxRotationDegree => new Vector2(10f, 90f);
+        public Vector2 Velocity { get => rigidBody2D.velocity; set => rigidBody2D.velocity = value; }
         public Color32 CurrentColor => spriteRenderer.color;
         public Sprite Sprite => spriteRenderer.sprite;
-        public float MinVelocity => 2f;
-        public float MaxVelocity => 7f;
-        public float VelocityChanger => 1.25f;
-        public Vector2 Velocity { get => rigidBody2D.velocity; set => rigidBody2D.velocity = value; }
 
         private void Awake() => GetRequiredComponents();
 
@@ -63,33 +58,12 @@ namespace Core
             DefaultSpeed = MoveSpeed;
             echoEffectSpawnerPrefab.tag = NamesTags.Tags.BallEcho;
 
-            // First Ball
-            if (FindObjectsOfType(GetType()).Length == 1)
-            {
-                echoEffectSpawnerPrefab.gameObject.SetActive(false);
-
-                if (!initialLinePrefab)
-                {
-                    initialLinePrefab = GameObject.FindGameObjectWithTag(NamesTags.Tags.LineBetweenBallPointer);
-                }
-
-                initialLineRenderer = initialLinePrefab.GetComponent<LineRenderer>();
-
-                if (!paddle)
-                {
-                    paddle = FindObjectOfType<Paddle>();
-                }
-
-                paddleToBallPosition = (transform.position - paddle.transform.position);
-                transform.position = new Vector3(paddle.transform.position.x, paddle.transform.position.y + 0.25f, paddle.transform.position.z);
-                DrawLineToMouse();
-            }
-
+            FirstBallConfiguration();
             ChooseRandomColor();
             ChangeBallSprite(IsBallOnFire);
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             if (GameSessionController.Instance.ActualGameState == Enumerators.GameStates.GAMEPLAY)
             {
@@ -127,37 +101,37 @@ namespace Core
                     switch (other.gameObject.tag)
                     {
                         case "Paddle":
-                            {
-                                if (other.GetContact(0).normal != Vector2.down)
-                                {
-                                    ClampVelocity();
-                                    AudioClip clip = (isBallBig ? AudioController.Instance.HittingFaceSound : AudioController.Instance.BlipSound);
-                                    AudioController.Instance.PlaySFX(clip, AudioController.Instance.MaxSFXVolume);
-                                }
-
-                                if (other.GetContact(0).normal == Vector2.up)
-                                {
-                                    if (MoveSpeed > DefaultSpeed)
-                                    {
-                                        SpawnPaddleDebris(other.GetContact(0).point);
-                                    }
-                                }
-
-                                if (GameSessionController.Instance.CanMoveBlocks)
-                                {
-                                    GameSessionController.Instance.MoveBlocks(GameSessionController.Instance.BlockDirection);
-                                }
-
-                                break;
-                            }
-
-                        case "Wall":
+                        {
+                            if (other.GetContact(0).normal != Vector2.down)
                             {
                                 ClampVelocity();
                                 AudioClip clip = (isBallBig ? AudioController.Instance.HittingFaceSound : AudioController.Instance.BlipSound);
                                 AudioController.Instance.PlaySFX(clip, AudioController.Instance.MaxSFXVolume);
-                                break;
                             }
+
+                            if (other.GetContact(0).normal == Vector2.up)
+                            {
+                                if (MoveSpeed > DefaultSpeed)
+                                {
+                                    SpawnPaddleDebris(other.GetContact(0).point);
+                                }
+                            }
+
+                            if (GameSessionController.Instance.CanMoveBlocks)
+                            {
+                                GameSessionController.Instance.MoveBlocks(GameSessionController.Instance.BlockDirection);
+                            }
+
+                            break;
+                        }
+
+                        case "Wall":
+                        {
+                            ClampVelocity();
+                            AudioClip clip = (isBallBig ? AudioController.Instance.HittingFaceSound : AudioController.Instance.BlipSound);
+                            AudioController.Instance.PlaySFX(clip, AudioController.Instance.MaxSFXVolume);
+                            break;
+                        }
 
                         case "Breakable": case "Unbreakable": ClampVelocity(); break;
                         default: break;
@@ -182,13 +156,26 @@ namespace Core
             }
         }
 
+        private void FirstBallConfiguration()
+        {
+            if (FindObjectsOfType(GetType()).Length == 1)
+            {
+                echoEffectSpawnerPrefab.gameObject.SetActive(false);
+                initialLinePrefab = GameObject.FindGameObjectWithTag(NamesTags.Tags.LineBetweenBallPointer);
+                initialLineRenderer = initialLinePrefab.GetComponent<LineRenderer>();
+
+                Vector3 destination = new Vector3(paddle.transform.position.x, paddle.transform.position.y + 0.35f, paddle.transform.position.z);
+                rigidBody2D.MovePosition((Vector2)destination);
+                DrawLineToMouse();
+            }
+        }
+
         /// <summary>
         /// Locks the ball to paddle movement
         /// </summary>
         private void LockBallToPaddle()
         {
-            Vector3 paddlePosition = new Vector3(paddle.transform.position.x, paddle.transform.position.y, 0f);
-            transform.position = new Vector3(paddlePosition.x + paddleToBallPosition.x, paddlePosition.y + 0.35f, transform.position.z);
+            rigidBody2D.MovePosition(new Vector2(paddle.transform.position.x, paddle.transform.position.y + 0.35f));
         }
 
         /// <summary>
@@ -303,10 +290,5 @@ namespace Core
             spriteRenderer.sprite = (isOnFire ? fireballSprite : defaultBallSprite);
             spriteRenderer.color = (isOnFire ? fireballColor : defaultBallColor);
         }
-
-        /// <summary>
-        /// Stop ball's velocity
-        /// </summary>
-        public void Stop() => Velocity = Vector2.zero;
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Controllers.Core;
-using Effects;
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,55 +8,49 @@ namespace Core
 {
     [RequireComponent(typeof(SpriteRenderer))]
     [RequireComponent(typeof(BoxCollider2D))]
+    [RequireComponent(typeof(Rigidbody2D))]
     public class Paddle : MonoBehaviour
     {
         // || Inspector References
 
         [Header("Configuration")]
-        [SerializeField] private Ball ball;
-        [SerializeField] private EchoEffect echoEffectSpawner;
         [SerializeField] private Sprite[] paddleSprites;
 
         // || State
 
+        private Vector2 minMaxCoordinatesInX = Vector2.zero;
+        private bool isOnImpulse = false;
         private int currentPaddleIndex = 1;
+        private float moveSpeed = 20f;
         private float defaultSpeed = 0f;
         private float doubleSpeed = 0f;
-        private Vector2 minMaxCoordinatesInX = Vector2.zero;
-        private float moveSpeed = 15f;
         private float horizontal = 0f;
-        private bool isOnImpulse = false;
 
         // || Cached
 
         private BoxCollider2D boxCollider2D;
+        private Rigidbody2D rigidBody2D;
 
         // || Properties
 
         public SpriteRenderer SpriteRenderer { get; private set; }
-        public Sprite Sprite => SpriteRenderer.sprite;
 
         private void Awake()
         {
             GetRequiredComponents();
 
-            // Default values
             defaultSpeed = moveSpeed;
             doubleSpeed = (moveSpeed * 2);
-            echoEffectSpawner.tag = NamesTags.Tags.PaddleEcho;
 
             DefineStartPosition();
             DefineBounds();
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             if (GameSessionController.Instance.ActualGameState == Enumerators.GameStates.GAMEPLAY)
             {
-                DefineBounds();
                 Move();
-                CheckAndFindBall();
-                LockPositionToScreen();
             }
         }
 
@@ -69,6 +62,7 @@ namespace Core
             try
             {
                 boxCollider2D = GetComponent<BoxCollider2D>();
+                rigidBody2D = GetComponent<Rigidbody2D>();
                 SpriteRenderer = GetComponent<SpriteRenderer>();
             }
             catch (Exception ex)
@@ -84,7 +78,7 @@ namespace Core
         {
             Vector3 startPosition = new Vector3(Screen.width / 2f, Screen.height / 10f, 0);
             startPosition = Camera.main.ScreenToWorldPoint(startPosition);
-            transform.position = new Vector3(startPosition.x, startPosition.y, transform.position.z);
+            rigidBody2D.MovePosition((Vector2)startPosition);
         }
 
         /// <summary>
@@ -105,48 +99,22 @@ namespace Core
         {
             try
             {
-                if (GameSessionController.Instance.IsAutoplayEnabled)
+                if (isOnImpulse && horizontal != 0)
                 {
-                    Vector3 newPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-                    newPosition.x = ball.transform.position.x;
-                    transform.position = newPosition;
+                    moveSpeed = doubleSpeed;
                 }
-                else
+                else if (!isOnImpulse)
                 {
-                    if (isOnImpulse && horizontal != 0)
-                    {
-                        moveSpeed = doubleSpeed;
-                        if (echoEffectSpawner)
-                        {
-                            echoEffectSpawner.enabled = true;
-                        }
-                    }
-                    else if (!isOnImpulse)
-                    {
-                        moveSpeed = defaultSpeed;
-                        if (echoEffectSpawner)
-                        {
-                            echoEffectSpawner.enabled = false;
-                        }
-                    }
+                    moveSpeed = defaultSpeed;
+                }
 
-                    transform.Translate(horizontal * moveSpeed * Time.deltaTime, 0f, 0f);
-                }
+                Vector2 direction = new Vector2((horizontal * moveSpeed * Time.fixedDeltaTime), 0);
+                rigidBody2D.MovePosition((Vector2)transform.position + direction);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-        }
-
-        /// <summary>
-        /// Clamp paddle position to Screen
-        /// </summary>
-        private void LockPositionToScreen()
-        {
-            float positionInX = transform.position.x;
-            positionInX = Mathf.Clamp(positionInX, minMaxCoordinatesInX.x, minMaxCoordinatesInX.y);
-            transform.position = new Vector3(positionInX, transform.position.y, transform.position.z);
         }
 
         /// <summary>
@@ -191,9 +159,8 @@ namespace Core
                 boxCollider2D = gameObject.AddComponent<BoxCollider2D>();
                 DefineBounds();
 
-                // Case have shooter power up
                 Shooter shooter = FindObjectOfType<Shooter>();
-                if (shooter)
+                if (shooter != null)
                 {
                     shooter.SetCannonsPosition();
                 }
@@ -205,22 +172,15 @@ namespace Core
         }
 
         /// <summary>
-        /// Check and find current ball
+        /// On move input
         /// </summary>
-        private void CheckAndFindBall()
-        {
-            if (ball) return;
-            ball = FindObjectOfType<Ball>();
-        }
+        /// <param name="callbackContext"> Context with parameters </param>
+        public void OnMove(InputAction.CallbackContext callbackContext) => horizontal = callbackContext.ReadValue<float>();
 
-        public void OnMove(InputAction.CallbackContext callbackContext)
-        {
-            horizontal = callbackContext.ReadValue<float>();
-        }
-
-        public void OnImpulse(InputAction.CallbackContext callbackContext)
-        {
-            isOnImpulse = callbackContext.performed;
-        }
+        /// <summary>
+        /// On impulse input
+        /// </summary>
+        /// <param name="callbackContext"> Context with parameters </param>
+        public void OnImpulse(InputAction.CallbackContext callbackContext) => isOnImpulse = callbackContext.performed;
     }
 }

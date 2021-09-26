@@ -1,6 +1,6 @@
-﻿using System;
-using Controllers.Core;
+﻿using Controllers.Core;
 using Core;
+using System;
 using UnityEngine;
 using Utilities;
 
@@ -24,7 +24,6 @@ namespace Effects
         // || Cached
 
         private Ball ball;
-        private Paddle paddle;
 
         // || Properties
 
@@ -44,10 +43,6 @@ namespace Effects
                 if (tag == NamesTags.Tags.BallEcho)
                 {
                     ball = transform.parent.GetComponent<Ball>();
-                }
-                else if (tag == NamesTags.Tags.PaddleEcho)
-                {
-                    paddle = transform.parent.GetComponent<Paddle>();
                 }
             }
             catch (Exception ex)
@@ -76,11 +71,6 @@ namespace Effects
                         SpriteRenderer spriteRenderer = echo.GetComponent<SpriteRenderer>();
                         spriteRenderer.color = ball.CurrentColor;
                         spriteRenderer.sprite = ball.Sprite;
-                    }
-                    else if (tag.Equals(NamesTags.Tags.PaddleEcho) && paddle)
-                    {
-                        SpriteRenderer spriteRenderer = echo.GetComponent<SpriteRenderer>();
-                        spriteRenderer.sprite = paddle.Sprite;
                     }
 
                     Destroy(echo, TimeToSelfDestruct);
