@@ -1,14 +1,13 @@
 ﻿using Controllers.Core;
-using Luminosity.IO;
 using MVC.BL;
 using MVC.Enums;
-using MVC.Global;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace Controllers.Menu
@@ -51,11 +50,7 @@ namespace Controllers.Menu
             BindEventListeners();
         }
 
-        private void Update()
-        {
-            CheckSelectedGameObject();
-            CaptureCancelButton();
-        }
+        private void Update() => CheckSelectedGameObject();
 
         /// <summary>
         /// Get required components
@@ -152,13 +147,7 @@ namespace Controllers.Menu
         /// </summary>
         private void CaptureCancelButton()
         {
-            if (panel.activeSelf)
-            {
-                if (InputManager.GetButtonDown(Configuration.InputsNames.UiCancel, PlayerID.One))
-                {
-                    SaveAndBackToMainMenu();
-                }
-            }
+
         }
 
         /// <summary>
@@ -177,6 +166,21 @@ namespace Controllers.Menu
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Get back to previous screen
+        /// </summary>
+        /// <param name="callbackContext"> Context with parameters </param>
+        public void OnCancel(InputAction.CallbackContext callbackContext)
+        {
+            if (callbackContext.performed && callbackContext.ReadValueAsButton())
+            {
+                if (panel.activeSelf)
+                {
+                    SaveAndBackToMainMenu();
+                }
             }
         }
     }

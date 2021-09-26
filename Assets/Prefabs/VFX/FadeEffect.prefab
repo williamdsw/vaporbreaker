@@ -152,7 +152,7 @@ GameObject:
   - component: {fileID: 135199838630552823}
   - component: {fileID: 135199838630552824}
   m_Layer: 14
-  m_Name: Blackout_Canvas
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,6 +1,5 @@
 ﻿using Controllers.Core;
 using Effects;
-using Luminosity.IO;
 using MVC.Enums;
 using System;
 using System.Collections;
@@ -57,10 +56,6 @@ namespace Controllers.Menu
             // Resets for animation works
             Time.timeScale = 1f;
             HasSavedGame = ProgressManager.HasProgress();
-
-            InputManager.Load();
-
-            levelsButton.Select();
         }
 
         private void Update() => CheckSelectedGameObject();

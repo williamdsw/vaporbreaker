@@ -1,6 +1,7 @@
 ﻿using Controllers.Menu;
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Utilities;
 
 namespace Controllers.Core
@@ -59,7 +60,7 @@ namespace Controllers.Core
         /// <summary>
         /// Set cursor position by mouse or gamepad
         /// </summary>
-        private void SetPosition() => transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        private void SetPosition() => transform.position = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
         /// <summary>
         /// Lock cursor position to screen

@@ -48,7 +48,6 @@ namespace Controllers.Core
 
         // || Cached
 
-        private Ball[] balls;
         private TextMeshProUGUI continueButtonText;
 
         // || Properties
@@ -130,12 +129,10 @@ namespace Controllers.Core
         {
             ConfigurationsController.ToggleCursor(true);
 
-            balls = FindObjectsOfType<Ball>();
-
             this.timeScore = Mathf.FloorToInt(timeScore);
             this.bestCombo = bestCombo;
             this.currentScore = currentScore;
-            this.numberOfBalls = balls.Length;
+            this.numberOfBalls = FindObjectsOfType<Ball>().Length;
 
             StartCoroutine(LevelComplete());
         }
@@ -177,14 +174,14 @@ namespace Controllers.Core
         /// </summary>
         private IEnumerator LevelComplete()
         {
-            foreach (Ball ball in balls)
+            foreach (Ball ball in FindObjectsOfType<Ball>())
             {
-                ball.Stop();
+                Destroy(ball.gameObject);
             }
 
             foreach (PowerUp powerUp in FindObjectsOfType<PowerUp>())
             {
-                powerUp.Stop();
+                Destroy(powerUp.gameObject);
             }
 
             AudioController.Instance.StopME();
@@ -227,6 +224,7 @@ namespace Controllers.Core
             }
 
             continueButton.gameObject.SetActive(true);
+            continueButton.Select();
         }
 
         /// <summary>

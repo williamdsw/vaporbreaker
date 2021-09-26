@@ -1,5 +1,4 @@
 ﻿using Core;
-using Luminosity.IO;
 using MVC.BL;
 using MVC.Global;
 using MVC.Models;
@@ -9,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Utilities;
 
 namespace Controllers.Core
@@ -169,11 +169,6 @@ namespace Controllers.Core
                     ShowEllapsedTime();
                     CheckSpawnAnotherBall();
                 }
-            }
-
-            if (ActualGameState == Enumerators.GameStates.GAMEPLAY || ActualGameState == Enumerators.GameStates.PAUSE)
-            {
-                ChangeTrack();
             }
         }
 
@@ -748,16 +743,50 @@ namespace Controllers.Core
         /// <summary>
         /// Change current track to next
         /// </summary>
-        private void ChangeTrack()
+        /// <param name="callbackContext"> Context with parameters </param>
+        public void OnChangeTrack(InputAction.CallbackContext callbackContext)
         {
-            if (InputManager.GetButtonDown(Configuration.InputsNames.ChangeSong))
+            if (callbackContext.performed && callbackContext.ReadValueAsButton())
             {
-                songIndex++;
-                songIndex = (songIndex >= AudioController.Instance.AllNotLoopedSongs.Length ? 0 : songIndex);
-                AudioController.Instance.StopAllCoroutines();
-                AudioClip nextClip = AudioController.Instance.AllNotLoopedSongs[songIndex];
-                Track nextTrack = AudioController.Instance.Tracks.Find(t => t.FileName.Equals(nextClip.name));
-                AudioController.Instance.ChangeMusic(nextClip, false, string.Empty, false, true, nextTrack);
+                if (ActualGameState == Enumerators.GameStates.GAMEPLAY || ActualGameState == Enumerators.GameStates.PAUSE)
+                {
+                    songIndex++;
+                    songIndex = (songIndex >= AudioController.Instance.AllNotLoopedSongs.Length ? 0 : songIndex);
+                    AudioController.Instance.StopAllCoroutines();
+                    AudioClip nextClip = AudioController.Instance.AllNotLoopedSongs[songIndex];
+                    Track nextTrack = AudioController.Instance.Tracks.Find(t => t.FileName.Equals(nextClip.name));
+                    AudioController.Instance.ChangeMusic(nextClip, false, string.Empty, false, true, nextTrack);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Release first ball or shoot
+        /// </summary>
+        /// <param name="callbackContext"> Context with parameters </param>
+        public void OnReleaseBallOrShoot(InputAction.CallbackContext callbackContext)
+        {
+            if (callbackContext.performed && callbackContext.ReadValueAsButton())
+            {
+                if (ActualGameState == Enumerators.GameStates.GAMEPLAY)
+                {
+                    if (!HasStarted)
+                    {
+                        Ball ball = FindObjectOfType<Ball>();
+                        if (ball != null)
+                        {
+                            ball.LaunchBall();
+                        }
+                    }
+                    else
+                    {
+                        Shooter shooter = FindObjectOfType<Shooter>();
+                        if (shooter != null)
+                        {
+                            shooter.Shoot();
+                        }
+                    }
+                }
             }
         }
     }

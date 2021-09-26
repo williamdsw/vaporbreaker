@@ -1,6 +1,5 @@
 ﻿using Controllers.Core;
 using Effects;
-using Luminosity.IO;
 using MVC.BL;
 using MVC.Enums;
 using MVC.Global;
@@ -10,6 +9,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Utilities;
 
@@ -48,6 +48,7 @@ namespace Controllers.Menu
 
         private int currentLevelIndex = 0;
         private bool hasPlayerFinishedGame = false;
+        private bool backToPreviousScene = false;
         private Enumerators.GameStates actualGameState = Enumerators.GameStates.GAMEPLAY;
 
         // || Cached
@@ -93,14 +94,6 @@ namespace Controllers.Menu
             UpdateLevelInfo();
         }
 
-        private void Update()
-        {
-            if (ActualGameState != Enumerators.GameStates.GAMEPLAY || !panel.activeSelf) return;
-
-            ChangeLevel();
-            CaptureCancelButton();
-        }
-
         /// <summary>
         /// Get required components
         /// </summary>
@@ -120,7 +113,7 @@ namespace Controllers.Menu
         /// <summary>
         /// Translates the UI
         /// </summary>
-        public void Translate()
+        private void Translate()
         {
             try
             {
@@ -211,36 +204,6 @@ namespace Controllers.Menu
         private void LoadLevels() => levels = levelBL.ListAll();
 
         /// <summary>
-        /// Change level index by inputs
-        /// </summary>
-        private void ChangeLevel()
-        {
-            try
-            {
-                if (InputManager.GetButtonDown(Configuration.InputsNames.UiRight))
-                {
-                    KnobEffect.Instance.TurnDirection(NamesTags.AnimatorTriggers.TurnRight);
-                    AudioController.Instance.PlaySFX(AudioController.Instance.TvSwitchSound, AudioController.Instance.MaxSFXVolume);
-                    currentLevelIndex++;
-                    currentLevelIndex = (currentLevelIndex >= levels.Count ? 0 : currentLevelIndex);
-                    UpdateLevelInfo();
-                }
-                else if (InputManager.GetButtonDown(Configuration.InputsNames.UiLeft))
-                {
-                    KnobEffect.Instance.TurnDirection(NamesTags.AnimatorTriggers.TurnLeft);
-                    AudioController.Instance.PlaySFX(AudioController.Instance.TvSwitchSound, AudioController.Instance.MaxSFXVolume);
-                    currentLevelIndex--;
-                    currentLevelIndex = (currentLevelIndex < 0 ? levels.Count - 1 : currentLevelIndex);
-                    UpdateLevelInfo();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        /// <summary>
         /// Updates level information
         /// </summary>
         private void UpdateLevelInfo()
@@ -318,20 +281,6 @@ namespace Controllers.Menu
         }
 
         /// <summary>
-        /// Get back to main menu
-        /// </summary>
-        private void CaptureCancelButton()
-        {
-            if (InputManager.GetButtonDown(Configuration.InputsNames.UiCancel))
-            {
-                AudioController.Instance.StopMusic();
-                AudioController.Instance.StopME();
-                AudioController.Instance.PlaySFX(AudioController.Instance.UiCancelSound, AudioController.Instance.MaxSFXVolume);
-                StartCoroutine(CallNextScene(SceneManagerController.MainMenuSceneName));
-            }
-        }
-
-        /// <summary>
         /// Call next scene
         /// </summary>
         /// <param name="nextSceneName"> Name of the next scene </param>
@@ -375,6 +324,62 @@ namespace Controllers.Menu
         {
             panel.SetActive(true);
             scoreboardButton.Select();
+        }
+
+        /// <summary>
+        /// Change level based on direction
+        /// </summary>
+        /// <param name="callbackContext"> Context with parameters </param>
+        public void ChangeLevel(InputAction.CallbackContext callbackContext)
+        {
+            try
+            {
+                if (ActualGameState != Enumerators.GameStates.GAMEPLAY || !panel.activeSelf) return;
+
+                if (callbackContext.performed)
+                {
+                    Vector2 direction = callbackContext.ReadValue<Vector2>();
+                    if (direction == Vector2.right)
+                    {
+                        KnobEffect.Instance.TurnDirection(NamesTags.AnimatorTriggers.TurnRight);
+                        AudioController.Instance.PlaySFX(AudioController.Instance.TvSwitchSound, AudioController.Instance.MaxSFXVolume);
+                        currentLevelIndex++;
+                        currentLevelIndex = (currentLevelIndex >= levels.Count ? 0 : currentLevelIndex);
+                        UpdateLevelInfo();
+                    }
+                    else if (direction == Vector2.left)
+                    {
+                        KnobEffect.Instance.TurnDirection(NamesTags.AnimatorTriggers.TurnLeft);
+                        AudioController.Instance.PlaySFX(AudioController.Instance.TvSwitchSound, AudioController.Instance.MaxSFXVolume);
+                        currentLevelIndex--;
+                        currentLevelIndex = (currentLevelIndex < 0 ? levels.Count - 1 : currentLevelIndex);
+                        UpdateLevelInfo();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Get back to previous screen
+        /// </summary>
+        /// <param name="callbackContext"> Context with parameters </param>
+        public void OnCancel(InputAction.CallbackContext callbackContext)
+        {
+            if (ActualGameState != Enumerators.GameStates.GAMEPLAY || !panel.activeSelf) return;
+            if (backToPreviousScene) return;
+
+            if (callbackContext.performed && callbackContext.ReadValueAsButton())
+            {
+                backToPreviousScene = true;
+                AudioController.Instance.StopMusic();
+                AudioController.Instance.StopME();
+                AudioController.Instance.PlaySFX(AudioController.Instance.UiCancelSound, AudioController.Instance.MaxSFXVolume);
+                StartCoroutine(CallNextScene(SceneManagerController.MainMenuSceneName));
+            }
         }
     }
 }

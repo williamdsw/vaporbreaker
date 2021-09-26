@@ -1,6 +1,5 @@
 ﻿using Controllers.Core;
 using Effects;
-using Luminosity.IO;
 using MVC.Global;
 using System;
 using UnityEngine;
@@ -99,7 +98,6 @@ namespace Core
                     LockBallToPaddle();
                     CalculateDistanceToMouse();
                     DrawLineToMouse();
-                    LaunchBall();
                 }
                 else
                 {
@@ -129,37 +127,37 @@ namespace Core
                     switch (other.gameObject.tag)
                     {
                         case "Paddle":
-                        {
-                            if (other.GetContact(0).normal != Vector2.down)
+                            {
+                                if (other.GetContact(0).normal != Vector2.down)
+                                {
+                                    ClampVelocity();
+                                    AudioClip clip = (isBallBig ? AudioController.Instance.HittingFaceSound : AudioController.Instance.BlipSound);
+                                    AudioController.Instance.PlaySFX(clip, AudioController.Instance.MaxSFXVolume);
+                                }
+
+                                if (other.GetContact(0).normal == Vector2.up)
+                                {
+                                    if (MoveSpeed > DefaultSpeed)
+                                    {
+                                        SpawnPaddleDebris(other.GetContact(0).point);
+                                    }
+                                }
+
+                                if (GameSessionController.Instance.CanMoveBlocks)
+                                {
+                                    GameSessionController.Instance.MoveBlocks(GameSessionController.Instance.BlockDirection);
+                                }
+
+                                break;
+                            }
+
+                        case "Wall":
                             {
                                 ClampVelocity();
                                 AudioClip clip = (isBallBig ? AudioController.Instance.HittingFaceSound : AudioController.Instance.BlipSound);
                                 AudioController.Instance.PlaySFX(clip, AudioController.Instance.MaxSFXVolume);
+                                break;
                             }
-
-                            if (other.GetContact(0).normal == Vector2.up)
-                            {
-                                if (MoveSpeed > DefaultSpeed)
-                                {
-                                    SpawnPaddleDebris(other.GetContact(0).point);
-                                }
-                            }
-
-                            if (GameSessionController.Instance.CanMoveBlocks)
-                            {
-                                GameSessionController.Instance.MoveBlocks(GameSessionController.Instance.BlockDirection);
-                            }
-
-                            break;
-                        }
-
-                        case "Wall":
-                        {
-                            ClampVelocity();
-                            AudioClip clip = (isBallBig ? AudioController.Instance.HittingFaceSound : AudioController.Instance.BlipSound);
-                            AudioController.Instance.PlaySFX(clip, AudioController.Instance.MaxSFXVolume);
-                            break;
-                        }
 
                         case "Breakable": case "Unbreakable": ClampVelocity(); break;
                         default: break;
@@ -206,26 +204,23 @@ namespace Core
         /// <summary>
         /// Launch ball at cursor position
         /// </summary>
-        private void LaunchBall()
+        public void LaunchBall()
         {
             try
             {
                 if (remainingPosition.y >= MIN_DISTANCE_TO_LAUNCH)
                 {
-                    if (InputManager.GetButtonDown(Configuration.InputsNames.Shoot))
-                    {
-                        // Game Session parameters
-                        GameSessionController.Instance.HasStarted = true;
-                        GameSessionController.Instance.TimeToSpawnAnotherBall = 0f;
-                        GameSessionController.Instance.CanSpawnAnotherBall = true;
-                        GameSessionController.Instance.CurrentNumberOfBalls++;
+                    // Game Session parameters
+                    GameSessionController.Instance.HasStarted = true;
+                    GameSessionController.Instance.TimeToSpawnAnotherBall = 0f;
+                    GameSessionController.Instance.CanSpawnAnotherBall = true;
+                    GameSessionController.Instance.CurrentNumberOfBalls++;
 
-                        // Other
-                        rigidBody2D.velocity = (remainingPosition.normalized * MoveSpeed * Time.fixedDeltaTime);
-                        initialLineRenderer.enabled = false;
-                        echoEffectSpawnerPrefab.gameObject.SetActive(true);
-                        CursorController.Instance.gameObject.SetActive(false);
-                    }
+                    // Other
+                    rigidBody2D.velocity = (remainingPosition.normalized * MoveSpeed * Time.fixedDeltaTime);
+                    initialLineRenderer.enabled = false;
+                    echoEffectSpawnerPrefab.gameObject.SetActive(true);
+                    CursorController.Instance.gameObject.SetActive(false);
                 }
             }
             catch (Exception ex)

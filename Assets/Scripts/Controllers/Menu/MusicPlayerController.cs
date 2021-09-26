@@ -35,6 +35,8 @@ namespace Controllers.Menu
         [SerializeField] private Button pauseButton;
         [SerializeField] private Button nextButton;
         [SerializeField] private Button repeatButton;
+        [SerializeField] private Color defaultColor;
+        [SerializeField] private Color selectedColor;
 
         [Header("Required UI Elements - Others")]
         [SerializeField] private CanvasGroup canvasGroup;
@@ -43,14 +45,13 @@ namespace Controllers.Menu
 
         // || State
 
-        [SerializeField] private Enumerators.GameStates actualGameState = Enumerators.GameStates.GAMEPLAY;
-        private int currentButtonIndex = 0;
+        private Enumerators.GameStates actualGameState = Enumerators.GameStates.GAMEPLAY;
         private int currentSongIndex = 0;
-        [SerializeField] private bool isSongPaused = true;
-        [SerializeField] private bool isSongRepeated = false;
-        [SerializeField] private bool canEllapseTime = false;
-        [SerializeField] private float songEllapsedTime = 0f;
-        [SerializeField] private float songDuration = 0f;
+        private bool isSongPaused = true;
+        private bool isSongRepeated = false;
+        private bool canEllapseTime = false;
+        private float songEllapsedTime = 0f;
+        private float songDuration = 0f;
 
         // || Cached
 
@@ -71,6 +72,8 @@ namespace Controllers.Menu
             Translate();
             BindEventListeners();
             GetSongInfo();
+
+            defaultColor = repeatButtonImage.color;
         }
 
         private void Update()
@@ -163,9 +166,7 @@ namespace Controllers.Menu
                     {
                         AudioController.Instance.PlaySFX(AudioController.Instance.ClickSound, AudioController.Instance.MaxSFXVolume);
                         isSongPaused = !isSongPaused;
-                        Color current = pauseButtonImage.color;
-                        current.a = (isSongPaused ? 0.5f : 1f);
-                        pauseButtonImage.color = current;
+                        pauseButtonImage.color = (isSongPaused ? selectedColor : defaultColor);
                         AudioController.Instance.PauseMusic(isSongPaused);
                     }
                 });
@@ -182,9 +183,7 @@ namespace Controllers.Menu
                 {
                     isSongRepeated = !isSongRepeated;
                     AudioController.Instance.ToggleRepeatTrack(isSongRepeated);
-                    Color current = repeatButtonImage.color;
-                    current.a = (isSongRepeated ? 0.5f : 1f);
-                    repeatButtonImage.color = current;
+                    repeatButtonImage.color = (isSongRepeated ? selectedColor : defaultColor);
                 });
 
                 quitButton.onClick.AddListener(() => StartCoroutine(CallNextScene()));

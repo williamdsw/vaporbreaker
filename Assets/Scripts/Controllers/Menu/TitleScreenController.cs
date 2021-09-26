@@ -1,11 +1,11 @@
 ﻿using Controllers.Core;
 using Effects;
-using Luminosity.IO;
 using MVC.Enums;
 using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Controllers.Menu
 {
@@ -15,15 +15,15 @@ namespace Controllers.Menu
 
         [Header("Required UI Elements")]
         [SerializeField] private TextMeshProUGUI copyrightText;
-        [SerializeField] private TextMeshProUGUI pressAnyKeyText;
-
-        // || State
-
-        private bool canPressKey = false;
+        [SerializeField] private TextMeshProUGUI pressText;
 
         // || Config
 
-        private float TIME_TO_WAIT = 2f;
+        private const float TIME_TO_WAIT = 2f;
+
+        // || State
+
+        private bool canPress = false;
 
         // || Cached
 
@@ -40,8 +40,6 @@ namespace Controllers.Menu
             yield return WaitToShowPressAnyKey();
         }
 
-        private void Update() => CaptureAnyKey();
-
         /// <summary>
         /// Get required components
         /// </summary>
@@ -49,7 +47,7 @@ namespace Controllers.Menu
         {
             try
             {
-                flashTextEffect = pressAnyKeyText.GetComponent<FlashTextEffect>();
+                flashTextEffect = pressText.GetComponent<FlashTextEffect>();
             }
             catch (Exception ex)
             {
@@ -65,26 +63,11 @@ namespace Controllers.Menu
             try
             {
                 copyrightText.text = LocalizationController.Instance.GetWord(LocalizationFields.about_rights);
-                pressAnyKeyText.text = LocalizationController.Instance.GetWord(LocalizationFields.logo_pressanykey);
+                pressText.text = LocalizationController.Instance.GetWord(LocalizationFields.logo_pressanykey);
             }
             catch (Exception ex)
             {
                 throw ex;
-            }
-        }
-
-        /// <summary>
-        /// Captures any key to redirect to Main Menu
-        /// </summary>
-        private void CaptureAnyKey()
-        {
-            if (canPressKey)
-            {
-                if (InputManager.anyKeyDown)
-                {
-                    canPressKey = false;
-                    StartCoroutine(CallNextScene());
-                }
             }
         }
 
@@ -97,8 +80,8 @@ namespace Controllers.Menu
             float duration = AudioController.Instance.GetClipLength(AudioController.Instance.AllTitleVoices[index]);
             AudioController.Instance.PlayME(AudioController.Instance.AllTitleVoices[index], AudioController.Instance.MaxMEVolume, false);
             yield return new WaitForSecondsRealtime(duration);
-            canPressKey = true;
-            pressAnyKeyText.gameObject.SetActive(true);
+            pressText.gameObject.SetActive(true);
+            canPress = true;
         }
 
         /// <summary>
@@ -106,6 +89,7 @@ namespace Controllers.Menu
         /// </summary>
         private IEnumerator CallNextScene()
         {
+            canPress = false;
             AudioController.Instance.PlaySFX(AudioController.Instance.UiSubmitSound, AudioController.Instance.MaxSFXVolume);
             flashTextEffect.TimeToFlick = 0.1f;
             yield return new WaitForSecondsRealtime(TIME_TO_WAIT);
@@ -115,6 +99,20 @@ namespace Controllers.Menu
             GameStatusController.Instance.NextSceneName = SceneManagerController.MainMenuSceneName;
             GameStatusController.Instance.CameFromLevel = false;
             SceneManagerController.CallScene(SceneManagerController.LoadingSceneName);
+        }
+
+        /// <summary>
+        /// On any key or button has been pressed
+        /// </summary>
+        /// <param name="callbackContext"> Context with parameters </param>
+        public void OnAnyKeyOrButtonPressed(InputAction.CallbackContext callbackContext)
+        {
+            if (!canPress) return;
+
+            if (callbackContext.performed)
+            {
+                StartCoroutine(CallNextScene());
+            }
         }
     }
 }

@@ -1,5 +1,4 @@
 using Controllers.Core;
-using Luminosity.IO;
 using MVC.BL;
 using MVC.Enums;
 using MVC.Global;
@@ -7,6 +6,7 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Utilities;
 
@@ -202,31 +202,35 @@ namespace Controllers.Menu
         {
             try
             {
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Get back to previous screen
+        /// </summary>
+        /// <param name="callbackContext"> Context with parameters </param>
+        public void OnCancel(InputAction.CallbackContext callbackContext)
+        {
+            if (callbackContext.performed && callbackContext.ReadValueAsButton())
+            {
                 if (questionObject.activeSelf)
                 {
-                    if (InputManager.GetButtonDown(Configuration.InputsNames.UiCancel))
-                    {
-                        DontResetProgress(true);
-                    }
-
+                    DontResetProgress(true);
                     return;
                 }
 
                 if (panel.activeSelf)
                 {
-                    if (InputManager.GetButtonDown(Configuration.InputsNames.UiCancel))
-                    {
-                        AudioController.Instance.PlaySFX(AudioController.Instance.UiCancelSound, AudioController.Instance.MaxSFXVolume);
-                        TogglePanel(false);
-                        MainMenuController.Instance.TogglePanel(true);
-                    }
-
+                    AudioController.Instance.PlaySFX(AudioController.Instance.UiCancelSound, AudioController.Instance.MaxSFXVolume);
+                    TogglePanel(false);
+                    MainMenuController.Instance.TogglePanel(true);
                     return;
                 }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
             }
         }
     }

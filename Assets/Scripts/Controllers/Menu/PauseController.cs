@@ -1,7 +1,6 @@
 ﻿using Controllers.Menu;
 using Core;
 using Effects;
-using Luminosity.IO;
 using MVC.Enums;
 using MVC.Global;
 using MVC.Models;
@@ -9,6 +8,7 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Utilities;
 
@@ -54,17 +54,6 @@ namespace Controllers.Core
             GetRequiredComponents();
             Translate();
             BindEventListeners();
-        }
-
-        private void Update()
-        {
-            if (CanPause)
-            {
-                if (InputManager.GetButtonDown(Configuration.InputsNames.Pause))
-                {
-                    PauseOrResumeGame();
-                }
-            }
         }
 
         /// <summary>
@@ -167,6 +156,21 @@ namespace Controllers.Core
             yield return new WaitForSecondsRealtime(FadeEffect.Instance.GetFadeOutLength());
             GameStatusController.Instance.IsLevelCompleted = false;
             GameSessionController.Instance.GotoScene(sceneName);
+        }
+
+        /// <summary>
+        /// Pause or resume current game
+        /// </summary>
+        /// <param name="callbackContext"> Context with parameters </param>
+        public void OnPause(InputAction.CallbackContext callbackContext)
+        {
+            if (callbackContext.performed && callbackContext.ReadValueAsButton())
+            {
+                if (CanPause)
+                {
+                    PauseOrResumeGame();
+                }
+            }
         }
     }
 }

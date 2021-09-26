@@ -1,11 +1,10 @@
 ﻿using Controllers.Core;
-using Luminosity.IO;
 using MVC.Enums;
-using MVC.Global;
 using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace Controllers.Menu
@@ -13,6 +12,9 @@ namespace Controllers.Menu
     public class OptionsMenuController : MonoBehaviour
     {
         // || Inspector References
+
+        [Header("Required Other Elements")]
+        [SerializeField] private PlayerInput playerInput;
 
         [Header("Required UI Elements")]
         [SerializeField] private GameObject panel;
@@ -38,16 +40,18 @@ namespace Controllers.Menu
 
         // || Config
 
-        private float timeToWaitUpdateVolume = 0.1f;
-        private readonly float startTimeToWaitUpdateVolume = 0.1f;
-        private float timeToPlaySound = 1f;
         private readonly float startTimeToPlaySound = 1f;
+        private readonly float startTimeToWaitUpdateVolume = 0.1f;
+
 
         // || State
 
         private float BGMVolume = 1f;
         private float MEVolume = 1f;
         private float SFXVolume = 1f;
+        private float timeToPlaySound = 1f;
+        private float timeToWaitUpdateVolume = 0.1f;
+        private bool isEditingAudio = false;
 
         // || Cached
 
@@ -59,6 +63,9 @@ namespace Controllers.Menu
         private TextMeshProUGUI sfxVolumeValueButtonLabel;
         private TextMeshProUGUI backButtonLabel;
         private TextMeshProUGUI defaultButtonLabel;
+        private InputAction navigateAction;
+        private InputAction cancelAction;
+        private InputAction submitAction;
 
         // || Properties
 
@@ -79,7 +86,8 @@ namespace Controllers.Menu
             ChooseVolume(meVolumeButton, meVolumeValueButton, meVolumeValueButtonLabel, AudioController.Instance.AudioSourceME);
             ChooseVolume(sfxVolumeButton, sfxVolumeValueButton, sfxVolumeValueButtonLabel, AudioController.Instance.AudioSourceSFX);
             CheckSelectedGameObject();
-            CaptureCancelButton();
+
+            isEditingAudio = (bgmVolumeValueButton.interactable || meVolumeValueButton.interactable || sfxVolumeValueButton.interactable);
         }
 
         /// <summary>
@@ -97,6 +105,9 @@ namespace Controllers.Menu
                 sfxVolumeValueButtonLabel = sfxVolumeValueButton.GetComponentInChildren<TextMeshProUGUI>();
                 backButtonLabel = backButton.GetComponentInChildren<TextMeshProUGUI>();
                 defaultButtonLabel = defaultButton.GetComponentInChildren<TextMeshProUGUI>();
+                navigateAction = playerInput.actions["Navigate"];
+                cancelAction = playerInput.actions["Cancel"];
+                submitAction = playerInput.actions["Submit"];
             }
             catch (Exception ex)
             {
@@ -198,20 +209,6 @@ namespace Controllers.Menu
         }
 
         /// <summary>
-        /// Capture B or Esc to close panel
-        /// </summary>
-        private void CaptureCancelButton()
-        {
-            if (panel.activeSelf)
-            {
-                if (InputManager.GetButtonDown(Configuration.InputsNames.UiCancel, PlayerID.One))
-                {
-                    GetBackToMainMenu();
-                }
-            }
-        }
-
-        /// <summary>
         /// Apply values and save settings, and get back to the main menu
         /// </summary>
         private void GetBackToMainMenu()
@@ -279,12 +276,19 @@ namespace Controllers.Menu
         {
             if (volumeButton.interactable)
             {
+                InputControl currentControl = navigateAction.activeControl;
+                Vector2 current = Vector2.zero;
                 string volumeText = volumeButtonLabel.text;
                 volumeText = volumeText.Replace("%", "");
                 float volume = float.Parse(volumeText);
 
+                if (currentControl != null && currentControl.IsPressed())
+                {
+                    current = navigateAction.ReadValue<Vector2>();
+                }
+
                 // Horizontal inputs
-                if (InputManager.GetButton(Configuration.InputsNames.UiRight, PlayerID.One))
+                if (current == Vector2.right)
                 {
                     if (volume >= 100) return;
 
@@ -298,7 +302,7 @@ namespace Controllers.Menu
                         timeToWaitUpdateVolume = startTimeToWaitUpdateVolume;
                     }
                 }
-                else if (InputManager.GetButton(Configuration.InputsNames.UiLeft, PlayerID.One))
+                else if (current == Vector2.left)
                 {
                     if (volume <= 0) return;
 
@@ -329,8 +333,7 @@ namespace Controllers.Menu
                     ConfigurationsController.SetAudioSourceVolume(AudioController.Instance.AudioSourceME, MEVolume);
                 }
 
-                if (InputManager.GetButton(Configuration.InputsNames.UiLeft, PlayerID.One) ||
-                    InputManager.GetButton(Configuration.InputsNames.UiRight, PlayerID.One))
+                if (current == Vector2.left || current == Vector2.right)
                 {
                     if (audioSource == AudioController.Instance.AudioSourceSFX)
                     {
@@ -354,7 +357,7 @@ namespace Controllers.Menu
                     }
                 }
 
-                if (InputManager.GetButtonDown(Configuration.InputsNames.UiCancel, PlayerID.One))
+                if (cancelAction.triggered)
                 {
                     AudioController.Instance.PlaySFX(AudioController.Instance.UiCancelSound, SFXVolume);
                     volumeButton.interactable = false;
@@ -363,10 +366,9 @@ namespace Controllers.Menu
                     labelButton.Select();
                 }
 
-                if (InputManager.GetMouseButtonDown(0) || InputManager.GetMouseButtonDown(1) || InputManager.GetMouseButtonDown(2))
+                if (submitAction.triggered)
                 {
-                    volumeButton.Select();
-                    return;
+                    volumeButton.onClick.Invoke();
                 }
             }
         }
@@ -462,6 +464,20 @@ namespace Controllers.Menu
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Get back to previous screen
+        /// </summary>
+        /// <param name="callbackContext"> Context with parameters </param>
+        public void OnCancel(InputAction.CallbackContext callbackContext)
+        {
+            if (callbackContext.performed && callbackContext.ReadValueAsButton())
+            {
+                if (!panel.activeSelf || isEditingAudio) return;
+
+                GetBackToMainMenu();
             }
         }
     }

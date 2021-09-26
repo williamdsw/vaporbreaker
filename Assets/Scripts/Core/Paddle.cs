@@ -1,8 +1,8 @@
 ﻿using Controllers.Core;
 using Effects;
-using Luminosity.IO;
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Utilities;
 
 namespace Core
@@ -25,6 +25,8 @@ namespace Core
         private float doubleSpeed = 0f;
         private Vector2 minMaxCoordinatesInX = Vector2.zero;
         private float moveSpeed = 15f;
+        private float horizontal = 0f;
+        private bool isOnImpulse = false;
 
         // || Cached
 
@@ -111,10 +113,7 @@ namespace Core
                 }
                 else
                 {
-                    float horizontal = InputManager.GetAxis("Horizontal");
-
-                    // Double the speed and shows effect
-                    if (InputManager.GetButton("Impulse") && horizontal != 0)
+                    if (isOnImpulse && horizontal != 0)
                     {
                         moveSpeed = doubleSpeed;
                         if (echoEffectSpawner)
@@ -122,7 +121,7 @@ namespace Core
                             echoEffectSpawner.enabled = true;
                         }
                     }
-                    else if (InputManager.GetButtonUp("Impulse"))
+                    else if (!isOnImpulse)
                     {
                         moveSpeed = defaultSpeed;
                         if (echoEffectSpawner)
@@ -212,6 +211,16 @@ namespace Core
         {
             if (ball) return;
             ball = FindObjectOfType<Ball>();
+        }
+
+        public void OnMove(InputAction.CallbackContext callbackContext)
+        {
+            horizontal = callbackContext.ReadValue<float>();
+        }
+
+        public void OnImpulse(InputAction.CallbackContext callbackContext)
+        {
+            isOnImpulse = callbackContext.performed;
         }
     }
 }

@@ -2,13 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Controllers.Core;
-using Luminosity.IO;
 using MVC.Enums;
-using MVC.Global;
 using MVC.Models;
 using TMPro;
 using UI;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Utilities;
 
@@ -47,8 +46,6 @@ namespace Controllers.Menu
             Translate();
             BindEventListeners();
         }
-
-        private void Update() => CaptureCancel();
 
         /// <summary>
         /// Get required components
@@ -147,19 +144,6 @@ namespace Controllers.Menu
         }
 
         /// <summary>
-        /// Capture ESC key
-        /// </summary>
-        private void CaptureCancel()
-        {
-            if (!panel.activeSelf || SelectLevelsController.Instance.ActualGameState != Enumerators.GameStates.GAMEPLAY) return;
-
-            if (InputManager.GetButtonDown(Configuration.InputsNames.UiCancel))
-            {
-                Close();
-            }
-        }
-
-        /// <summary>
         /// Close this panel
         /// </summary>
         private void Close()
@@ -167,6 +151,20 @@ namespace Controllers.Menu
             AudioController.Instance.PlaySFX(AudioController.Instance.UiCancelSound, AudioController.Instance.MaxSFXVolume);
             panel.SetActive(false);
             SelectLevelsController.Instance.Show();
+        }
+
+        /// <summary>
+        /// Get back to previous screen
+        /// </summary>
+        /// <param name="callbackContext"> Context with parameters </param>
+        public void OnCancel(InputAction.CallbackContext callbackContext)
+        {
+            if (callbackContext.performed && callbackContext.ReadValueAsButton())
+            {
+                if (!panel.activeSelf || SelectLevelsController.Instance.ActualGameState != Enumerators.GameStates.GAMEPLAY) return;
+
+                Close();
+            }
         }
     }
 }

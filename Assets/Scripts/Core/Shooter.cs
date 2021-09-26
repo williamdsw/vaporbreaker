@@ -1,5 +1,4 @@
 ﻿using Controllers.Core;
-using Luminosity.IO;
 using MVC.Global;
 using System;
 using System.Collections;
@@ -35,17 +34,6 @@ namespace Core
             CreateProjectilesPool();
             SetCannonsPosition();
             StartCoroutine(SelfDestruct());
-        }
-
-        private void Update()
-        {
-            if (GameSessionController.Instance.ActualGameState == Enumerators.GameStates.GAMEPLAY)
-            {
-                if (InputManager.GetButtonDown(Configuration.InputsNames.Shoot))
-                {
-                    Shoot();
-                }
-            }
         }
 
         /// <summary>
@@ -88,7 +76,7 @@ namespace Core
         /// <summary>
         /// Shoot projectiles
         /// </summary>
-        private void Shoot()
+        public void Shoot()
         {
             foreach (Transform point in shootingPoints)
             {
