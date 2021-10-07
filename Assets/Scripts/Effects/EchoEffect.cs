@@ -6,6 +6,9 @@ using Utilities;
 
 namespace Effects
 {
+    /// <summary>
+    /// Echo Effect for the Ball
+    /// </summary>
     public class EchoEffect : MonoBehaviour
     {
         // || Inspector References
@@ -40,7 +43,7 @@ namespace Effects
         {
             try
             {
-                if (tag == NamesTags.Tags.BallEcho)
+                if (tag.Equals(NamesTags.Tags.BallEcho))
                 {
                     ball = transform.parent.GetComponent<Ball>();
                 }
@@ -63,7 +66,7 @@ namespace Effects
                 if (timeBetweenSpawns <= 0)
                 {
                     GameObject echo = Instantiate(echoPrefab, transform.position, Quaternion.identity) as GameObject;
-                    echo.transform.parent = GameSessionController.Instance.FindOrCreateObjectParent(NamesTags.Parents.Echos).transform;
+                    echo.transform.SetParent(GameSessionController.Instance.FindOrCreateObjectParent(NamesTags.Parents.Echos).transform);
                     if (tag.Equals(NamesTags.Tags.BallEcho) && ball)
                     {
                         echo.transform.localScale = ball.transform.localScale;

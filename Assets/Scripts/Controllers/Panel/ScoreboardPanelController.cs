@@ -1,9 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Controllers.Core;
 using MVC.Enums;
 using MVC.Models;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UI;
 using UnityEngine;
@@ -11,8 +11,11 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Utilities;
 
-namespace Controllers.Menu
+namespace Controllers.Panel
 {
+    /// <summary>
+    /// Controller for Scoreboard Panel
+    /// </summary>
     public class ScoreboardPanelController : MonoBehaviour
     {
         // || Inspector References
@@ -98,19 +101,6 @@ namespace Controllers.Menu
         }
 
         /// <summary>
-        /// Delete all rows
-        /// </summary>
-        private IEnumerator ClearTable()
-        {
-            foreach (Transform item in tableBodyViewportContent)
-            {
-                Destroy(item.gameObject);
-            }
-
-            yield return new WaitUntil(() => tableBodyViewportContent.childCount == 0);
-        }
-
-        /// <summary>
         /// Lists all items
         /// </summary>
         /// <param name="scoreboards"> List of instances of Scoreboard </param>
@@ -134,6 +124,19 @@ namespace Controllers.Menu
         }
 
         /// <summary>
+        /// Delete all rows
+        /// </summary>
+        private IEnumerator ClearTable()
+        {
+            foreach (Transform item in tableBodyViewportContent)
+            {
+                Destroy(item.gameObject);
+            }
+
+            yield return new WaitUntil(() => tableBodyViewportContent.childCount == 0);
+        }
+
+        /// <summary>
         /// Show this panel
         /// </summary>
         /// <param name="scoreboards"> List of instances of Scoreboard </param>
@@ -150,7 +153,7 @@ namespace Controllers.Menu
         {
             AudioController.Instance.PlaySFX(AudioController.Instance.UiCancelSound, AudioController.Instance.MaxSFXVolume);
             panel.SetActive(false);
-            SelectLevelsController.Instance.Show();
+            SelectLevelsPanelController.Instance.Show();
         }
 
         /// <summary>
@@ -161,7 +164,7 @@ namespace Controllers.Menu
         {
             if (callbackContext.performed && callbackContext.ReadValueAsButton())
             {
-                if (!panel.activeSelf || SelectLevelsController.Instance.ActualGameState != Enumerators.GameStates.GAMEPLAY) return;
+                if (!panel.activeSelf || SelectLevelsPanelController.Instance.ActualGameState != Enumerators.GameStates.GAMEPLAY) return;
 
                 Close();
             }

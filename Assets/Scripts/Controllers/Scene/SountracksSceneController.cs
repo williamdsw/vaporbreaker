@@ -1,18 +1,21 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Controllers.Core;
+﻿using Controllers.Core;
 using Effects;
 using MVC.Enums;
 using MVC.Models;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Utilities;
 
-namespace Controllers.Menu
+namespace Controllers.Scene
 {
-    public class MusicPlayerController : MonoBehaviour
+    /// <summary>
+    /// Controller for Sountracks Scene
+    /// </summary>
+    public class SountracksSceneController : MonoBehaviour
     {
         // || Inspector References
 
@@ -47,18 +50,17 @@ namespace Controllers.Menu
 
         private Enumerators.GameStates actualGameState = Enumerators.GameStates.GAMEPLAY;
         private int currentSongIndex = 0;
+        private float songEllapsedTime = 0f;
+        private float songDuration = 0f;
         private bool isSongPaused = true;
         private bool isSongRepeated = false;
         private bool canEllapseTime = false;
-        private float songEllapsedTime = 0f;
-        private float songDuration = 0f;
 
         // || Cached
-
+        private Dictionary<string, Sprite> coversDictionary;
+        private TextMeshProUGUI quitButtonLabel;
         private Image repeatButtonImage;
         private Image pauseButtonImage;
-        private TextMeshProUGUI quitButtonLabel;
-        private Dictionary<string, Sprite> coversDictionary;
 
         private void Awake()
         {
@@ -279,9 +281,9 @@ namespace Controllers.Menu
 
             FadeEffect.Instance.FadeToLevel();
             yield return new WaitForSecondsRealtime(FadeEffect.Instance.GetFadeOutLength());
-            GameStatusController.Instance.NextSceneName = SceneManagerController.MainMenuSceneName;
+            GameStatusController.Instance.NextSceneName = SceneManagerController.SceneNames.MainMenu;
             GameStatusController.Instance.CameFromLevel = false;
-            SceneManagerController.CallScene(SceneManagerController.LoadingSceneName);
+            SceneManagerController.CallScene(SceneManagerController.SceneNames.Loading);
         }
     }
 }

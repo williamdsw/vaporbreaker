@@ -3,6 +3,10 @@ using UnityEngine;
 
 namespace Effects
 {
+    /// <summary>
+    /// Background Scroller Effect
+    /// </summary>
+    [RequireComponent(typeof(MeshRenderer))]
     public class BackgroundScroller : MonoBehaviour
     {
         // || Inspector References
@@ -14,7 +18,7 @@ namespace Effects
         [SerializeField] private float movementSpeedInX = 0.1f;
         [SerializeField] private float movementSpeedInY = 0.1f;
 
-        // || CONFIG
+        // || Config
 
         private const float TEXTURE_OFFSET_VALUE = 0.2f;
 
@@ -30,7 +34,7 @@ namespace Effects
             Config();
         }
 
-        private void FixedUpdate() => material.mainTextureOffset += (offset * Time.fixedDeltaTime);
+        private void FixedUpdate() => Scroll();
 
         /// <summary>
         /// Get required components
@@ -74,5 +78,10 @@ namespace Effects
                 throw ex;
             }
         }
+
+        /// <summary>
+        /// Scroll texture
+        /// </summary>
+        private void Scroll() => material.mainTextureOffset += (offset * Time.fixedDeltaTime);
     }
 }

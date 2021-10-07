@@ -1,4 +1,4 @@
-﻿using Controllers.Menu;
+﻿using Controllers.Core;
 using Core;
 using Effects;
 using MVC.Enums;
@@ -9,9 +9,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using Utilities;
 
-namespace Controllers.Core
+namespace Controllers.Panel
 {
-    public class LevelCompleteController : MonoBehaviour
+    /// <summary>
+    /// Controller for Level Complete Panel
+    /// </summary>
+    public class LevelCompletePanelController : MonoBehaviour
     {
         // || Inspector References
 
@@ -52,7 +55,7 @@ namespace Controllers.Core
 
         // || Properties
 
-        public static LevelCompleteController Instance { get; private set; }
+        public static LevelCompletePanelController Instance { get; private set; }
 
         private void Awake()
         {
@@ -235,7 +238,7 @@ namespace Controllers.Core
             FadeEffect.Instance.ResetAnimationFunctions();
             FadeEffect.Instance.FadeToLevel();
             yield return new WaitForSecondsRealtime(FadeEffect.Instance.GetFadeOutLength());
-            GameSessionController.Instance.GotoScene(SceneManagerController.SelectLevelsSceneName);
+            GameSessionController.Instance.GotoScene(SceneManagerController.SceneNames.SelectLevels);
         }
     }
 }

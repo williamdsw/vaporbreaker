@@ -1088,7 +1088,7 @@ GameObject:
   - component: {fileID: 257042319}
   - component: {fileID: 257042320}
   m_Layer: 14
-  m_Name: ProgressMenuController
+  m_Name: ProgressPanelController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4950,7 +4950,7 @@ GameObject:
   - component: {fileID: 1358483154}
   - component: {fileID: 1358483153}
   m_Layer: 14
-  m_Name: OptionsMenuController
+  m_Name: OptionsPanelController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6663,7 +6663,7 @@ GameObject:
   - component: {fileID: 1744670193}
   - component: {fileID: 1744670194}
   m_Layer: 14
-  m_Name: MainMenuController
+  m_Name: MainMenuPanelController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8080,7 +8080,7 @@ GameObject:
   - component: {fileID: 1993341572}
   - component: {fileID: 1993341573}
   m_Layer: 14
-  m_Name: LanguageMenuController
+  m_Name: LanguagePanelController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

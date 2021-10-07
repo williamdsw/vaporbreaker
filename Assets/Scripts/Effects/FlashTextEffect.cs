@@ -5,6 +5,9 @@ using TMPro;
 
 namespace Effects
 {
+    /// <summary>
+    /// Flash Effect for TextMeshPro or TextMeshProUGUI
+    /// </summary>
     public class FlashTextEffect : MonoBehaviour
     {
         // || Inspector References

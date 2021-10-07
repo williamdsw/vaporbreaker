@@ -1,12 +1,15 @@
-﻿using MVC.BL;
+﻿using Controllers.Panel;
+using MVC.BL;
 using MVC.Models;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace Controllers.Core
 {
+    /// <summary>
+    /// Controller for Audio
+    /// </summary>
     public class AudioController : MonoBehaviour
     {
         // || Inspector References
@@ -47,8 +50,8 @@ namespace Controllers.Core
 
         private AudioClip nextTrackClip;
         private Track nextTrackInfo;
-        private string nextSceneName;
-        private bool isToChangeScene;
+        private string nextSceneName = string.Empty;
+        private bool isToChangeScene = false;
         private bool isToChangeOnTrackEnd = false;
         private bool isToLoopTrack = false;
 
@@ -96,13 +99,14 @@ namespace Controllers.Core
         public AudioSource AudioSourceME => audioSourceME;
         public AudioSource AudioSourceSFX => audioSourceSFX;
 
-        public List<Track> Tracks { get; private set; } = new List<Track>();
+        public List<Track> Tracks { get; private set; }
         public bool IsSongPlaying { get; set; }
 
         private void Awake()
         {
             SetupSingleton();
             trackBL = new TrackBL();
+            Tracks = new List<Track>();
         }
 
         /// <summary>
@@ -112,7 +116,7 @@ namespace Controllers.Core
         {
             if (FindObjectsOfType(GetType()).Length > 1)
             {
-                DestroyImmediate(gameObject);
+                Destroy(gameObject);
             }
             else
             {
@@ -128,6 +132,7 @@ namespace Controllers.Core
         /// <param name="volume"> Volume amount </param>
         public void PlaySFX(AudioClip clip, float volume)
         {
+            if (AudioSourceSFX.mute || AudioSourceSFX.volume <= 0 || volume <= 0) return;
             float temporaryVolume = (volume > MaxSFXVolume ? MaxSFXVolume : volume);
             AudioSourceSFX.volume = temporaryVolume;
             AudioSourceSFX.PlayOneShot(clip);
@@ -140,6 +145,7 @@ namespace Controllers.Core
         /// <param name="volume"> Volume amount </param>
         public void PlaySoundAtPoint(AudioClip clip, float volume)
         {
+            if (volume <= 0) return;
             float temporaryVolume = (volume > MaxSFXVolume ? MaxSFXVolume : volume);
             AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position, temporaryVolume);
         }
@@ -152,6 +158,7 @@ namespace Controllers.Core
         /// <param name="toLoop"> Is to loop ? </param>
         public void PlayME(AudioClip clip, float volume, bool toLoop)
         {
+            if (AudioSourceME.mute || AudioSourceME.volume <= 0 || volume <= 0) return;
             float temporaryVolume = (volume > MaxMEVolume ? MaxMEVolume : volume);
             AudioSourceME.volume = temporaryVolume;
             AudioSourceME.clip = clip;
@@ -210,14 +217,14 @@ namespace Controllers.Core
             AudioSourceBGM.Play();
             IsSongPlaying = true;
 
-            if (PauseController.Instance && nextTrackInfo != null)
+            if (PausePanelController.Instance && nextTrackInfo != null)
             {
-                PauseController.Instance.SetTrackInfo(nextTrackInfo);
+                PausePanelController.Instance.SetTrackInfo(nextTrackInfo);
             }
 
             yield return GainVolume();
 
-            if (!isToLoopTrack && isToChangeOnTrackEnd && PauseController.Instance)
+            if (!isToLoopTrack && isToChangeOnTrackEnd && PausePanelController.Instance)
             {
                 yield return new WaitForSecondsRealtime(AudioSourceBGM.clip.length);
                 int index = Random.Range(0, allNotLoopedSongs.Length);

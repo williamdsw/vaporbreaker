@@ -3,14 +3,20 @@ using MVC.Models;
 using MVC.Utils;
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace MVC.DAO
 {
+    /// <summary>
+    /// Track data
+    /// </summary>
     public class TrackDAO : Connection
     {
         public TrackDAO() : base() { }
 
+        /// <summary>
+        /// List all tracks
+        /// </summary>
+        /// <returns> List of Track instances </returns>
         public List<Track> ListAll()
         {
             try
@@ -19,7 +25,6 @@ namespace MVC.DAO
             }
             catch (Exception ex)
             {
-                Debug.LogErrorFormat("ScoreboardDAO::ListAll -> {0}", ex.Message);
                 throw ex;
             }
             finally

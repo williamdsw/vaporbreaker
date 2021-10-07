@@ -140,7 +140,7 @@ MonoBehaviour:
   initialLinePrefab: {fileID: 0}
   paddleParticlesPrefab: {fileID: 704464901149122646, guid: 6e7a6754128d9ed4e9beb9340b9ea298,
     type: 3}
-  paddle: {fileID: 8014031417291714536, guid: eb5c5166daec2c6429c1937ca1aea19d, type: 3}
+  paddle: {fileID: 0}
   defaultBallSprite: {fileID: 21300000, guid: 2f5cd59d6b21ffe4dbf7ef7900bc1a48, type: 3}
   fireballSprite: {fileID: 21300000, guid: 29f55838cd658834298b7acb0195e9c5, type: 3}
 --- !u!1001 &6197581038482828646
@@ -209,6 +209,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BallEchoSpawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 4201822348695025315, guid: 76bca2dc73a322646b9c8023033f3f38,
+        type: 3}
+      propertyPath: m_TagString
+      value: BallEcho
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76bca2dc73a322646b9c8023033f3f38, type: 3}

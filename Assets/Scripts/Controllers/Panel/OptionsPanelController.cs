@@ -7,9 +7,12 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-namespace Controllers.Menu
+namespace Controllers.Panel
 {
-    public class OptionsMenuController : MonoBehaviour
+    /// <summary>
+    /// Controller for Options Panel
+    /// </summary>
+    public class OptionsPanelController : MonoBehaviour
     {
         // || Inspector References
 
@@ -43,18 +46,20 @@ namespace Controllers.Menu
         private readonly float startTimeToPlaySound = 1f;
         private readonly float startTimeToWaitUpdateVolume = 0.1f;
 
-
         // || State
 
+        private bool isEditingAudio = false;
         private float BGMVolume = 1f;
         private float MEVolume = 1f;
         private float SFXVolume = 1f;
         private float timeToPlaySound = 1f;
         private float timeToWaitUpdateVolume = 0.1f;
-        private bool isEditingAudio = false;
 
         // || Cached
 
+        private InputAction navigateAction;
+        private InputAction cancelAction;
+        private InputAction submitAction;
         private TextMeshProUGUI bgmVolumeButtonLabel;
         private TextMeshProUGUI meVolumeButtonLabel;
         private TextMeshProUGUI sfxVolumeButtonLabel;
@@ -63,13 +68,10 @@ namespace Controllers.Menu
         private TextMeshProUGUI sfxVolumeValueButtonLabel;
         private TextMeshProUGUI backButtonLabel;
         private TextMeshProUGUI defaultButtonLabel;
-        private InputAction navigateAction;
-        private InputAction cancelAction;
-        private InputAction submitAction;
 
         // || Properties
 
-        public static OptionsMenuController Instance { get; private set; }
+        public static OptionsPanelController Instance { get; private set; }
 
         private void Awake()
         {
@@ -217,7 +219,7 @@ namespace Controllers.Menu
             ApplyValues();
             SaveSettings();
             TogglePanel(false);
-            MainMenuController.Instance.TogglePanel(true);
+            MainMenuPanelController.Instance.TogglePanel(true);
         }
 
         /// <summary>

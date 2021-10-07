@@ -13,6 +13,8 @@ TagManager:
   - Ball_Echo
   - Paddle_Echo
   - Line_Between_Ball_Pointer
+  - LineBetweenBallPointer
+  - BallEcho
   layers:
   - Default
   - TransparentFX

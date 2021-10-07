@@ -11781,7 +11781,7 @@ GameObject:
   - component: {fileID: 1817843320}
   - component: {fileID: 1817843319}
   m_Layer: 0
-  m_Name: LoadingController
+  m_Name: LoadingSceneController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

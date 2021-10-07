@@ -3,14 +3,21 @@ using MVC.Models;
 using MVC.Utils;
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace MVC.DAO
 {
+    /// <summary>
+    /// Scoreboard data
+    /// </summary>
     public class ScoreboardDAO : Connection
     {
         public ScoreboardDAO() : base() { }
 
+        /// <summary>
+        /// Insert scoreboard data
+        /// </summary>
+        /// <param name="model"> Instance of Scoreboard </param>
+        /// <returns> Scoreboard was inserted ? </returns>
         public bool Insert(Scoreboard model)
         {
             try
@@ -20,7 +27,6 @@ namespace MVC.DAO
             }
             catch (Exception ex)
             {
-                Debug.LogErrorFormat("ScoreboardDAO::Insert -> {0}", ex.Message);
                 throw ex;
             }
             finally
@@ -29,6 +35,11 @@ namespace MVC.DAO
             }
         }
 
+        /// <summary>
+        /// List scoreboards by level
+        /// </summary>
+        /// <param name="levelId"> Level Id </param>
+        /// <returns> List of Scoreboard instances </returns>
         public List<Scoreboard> ListByLevel(long levelId)
         {
             try
@@ -39,7 +50,6 @@ namespace MVC.DAO
             }
             catch (Exception ex)
             {
-                Debug.LogErrorFormat("ScoreboardDAO::ListByLevel -> {0}", ex.Message);
                 throw ex;
             }
             finally
@@ -48,6 +58,11 @@ namespace MVC.DAO
             }
         }
 
+        /// <summary>
+        /// Get scoreboard by max score and level id
+        /// </summary>
+        /// <param name="levelId"> Level Id </param>
+        /// <returns> Scoreboard instance </returns>
         public Scoreboard GetByMaxScoreByLevel(long levelId)
         {
             try
@@ -57,7 +72,6 @@ namespace MVC.DAO
             }
             catch (Exception ex)
             {
-                Debug.LogErrorFormat("ScoreboardDAO::GetByMaxScoreByLevel -> {0}", ex.Message);
                 throw ex;
             }
             finally
@@ -66,6 +80,10 @@ namespace MVC.DAO
             }
         }
 
+        /// <summary>
+        /// Delete all scoreboards
+        /// </summary>
+        /// <returns> All scoreboards were deleted ? </returns>
         public bool DeleteAll()
         {
             try
@@ -74,7 +92,6 @@ namespace MVC.DAO
             }
             catch (Exception ex)
             {
-                Debug.LogErrorFormat("ScoreboardDAO::DeleteAll -> {0}", ex.Message);
                 throw ex;
             }
             finally

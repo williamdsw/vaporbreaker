@@ -1,8 +1,7 @@
-﻿using Controllers.Menu;
+﻿using Controllers.Core;
 using Core;
 using Effects;
 using MVC.Enums;
-using MVC.Global;
 using MVC.Models;
 using System;
 using System.Collections;
@@ -12,9 +11,12 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Utilities;
 
-namespace Controllers.Core
+namespace Controllers.Panel
 {
-    public class PauseController : MonoBehaviour
+    /// <summary>
+    /// Controller for Pause Panel
+    /// </summary>
+    public class PausePanelController : MonoBehaviour
     {
         // || Inspector References
 
@@ -42,7 +44,7 @@ namespace Controllers.Core
 
         // || Properties
 
-        public static PauseController Instance { get; private set; }
+        public static PausePanelController Instance { get; private set; }
         public bool CanPause { private get; set; } = true;
 
         private void Awake()
@@ -102,8 +104,8 @@ namespace Controllers.Core
             {
                 resumeButton.onClick.AddListener(() => PauseOrResumeGame());
                 restartButton.onClick.AddListener(() => StartCoroutine(ResetLevelCoroutine()));
-                levelsButton.onClick.AddListener(() => StartCoroutine(GotoNextScene(SceneManagerController.SelectLevelsSceneName)));
-                mainMenuButton.onClick.AddListener(() => StartCoroutine(GotoNextScene(SceneManagerController.MainMenuSceneName)));
+                levelsButton.onClick.AddListener(() => StartCoroutine(GotoNextScene(SceneManagerController.SceneNames.SelectLevels)));
+                mainMenuButton.onClick.AddListener(() => StartCoroutine(GotoNextScene(SceneManagerController.SceneNames.MainMenu)));
             }
             catch (Exception ex)
             {

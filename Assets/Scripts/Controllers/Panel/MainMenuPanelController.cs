@@ -9,9 +9,12 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Utilities;
 
-namespace Controllers.Menu
+namespace Controllers.Panel
 {
-    public class MainMenuController : MonoBehaviour
+    /// <summary>
+    /// Controller for Main Menu Panel
+    /// </summary>
+    public class MainMenuPanelController : MonoBehaviour
     {
         // || Inspector References
 
@@ -38,7 +41,7 @@ namespace Controllers.Menu
 
         // || Properties
 
-        public static MainMenuController Instance { get; private set; }
+        public static MainMenuPanelController Instance { get; private set; }
         public bool HasSavedGame { get; set; } = false;
 
         private void Awake()
@@ -128,7 +131,7 @@ namespace Controllers.Menu
             if (EventSystem.current.currentSelectedGameObject != creditsButton.gameObject) return;
 
             AudioController.Instance.PlaySFX(AudioController.Instance.UiSubmitSound, AudioController.Instance.MaxSFXVolume);
-            StartCoroutine(CallNextScene(SceneManagerController.CreditsSceneName));
+            StartCoroutine(CallNextScene(SceneManagerController.SceneNames.Credits));
         }
 
         /// <summary>
@@ -139,7 +142,7 @@ namespace Controllers.Menu
             if (EventSystem.current.currentSelectedGameObject != soundtrackButton.gameObject) return;
 
             AudioController.Instance.PlaySFX(AudioController.Instance.UiSubmitSound, AudioController.Instance.MaxSFXVolume);
-            StartCoroutine(CallNextScene(SceneManagerController.SoundtracksSceneName));
+            StartCoroutine(CallNextScene(SceneManagerController.SceneNames.Soundtracks));
         }
 
         /// <summary>
@@ -161,7 +164,7 @@ namespace Controllers.Menu
 
             AudioController.Instance.PlaySFX(AudioController.Instance.UiSubmitSound, AudioController.Instance.MaxSFXVolume);
             TogglePanel(false);
-            LanguageMenuController.Instance.TogglePanel(true);
+            LanguagePanelController.Instance.TogglePanel(true);
         }
 
         /// <summary>
@@ -173,7 +176,7 @@ namespace Controllers.Menu
 
             AudioController.Instance.PlaySFX(AudioController.Instance.UiSubmitSound, AudioController.Instance.MaxSFXVolume);
             TogglePanel(false);
-            OptionsMenuController.Instance.TogglePanel(true);
+            OptionsPanelController.Instance.TogglePanel(true);
         }
 
         /// <summary>
@@ -187,11 +190,11 @@ namespace Controllers.Menu
             if (HasSavedGame)
             {
                 TogglePanel(false);
-                ProgressMenuController.Instance.TogglePanel(true);
+                ProgressPanelController.Instance.TogglePanel(true);
             }
             else
             {
-                StartCoroutine(CallNextScene(SceneManagerController.SelectLevelsSceneName));
+                StartCoroutine(CallNextScene(SceneManagerController.SceneNames.SelectLevels));
             }
         }
 
@@ -230,14 +233,12 @@ namespace Controllers.Menu
         public IEnumerator CallNextScene(string nextSceneName)
         {
             AudioController.Instance.StopMusic();
-
             canvasGroup.interactable = false;
-
             FadeEffect.Instance.FadeToLevel();
             yield return new WaitForSecondsRealtime(FadeEffect.Instance.GetFadeOutLength());
             GameStatusController.Instance.NextSceneName = nextSceneName;
             GameStatusController.Instance.CameFromLevel = false;
-            SceneManagerController.CallScene(SceneManagerController.LoadingSceneName);
+            SceneManagerController.CallScene(SceneManagerController.SceneNames.Loading);
         }
     }
 }

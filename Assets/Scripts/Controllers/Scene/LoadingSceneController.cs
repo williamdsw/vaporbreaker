@@ -8,9 +8,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Controllers.Menu
+namespace Controllers.Scene
 {
-    public class LoadingController : MonoBehaviour
+    public class LoadingSceneController : MonoBehaviour
     {
         // || Inspector References
 
@@ -56,7 +56,7 @@ namespace Controllers.Menu
 
         private void Start()
         {
-            if (GameStatusController.Instance.NextSceneName.Equals(SceneManagerController.LevelSceneName))
+            if (GameStatusController.Instance.NextSceneName.Equals(SceneManagerController.SceneNames.Level))
             {
                 Translate();
                 BindEventListeners();

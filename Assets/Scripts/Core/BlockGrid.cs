@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Core
 {
+    /// <summary>
+    /// Grid of Blocks
+    /// </summary>
     public class BlockGrid
     {
         // || Cached
@@ -29,13 +32,6 @@ namespace Core
                 }
             }
         }
-
-        /// <summary>
-        /// Put block at position
-        /// </summary>
-        /// <param name="position"> Desired position </param>
-        /// <param name="block"> Desired block </param>
-        public static void PutBlock(Vector3 position, Block block) => grid.Add(position, block);
 
         /// <summary>
         /// Check if position exists

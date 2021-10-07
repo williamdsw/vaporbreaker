@@ -3,17 +3,23 @@ using UnityEngine.SceneManagement;
 
 namespace Controllers.Core
 {
+    /// <summary>
+    /// Controller for Scene Manager
+    /// </summary>
     public class SceneManagerController
     {
-        // || Properties
+        public class SceneNames
+        {
+            // || Properties
 
-        public static string CreditsSceneName => "Credits";
-        public static string LevelSceneName => "Level";
-        public static string LoadingSceneName => "Loading";
-        public static string MainMenuSceneName => "MainMenu";
-        public static string SelectLevelsSceneName => "SelectLevels";
-        public static string SoundtracksSceneName => "Soundtracks";
-        public static string TitleSceneName => "Title";
+            public static string Credits => "Credits";
+            public static string Level => "Level";
+            public static string Loading => "Loading";
+            public static string MainMenu => "MainMenu";
+            public static string SelectLevels => "SelectLevels";
+            public static string Soundtracks => "Soundtracks";
+            public static string Title => "Title";
+        }
 
         /// <summary>
         /// Calls a scene by name

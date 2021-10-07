@@ -10,10 +10,15 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-namespace Controllers.Menu
+namespace Controllers.Panel
 {
-    public class LanguageMenuController : MonoBehaviour
+    /// <summary>
+    /// Controller for Language Panel
+    /// </summary>
+    public class LanguagePanelController : MonoBehaviour
     {
+        // || Inspector References
+
         [Header("Required UI Elements")]
         [SerializeField] private GameObject panel;
         [SerializeField] private Button[] allButtons;
@@ -31,17 +36,15 @@ namespace Controllers.Menu
         // || Cached
 
         private TextMeshProUGUI backButtonLabel;
-        private LocalizationBL localizationBL;
 
         // || Properties
 
-        public static LanguageMenuController Instance { get; private set; }
+        public static LanguagePanelController Instance { get; private set; }
 
         private void Awake()
         {
             Instance = this;
-            localizationBL = new LocalizationBL();
-            languages = localizationBL.GetLanguages().Select(x => x.Language).ToList();
+            languages = new LocalizationBL().ListAll().Select(x => x.Language).ToList();
 
             currentButtonIndex = languages.IndexOf(PlayerPrefsController.Language);
 
@@ -112,7 +115,7 @@ namespace Controllers.Menu
             PlayerPrefsController.Language = currentLanguage;
             AudioController.Instance.PlaySFX(AudioController.Instance.UiCancelSound, AudioController.Instance.MaxSFXVolume);
             TogglePanel(false);
-            MainMenuController.Instance.TogglePanel(true);
+            MainMenuPanelController.Instance.TogglePanel(true);
         }
 
         /// <summary>

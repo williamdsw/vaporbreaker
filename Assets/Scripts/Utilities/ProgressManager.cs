@@ -5,6 +5,9 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Utilities
 {
+    /// <summary>
+    /// Manager for Progress
+    /// </summary>
     public class ProgressManager
     {
         /// <summary>

@@ -1,6 +1,9 @@
 ﻿
 namespace Utilities
 {
+    /// <summary>
+    /// Names | Tags
+    /// </summary>
     public class NamesTags
     {
         public class AnimatorTriggers
@@ -34,14 +37,13 @@ namespace Utilities
         public class Tags
         {
             public static string Ball => "Ball";
-            public static string BallEcho => "Ball_Echo";
-            public static string BreakableBlock => "Breakable";
-            public static string LineBetweenBallPointer => "Line_Between_Ball_Pointer";
+            public static string BallEcho => "BallEcho";
+            public static string Breakable => "Breakable";
+            public static string LineBetweenBallPointer => "LineBetweenBallPointer";
             public static string Paddle => "Paddle";
-            public static string PaddleEcho => "Paddle_Echo";
             public static string PowerUp => "PowerUp";
             public static string Wall => "Wall";
-            public static string UnbreakableBlock => "Unbreakable";
+            public static string Unbreakable => "Unbreakable";
         }
     }
 }

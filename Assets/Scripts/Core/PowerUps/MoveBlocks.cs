@@ -8,6 +8,8 @@ namespace Core.PowerUps
 {
     public class MoveBlocks : PowerUp
     {
+        // || Inspector References
+
         [Header("Additional Required Configuration")]
         [SerializeField] private Enumerators.Directions direction = Enumerators.Directions.None;
 

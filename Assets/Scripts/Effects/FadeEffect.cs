@@ -5,6 +5,9 @@ using Utilities;
 
 namespace Effects
 {
+    /// <summary>
+    /// Fade In | Fade Out Effect
+    /// </summary>
     [RequireComponent(typeof(Animator))]
     public class FadeEffect : MonoBehaviour
     {
@@ -187,7 +190,7 @@ namespace Effects
         public void CallLevelMenu()
         {
             animator.Rebind();
-            GameSessionController.Instance.GotoScene(SceneManagerController.SelectLevelsSceneName);
+            GameSessionController.Instance.GotoScene(SceneManagerController.SceneNames.SelectLevels);
         }
 
         /// <summary>
@@ -198,13 +201,11 @@ namespace Effects
         {
             switch (gameStateInt)
             {
-                case 0: newGameState = Enumerators.GameStates.GAMEPLAY; break;
-                case 1: newGameState = Enumerators.GameStates.PAUSE; break;
-                case 2: newGameState = Enumerators.GameStates.TRANSITION; break;
+                case 0: GameSessionController.Instance.ActualGameState = Enumerators.GameStates.GAMEPLAY; break;
+                case 1: GameSessionController.Instance.ActualGameState = Enumerators.GameStates.PAUSE; break;
+                case 2: GameSessionController.Instance.ActualGameState = Enumerators.GameStates.TRANSITION; break;
                 default: break;
             }
-
-            GameSessionController.Instance.ActualGameState = newGameState;
         }
     }
 }

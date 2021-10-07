@@ -15,12 +15,12 @@ namespace Core.PowerUps
         {
             try
             {
-                GameObject[] unbreakables = GameObject.FindGameObjectsWithTag(NamesTags.Tags.UnbreakableBlock);
+                GameObject[] unbreakables = GameObject.FindGameObjectsWithTag(NamesTags.Tags.Unbreakable);
                 if (unbreakables.Length != 0)
                 {
                     foreach (GameObject unbreakable in unbreakables)
                     {
-                        unbreakable.tag = NamesTags.Tags.BreakableBlock;
+                        unbreakable.tag = NamesTags.Tags.Breakable;
                         GameSessionController.Instance.CountBlocks();
                         unbreakable.GetComponent<Animator>().enabled = false;
 

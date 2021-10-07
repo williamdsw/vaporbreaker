@@ -2,6 +2,9 @@
 
 namespace Utilities
 {
+    /// <summary>
+    /// Progress data for Player
+    /// </summary>
     [Serializable]
     public class PlayerProgress
     {
@@ -12,7 +15,14 @@ namespace Utilities
 
         // || Properties
 
+        /// <summary>
+        /// Current level index
+        /// </summary>
         public int CurrentLevelIndex { get => currentLevelIndex; set => currentLevelIndex = value; }
+
+        /// <summary>
+        /// Has player finished the game?
+        /// </summary>
         public bool HasPlayerFinishedGame { get => hasPlayerFinishedGame; set => hasPlayerFinishedGame = value; }
 
         public PlayerProgress()

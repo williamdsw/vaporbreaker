@@ -11,23 +11,23 @@ namespace Utilities
             /// <summary>
             /// Level is completed
             /// </summary>
-            LEVEL_COMPLETE, 
-            
+            LEVEL_COMPLETE,
+
             /// <summary>
             /// Current Gameplay
             /// </summary>
-            GAMEPLAY, 
-            
+            GAMEPLAY,
+
             /// <summary>
             /// Game is paused
             /// </summary>
-            PAUSE, 
-            
+            PAUSE,
+
             /// <summary>
             /// Is saving or loading progress
             /// </summary>
-            SAVE_LOAD, 
-            
+            SAVE_LOAD,
+
             /// <summary>
             /// Is transitioning between fade in / fade out
             /// </summary>
@@ -39,7 +39,29 @@ namespace Utilities
         /// </summary>
         public enum Directions
         {
-            Down, Left, Right, Up, None
+            /// <summary>
+            /// Vector2.down (0, -1)
+            /// </summary>
+            Down,
+
+            /// <summary>
+            /// Vector2.left (-1, 0)
+            /// </summary>
+            Left,
+
+            /// <summary>
+            /// Vector2.right (1, 0)
+            /// </summary>
+            Right,
+            /// <summary>
+            /// Vector2.up (0, 1)
+            /// </summary>
+            Up,
+
+            /// <summary>
+            /// No valid direction
+            /// </summary>
+            None
         }
     }
 }

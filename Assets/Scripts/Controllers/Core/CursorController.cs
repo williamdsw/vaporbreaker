@@ -1,4 +1,4 @@
-﻿using Controllers.Menu;
+﻿using Controllers.Panel;
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -6,6 +6,9 @@ using Utilities;
 
 namespace Controllers.Core
 {
+    /// <summary>
+    /// Controller for In-Game Cursor
+    /// </summary>
     public class CursorController : MonoBehaviour
     {
         // || State
@@ -28,7 +31,6 @@ namespace Controllers.Core
         {
             if (GameSessionController.Instance.ActualGameState == Enumerators.GameStates.GAMEPLAY)
             {
-                DefineBounds();
                 SetPosition();
                 LockPositionToScreen();
             }

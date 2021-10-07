@@ -3,6 +3,9 @@ using System.IO;
 
 namespace Utilities
 {
+    /// <summary>
+    /// Manager for File operations
+    /// </summary>
     public class FileManager
     {
         /// <summary>
@@ -11,7 +14,6 @@ namespace Utilities
         /// <param name="path"> Path of requested file </param>
         /// <returns> true | false </returns>
         public static bool Exists(string path) => File.Exists(path);
-
 
         /// <summary>
         /// Copy file from source path to destination path

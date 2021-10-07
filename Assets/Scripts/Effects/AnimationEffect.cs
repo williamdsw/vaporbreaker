@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 namespace Effects
 {
+    /// <summary>
+    /// Animation effect with sprite array
+    /// </summary>
     public class AnimationEffect : MonoBehaviour
     {
         // || Inspector References
@@ -38,10 +41,10 @@ namespace Effects
         {
             try
             {
-                image = this.GetComponent<Image>();
+                image = GetComponent<Image>();
                 if (!image)
                 {
-                    spriteRenderer = this.GetComponent<SpriteRenderer>();
+                    spriteRenderer = GetComponent<SpriteRenderer>();
                 }
             }
             catch (Exception ex)

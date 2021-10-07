@@ -1,7 +1,6 @@
 using Controllers.Core;
 using MVC.BL;
 using MVC.Enums;
-using MVC.Global;
 using System;
 using TMPro;
 using UnityEngine;
@@ -10,9 +9,12 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Utilities;
 
-namespace Controllers.Menu
+namespace Controllers.Panel
 {
-    public class ProgressMenuController : MonoBehaviour
+    /// <summary>
+    /// Controller for Progress Panel
+    /// </summary>
+    public class ProgressPanelController : MonoBehaviour
     {
         // || Inspector References
 
@@ -41,7 +43,7 @@ namespace Controllers.Menu
 
         // || Properties
 
-        public static ProgressMenuController Instance { get; private set; }
+        public static ProgressPanelController Instance { get; private set; }
 
         private void Awake()
         {
@@ -53,8 +55,6 @@ namespace Controllers.Menu
             Translate();
             BindEventListeners();
         }
-
-        private void Update() => CaptureCancelButton();
 
         /// <summary>
         /// Get required components
@@ -118,10 +118,10 @@ namespace Controllers.Menu
         {
             if (EventSystem.current.currentSelectedGameObject != continueButton.gameObject) return;
 
-            if (MainMenuController.Instance.HasSavedGame && panel.activeSelf)
+            if (MainMenuPanelController.Instance.HasSavedGame && panel.activeSelf)
             {
                 AudioController.Instance.PlaySFX(AudioController.Instance.UiSubmitSound, AudioController.Instance.MaxSFXVolume);
-                StartCoroutine(MainMenuController.Instance.CallNextScene(SceneManagerController.SelectLevelsSceneName));
+                StartCoroutine(MainMenuPanelController.Instance.CallNextScene(SceneManagerController.SceneNames.SelectLevels));
             }
         }
 
@@ -132,7 +132,7 @@ namespace Controllers.Menu
         {
             if (EventSystem.current.currentSelectedGameObject != resetProgressButton.gameObject) return;
 
-            if (MainMenuController.Instance.HasSavedGame && panel.activeSelf)
+            if (MainMenuPanelController.Instance.HasSavedGame && panel.activeSelf)
             {
                 continueButton.interactable = resetProgressButton.interactable = false;
                 questionObject.SetActive(true);
@@ -175,8 +175,8 @@ namespace Controllers.Menu
                 ProgressManager.DeleteProgress();
                 questionObject.SetActive(false);
                 TogglePanel(false);
-                MainMenuController.Instance.HasSavedGame = false;
-                MainMenuController.Instance.TogglePanel(true);
+                MainMenuPanelController.Instance.HasSavedGame = false;
+                MainMenuPanelController.Instance.TogglePanel(true);
             }
         }
 
@@ -192,21 +192,6 @@ namespace Controllers.Menu
             {
                 continueButton.Select();
                 Translate();
-            }
-        }
-
-        /// <summary>
-        /// Capture ESC key or B button
-        /// </summary>
-        private void CaptureCancelButton()
-        {
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
             }
         }
 
@@ -228,7 +213,7 @@ namespace Controllers.Menu
                 {
                     AudioController.Instance.PlaySFX(AudioController.Instance.UiCancelSound, AudioController.Instance.MaxSFXVolume);
                     TogglePanel(false);
-                    MainMenuController.Instance.TogglePanel(true);
+                    MainMenuPanelController.Instance.TogglePanel(true);
                     return;
                 }
             }

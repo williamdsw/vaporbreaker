@@ -2,6 +2,9 @@
 
 namespace Utilities
 {
+    /// <summary>
+    /// Formatter util
+    /// </summary>
     public class Formatter
     {
         /// <summary>

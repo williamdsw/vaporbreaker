@@ -7,9 +7,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Controllers.Menu
+namespace Controllers.Scene
 {
-    public class CreditsController : MonoBehaviour
+    /// <summary>
+    /// Controller for Credits Scene
+    /// </summary>
+    public class CreditsSceneController : MonoBehaviour
     {
         // || Inspector References
 
@@ -88,9 +91,9 @@ namespace Controllers.Menu
             AudioController.Instance.StopMusic();
             FadeEffect.Instance.FadeToLevel();
             yield return new WaitForSecondsRealtime(FadeEffect.Instance.GetFadeOutLength());
-            GameStatusController.Instance.NextSceneName = SceneManagerController.MainMenuSceneName;
+            GameStatusController.Instance.NextSceneName = SceneManagerController.SceneNames.MainMenu;
             GameStatusController.Instance.CameFromLevel = false;
-            SceneManagerController.CallScene(SceneManagerController.LoadingSceneName);
+            SceneManagerController.CallScene(SceneManagerController.SceneNames.Loading);
         }
     }
 }

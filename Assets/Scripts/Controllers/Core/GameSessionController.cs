@@ -1,6 +1,6 @@
-﻿using Core;
+﻿using Controllers.Panel;
+using Core;
 using MVC.BL;
-using MVC.Global;
 using MVC.Models;
 using Newtonsoft.Json;
 using System;
@@ -13,13 +13,12 @@ using Utilities;
 
 namespace Controllers.Core
 {
+    /// <summary>
+    /// Controller for Game Session
+    /// </summary>
     public class GameSessionController : MonoBehaviour
     {
         // || Inspector References
-
-        [Header("Configuration Parameters")]
-        [Range(0f, 10f)] [SerializeField] private float gameSpeed = 1f;
-        [SerializeField] private bool isAutoplayEnabled;
 
         [Header("Required Elements")]
         [SerializeField] private Canvas canvas;
@@ -36,17 +35,17 @@ namespace Controllers.Core
 
         // || State
 
-        [SerializeField] private int bestCombo = 0;
-        [SerializeField] private int currentNumberOfBlocks = 0;
-        [SerializeField] private int currentScore = 0;
-        [SerializeField] private int numberOfBlocksDestroyed = 0;
-        [SerializeField] private int totalNumberOfBlocks = 0;
-        [SerializeField] private float ellapsedTime = 0f;
-        [SerializeField] private Enumerators.GameStates actualGameState = Enumerators.GameStates.GAMEPLAY;
-        [SerializeField] private bool areBallOnFire = false;
-        [SerializeField] private int songIndex = 0;
-        [SerializeField] private Vector2Int minMaxNumberOfRandomBlocks = Vector2Int.zero;
-        [SerializeField] private int numberOfRandomBlocks = 0;
+        private Enumerators.GameStates actualGameState = Enumerators.GameStates.GAMEPLAY;
+        private Vector2Int minMaxNumberOfRandomBlocks = Vector2Int.zero;
+        private bool areBallOnFire = false;
+        private float ellapsedTime = 0f;
+        private int bestCombo = 0;
+        private int currentNumberOfBlocks = 0;
+        private int currentScore = 0;
+        private int numberOfBlocksDestroyed = 0;
+        private int totalNumberOfBlocks = 0;
+        private int songIndex = 0;
+        private int numberOfRandomBlocks = 0;
 
 
         // || Config
@@ -55,7 +54,6 @@ namespace Controllers.Core
 
         // || Cached
 
-        private Ball[] balls;
         private CanvasGroup canvasGroup;
         private Dictionary<string, Block> blocksPrefabsDictionary;
 
@@ -72,34 +70,26 @@ namespace Controllers.Core
                 switch (ActualGameState)
                 {
                     case Enumerators.GameStates.LEVEL_COMPLETE:
-                        {
-                            PauseController.Instance.CanPause = false;
-                            canvasGroup.interactable = true;
-                            break;
-                        }
+                        PausePanelController.Instance.CanPause = false;
+                        canvasGroup.interactable = true;
+                        break;
 
                     case Enumerators.GameStates.GAMEPLAY:
-                        {
-                            Time.timeScale = 1f;
-                            PauseController.Instance.CanPause = true;
-                            canvasGroup.interactable = true;
-                            break;
-                        }
+                        Time.timeScale = 1f;
+                        PausePanelController.Instance.CanPause = true;
+                        canvasGroup.interactable = true;
+                        break;
 
                     case Enumerators.GameStates.PAUSE:
-                        {
-                            Time.timeScale = 0f;
-                            PauseController.Instance.CanPause = true;
-                            canvasGroup.interactable = true;
-                            break;
-                        }
+                        Time.timeScale = 0f;
+                        PausePanelController.Instance.CanPause = true;
+                        canvasGroup.interactable = true;
+                        break;
 
                     case Enumerators.GameStates.TRANSITION:
-                        {
-                            PauseController.Instance.CanPause = false;
-                            canvasGroup.interactable = false;
-                            break;
-                        }
+                        PausePanelController.Instance.CanPause = false;
+                        canvasGroup.interactable = false;
+                        break;
 
                     default: break;
                 }
@@ -107,15 +97,14 @@ namespace Controllers.Core
         }
 
         public Enumerators.Directions BlockDirection { get; set; } = Enumerators.Directions.None;
+        public float StartTimeToSpawnAnotherBall => 10f;
+        public float TimeToSpawnAnotherBall { get; set; } = -1f;
         public int CurrentNumberOfBalls { get; set; } = 1;
         public int ComboMultiplier { get; private set; } = 0;
         public int MaxNumberOfBalls => 20;
-        public float StartTimeToSpawnAnotherBall => 10f;
-        public float TimeToSpawnAnotherBall { get; set; } = -1f;
         public bool CanMoveBlocks { get; set; } = false;
         public bool HasStarted { get; set; } = false;
         public bool CanSpawnAnotherBall { private get; set; } = false;
-        public bool IsAutoplayEnabled => isAutoplayEnabled;
 
         private void Awake()
         {
@@ -125,7 +114,6 @@ namespace Controllers.Core
 
         private void Start()
         {
-            balls = FindObjectsOfType<Ball>();
             canvasGroup = FindObjectOfType<CanvasGroup>();
 
             Level level = new LevelBL().GetById(GameStatusController.Instance.LevelId);
@@ -162,8 +150,6 @@ namespace Controllers.Core
 
             if (ActualGameState == Enumerators.GameStates.GAMEPLAY)
             {
-                Time.timeScale = gameSpeed;
-
                 if (HasStarted)
                 {
                     ShowEllapsedTime();
@@ -306,7 +292,7 @@ namespace Controllers.Core
         public void CallLevelComplete()
         {
             ActualGameState = Enumerators.GameStates.LEVEL_COMPLETE;
-            LevelCompleteController.Instance.CallLevelComplete(ellapsedTime, bestCombo, currentScore);
+            LevelCompletePanelController.Instance.CallLevelComplete(ellapsedTime, bestCombo, currentScore);
         }
 
         /// <summary>
@@ -334,7 +320,7 @@ namespace Controllers.Core
         {
             try
             {
-                GameObject[] blocks = GameObject.FindGameObjectsWithTag(NamesTags.Tags.BreakableBlock);
+                GameObject[] blocks = GameObject.FindGameObjectsWithTag(NamesTags.Tags.Breakable);
                 if (blocks.Length == 0) return;
 
                 minMaxNumberOfRandomBlocks.x = Mathf.FloorToInt((blocks.Length * (5 / 100f)));
@@ -381,24 +367,6 @@ namespace Controllers.Core
         }
 
         /// <summary>
-        /// Move block at position
-        /// </summary>
-        /// <param name="block"> Block instance </param>
-        /// <param name="position"> Desired position </param>
-        /// <param name="expression"> Expression to be evaluated </param>
-        /// <param name="numberOfOcorrences"> Number of blocks moved </param>
-        private void MoveBlockAtPosition(Block block, Vector3 position, bool expression, ref int numberOfOcorrences)
-        {
-            if (expression && BlockGrid.CheckPosition(position) && BlockGrid.GetBlock(position) == null)
-            {
-                BlockGrid.RedefineBlock(block.transform.position, null);
-                BlockGrid.RedefineBlock(position, block);
-                block.transform.position = position;
-                numberOfOcorrences++;
-            }
-        }
-
-        /// <summary>
         /// Move blocks at direction
         /// </summary>
         /// <param name="direction"> Desired direction </param>
@@ -414,40 +382,31 @@ namespace Controllers.Core
                         int numberOfOcorrences = 0;
                         foreach (Block block in blocks)
                         {
-                            if (block.CompareTag(NamesTags.Tags.BreakableBlock))
+                            if (block.CompareTag(NamesTags.Tags.Unbreakable)) return;
+
+                            switch (direction)
                             {
-                                switch (direction)
-                                {
-                                    case Enumerators.Directions.Right:
-                                        {
-                                            Vector3 right = new Vector3(block.transform.position.x + 1f, block.transform.position.y, 0f);
-                                            MoveBlockAtPosition(block, right, (right.x <= BlockGrid.MaxCoordinatesInXY.x), ref numberOfOcorrences);
-                                            break;
-                                        }
+                                case Enumerators.Directions.Right:
+                                    Vector3 right = new Vector3(block.transform.position.x + 1f, block.transform.position.y, 0f);
+                                    MoveBlockAtPosition(block, right, (right.x <= BlockGrid.MaxCoordinatesInXY.x), ref numberOfOcorrences);
+                                    break;
 
-                                    case Enumerators.Directions.Left:
-                                        {
-                                            Vector3 left = new Vector3(block.transform.position.x - 1f, block.transform.position.y, 0f);
-                                            MoveBlockAtPosition(block, left, (left.x >= BlockGrid.MinCoordinatesInXY.x), ref numberOfOcorrences);
-                                            break;
-                                        }
+                                case Enumerators.Directions.Left:
+                                    Vector3 left = new Vector3(block.transform.position.x - 1f, block.transform.position.y, 0f);
+                                    MoveBlockAtPosition(block, left, (left.x >= BlockGrid.MinCoordinatesInXY.x), ref numberOfOcorrences);
+                                    break;
 
-                                    case Enumerators.Directions.Down:
-                                        {
-                                            Vector3 down = new Vector3(block.transform.position.x, block.transform.position.y - 0.5f, 0f);
-                                            MoveBlockAtPosition(block, down, down.y >= BlockGrid.MinCoordinatesInXY.y, ref numberOfOcorrences);
-                                            break;
-                                        }
+                                case Enumerators.Directions.Down:
+                                    Vector3 down = new Vector3(block.transform.position.x, block.transform.position.y - 0.5f, 0f);
+                                    MoveBlockAtPosition(block, down, down.y >= BlockGrid.MinCoordinatesInXY.y, ref numberOfOcorrences);
+                                    break;
 
-                                    case Enumerators.Directions.Up:
-                                        {
-                                            Vector3 up = new Vector3(block.transform.position.x, block.transform.position.y + 0.5f, 0f);
-                                            MoveBlockAtPosition(block, up, up.y <= BlockGrid.MaxCoordinatesInXY.y, ref numberOfOcorrences);
-                                            break;
-                                        }
+                                case Enumerators.Directions.Up:
+                                    Vector3 up = new Vector3(block.transform.position.x, block.transform.position.y + 0.5f, 0f);
+                                    MoveBlockAtPosition(block, up, up.y <= BlockGrid.MaxCoordinatesInXY.y, ref numberOfOcorrences);
+                                    break;
 
-                                    default: break;
-                                }
+                                default: break;
                             }
                         }
 
@@ -466,6 +425,24 @@ namespace Controllers.Core
         }
 
         /// <summary>
+        /// Move block at position
+        /// </summary>
+        /// <param name="block"> Block instance </param>
+        /// <param name="position"> Desired position </param>
+        /// <param name="expression"> Expression to be evaluated </param>
+        /// <param name="numberOfOcorrences"> Number of blocks moved </param>
+        private void MoveBlockAtPosition(Block block, Vector3 position, bool expression, ref int numberOfOcorrences)
+        {
+            if (expression && BlockGrid.CheckPosition(position) && BlockGrid.GetBlock(position) == null)
+            {
+                BlockGrid.RedefineBlock(block.transform.position, null);
+                BlockGrid.RedefineBlock(position, block);
+                block.transform.position = position;
+                numberOfOcorrences++;
+            }
+        }
+
+        /// <summary>
         /// Fills block grid
         /// </summary>
         private void FillBlockGrid()
@@ -474,9 +451,7 @@ namespace Controllers.Core
             {
                 BlockGrid.InitGrid();
 
-                Block[] blocks = FindObjectsOfType<Block>();
-
-                foreach (Block block in blocks)
+                foreach (Block block in FindObjectsOfType<Block>())
                 {
                     if (BlockGrid.CheckPosition(block.transform.position) && BlockGrid.GetBlock(block.transform.position) == null)
                     {
@@ -508,16 +483,14 @@ namespace Controllers.Core
                     {
                         areBallOnFire = true;
 
-                        GameObject[] blocks = GameObject.FindGameObjectsWithTag(NamesTags.Tags.BreakableBlock);
-                        foreach (GameObject blockObject in blocks)
+                        foreach (GameObject blockObject in GameObject.FindGameObjectsWithTag(NamesTags.Tags.Breakable))
                         {
                             Block block = blockObject.GetComponent<Block>();
                             block.MaxHits = 1;
                             block.BoxCollider2D.isTrigger = true;
                         }
 
-                        Ball[] balls = FindObjectsOfType<Ball>();
-                        foreach (Ball ball in balls)
+                        foreach (Ball ball in FindObjectsOfType<Ball>())
                         {
                             ball.IsBallOnFire = true;
                             ball.ChangeBallSprite(true);
@@ -544,16 +517,14 @@ namespace Controllers.Core
             {
                 areBallOnFire = false;
 
-                GameObject[] blocks = GameObject.FindGameObjectsWithTag(NamesTags.Tags.BreakableBlock);
-                foreach (GameObject blockObject in blocks)
+                foreach (GameObject blockObject in GameObject.FindGameObjectsWithTag(NamesTags.Tags.Breakable))
                 {
                     Block block = blockObject.GetComponent<Block>();
                     block.MaxHits = block.StartMaxHits;
                     block.BoxCollider2D.isTrigger = false;
                 }
 
-                Ball[] balls = FindObjectsOfType<Ball>();
-                foreach (Ball ball in balls)
+                foreach (Ball ball in FindObjectsOfType<Ball>())
                 {
                     ball.IsBallOnFire = false;
                     ball.ChangeBallSprite(false);
@@ -711,7 +682,7 @@ namespace Controllers.Core
             GameStatusController.Instance.NextSceneName = sceneName;
             GameStatusController.Instance.HasStartedSong = false;
             GameStatusController.Instance.CameFromLevel = true;
-            SceneManagerController.CallScene(SceneManagerController.LoadingSceneName);
+            SceneManagerController.CallScene(SceneManagerController.SceneNames.Loading);
             DestroyInstance();
         }
 

@@ -2539,7 +2539,7 @@ GameObject:
   - component: {fileID: 1337965984}
   - component: {fileID: 1337965985}
   m_Layer: 0
-  m_Name: MusicPlayerController
+  m_Name: SountracksSceneController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

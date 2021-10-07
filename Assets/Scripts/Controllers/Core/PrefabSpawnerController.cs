@@ -4,6 +4,9 @@ using Utilities;
 
 namespace Controllers.Core
 {
+    /// <summary>
+    /// Controller for Prefab Spawner
+    /// </summary>
     public class PrefabSpawnerController : MonoBehaviour
     {
         // || Inspector References

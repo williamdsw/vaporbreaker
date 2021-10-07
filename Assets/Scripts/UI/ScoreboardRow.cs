@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +6,9 @@ using Utilities;
 
 namespace UI
 {
+    /// <summary>
+    /// Prefab for Scoreboard Row
+    /// </summary>
     [RequireComponent(typeof(Image))]
     [RequireComponent(typeof(HorizontalLayoutGroup))]
     public class ScoreboardRow : MonoBehaviour
@@ -27,8 +28,32 @@ namespace UI
 
         private Image image;
 
-        private void Awake() => image = GetComponent<Image>();
+        private void Awake() => GetRequiredComponents();
 
+        /// <summary>
+        /// Get required components
+        /// </summary>
+        private void GetRequiredComponents()
+        {
+            try
+            {
+                image = GetComponent<Image>();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+    
+         /// <summary>
+        /// Set properties for this element
+        /// </summary>
+        /// <param name="order"> Current Order </param>
+        /// <param name="score"> Best Score </param>
+        /// <param name="timeScore"> Best Time Score </param>
+        /// <param name="bestCombo"> Best Combo </param>
+        /// /// <param name="moment"> Moment of Score </param>
+        /// <param name="isOdd">Is a odd row ? </param>
         public void Set(int order, long score, long timeScore, long bestCombo, long moment, bool isOdd)
         {
             try

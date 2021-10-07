@@ -5,9 +5,12 @@ using System.Collections;
 using UnityEngine;
 using Utilities;
 
-namespace Controllers.Menu
+namespace Controllers.Scene
 {
-    public class LogoController : MonoBehaviour
+    /// <summary>
+    /// Controller for Logo Scene
+    /// </summary>
+    public class LogoSceneController : MonoBehaviour
     {
         // || State
 
@@ -21,10 +24,10 @@ namespace Controllers.Menu
 
         private void Awake() => UnityUtilities.DisableAnalytics();
 
-        private void Start()
+        private IEnumerator Start()
         {
-            StartCoroutine(ExtractDatabase());
-            StartCoroutine(ShowLogo());
+            yield return ExtractDatabase();
+            yield return ShowLogo();
         }
 
         /// <summary>
@@ -35,6 +38,7 @@ namespace Controllers.Menu
             if (!FileManager.Exists(Configuration.Properties.DatabasePath))
             {
                 FileManager.Copy(Configuration.Properties.DatabaseStreamingAssetsPath, Configuration.Properties.DatabasePath);
+                PlayerPrefsController.DeleteAll();
             }
 
             databaseExists = true;
@@ -69,9 +73,9 @@ namespace Controllers.Menu
         {
             FadeEffect.Instance.FadeToLevel();
             yield return new WaitForSecondsRealtime(FadeEffect.Instance.GetFadeOutLength());
-            GameStatusController.Instance.NextSceneName = SceneManagerController.TitleSceneName;
+            GameStatusController.Instance.NextSceneName = SceneManagerController.SceneNames.Title;
             GameStatusController.Instance.CameFromLevel = false;
-            SceneManagerController.CallScene(SceneManagerController.LoadingSceneName);
+            SceneManagerController.CallScene(SceneManagerController.SceneNames.Loading);
         }
     }
 }

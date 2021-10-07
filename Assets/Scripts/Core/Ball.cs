@@ -6,6 +6,9 @@ using Utilities;
 
 namespace Core
 {
+    /// <summary>
+    /// Ball entity
+    /// </summary>
     [RequireComponent(typeof(SpriteRenderer))]
     [RequireComponent(typeof(Rigidbody2D))]
     public class Ball : MonoBehaviour
@@ -29,6 +32,7 @@ namespace Core
         // || Config
 
         private const float MIN_DISTANCE_TO_LAUNCH = 1f;
+        private const float PADDLE_Y_OFFSET =  0.35f;
 
         // || Cached
 
@@ -38,6 +42,8 @@ namespace Core
 
         // || Properties
 
+        public Color32 CurrentColor => spriteRenderer.color;
+        public Sprite Sprite => spriteRenderer.sprite;
         public bool IsBallOnFire { get; set; } = false;
         public float DefaultSpeed { get; set; }
         public float MoveSpeed { get; set; } = 300f;
@@ -47,8 +53,6 @@ namespace Core
         public Vector2 MinMaxLocalScale => new Vector2(0.5f, 8f);
         public Vector2 MinMaxRotationDegree => new Vector2(10f, 90f);
         public Vector2 Velocity { get => rigidBody2D.velocity; set => rigidBody2D.velocity = value; }
-        public Color32 CurrentColor => spriteRenderer.color;
-        public Sprite Sprite => spriteRenderer.sprite;
 
         private void Awake() => GetRequiredComponents();
 
@@ -101,12 +105,11 @@ namespace Core
                     switch (other.gameObject.tag)
                     {
                         case "Paddle":
-                        {
                             if (other.GetContact(0).normal != Vector2.down)
                             {
                                 ClampVelocity();
-                                AudioClip clip = (isBallBig ? AudioController.Instance.HittingFaceSound : AudioController.Instance.BlipSound);
-                                AudioController.Instance.PlaySFX(clip, AudioController.Instance.MaxSFXVolume);
+                                AudioClip sfx = (isBallBig ? AudioController.Instance.HittingFaceSound : AudioController.Instance.BlipSound);
+                                AudioController.Instance.PlaySFX(sfx, AudioController.Instance.MaxSFXVolume);
                             }
 
                             if (other.GetContact(0).normal == Vector2.up)
@@ -123,15 +126,12 @@ namespace Core
                             }
 
                             break;
-                        }
 
                         case "Wall":
-                        {
                             ClampVelocity();
                             AudioClip clip = (isBallBig ? AudioController.Instance.HittingFaceSound : AudioController.Instance.BlipSound);
                             AudioController.Instance.PlaySFX(clip, AudioController.Instance.MaxSFXVolume);
                             break;
-                        }
 
                         case "Breakable": case "Unbreakable": ClampVelocity(); break;
                         default: break;
@@ -156,6 +156,9 @@ namespace Core
             }
         }
 
+        /// <summary>
+        /// Configuration for the first ball of the game
+        /// </summary>
         private void FirstBallConfiguration()
         {
             if (FindObjectsOfType(GetType()).Length == 1)
@@ -164,7 +167,7 @@ namespace Core
                 initialLinePrefab = GameObject.FindGameObjectWithTag(NamesTags.Tags.LineBetweenBallPointer);
                 initialLineRenderer = initialLinePrefab.GetComponent<LineRenderer>();
 
-                Vector3 destination = new Vector3(paddle.transform.position.x, paddle.transform.position.y + 0.35f, paddle.transform.position.z);
+                Vector3 destination = new Vector3(paddle.transform.position.x, paddle.transform.position.y + PADDLE_Y_OFFSET, paddle.transform.position.z);
                 rigidBody2D.MovePosition((Vector2)destination);
                 DrawLineToMouse();
             }
@@ -175,7 +178,7 @@ namespace Core
         /// </summary>
         private void LockBallToPaddle()
         {
-            rigidBody2D.MovePosition(new Vector2(paddle.transform.position.x, paddle.transform.position.y + 0.35f));
+            rigidBody2D.MovePosition(new Vector2(paddle.transform.position.x, paddle.transform.position.y + PADDLE_Y_OFFSET));
         }
 
         /// <summary>

@@ -2,7 +2,6 @@
 using Effects;
 using MVC.BL;
 using MVC.Enums;
-using MVC.Global;
 using MVC.Models;
 using System;
 using System.Collections;
@@ -13,9 +12,12 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Utilities;
 
-namespace Controllers.Menu
+namespace Controllers.Panel
 {
-    public class SelectLevelsController : MonoBehaviour
+    /// <summary>
+    /// Controller for Select Levels Panel
+    /// </summary>
+    public class SelectLevelsPanelController : MonoBehaviour
     {
         // || Inspector References
 
@@ -46,10 +48,10 @@ namespace Controllers.Menu
 
         // || State
 
+        private Enumerators.GameStates actualGameState = Enumerators.GameStates.GAMEPLAY;
         private int currentLevelIndex = 0;
         private bool hasPlayerFinishedGame = false;
         private bool backToPreviousScene = false;
-        private Enumerators.GameStates actualGameState = Enumerators.GameStates.GAMEPLAY;
 
         // || Cached
 
@@ -62,7 +64,7 @@ namespace Controllers.Menu
 
         // || Properties
 
-        public static SelectLevelsController Instance { get; private set; }
+        public static SelectLevelsPanelController Instance { get; private set; }
         public Enumerators.GameStates ActualGameState { get => actualGameState; set => actualGameState = value; }
 
         private void Awake()
@@ -261,7 +263,7 @@ namespace Controllers.Menu
                         GameStatusController.Instance.OldTimeScore = bestScoreboard.TimeScore;
                         GameStatusController.Instance.OldCombo = bestScoreboard.BestCombo;
 
-                        StartCoroutine(CallNextScene(SceneManagerController.LevelSceneName));
+                        StartCoroutine(CallNextScene(SceneManagerController.SceneNames.Level));
                     });
                 }
 
@@ -294,7 +296,7 @@ namespace Controllers.Menu
             GameStatusController.Instance.NextSceneName = nextSceneName;
             GameStatusController.Instance.CameFromLevel = false;
             GameStatusController.Instance.HasStartedSong = false;
-            SceneManagerController.CallScene(SceneManagerController.LoadingSceneName);
+            SceneManagerController.CallScene(SceneManagerController.SceneNames.Loading);
         }
 
         /// <summary>
@@ -378,7 +380,7 @@ namespace Controllers.Menu
                 AudioController.Instance.StopMusic();
                 AudioController.Instance.StopME();
                 AudioController.Instance.PlaySFX(AudioController.Instance.UiCancelSound, AudioController.Instance.MaxSFXVolume);
-                StartCoroutine(CallNextScene(SceneManagerController.MainMenuSceneName));
+                StartCoroutine(CallNextScene(SceneManagerController.SceneNames.MainMenu));
             }
         }
     }

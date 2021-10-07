@@ -1,9 +1,9 @@
 
-using System;
-using Utilities;
-
 namespace MVC.Models
 {
+    /// <summary>
+    /// Scoreboard data
+    /// </summary>
     public class Scoreboard
     {
         private long ID;
@@ -13,29 +13,34 @@ namespace MVC.Models
         private long BEST_COMBO;
         private long MOMENT;
 
+        /// <summary>
+        /// Database generated id
+        /// </summary>
         public long Id { get => ID; set => ID = value; }
+
+        /// <summary>
+        /// Related Level Id
+        /// </summary>
         public long LevelId { get => LEVEL_ID; set => LEVEL_ID = value; }
+
+        /// <summary>
+        /// Total Score
+        /// </summary>
         public long Score { get => SCORE; set => SCORE = value; }
+
+        /// <summary>
+        /// Total Time Score
+        /// </summary>
         public long TimeScore { get => TIME_SCORE; set => TIME_SCORE = value; }
+
+        /// <summary>
+        /// Best Combo
+        /// </summary>
         public long BestCombo { get => BEST_COMBO; set => BEST_COMBO = value; }
+
+        /// <summary>
+        /// Played Moment
+        /// </summary>
         public long Moment { get => MOMENT; set => MOMENT = value; }
-
-        public Scoreboard() { }
-
-        public Scoreboard(long id, long levelId, long score, long timeScore, int bestCombo, long moment)
-        {
-            Id = id;
-            LevelId = levelId;
-            Score = score;
-            TimeScore = timeScore;
-            BestCombo = bestCombo;
-            Moment = moment;
-        }
-
-        public override string ToString()
-        {
-            string s = "Id = {0}, Level Id = {1}, Score = {2}, Time Score = {3}, Best Combo = {4}, Moment = {5}";
-            return string.Format(s, Id, LevelId, Formatter.FormatToCurrency(Score), Formatter.FormatToCurrency(TimeScore), BestCombo, DateTimeOffset.FromUnixTimeSeconds(Moment).ToString("yyyy-MM-dd HH:mm:ss"));
-        }
     }
 }

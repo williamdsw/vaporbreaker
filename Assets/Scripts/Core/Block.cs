@@ -7,6 +7,9 @@ using Utilities;
 
 namespace Core
 {
+    /// <summary>
+    /// Block entity
+    /// </summary>
     [RequireComponent(typeof(SpriteRenderer))]
     [RequireComponent(typeof(BoxCollider2D))]
     public class Block : MonoBehaviour
@@ -39,10 +42,10 @@ namespace Core
 
         // || Properties
 
+        public BoxCollider2D BoxCollider2D { get; private set; }
+        public Color32 ParticlesColor { get; set; }
         public int MaxHits { get; set; } = 0;
         public int StartMaxHits { get; set; } = 0;
-        public Color32 ParticlesColor { get; set; }
-        public BoxCollider2D BoxCollider2D { get; private set; }
 
         private void Awake() => GetRequiredComponents();
 
@@ -54,37 +57,9 @@ namespace Core
             StartMaxHits = MaxHits;
         }
 
-        private void OnCollisionEnter2D(Collision2D other)
-        {
-            if (GameSessionController.Instance.ActualGameState == Enumerators.GameStates.GAMEPLAY)
-            {
-                if (!lastCollision)
-                {
-                    collidedWithBall = (other.gameObject.GetComponent<Ball>() != null);
+        private void OnCollisionEnter2D(Collision2D other) => DoCheckingBeforeAct(other.gameObject);
 
-                    if (CompareTag(NamesTags.Tags.BreakableBlock))
-                    {
-                        HandleHit();
-                    }
-                }
-            }
-        }
-
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            if (GameSessionController.Instance.ActualGameState == Enumerators.GameStates.GAMEPLAY)
-            {
-                if (!lastCollision)
-                {
-                    collidedWithBall = (other.gameObject.GetComponent<Ball>() != null);
-
-                    if (CompareTag(NamesTags.Tags.BreakableBlock))
-                    {
-                        HandleHit();
-                    }
-                }
-            }
-        }
+        private void OnTriggerEnter2D(Collider2D other) => DoCheckingBeforeAct(other.gameObject);
 
         /// <summary>
         /// Get required components
@@ -102,6 +77,30 @@ namespace Core
             }
         }
 
+        /// <summary>
+        /// Do some checking before acting collisons
+        /// </summary>
+        /// <param name="other"> Other object collided or triggered </param>
+        private void DoCheckingBeforeAct(GameObject other)
+        {
+            if (GameSessionController.Instance.ActualGameState == Enumerators.GameStates.GAMEPLAY)
+            {
+                if (!lastCollision)
+                {
+                    collidedWithBall = (other.gameObject.GetComponent<Ball>() != null);
+
+                    if (CompareTag(NamesTags.Tags.Breakable))
+                    {
+                        HandleHit();
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Define color for block and particles
+        /// </summary>
+        /// <param name="color"> Desired Color </param>
         public void SetColor(Color32 color) => spriteRenderer.color = ParticlesColor = color;
 
         /// <summary>
@@ -109,7 +108,7 @@ namespace Core
         /// </summary>
         private void CountBreakableBlocks()
         {
-            if (CompareTag(NamesTags.Tags.BreakableBlock))
+            if (CompareTag(NamesTags.Tags.Breakable))
             {
                 GameSessionController.Instance.CountBlocks();
             }
@@ -138,8 +137,8 @@ namespace Core
         /// </summary>
         private void ShowNextSprite()
         {
-            int spriteIndex = (timesHit - 1);
-            if (hitSprites[spriteIndex] != null)
+            int spriteIndex = timesHit - 1;
+            if (spriteIndex >= 0 && hitSprites[spriteIndex] != null)
             {
                 spriteRenderer.sprite = hitSprites[spriteIndex];
             }
@@ -213,8 +212,7 @@ namespace Core
                     GameObject explosion = Instantiate(explosionPrefabs[randomIndex], transform.position, Quaternion.identity) as GameObject;
                     explosion.transform.SetParent(GameSessionController.Instance.FindOrCreateObjectParent(NamesTags.Parents.Explosions).transform);
                     Animator animator = explosion.GetComponent<Animator>();
-                    float animationLength = animator.GetCurrentAnimatorStateInfo(0).length;
-                    Destroy(explosion, animationLength);
+                    Destroy(explosion, animator.GetCurrentAnimatorStateInfo(0).length);
                 }
             }
             catch (Exception ex)
@@ -236,8 +234,7 @@ namespace Core
                 GameObject scoreText = Instantiate(blockScoreTextPrefab, transform.position, Quaternion.identity) as GameObject;
                 scoreText.transform.SetParent(GameSessionController.Instance.FindOrCreateObjectParent(NamesTags.Parents.BlockScoreText).transform);
                 Animator animator = scoreText.GetComponent<Animator>();
-                float durationLength = animator.GetCurrentAnimatorStateInfo(0).length;
-                Destroy(scoreText, durationLength);
+                Destroy(scoreText, animator.GetCurrentAnimatorStateInfo(0).length);
             }
             catch (Exception ex)
             {

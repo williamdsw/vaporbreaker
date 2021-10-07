@@ -1,4 +1,4 @@
-﻿using Controllers.Menu;
+﻿using Controllers.Panel;
 using MVC.BL;
 using MVC.Enums;
 using MVC.Models;
@@ -9,6 +9,9 @@ using UnityEngine;
 
 namespace Controllers.Core
 {
+    /// <summary>
+    /// Controller for Localization
+    /// </summary>
     public class LocalizationController : MonoBehaviour
     {
         // || Cached
@@ -76,8 +79,7 @@ namespace Controllers.Core
         {
             try
             {
-                LocalizationBL localizationBL = new LocalizationBL();
-                Localization localization = localizationBL.GetByLanguage(language);
+                Localization localization = new LocalizationBL().GetByLanguage(language);
                 dictionary = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, string>>>(localization.Content);
             }
             catch (Exception ex)

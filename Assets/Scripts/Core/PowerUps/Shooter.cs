@@ -7,6 +7,8 @@ namespace Core.PowerUps
 {
     public class Shooter : PowerUp
     {
+        // || Inspector References
+
         [Header("Required Configuration")]
         [SerializeField] private Core.Shooter shooterPrefab;
 

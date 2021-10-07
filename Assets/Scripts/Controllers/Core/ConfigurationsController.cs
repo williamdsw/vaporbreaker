@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 
-namespace Controllers.Menu
+namespace Controllers.Core
 {
+    /// <summary>
+    /// Controller for Configurations
+    /// </summary>
     public class ConfigurationsController : MonoBehaviour
     {
         /// <summary>

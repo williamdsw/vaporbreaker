@@ -7,6 +7,8 @@ namespace Core.PowerUps
 {
     public class SizePaddle : PowerUp
     {
+        // || Inspector References
+
         [Header("Additional Required Configuration")]
         [SerializeField] private bool toExpand = false;
 

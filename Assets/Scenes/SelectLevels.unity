@@ -727,7 +727,7 @@ GameObject:
   - component: {fileID: 415287866}
   - component: {fileID: 415287867}
   m_Layer: 14
-  m_Name: SelectLevelsController
+  m_Name: SelectLevelsPanelController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

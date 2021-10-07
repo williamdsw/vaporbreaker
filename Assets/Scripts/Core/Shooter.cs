@@ -1,5 +1,4 @@
 ﻿using Controllers.Core;
-using MVC.Global;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,6 +7,9 @@ using Utilities;
 
 namespace Core
 {
+    /// <summary>
+    /// Shooter used by the Player
+    /// </summary>
     public class Shooter : MonoBehaviour
     {
         // || Inspector References
@@ -31,6 +33,7 @@ namespace Core
         {
             projectilesPool = new List<GameObject>();
             paddle = FindObjectOfType<Paddle>();
+
             CreateProjectilesPool();
             SetCannonsPosition();
             StartCoroutine(SelfDestruct());

@@ -2729,8 +2729,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64584ea41862a4449a6eb9bf9b0bb925, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameSpeed: 1
-  isAutoplayEnabled: 0
   canvas: {fileID: 160870554}
   ballPrefab: {fileID: 6197581037803414145, guid: 098778faac1a4db46a5afa2497bd29e7,
     type: 3}
@@ -2750,17 +2748,6 @@ MonoBehaviour:
   currentScoreLabel: {fileID: 31753026}
   comboMultiplierLabel: {fileID: 2091330357}
   ballCountdownLabel: {fileID: 28772854}
-  bestCombo: 0
-  currentNumberOfBlocks: 0
-  currentScore: 0
-  numberOfBlocksDestroyed: 0
-  totalNumberOfBlocks: 0
-  ellapsedTime: 0
-  actualGameState: 1
-  areBallOnFire: 0
-  songIndex: 0
-  minMaxNumberOfRandomBlocks: {x: 0, y: 0}
-  numberOfRandomBlocks: 0
 --- !u!1 &648115997
 GameObject:
   m_ObjectHideFlags: 0
@@ -6508,20 +6495,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2338841497636453050, guid: c65cbe7967064284c8e6e1297508ce03,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2338841498084866778, guid: c65cbe7967064284c8e6e1297508ce03,
         type: 3}
       propertyPath: m_Name
       value: LineBetweenBallPointer
-      objectReference: {fileID: 0}
-    - target: {fileID: 2338841498084866778, guid: c65cbe7967064284c8e6e1297508ce03,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2338841498084866779, guid: c65cbe7967064284c8e6e1297508ce03,
         type: 3}
@@ -6591,7 +6568,7 @@ GameObject:
   - component: {fileID: 1840589464}
   - component: {fileID: 1840589465}
   m_Layer: 14
-  m_Name: LevelCompleteController
+  m_Name: LevelCompletePanelController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6678,7 +6655,7 @@ GameObject:
   - component: {fileID: 1853725442}
   - component: {fileID: 1853725443}
   m_Layer: 14
-  m_Name: PauseController
+  m_Name: PausePanelController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7363,11 +7340,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ball
       objectReference: {fileID: 0}
-    - target: {fileID: 6197581037803414145, guid: 098778faac1a4db46a5afa2497bd29e7,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6197581037803414147, guid: 098778faac1a4db46a5afa2497bd29e7,
         type: 3}
       propertyPath: m_RootOrder
@@ -7433,11 +7405,6 @@ PrefabInstance:
       propertyPath: initialLinePrefab
       value: 
       objectReference: {fileID: 2074160225}
-    - target: {fileID: 7804144657368390597, guid: 098778faac1a4db46a5afa2497bd29e7,
-        type: 3}
-      propertyPath: m_Name
-      value: BallEchoSpawner
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 098778faac1a4db46a5afa2497bd29e7, type: 3}
 --- !u!1001 &8014031418245815906

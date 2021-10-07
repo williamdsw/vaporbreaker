@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Effects
 {
+    /// <summary>
+    /// Effect for TV Knob
+    /// </summary>
     [RequireComponent(typeof(Animator))]
     public class KnobEffect : MonoBehaviour
     {

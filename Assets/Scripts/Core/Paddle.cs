@@ -6,6 +6,9 @@ using Utilities;
 
 namespace Core
 {
+    /// <summary>
+    /// Paddle, the player
+    /// </summary>
     [RequireComponent(typeof(SpriteRenderer))]
     [RequireComponent(typeof(BoxCollider2D))]
     [RequireComponent(typeof(Rigidbody2D))]

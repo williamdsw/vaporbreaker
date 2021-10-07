@@ -7,9 +7,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Controllers.Menu
+namespace Controllers.Scene
 {
-    public class TitleScreenController : MonoBehaviour
+    /// <summary>
+    /// Controller for Title Scene
+    /// </summary>
+    public class TitleSceneController : MonoBehaviour
     {
         // || Inspector References
 
@@ -96,9 +99,9 @@ namespace Controllers.Menu
 
             FadeEffect.Instance.FadeToLevel();
             yield return new WaitForSecondsRealtime(FadeEffect.Instance.GetFadeOutLength());
-            GameStatusController.Instance.NextSceneName = SceneManagerController.MainMenuSceneName;
+            GameStatusController.Instance.NextSceneName = SceneManagerController.SceneNames.MainMenu;
             GameStatusController.Instance.CameFromLevel = false;
-            SceneManagerController.CallScene(SceneManagerController.LoadingSceneName);
+            SceneManagerController.CallScene(SceneManagerController.SceneNames.Loading);
         }
 
         /// <summary>

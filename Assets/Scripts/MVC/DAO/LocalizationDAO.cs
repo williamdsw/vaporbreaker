@@ -3,14 +3,21 @@ using MVC.Models;
 using MVC.Utils;
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace MVC.DAO
 {
+    /// <summary>
+    /// Localization related queries
+    /// </summary>
     public class LocalizationDAO : Connection
     {
         public LocalizationDAO() : base() { }
 
+        /// <summary>
+        /// Get a localization by language
+        /// </summary>
+        /// <param name="language"> Desired language </param>
+        /// <returns> Localization instance </returns>
         public Localization GetByLanguage(string language)
         {
             try
@@ -20,7 +27,6 @@ namespace MVC.DAO
             }
             catch (Exception ex)
             {
-                Debug.LogErrorFormat("LocalizationDAO::GetByLanguage -> {0}", ex.Message);
                 throw ex;
             }
             finally
@@ -29,15 +35,18 @@ namespace MVC.DAO
             }
         }
 
-        public List<Localization> GetLanguages()
+        /// <summary>
+        /// List all languages
+        /// </summary>
+        /// <returns> List of Localization instances </returns>
+        public List<Localization> ListAll()
         {
             try
             {
-                return Factory<Localization>.CreateMany(ExecuteQuery(Configuration.Queries.Localization.GetLanguages));
+                return Factory<Localization>.CreateMany(ExecuteQuery(Configuration.Queries.Localization.ListAll));
             }
             catch (Exception ex)
             {
-                Debug.LogErrorFormat("LocalizationDAO::GetLanguages -> {0}", ex.Message);
                 throw ex;
             }
             finally

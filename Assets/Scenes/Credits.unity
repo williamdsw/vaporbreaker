@@ -415,7 +415,7 @@ GameObject:
   - component: {fileID: 119225039}
   - component: {fileID: 119225040}
   m_Layer: 0
-  m_Name: CreditsController
+  m_Name: CreditsSceneController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
