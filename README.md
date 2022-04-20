@@ -21,6 +21,12 @@ My first game developed in Unity. I implemented a lot of things that I learned w
 - Open `Unity Hub` and import the project.
 - Open the `Logo Screen` scene, and hit the play button.
 
+## Where to Play
+
+[Windows Installer](https://github.com/williamdsw/vaporbreaker/releases/tag/v0.7.1)
+
+[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/vaporbreaker)
+
 ## Credits
 
 Some thanks for all those asset makers and/or artists!
