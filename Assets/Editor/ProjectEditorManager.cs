@@ -1,6 +1,7 @@
 using MVC.Global;
 using System;
 using UnityEditor;
+using UnityEditor.Build;
 using Utilities;
 
 public class ProjectEditorManager
@@ -18,7 +19,7 @@ public class ProjectEditorManager
             PlayerSettings.productName = ProjectInfo.ProductName;
             PlayerSettings.bundleVersion = ProjectInfo.BundleVersion;
             PlayerSettings.macOS.buildNumber = ProjectInfo.BuildNumber;
-            PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.Standalone, ProjectInfo.Identifier);
+            PlayerSettings.SetApplicationIdentifier(NamedBuildTarget.Standalone, ProjectInfo.Identifier);
             playerSettingsManager.ApplyModifiedProperties();
             playerSettingsManager.Update();
         }

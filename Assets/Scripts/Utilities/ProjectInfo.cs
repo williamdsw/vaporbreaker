@@ -24,7 +24,7 @@ namespace Utilities
         /// <summary>
         /// Project's version
         /// </summary>
-        public static string BundleVersion => "3.0.0";
+        public static string BundleVersion => "4.0.0";
 
         /// <summary>
         /// Mac's build number

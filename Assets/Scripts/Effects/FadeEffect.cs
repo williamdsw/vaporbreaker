@@ -1,5 +1,6 @@
-﻿using System;
-using Controllers.Core;
+﻿using Controllers.Core;
+using System;
+using System.Linq;
 using UnityEngine;
 using Utilities;
 
@@ -72,7 +73,7 @@ namespace Effects
             try
             {
                 AnimationClip fadeInClip = animator.runtimeAnimatorController.animationClips[0];
-                fadeInClip.events = null;
+                fadeInClip.events = new AnimationEvent[0];
 
                 // First frame event
                 AnimationEvent firstFrameEvent = new AnimationEvent();
@@ -104,7 +105,7 @@ namespace Effects
             try
             {
                 AnimationClip fadeOutClip = animator.runtimeAnimatorController.animationClips[1];
-                fadeOutClip.events = null;
+                fadeOutClip.events = new AnimationEvent[0];
 
                 // First frame event
                 AnimationEvent firstFrameEvent = new AnimationEvent();
@@ -133,7 +134,7 @@ namespace Effects
             try
             {
                 AnimationClip fadeOutClip = animator.runtimeAnimatorController.animationClips[1];
-                fadeOutClip.events = null;
+                fadeOutClip.events = new AnimationEvent[0];
 
                 // Last frame event
                 AnimationEvent lastFrameEvent = new AnimationEvent();
@@ -156,7 +157,7 @@ namespace Effects
 
             foreach (AnimationClip clip in animator.runtimeAnimatorController.animationClips)
             {
-                clip.events = null;
+                clip.events = new AnimationEvent[0];
             }
         }
 

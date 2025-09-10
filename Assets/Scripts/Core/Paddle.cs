@@ -162,7 +162,7 @@ namespace Core
                 boxCollider2D = gameObject.AddComponent<BoxCollider2D>();
                 DefineBounds();
 
-                Shooter shooter = FindObjectOfType<Shooter>();
+                Shooter shooter = FindAnyObjectByType<Shooter>();
                 if (shooter != null)
                 {
                     shooter.SetCannonsPosition();

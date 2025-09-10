@@ -1,5 +1,4 @@
-﻿using Controllers.Panel;
-using MVC.BL;
+﻿using MVC.BL;
 using MVC.Enums;
 using MVC.Models;
 using Newtonsoft.Json;
@@ -30,7 +29,7 @@ namespace Controllers.Core
         /// </summary>
         private void SetupSingleton()
         {
-            if (FindObjectsOfType(GetType()).Length > 1)
+            if (FindObjectsByType(GetType(), FindObjectsSortMode.InstanceID).Length > 1)
             {
                 Destroy(gameObject);
             }

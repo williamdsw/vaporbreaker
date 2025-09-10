@@ -32,7 +32,7 @@ namespace Core
         // || Config
 
         private const float MIN_DISTANCE_TO_LAUNCH = 1f;
-        private const float PADDLE_Y_OFFSET =  0.35f;
+        private const float PADDLE_Y_OFFSET = 0.35f;
 
         // || Cached
 
@@ -52,7 +52,7 @@ namespace Core
         public Vector2 MinMaxMoveSpeed => new Vector2(200f, 600f);
         public Vector2 MinMaxLocalScale => new Vector2(0.5f, 8f);
         public Vector2 MinMaxRotationDegree => new Vector2(10f, 90f);
-        public Vector2 Velocity { get => rigidBody2D.velocity; set => rigidBody2D.velocity = value; }
+        public Vector2 Velocity { get => rigidBody2D.linearVelocity; set => rigidBody2D.linearVelocity = value; }
 
         private void Awake() => GetRequiredComponents();
 
@@ -80,7 +80,7 @@ namespace Core
                 else
                 {
                     RotateBall();
-                    if (rigidBody2D.velocity == Vector2.zero)
+                    if (rigidBody2D.linearVelocity == Vector2.zero)
                     {
                         ClampVelocity();
                     }
@@ -161,7 +161,7 @@ namespace Core
         /// </summary>
         private void FirstBallConfiguration()
         {
-            if (FindObjectsOfType(GetType()).Length == 1)
+            if (FindObjectsByType(GetType(), FindObjectsSortMode.InstanceID).Length == 1)
             {
                 echoEffectSpawnerPrefab.gameObject.SetActive(false);
                 initialLinePrefab = GameObject.FindGameObjectWithTag(NamesTags.Tags.LineBetweenBallPointer);
@@ -207,7 +207,7 @@ namespace Core
                     GameSessionController.Instance.CurrentNumberOfBalls++;
 
                     // Other
-                    rigidBody2D.velocity = (remainingPosition.normalized * MoveSpeed * Time.fixedDeltaTime);
+                    rigidBody2D.linearVelocity = (remainingPosition.normalized * MoveSpeed * Time.fixedDeltaTime);
                     initialLineRenderer.enabled = false;
                     echoEffectSpawnerPrefab.gameObject.SetActive(true);
                     CursorController.Instance.gameObject.SetActive(false);

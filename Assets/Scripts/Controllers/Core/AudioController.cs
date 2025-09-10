@@ -114,7 +114,7 @@ namespace Controllers.Core
         /// </summary>
         private void SetupSingleton()
         {
-            if (FindObjectsOfType(GetType()).Length > 1)
+            if (FindObjectsByType(GetType(), FindObjectsSortMode.InstanceID).Length > 1)
             {
                 Destroy(gameObject);
             }

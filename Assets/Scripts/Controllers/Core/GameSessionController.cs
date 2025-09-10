@@ -114,7 +114,7 @@ namespace Controllers.Core
 
         private void Start()
         {
-            canvasGroup = FindObjectOfType<CanvasGroup>();
+            canvasGroup = FindAnyObjectByType<CanvasGroup>();
 
             Level level = new LevelBL().GetById(GameStatusController.Instance.LevelId);
             Layout layout = JsonConvert.DeserializeObject<Layout>(level.Layout);
@@ -163,7 +163,7 @@ namespace Controllers.Core
         /// </summary>
         private void SetupSingleton()
         {
-            if (FindObjectsOfType(GetType()).Length > 1)
+            if (FindObjectsByType(GetType(), FindObjectsSortMode.InstanceID).Length > 1)
             {
                 gameObject.SetActive(false);
                 DestroyInstance();
@@ -378,7 +378,7 @@ namespace Controllers.Core
                 {
                     if (CanMoveBlocks)
                     {
-                        Block[] blocks = FindObjectsOfType<Block>();
+                        Block[] blocks = FindObjectsByType<Block>(FindObjectsSortMode.InstanceID);
                         int numberOfOcorrences = 0;
                         foreach (Block block in blocks)
                         {
@@ -451,7 +451,7 @@ namespace Controllers.Core
             {
                 BlockGrid.InitGrid();
 
-                foreach (Block block in FindObjectsOfType<Block>())
+                foreach (Block block in FindObjectsByType<Block>(FindObjectsSortMode.InstanceID))
                 {
                     if (BlockGrid.CheckPosition(block.transform.position) && BlockGrid.GetBlock(block.transform.position) == null)
                     {
@@ -490,7 +490,7 @@ namespace Controllers.Core
                             block.BoxCollider2D.isTrigger = true;
                         }
 
-                        foreach (Ball ball in FindObjectsOfType<Ball>())
+                        foreach (Ball ball in FindObjectsByType<Ball>(FindObjectsSortMode.InstanceID))
                         {
                             ball.IsBallOnFire = true;
                             ball.ChangeBallSprite(true);
@@ -524,7 +524,7 @@ namespace Controllers.Core
                     block.BoxCollider2D.isTrigger = false;
                 }
 
-                foreach (Ball ball in FindObjectsOfType<Ball>())
+                foreach (Ball ball in FindObjectsByType<Ball>(FindObjectsSortMode.InstanceID))
                 {
                     ball.IsBallOnFire = false;
                     ball.ChangeBallSprite(false);
@@ -589,7 +589,7 @@ namespace Controllers.Core
 
                 if (TimeToSpawnAnotherBall >= StartTimeToSpawnAnotherBall)
                 {
-                    Ball[] balls = FindObjectsOfType<Ball>();
+                    Ball[] balls = FindObjectsByType<Ball>(FindObjectsSortMode.InstanceID);
                     if (balls.Length != 0)
                     {
                         foreach (Ball ball in balls)
@@ -621,22 +621,22 @@ namespace Controllers.Core
         {
             try
             {
-                foreach (Ball ball in FindObjectsOfType<Ball>())
+                foreach (Ball ball in FindObjectsByType<Ball>(FindObjectsSortMode.InstanceID))
                 {
                     Destroy(ball.gameObject);
                 }
 
-                foreach (Shooter shooter in FindObjectsOfType<Shooter>())
+                foreach (Shooter shooter in FindObjectsByType<Shooter>(FindObjectsSortMode.InstanceID))
                 {
                     Destroy(shooter.gameObject);
                 }
 
-                foreach (PowerUp powerUp in FindObjectsOfType<PowerUp>())
+                foreach (PowerUp powerUp in FindObjectsByType<PowerUp>(FindObjectsSortMode.InstanceID))
                 {
                     Destroy(powerUp.gameObject);
                 }
 
-                Destroy(FindObjectOfType<Paddle>().gameObject);
+                Destroy(FindAnyObjectByType<Paddle>().gameObject);
             }
             catch (Exception ex)
             {
@@ -743,7 +743,7 @@ namespace Controllers.Core
                 {
                     if (!HasStarted)
                     {
-                        Ball ball = FindObjectOfType<Ball>();
+                        Ball ball = FindAnyObjectByType<Ball>();
                         if (ball != null)
                         {
                             ball.LaunchBall();
@@ -751,7 +751,7 @@ namespace Controllers.Core
                     }
                     else
                     {
-                        Shooter shooter = FindObjectOfType<Shooter>();
+                        Shooter shooter = FindAnyObjectByType<Shooter>();
                         if (shooter != null)
                         {
                             shooter.Shoot();
